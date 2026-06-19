@@ -310,8 +310,8 @@
     .mk-bar { height: 5px; background: rgba(255, 255, 255, 0.06); border-radius: 999px; overflow: hidden; }
     .mk-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-bright)); border-radius: 999px; }
 
-    /* Floating glass metric cards */
-    .float-cards { display: flex; gap: 0.6rem; margin-top: 1.6rem; pointer-events: none; }
+    /* Floating glass metric cards (overlay solo en desktop; en móvil manda el teléfono) */
+    .float-cards { display: none; gap: 0.6rem; margin-top: 1.6rem; pointer-events: none; }
     .float-card {
       background: var(--glass);
       -webkit-backdrop-filter: blur(14px) saturate(140%);
@@ -341,9 +341,81 @@
       50% { transform: translateY(-8px); }
     }
 
+    /* ---------- HERO VISUAL MÓVIL: teléfono con el sidebar de la extensión ----------
+       Tokens alineados a la extensión real (sidebar.css): surface #0e1223,
+       surface-low #161b30, user bubble #3d6ec9, accent-dim #acc7ff. */
+    .hero-mockup-mobile { display: flex; justify-content: center; margin-top: 2.4rem; }
+    .phone {
+      position: relative;
+      width: 240px;
+      padding: 10px;
+      background: #0a0f1e;
+      border: 3px solid #1e2a3e;
+      border-radius: 36px;
+      box-shadow:
+        0 40px 70px -20px rgba(2, 6, 23, 0.9),
+        0 0 0 1px rgba(80, 143, 248, 0.12),
+        0 0 40px -8px rgba(80, 143, 248, 0.22);
+      animation: floaty 4s ease-in-out infinite;
+      will-change: transform;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 6px;
+      border-radius: 999px;
+      background: #1e2a3e;
+      z-index: 4;
+    }
+    .phone-screen {
+      background: #020617;
+      border-radius: 26px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 430px;
+    }
+    .ph-top { display: flex; align-items: center; gap: 7px; padding: 18px 12px 9px; border-bottom: 1px solid rgba(80, 143, 248, 0.18); flex-shrink: 0; }
+    .ph-top svg.logo { width: 18px; height: 15px; flex-shrink: 0; }
+    .ph-title { font-family: "Manrope", sans-serif; font-weight: 400; font-size: 17px; letter-spacing: -0.5px; color: #508ff8; margin-right: auto; }
+    .ph-gear { display: flex; color: #ffffff; opacity: 0.45; }
+    .ph-gear svg { width: 15px; height: 15px; }
+    .ph-bar { padding: 9px 10px; border-bottom: 1px solid rgba(80, 143, 248, 0.18); flex-shrink: 0; }
+    .ph-dropdown {
+      display: flex; align-items: center; gap: 6px;
+      background: #0e1223;
+      border: 1px solid rgba(80, 143, 248, 0.18);
+      border-radius: 8px;
+      padding: 7px 9px;
+      color: #acc7ff;
+      font-size: 10.5px;
+    }
+    .ph-dropdown .lab { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ph-dropdown svg { width: 13px; height: 13px; opacity: 0.6; flex-shrink: 0; }
+    .ph-chat { flex: 1; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+    .ph-bubble { max-width: 85%; padding: 8px 11px; font-size: 11.5px; line-height: 1.45; border-radius: 13px; }
+    .ph-bubble.user { align-self: flex-end; background: #3d6ec9; color: #f4f8ff; border-bottom-right-radius: 3px; }
+    .ph-bubble.bot { align-self: flex-start; background: #161b30; border: 1px solid rgba(80, 143, 248, 0.10); color: #e2e2eb; border-bottom-left-radius: 3px; }
+    .ph-composer { display: flex; align-items: flex-end; gap: 7px; padding: 9px 10px; border-top: 1px solid rgba(80, 143, 248, 0.18); flex-shrink: 0; }
+    .ph-input {
+      flex: 1;
+      background: #0e1223;
+      border: 1px solid rgba(80, 143, 248, 0.18);
+      border-radius: 8px;
+      padding: 8px 10px;
+      color: rgba(194, 198, 213, 0.55);
+      font-size: 11.5px;
+    }
+    .ph-send { width: 30px; height: 30px; border-radius: 50%; background: #508ff8; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ph-send svg { width: 15px; height: 15px; }
+
     @media (min-width: 768px) {
       .hero-grid { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); }
       .mockup-wrap { display: block; animation: floaty 4s ease-in-out infinite; will-change: transform; }
+      .hero-mockup-mobile { display: none; }
       .float-cards { position: absolute; inset: 0; display: block; margin: 0; }
       .float-card { position: absolute; flex: none; width: max-content; max-width: 215px; padding: 0.8rem 0.95rem; animation: floaty 4s ease-in-out infinite; will-change: transform; z-index: 3; }
       .float-card .fc-title { font-size: 0.92rem; }
@@ -354,7 +426,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .mockup-wrap, .float-card { animation: none !important; }
+      .mockup-wrap, .float-card, .phone { animation: none !important; }
     }
 
     /* ============================================================ PROBLEMA */
@@ -859,6 +931,38 @@
             <div class="float-card fc-accent">
               <div class="fc-title">847 preguntas</div>
               <p class="fc-sub">registradas este mes</p>
+            </div>
+          </div>
+
+          <!-- Mockup móvil: teléfono con el sidebar simplificado de la extensión -->
+          <div class="hero-mockup-mobile">
+            <div class="phone">
+              <span class="phone-notch"></span>
+              <div class="phone-screen">
+                <div class="ph-top">
+                  <svg class="logo" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z" fill="#508FF8"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z" fill="#508FF8"/></svg>
+                  <span class="ph-title">Pharis</span>
+                  <span class="ph-gear">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  </span>
+                </div>
+                <div class="ph-bar">
+                  <div class="ph-dropdown">
+                    <span class="lab">Entregable 4: Punto de equilibrio</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </div>
+                <div class="ph-chat">
+                  <div class="ph-bubble user">¿Cómo calculo el punto de equilibrio?</div>
+                  <div class="ph-bubble bot">Mira tu hoja de costos. ¿Cuáles cambian cuando produces más unidades y cuáles se mantienen fijos?</div>
+                </div>
+                <div class="ph-composer">
+                  <div class="ph-input">Escribe tu pregunta…</div>
+                  <span class="ph-send">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
