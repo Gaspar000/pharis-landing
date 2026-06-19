@@ -56,6 +56,15 @@
       --light-accent-text: #1f5fd0;
 
       --warning: #f0a35a;
+      --amber: #f0a35a;
+      --green: #34d399;
+      --green-soft: rgba(52, 211, 153, 0.14);
+      --amber-soft: rgba(240, 163, 90, 0.14);
+
+      /* Mockup chrome */
+      --mk-bar: #0e1223;
+      --mk-rule: rgba(255, 255, 255, 0.07);
+      --glass: rgba(10, 19, 36, 0.55);
 
       /* Type scale */
       --h1: clamp(2.5rem, 6.2vw, 4.4rem);
@@ -190,26 +199,28 @@
     }
 
     /* ============================================================ HERO */
-    .hero { padding-block: clamp(5rem, 12vw, 9rem) clamp(4rem, 9vw, 7rem); }
+    .hero { padding-block: clamp(4.5rem, 11vw, 8rem) clamp(4rem, 9vw, 6.5rem); overflow: hidden; }
+    .hero-grid { display: grid; gap: clamp(3rem, 7vw, 4.5rem); align-items: center; }
+    .hero-grid > * { min-width: 0; }
     .hero h1 {
-      font-size: var(--h1);
+      font-size: clamp(2.2rem, 4.6vw, 3.6rem);
       font-weight: 300;
-      line-height: 1.04;
+      line-height: 1.05;
       letter-spacing: -0.025em;
-      margin: 0 0 1.6rem;
+      margin: 0 0 1.5rem;
       max-width: 16ch;
     }
     .hero h1 strong { font-weight: 700; color: var(--text); }
     .hero .sub {
-      font-size: clamp(1.1rem, 2vw, 1.32rem);
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
       color: var(--text-muted);
-      max-width: 58ch;
-      margin: 0 0 2.4rem;
+      max-width: 52ch;
+      margin: 0 0 2.2rem;
       line-height: 1.6;
     }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; }
     .hero-note {
-      margin-top: 1.7rem;
+      margin-top: 1.6rem;
       font-size: 0.9rem;
       color: var(--text-faint);
       display: inline-flex;
@@ -217,6 +228,131 @@
       gap: 0.5rem;
     }
     .hero-note svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+
+    /* ---------- HERO VISUAL: dashboard mockup + floating cards ---------- */
+    .hero-visual { position: relative; }
+    .mockup-wrap { display: none; } /* mobile: el mockup se oculta */
+
+    .mockup {
+      width: 100%;
+      background: linear-gradient(160deg, #060d20 0%, var(--bg) 70%);
+      border: 1px solid var(--rule-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(-8deg) rotateX(3deg);
+      transform-origin: center;
+      box-shadow:
+        0 50px 90px -30px rgba(2, 6, 23, 0.92),
+        0 28px 50px -22px rgba(2, 6, 23, 0.75),
+        0 0 0 1px rgba(80, 143, 248, 0.18),
+        0 0 42px -6px rgba(80, 143, 248, 0.28);
+    }
+
+    /* Browser chrome (faux-OS window) */
+    .mk-chrome { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.7rem; background: #0a0f1e; border-bottom: 1px solid var(--mk-rule); }
+    .mk-dots { display: flex; gap: 5px; }
+    .mk-dots i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+    .mk-dots i:nth-child(1) { background: #ff5f56; }
+    .mk-dots i:nth-child(2) { background: #ffbd2e; }
+    .mk-dots i:nth-child(3) { background: #27c93f; }
+    .mk-addr { margin-left: 0.35rem; font-size: 0.55rem; color: var(--text-faint); background: rgba(255, 255, 255, 0.04); border: 1px solid var(--mk-rule); border-radius: 999px; padding: 0.2rem 0.65rem; letter-spacing: 0.02em; }
+
+    /* Dashboard top bar */
+    .mk-top { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; background: var(--mk-bar); border-bottom: 1px solid var(--mk-rule); }
+    .mk-brand { display: flex; align-items: center; gap: 0.35rem; }
+    .mk-brand svg { width: 13px; height: auto; }
+    .mk-brand span { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: -0.01em; }
+    .mk-tabs { display: flex; gap: 0.7rem; margin-left: 0.4rem; }
+    .mk-tab { font-size: 0.58rem; color: var(--text-faint); padding-bottom: 2px; border-bottom: 1.5px solid transparent; white-space: nowrap; }
+    .mk-tab.is-active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+    .mk-grupo { margin-left: auto; font-size: 0.5rem; letter-spacing: 0.07em; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; }
+    .mk-grupo b { color: var(--text); font-weight: 600; }
+    .mk-bell { position: relative; color: var(--text-muted); display: flex; }
+    .mk-bell svg { width: 14px; height: 14px; display: block; }
+    .mk-badge { position: absolute; top: -5px; right: -5px; background: #ef4444; color: #fff; font-size: 0.42rem; font-weight: 700; min-width: 12px; height: 12px; border-radius: 999px; display: grid; place-items: center; padding: 0 2px; }
+
+    /* Metric cards row */
+    .mk-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; padding: 0.75rem 0.8rem 0.6rem; }
+    .mk-metric { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--mk-rule); border-radius: var(--radius-sm); padding: 0.5rem 0.55rem; }
+    .mk-mlabel { font-size: 0.45rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); line-height: 1.3; display: block; }
+    .mk-mnum { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.2rem; line-height: 1.05; margin-top: 0.25rem; letter-spacing: -0.02em; }
+    .is-green { color: var(--green); }
+    .is-accent { color: var(--accent); }
+    .is-white { color: var(--text); }
+    .is-amber { color: var(--amber); }
+
+    /* Three analytic panels */
+    .mk-panels { display: grid; grid-template-columns: 1.1fr 0.85fr 1.05fr; gap: 0.5rem; padding: 0 0.8rem 0.85rem; }
+    .mk-panel { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--mk-rule); border-radius: var(--radius-sm); padding: 0.55rem 0.6rem; }
+    .mk-ptitle { font-size: 0.45rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.5rem; }
+
+    .mk-feed { display: grid; gap: 0.5rem; }
+    .mk-fitem { line-height: 1.3; }
+    .mk-fitem .who { font-size: 0.55rem; font-weight: 700; color: var(--text); }
+    .mk-fitem .what { font-size: 0.55rem; color: var(--text-muted); }
+    .mk-fitem .when { display: block; font-size: 0.46rem; color: var(--text-faint); margin-top: 0.12rem; }
+
+    .mk-students { display: grid; gap: 0.42rem; }
+    .mk-student { display: flex; align-items: center; gap: 0.45rem; font-size: 0.57rem; color: var(--text); }
+    .mk-student.off { color: var(--text-faint); }
+    .mk-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .mk-dot.is-on { background: var(--green); box-shadow: 0 0 6px rgba(52, 211, 153, 0.6); }
+    .mk-dot.is-off { background: #3a4658; }
+
+    .mk-concepts { display: grid; gap: 0.45rem; }
+    .mk-bar-row { display: grid; gap: 0.2rem; }
+    .mk-bar-head { display: flex; justify-content: space-between; font-size: 0.5rem; }
+    .mk-bar-head .lab { color: var(--text-muted); }
+    .mk-bar-head .val { color: var(--text); font-weight: 700; font-family: "Manrope", sans-serif; }
+    .mk-bar { height: 5px; background: rgba(255, 255, 255, 0.06); border-radius: 999px; overflow: hidden; }
+    .mk-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-bright)); border-radius: 999px; }
+
+    /* Floating glass metric cards */
+    .float-cards { display: flex; gap: 0.6rem; margin-top: 1.6rem; pointer-events: none; }
+    .float-card {
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      backdrop-filter: blur(14px) saturate(140%);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 0.7rem 0.75rem;
+      box-shadow: 0 18px 40px -12px rgba(2, 6, 23, 0.6);
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .float-card .fc-title { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.84rem; letter-spacing: -0.01em; line-height: 1.2; display: flex; align-items: baseline; gap: 0.35rem; }
+    .float-card .fc-title .fc-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; align-self: center; }
+    .float-card .fc-sub { font-size: 0.73rem; color: var(--text-muted); margin: 0.25rem 0 0; line-height: 1.35; }
+    .fc-amber { border-color: rgba(240, 163, 90, 0.45); }
+    .fc-amber .fc-title { color: var(--amber); }
+    .fc-amber .fc-dot { background: var(--amber); }
+    .fc-green { border-color: rgba(52, 211, 153, 0.45); }
+    .fc-green .fc-title { color: var(--green); }
+    .fc-green .fc-dot { background: var(--green); }
+    .fc-accent { border-color: rgba(80, 143, 248, 0.5); }
+    .fc-accent .fc-title { color: var(--accent-bright); }
+    .fc-accent .fc-dot { background: var(--accent); }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @media (min-width: 768px) {
+      .hero-grid { grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); }
+      .mockup-wrap { display: block; animation: floaty 4s ease-in-out infinite; will-change: transform; }
+      .float-cards { position: absolute; inset: 0; display: block; margin: 0; }
+      .float-card { position: absolute; flex: none; width: max-content; max-width: 215px; padding: 0.8rem 0.95rem; animation: floaty 4s ease-in-out infinite; will-change: transform; z-index: 3; }
+      .float-card .fc-title { font-size: 0.92rem; }
+      .float-card .fc-sub { font-size: 0.78rem; }
+      .fc-amber { top: -7%; left: -9%; animation-delay: 0s; }
+      .fc-green { bottom: 5%; right: -6%; animation-delay: 1s; }
+      .fc-accent { top: -8%; right: 2%; animation-delay: 2s; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mockup-wrap, .float-card { animation: none !important; }
+    }
 
     /* ============================================================ PROBLEMA */
     .stat-block { display: grid; gap: 2.4rem; align-items: end; }
@@ -540,22 +676,110 @@
 
     <!-- ============================================================ HERO -->
     <header class="section hero">
-      <div class="container">
-        <p class="eyebrow reveal">Tutor con IA · Alerta temprana de deserción</p>
-        <h1 class="reveal" data-delay="1">El alumno en riesgo ya dio señales. <strong>Pharis las ve primero.</strong></h1>
-        <p class="sub reveal" data-delay="2">Un tutor con IA que acompaña a cada alumno dentro de Moodle y entrega al profesor un tablero de riesgo de deserción en tiempo real, semanas antes de que la calificación lo revele.</p>
-        <div class="hero-ctas reveal" data-delay="3">
-          <a href="#demo" class="btn btn-primary">Solicitar demo</a>
-          <!-- TODO: reemplazar con el enlace real de la extensión en Chrome Web Store -->
-          <a href="https://chromewebstore.google.com/" target="_blank" rel="noopener" class="btn btn-secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
-            Instalar extensión Chrome
-          </a>
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow reveal">Tutor con IA · Alerta temprana de deserción</p>
+          <h1 class="reveal" data-delay="1">El alumno en riesgo ya dio señales. <strong>Pharis las ve primero.</strong></h1>
+          <p class="sub reveal" data-delay="2">Un tutor con IA que acompaña a cada alumno dentro de Moodle y entrega al profesor un tablero de riesgo de deserción en tiempo real, semanas antes de que la calificación lo revele.</p>
+          <div class="hero-ctas reveal" data-delay="3">
+            <a href="#demo" class="btn btn-primary">Solicitar demo</a>
+            <!-- TODO: reemplazar con el enlace real de la extensión en Chrome Web Store -->
+            <a href="https://chromewebstore.google.com/" target="_blank" rel="noopener" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+              Instalar extensión Chrome
+            </a>
+          </div>
+          <p class="hero-note reveal" data-delay="3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Funciona sobre tu Moodle actual. Sin instalar servidores.
+          </p>
         </div>
-        <p class="hero-note reveal" data-delay="3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          Funciona sobre tu Moodle actual. Sin instalar servidores.
-        </p>
+
+        <!-- Mockup decorativo del dashboard + cards flotantes -->
+        <div class="hero-visual reveal" data-delay="2" aria-hidden="true">
+          <div class="mockup-wrap">
+            <div class="mockup">
+              <!-- Chrome del navegador -->
+              <div class="mk-chrome">
+                <span class="mk-dots"><i></i><i></i><i></i></span>
+                <span class="mk-addr">app.pharis.mx/panel</span>
+              </div>
+              <!-- Barra superior del dashboard -->
+              <div class="mk-top">
+                <span class="mk-brand">
+                  <svg viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z" fill="#508FF8"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z" fill="#508FF8"/></svg>
+                  <span>Pharis</span>
+                </span>
+                <span class="mk-tabs">
+                  <span class="mk-tab is-active">En vivo</span>
+                  <span class="mk-tab">Calificar</span>
+                  <span class="mk-tab">Calendario</span>
+                </span>
+                <span class="mk-grupo">Grupo activo: <b>Costos y Presupuestos</b></span>
+                <span class="mk-bell">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                  <span class="mk-badge">3</span>
+                </span>
+              </div>
+              <!-- Cards de métricas -->
+              <div class="mk-metrics">
+                <div class="mk-metric"><span class="mk-mlabel">Alumnos activos hoy</span><div class="mk-mnum is-green">24</div></div>
+                <div class="mk-metric"><span class="mk-mlabel">Días activos este mes</span><div class="mk-mnum is-accent">18</div></div>
+                <div class="mk-metric"><span class="mk-mlabel">Preguntas este mes</span><div class="mk-mnum is-white">847</div></div>
+                <div class="mk-metric"><span class="mk-mlabel">Promedio por sesión</span><div class="mk-mnum is-amber">6.2</div></div>
+              </div>
+              <!-- Paneles analíticos -->
+              <div class="mk-panels">
+                <div class="mk-panel">
+                  <div class="mk-ptitle">Actividad reciente</div>
+                  <div class="mk-feed">
+                    <div class="mk-fitem"><span class="who">Ana García</span> <span class="what">— "punto de equilibrio"</span><span class="when">hace 2 min</span></div>
+                    <div class="mk-fitem"><span class="who">Luis Mendoza</span> <span class="what">— "costos fijos vs variables"</span><span class="when">hace 9 min</span></div>
+                    <div class="mk-fitem"><span class="who">María Torres</span> <span class="what">— "margen de contribución"</span><span class="when">hace 14 min</span></div>
+                    <div class="mk-fitem"><span class="who">Carlos Reyes</span> <span class="what">— "estado de resultados"</span><span class="when">hace 23 min</span></div>
+                  </div>
+                </div>
+                <div class="mk-panel">
+                  <div class="mk-ptitle">Alumnos</div>
+                  <div class="mk-students">
+                    <div class="mk-student"><span class="mk-dot is-on"></span> Ana García</div>
+                    <div class="mk-student"><span class="mk-dot is-on"></span> Luis Mendoza</div>
+                    <div class="mk-student"><span class="mk-dot is-on"></span> María Torres</div>
+                    <div class="mk-student off"><span class="mk-dot is-off"></span> Carlos Reyes</div>
+                    <div class="mk-student"><span class="mk-dot is-on"></span> Sofía Luna</div>
+                    <div class="mk-student off"><span class="mk-dot is-off"></span> Diego Silva</div>
+                  </div>
+                </div>
+                <div class="mk-panel">
+                  <div class="mk-ptitle">Conceptos con más dudas</div>
+                  <div class="mk-concepts">
+                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">punto equilibrio</span><span class="val">23</span></div><div class="mk-bar"><i style="width:100%"></i></div></div>
+                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">costos fijos</span><span class="val">18</span></div><div class="mk-bar"><i style="width:78%"></i></div></div>
+                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">margen contribución</span><span class="val">15</span></div><div class="mk-bar"><i style="width:65%"></i></div></div>
+                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">estado resultados</span><span class="val">12</span></div><div class="mk-bar"><i style="width:52%"></i></div></div>
+                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">costos variables</span><span class="val">9</span></div><div class="mk-bar"><i style="width:39%"></i></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cards flotantes con glassmorphism -->
+          <div class="float-cards">
+            <div class="float-card fc-amber">
+              <div class="fc-title"><span class="fc-dot"></span>Alerta detectada</div>
+              <p class="fc-sub">Carlos Reyes lleva 8 días sin actividad</p>
+            </div>
+            <div class="float-card fc-green">
+              <div class="fc-title">6 semanas antes</div>
+              <p class="fc-sub">Anticipación promedio de las alertas</p>
+            </div>
+            <div class="float-card fc-accent">
+              <div class="fc-title">847 preguntas</div>
+              <p class="fc-sub">registradas este mes</p>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
