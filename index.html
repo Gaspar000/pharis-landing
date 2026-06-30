@@ -429,97 +429,90 @@
       .mockup-wrap, .float-card, .phone { animation: none !important; }
     }
 
-    /* ============================================================ PROBLEMA */
-    .stat-block { display: grid; gap: 2.4rem; align-items: end; }
-    .stat-huge {
+    /* ============================================================ PROBLEMA
+       Tres actos de una sola narrativa: (1) el dato como headline integrado,
+       (2) ancla que reconecta con el caso del hero, (3) por qué pasa esto. */
+
+    /* Acto 1: headline integrado — número display + oración, una sola unidad.
+       El número lleva el peso (display, gradient de marca); la oración fluye en
+       el mismo bloque, peso menor, pero comparte el flujo tipográfico. */
+    .stat-lead {
       font-family: "Manrope", sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.6rem, 3.6vw, 2.7rem);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: var(--text-muted);
+      max-width: 18ch;
+      margin: 0;
+      text-wrap: balance;
+    }
+    .stat-lead-num {
       font-weight: 800;
-      font-size: clamp(4.5rem, 16vw, 9.5rem);
-      line-height: 0.9;
+      font-size: clamp(3.4rem, 9vw, 6.4rem);
+      line-height: 0.92;
       letter-spacing: -0.04em;
-      background: linear-gradient(180deg, var(--text) 0%, var(--accent) 160%);
+      background: linear-gradient(180deg, var(--text) 0%, var(--accent) 165%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin: 0;
+      display: block;
+      margin-bottom: 0.12em;
     }
-    .stat-huge-pre {
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(1rem, 2.2vw, 1.4rem);
-      font-weight: 400;
-      color: var(--text-muted);
-      margin: 0 0 0.15em;
-      letter-spacing: -0.01em;
-    }
-    .stat-huge-sub {
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(1.1rem, 2.4vw, 1.5rem);
-      font-weight: 600;
-      color: var(--text-muted);
-      margin: 0.2em 0 0;
-      letter-spacing: -0.01em;
-    }
-    .stat-label { color: var(--text-muted); font-size: 1.12rem; max-width: 30ch; }
-    .stat-source { font-size: 11px; color: var(--text-faint); margin-top: 16px; }
-    .problem-points { display: grid; gap: 1.5rem; margin-top: 3.5rem; }
-    .problem-point { border-top: 1px solid var(--rule); padding-top: 1.4rem; }
-    .problem-point h3 { font-size: 1.3rem; font-weight: 700; margin: 0 0 0.4rem; letter-spacing: -0.01em; }
-    .problem-point p { margin: 0; color: var(--text-muted); }
+    .stat-source { font-size: 11px; color: var(--text-faint); margin: 1.1rem 0 0; }
 
-    /* Gráfico literal "1 de cada 2": barra dividida 50/50 a todo el ancho */
-    .stat-bar { margin: 0 0 2.6rem; }
-    .stat-bar-track {
-      position: relative;
-      display: flex;
-      width: 100%;
-      height: 56px;
-      border-radius: 10px;
-      overflow: hidden;
-      background: var(--panel);
-      border: 1px solid var(--rule);
+    /* Acto 2: ancla — reconecta con el caso del hero y retoma el "6 semanas".
+       Peso menor que el headline; no compite, ata. */
+    .stat-anchor {
+      margin-top: clamp(2.5rem, 5vw, 3.5rem);
+      padding-left: 1.1rem;
+      border-left: 2px solid var(--rule-strong);
+      max-width: 36ch;
     }
-    .stat-bar-fill { height: 100%; transform: scaleX(0); transition: transform 0.9s var(--ease); }
-    /* "Termina": mitad sólida (--text), crece desde la izquierda */
-    .stat-bar-fill--out { width: 50%; background: var(--text); transform-origin: left center; }
-    /* "No la termina": mitad apagada (--accent tenue + textura punteada), crece desde la derecha */
-    .stat-bar-fill--in {
-      width: 50%;
-      background:
-        repeating-linear-gradient(45deg, rgba(80,143,248,0.45) 0 2px, transparent 2px 7px),
-        var(--accent-soft);
-      transform-origin: right center;
+    .stat-anchor-lead {
+      margin: 0;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-faint);
+      line-height: 1.5;
     }
-    /* Costura central */
-    .stat-bar-divider {
-      position: absolute;
-      left: 50%; top: 0; bottom: 0;
-      width: 2px;
-      transform: translateX(-50%);
-      background: var(--bg);
-      opacity: 0; transition: opacity 0.4s var(--ease) 0.5s;
+    .stat-anchor-line {
+      margin: 0.5rem 0 0;
+      font-family: "Manrope", sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: var(--text);
     }
-    .stat-bar.is-visible .stat-bar-fill { transform: scaleX(1); }
-    .stat-bar.is-visible .stat-bar-divider { opacity: 1; }
-    .stat-bar-legend {
-      display: flex; justify-content: space-between;
-      margin-top: 12px;
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 0.04em; text-transform: uppercase;
+    .stat-anchor-figure { color: var(--accent-bright); font-weight: 800; }
+
+    /* Acto 3: por qué pasa esto — los dos ángulos como revelación, no nota al pie. */
+    .problem-why { margin-top: clamp(3rem, 6vw, 4.5rem); }
+    .problem-why-label {
+      font-family: "Fira Sans", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin: 0 0 1.6rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
     }
-    .stat-bar-label--out { color: var(--text-muted); }
-    .stat-bar-label--in { color: var(--accent); }
-    @media (prefers-reduced-motion: reduce) {
-      .stat-bar-fill { transition: none; transform: scaleX(1); }
-      .stat-bar-divider { transition: none; opacity: 1; }
+    .problem-points { display: grid; gap: 2rem; }
+    .problem-point h3 {
+      font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+      font-weight: 700;
+      margin: 0 0 0.55rem;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--text);
     }
+    .problem-point p { margin: 0; color: var(--text-muted); font-size: 1.05rem; line-height: 1.65; }
 
     @media (min-width: 760px) {
-      .stat-block { grid-template-columns: auto 1fr; gap: 3rem; }
-      .problem-points { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    }
-    @media (max-width: 480px) {
-      .stat-bar-track { height: 44px; }
-      .stat-bar-legend { font-size: 11px; }
+      .problem-points { grid-template-columns: 1fr 1fr; gap: 3rem; }
     }
 
     /* ============================================================ LIGHT SECTIONS */
@@ -1124,33 +1117,36 @@
     <section class="section section--deep" id="problema">
       <div class="container">
         <p class="eyebrow reveal">El problema</p>
-        <!-- Gráfico literal "1 de cada 2": barra dividida 50/50 a todo el ancho -->
-        <div class="stat-bar reveal" data-delay="1" aria-hidden="true">
-          <div class="stat-bar-track">
-            <div class="stat-bar-fill stat-bar-fill--out"></div>
-            <div class="stat-bar-fill stat-bar-fill--in"></div>
-            <span class="stat-bar-divider"></span>
-          </div>
-          <div class="stat-bar-legend">
-            <span class="stat-bar-label stat-bar-label--out">Termina la universidad</span>
-            <span class="stat-bar-label stat-bar-label--in">No la termina</span>
-          </div>
+
+        <!-- Acto 1: el dato como headline integrado (número + oración, una unidad) -->
+        <p class="stat-lead reveal" data-delay="1">
+          <span class="stat-lead-num">1 de cada 2</span>
+          jóvenes que empiezan la universidad en América Latina no logra terminarla.
+        </p>
+        <p class="stat-source reveal" data-delay="2">Fuente: Ferreyra, Avitabile, Botero, Haimovich &amp; Urzúa, Banco Mundial, 2017</p>
+
+        <!-- Acto 2: ancla que reconecta con el caso del hero (Carlos) sin nombrarlo -->
+        <div class="stat-anchor reveal" data-delay="2">
+          <p class="stat-anchor-lead">El alumno que viste arriba no es un caso aislado. La señal estaba ahí:</p>
+          <p class="stat-anchor-line">
+            la actividad cae
+            <span class="stat-anchor-figure">6 semanas</span>
+            antes del primer cero.
+          </p>
         </div>
-        <div class="stat-block">
-          <p class="stat-huge reveal" data-delay="1">1 de cada 2</p>
-          <div class="reveal" data-delay="2">
-            <p class="stat-label">jóvenes que empieza la universidad en América Latina no logra terminarla. La mayoría daba señales semanas antes de irse — y nadie las vio a tiempo.</p>
-            <p class="stat-source">Fuente: Ferreyra, Avitabile, Botero, Haimovich &amp; Urzúa, Banco Mundial, 2017</p>
-          </div>
-        </div>
-        <div class="problem-points">
-          <div class="problem-point reveal">
-            <h3>Cuando la calificación cae, ya es tarde</h3>
-            <p>Para cuando aparece el primer cero, el alumno lleva semanas perdido y la conversación de retención llega cuando ya tomó la decisión de irse.</p>
-          </div>
-          <div class="problem-point reveal" data-delay="1">
-            <h3>El LMS registra entregas, no esfuerzo</h3>
-            <p>Moodle sabe qué se entregó y cuándo. No sabe quién batalló tres horas con un tema, quién dejó de abrir el material ni quién está a punto de rendirse.</p>
+
+        <!-- Acto 3: por qué pasa esto (los dos ángulos del mismo problema) -->
+        <div class="problem-why">
+          <p class="problem-why-label reveal">Por qué casi nadie lo ve a tiempo</p>
+          <div class="problem-points">
+            <div class="problem-point reveal">
+              <h3>Cuando la calificación cae, ya es tarde</h3>
+              <p>Para cuando aparece el primer cero, el alumno lleva semanas perdido y la conversación de retención llega cuando ya tomó la decisión de irse.</p>
+            </div>
+            <div class="problem-point reveal" data-delay="1">
+              <h3>El LMS registra entregas, no esfuerzo</h3>
+              <p>Moodle sabe qué se entregó y cuándo. No sabe quién batalló tres horas con un tema, quién dejó de abrir el material ni quién está a punto de rendirse.</p>
+            </div>
           </div>
         </div>
       </div>
