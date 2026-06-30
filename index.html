@@ -433,15 +433,29 @@
        Tres actos de una sola narrativa: (1) el dato como headline integrado,
        (2) ancla que reconecta con el caso del hero, (3) por qué pasa esto. */
 
-    /* Acto 1: cohorte que se desvanece. El stage contiene un grid de siluetas;
-       la mitad derecha se disuelve en partículas que derivan y se apagan. */
+    /* Acto 1: la cohorte que se apaga gradualmente a lo largo del semestre.
+       Un grid de siluetas; las que abandonan se apagan en cascada según su
+       posición en el eje temporal (izquierda = inicio, derecha = fin), no a la
+       vez, y se disuelven en partículas. El eje ancla el "cuándo". */
     .cohort { margin: 0; }
     .cohort-stage {
       position: relative;
       width: 100%;
       max-width: 760px;
       aspect-ratio: 760 / 220;
-      margin-bottom: 1.6rem;
+    }
+    .cohort-axis {
+      display: flex;
+      justify-content: space-between;
+      max-width: 760px;
+      margin-top: 0.7rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--rule);
+      font-family: "Fira Sans", sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-faint);
     }
     .cohort-figure {
       position: absolute;
@@ -469,8 +483,8 @@
       line-height: 1.25;
       letter-spacing: -0.02em;
       color: var(--text-muted);
-      max-width: 30ch;
-      margin: 0;
+      max-width: 34ch;
+      margin: 1.8rem 0 0;
       text-wrap: balance;
     }
     .cohort-num {
@@ -484,34 +498,8 @@
     .cohort-em { color: var(--text); font-weight: 700; }
     .stat-source { font-size: 11px; color: var(--text-faint); margin: 1.1rem 0 0; }
 
-    /* Acto 2: ancla — reconecta con el caso del hero y retoma el "6 semanas".
-       Peso menor que el headline; no compite, ata. */
-    .stat-anchor {
-      margin-top: clamp(2.5rem, 5vw, 3.5rem);
-      padding-left: 1.1rem;
-      border-left: 2px solid var(--rule-strong);
-      max-width: 36ch;
-    }
-    .stat-anchor-lead {
-      margin: 0;
-      font-family: "Fira Sans", sans-serif;
-      font-size: 0.95rem;
-      color: var(--text-faint);
-      line-height: 1.5;
-    }
-    .stat-anchor-line {
-      margin: 0.5rem 0 0;
-      font-family: "Manrope", sans-serif;
-      font-weight: 600;
-      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-      line-height: 1.35;
-      letter-spacing: -0.01em;
-      color: var(--text);
-    }
-    .stat-anchor-figure { color: var(--accent-bright); font-weight: 800; }
-
-    /* Acto 3: por qué pasa esto — los dos ángulos como revelación, no nota al pie. */
-    .problem-why { margin-top: clamp(3rem, 6vw, 4.5rem); }
+    /* Acto 2: por qué pasa esto — los dos ángulos como revelación, no nota al pie. */
+    .problem-why { margin-top: clamp(3.5rem, 7vw, 5rem); }
     .problem-why-label {
       font-family: "Fira Sans", sans-serif;
       font-size: 0.72rem;
@@ -1141,31 +1129,26 @@
       <div class="container">
         <p class="eyebrow reveal">El problema</p>
 
-        <!-- Acto 1: cohorte que se desvanece. Una muestra de estudiantes; la
-             mitad se mantiene nítida (terminan) y la mitad se disuelve en
-             partículas que derivan hacia afuera (abandonan). El número se
-             integra como remate. Generado por JS determinista. -->
+        <!-- Acto 1: la cohorte que se apaga GRADUALMENTE a lo largo del
+             semestre. No desaparecen de golpe: se van apagando uno a uno, en
+             silencio, mientras emiten partículas que se dispersan. El eje
+             temporal ancla el "cuándo". Generado por JS determinista. -->
         <div class="cohort reveal" data-delay="1">
           <div class="cohort-stage" id="cohort-stage" aria-hidden="true"></div>
+          <div class="cohort-axis" aria-hidden="true">
+            <span>Inicio del semestre</span>
+            <span>Fin del semestre</span>
+          </div>
           <p class="cohort-caption">
             <span class="cohort-num">1 de cada 2</span>
             jóvenes que empiezan la universidad en América Latina
             <span class="cohort-em">no logra terminarla.</span>
+            No se van de golpe: se apagan, semana a semana, en silencio.
           </p>
           <p class="stat-source">Fuente: Ferreyra, Avitabile, Botero, Haimovich &amp; Urzúa, Banco Mundial, 2017</p>
         </div>
 
-        <!-- Acto 2: ancla que reconecta con el caso del hero (Carlos) sin nombrarlo -->
-        <div class="stat-anchor reveal" data-delay="2">
-          <p class="stat-anchor-lead">El alumno que viste arriba no es un caso aislado. La señal estaba ahí:</p>
-          <p class="stat-anchor-line">
-            la actividad cae
-            <span class="stat-anchor-figure">6 semanas</span>
-            antes del primer cero.
-          </p>
-        </div>
-
-        <!-- Acto 3: por qué pasa esto (los dos ángulos del mismo problema) -->
+        <!-- Acto 2: por qué pasa esto (los dos ángulos del mismo problema) -->
         <div class="problem-why">
           <p class="problem-why-label reveal">Por qué casi nadie lo ve a tiempo</p>
           <div class="problem-points">
@@ -1541,12 +1524,12 @@
       reveals.forEach((el) => io.observe(el));
     }
 
-    // ---------- Cohorte que se desvanece ("1 de cada 2") ----------
+    // ---------- Cohorte que se apaga gradualmente ("1 de cada 2") ----------
     (function cohort() {
       const stage = document.getElementById("cohort-stage");
       if (!stage) return;
 
-      const COLS = 10, ROWS = 2, TOTAL = COLS * ROWS;
+      const COLS = 10, ROWS = 2, TOTAL = COLS * ROWS, LEAVE = TOTAL / 2;
       const FIG_W = 6;   // % del stage por figura
       const FIG_H = 42;  // % del stage de alto por figura
       const PERSON =
@@ -1556,11 +1539,22 @@
       // PRNG determinista (sin Math.random): hash por índice.
       const rand = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
 
-      const figures = []; // { el, leaves, dots:[{el, dx, dy, delay}] }
+      // Quién abandona: sesgo temporal (más probable hacia el fin del semestre =
+      // columnas de la derecha), pero intercalado, no en bloque. Tomo las LEAVE
+      // figuras con mayor "score" = posición en el eje + ruido determinista.
+      const scored = [];
+      for (let i = 0; i < TOTAL; i++) {
+        const col = i % COLS;
+        scored.push({ i, score: col / (COLS - 1) * 0.7 + rand(i * 3.7) * 0.5 });
+      }
+      const leaveSet = new Set(
+        scored.slice().sort((a, b) => b.score - a.score).slice(0, LEAVE).map((s) => s.i),
+      );
+
+      const figures = []; // { el, leaves, when, dots }
       for (let i = 0; i < TOTAL; i++) {
         const col = i % COLS, row = Math.floor(i / COLS);
-        // Mitad derecha (cols 5-9) se disuelve; izquierda (0-4) se queda.
-        const leaves = col >= COLS / 2;
+        const leaves = leaveSet.has(i);
         const fig = document.createElement("div");
         fig.className = "cohort-figure";
         fig.style.width = FIG_W + "%";
@@ -1570,39 +1564,40 @@
         fig.innerHTML = PERSON;
         stage.appendChild(fig);
 
+        // Momento de apagado = posición en el eje temporal (columna) + jitter.
+        // Las de la izquierda (inicio del semestre) se apagan primero.
+        const when = leaves ? Math.min(0.92, col / (COLS - 1) * 0.8 + rand(i * 9.1) * 0.15) : 0;
+
         const dots = [];
         if (leaves) {
-          // Cada figura que abandona emite 5 partículas que derivan hacia
-          // afuera (a la derecha y dispersándose), trayectoria seedeada.
           for (let d = 0; d < 5; d++) {
             const dot = document.createElement("span");
             dot.className = "cohort-dot";
             dot.style.left = (col * (100 / COLS) + 50 / COLS) + "%";
             dot.style.top = (row * 52 + 26) + "%";
             stage.appendChild(dot);
-            const ang = (rand(i * 13 + d) - 0.35) * Math.PI;       // sesgo hacia arriba-derecha
-            const dist = 40 + rand(i * 7 + d) * 90;
-            dots.push({ el: dot, dx: Math.cos(ang) * dist + 30, dy: -Math.abs(Math.sin(ang)) * dist - 10, delay: rand(i + d) * 0.25 });
+            const ang = (rand(i * 13 + d) - 0.4) * Math.PI;       // sesgo hacia arriba
+            const dist = 30 + rand(i * 7 + d) * 80;
+            dots.push({ el: dot, dx: Math.cos(ang) * dist, dy: -Math.abs(Math.sin(ang)) * dist - 8, delay: rand(i + d) * 0.2 });
           }
         }
-        figures.push({ el: fig, leaves, col, dots });
+        figures.push({ el: fig, leaves, when, dots });
       }
 
-      const stagger = (col) => (col - COLS / 2) / (COLS / 2); // 0→1 por columna que abandona
+      const WINDOW = 0.22; // cuánto tarda cada figura en apagarse, en unidades de progreso
 
       function setProgress(p) {
-        // p: 0→1. Las que se quedan: nítidas siempre. Las que abandonan:
-        // nítidas un instante, luego se desvanecen y sueltan partículas.
+        // p: 0→1 barre el semestre. Cada figura que abandona se apaga en su
+        // momento `when`; el goteo recorre el eje de izquierda a derecha.
         figures.forEach((f) => {
           if (!f.leaves) { f.el.style.opacity = "1"; return; }
-          const local = Math.max(0, Math.min(1, (p - 0.15 - stagger(f.col) * 0.4) / 0.45));
-          // figura: 1 → 0.12 (queda un vestigio apagado), vira a accent al irse
-          f.el.style.opacity = String(1 - local * 0.88);
+          const local = Math.max(0, Math.min(1, (p - f.when) / WINDOW));
+          f.el.style.opacity = String(1 - local * 0.86);
           f.el.style.color = local > 0.05 ? "var(--accent)" : "var(--text)";
           f.el.style.transform = "translateY(" + (local * -6) + "px) scale(" + (1 - local * 0.12) + ")";
           f.dots.forEach((dt) => {
             const dl = Math.max(0, Math.min(1, (local - dt.delay) / (1 - dt.delay)));
-            dt.el.style.opacity = String(dl < 0.5 ? dl * 2 * 0.9 : (1 - dl) * 2 * 0.9);
+            dt.el.style.opacity = String(dl < 0.5 ? dl * 2 * 0.85 : (1 - dl) * 2 * 0.85);
             dt.el.style.transform = "translate(" + (dt.dx * dl) + "px," + (dt.dy * dl) + "px)";
           });
         });
@@ -1614,12 +1609,11 @@
       }
       setProgress(0);
       let raf = 0, start = 0;
-      const DUR = 2200; // ms
+      const DUR = 2800; // ms — más lento: el goteo debe leerse, no ser un flash
       const tick = (t) => {
         if (!start) start = t;
         const p = Math.min(1, (t - start) / DUR);
-        // ease-out
-        setProgress(1 - Math.pow(1 - p, 3));
+        setProgress(p); // lineal: la cascada barre el eje a ritmo constante
         if (p < 1) raf = requestAnimationFrame(tick);
       };
       const cio = new IntersectionObserver((entries) => {
