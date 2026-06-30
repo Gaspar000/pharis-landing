@@ -581,6 +581,42 @@
     }
     /* Real: gradiente de actividad — de lleno (accent) a vacío (apagado) */
     .lms-cell--real { border: 1px solid var(--rule); }
+
+    /* Interactivo: hover sincroniza la misma semana en ambas filas */
+    .lms-cell { cursor: pointer; transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease), filter 0.15s var(--ease); }
+    .lms-compare.is-touched .lms-cell:not(.is-active) { filter: brightness(0.62); }
+    .lms-cell.is-active {
+      transform: scale(1.16);
+      z-index: 2;
+      box-shadow: 0 0 0 2px var(--accent), 0 6px 18px -6px rgba(0,0,0,0.7);
+    }
+    /* Tooltip que contrasta Moodle vs real esa semana */
+    .lms-tip {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 12px);
+      transform: translateX(-50%) translateY(6px);
+      width: max-content;
+      max-width: 230px;
+      background: var(--panel-2);
+      border: 1px solid var(--rule-strong);
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.85rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s var(--ease), transform 0.15s var(--ease);
+      z-index: 5;
+      box-shadow: 0 18px 40px -16px rgba(0,0,0,0.8);
+    }
+    .lms-tip.is-on { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .lms-tip-week { font-family: "Fira Sans", sans-serif; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin: 0 0 0.45rem; }
+    .lms-tip-line { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.82rem; line-height: 1.35; margin: 0; }
+    .lms-tip-line + .lms-tip-line { margin-top: 0.3rem; }
+    .lms-tip-src { font-weight: 700; white-space: nowrap; }
+    .lms-tip-src--lms { color: var(--green); }
+    .lms-tip-src--real { color: var(--amber); }
+    .lms-tip-val { color: var(--text); }
+
     .lms-axis {
       display: flex;
       justify-content: space-between;
@@ -1747,35 +1783,88 @@
     (function lmsCompare() {
       const moodle = document.getElementById("lms-track-moodle");
       const real = document.getElementById("lms-track-real");
-      if (!moodle || !real) return;
+      const compare = document.querySelector(".lms-compare");
+      if (!moodle || !real || !compare) return;
       const WEEKS = 16;
+      const OFF = 0.18; // umbral de "apagado"
       const rand = (n) => { const x = Math.sin(n * 91.7 + 47.3) * 43758.5453; return x - Math.floor(x); };
 
+      // Lo que Moodle "ve" cada semana (siempre en orden) y lo real, para tooltip.
+      const moodleSays = ["Entregado a tiempo", "Entregado a tiempo", "Entregado", "Entregado a tiempo"];
+      const realSays = (lvl) =>
+        lvl > 0.66 ? "Activo: varias sesiones de estudio"
+        : lvl > 0.4 ? "Menos actividad que las primeras semanas"
+        : lvl >= OFF ? "Casi no abre el material"
+        : "Sin actividad: días sin conectarse";
+
+      const cellsM = [], cellsR = [];
       for (let w = 0; w < WEEKS; w++) {
+        const t = w / (WEEKS - 1);
+        const noise = (rand(w) - 0.5) * 0.12;
+        // Caída más agresiva (potencia 2.6): la actividad se desploma y deja
+        // ~6 semanas claramente apagadas al final. Acentúa al alumno que se apaga.
+        const level = Math.max(0, Math.min(1, (1 - Math.pow(t, 2.6) - t * 0.18) + noise));
+
         // Moodle: todo "entregado" en verde, semana a semana.
         const c1 = document.createElement("span");
         c1.className = "lms-cell lms-cell--ok";
+        c1.dataset.w = w;
         moodle.appendChild(c1);
+        cellsM.push(c1);
 
-        // Real: la actividad cae de plena a casi nula a lo largo del semestre.
-        // Caída cuadrática (lenta al inicio, pronunciada al final) + micro-
-        // variación determinista para que se sienta orgánico, no una rampa.
-        const t = w / (WEEKS - 1);
-        const noise = (rand(w) - 0.5) * 0.14;
-        const level = Math.max(0, Math.min(1, (1 - t * t) + noise));
+        // Real: actividad viva (accent) → apagado (gris frío).
         const c2 = document.createElement("span");
         c2.className = "lms-cell lms-cell--real";
-        if (level < 0.18) {
-          // Apagado: gris frío, sin actividad.
+        c2.dataset.w = w;
+        if (level < OFF) {
           c2.style.background = "rgba(100,116,139,0.12)";
           c2.style.borderColor = "rgba(100,116,139,0.18)";
         } else {
-          // Actividad viva en accent, intensidad proporcional al nivel.
           c2.style.background = "rgba(80,143,248," + (0.12 + level * 0.7).toFixed(3) + ")";
           c2.style.borderColor = "rgba(80,143,248," + (0.2 + level * 0.3).toFixed(3) + ")";
         }
         real.appendChild(c2);
+        cellsR.push({ el: c2, level });
       }
+
+      // Tooltip único, anclado a la celda real activa.
+      const tip = document.createElement("div");
+      tip.className = "lms-tip";
+      tip.innerHTML =
+        '<p class="lms-tip-week"></p>' +
+        '<p class="lms-tip-line"><span class="lms-tip-src lms-tip-src--lms">Moodle</span><span class="lms-tip-val" data-lms></span></p>' +
+        '<p class="lms-tip-line"><span class="lms-tip-src lms-tip-src--real">Real</span><span class="lms-tip-val" data-real></span></p>';
+
+      function activate(w) {
+        compare.classList.add("is-touched");
+        cellsM.forEach((c, i) => c.classList.toggle("is-active", i === w));
+        cellsR.forEach((c, i) => c.el.classList.toggle("is-active", i === w));
+        const lvl = cellsR[w].level;
+        tip.querySelector(".lms-tip-week").textContent = "Semana " + (w + 1);
+        tip.querySelector("[data-lms]").textContent = moodleSays[w % moodleSays.length];
+        tip.querySelector("[data-real]").textContent = realSays(lvl);
+        cellsR[w].el.appendChild(tip);
+        requestAnimationFrame(() => tip.classList.add("is-on"));
+      }
+      function clear() {
+        compare.classList.remove("is-touched");
+        cellsM.forEach((c) => c.classList.remove("is-active"));
+        cellsR.forEach((c) => c.el.classList.remove("is-active"));
+        tip.classList.remove("is-on");
+      }
+
+      [moodle, real].forEach((track) => {
+        track.addEventListener("pointermove", (e) => {
+          const cell = e.target.closest(".lms-cell");
+          if (cell && cell.dataset.w != null) activate(Number(cell.dataset.w));
+        });
+        track.addEventListener("pointerleave", clear);
+        // Tap en móvil: activar la celda tocada.
+        track.addEventListener("pointerdown", (e) => {
+          const cell = e.target.closest(".lms-cell");
+          if (cell && cell.dataset.w != null) activate(Number(cell.dataset.w));
+        });
+      });
     })();
 
     // ---------- Calculadora de ROI ----------
