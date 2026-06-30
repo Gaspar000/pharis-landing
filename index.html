@@ -433,47 +433,56 @@
        Tres actos de una sola narrativa: (1) el dato como headline integrado,
        (2) ancla que reconecta con el caso del hero, (3) por qué pasa esto. */
 
-    /* Acto 1: headline integrado — número display a la izquierda + oración a la
-       derecha asentada en la base. Una sola unidad que aprovecha el ancho; en
-       mobile colapsa a número arriba y oración debajo. */
-    .stat-lead {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.4rem 2.2rem;
-      align-items: end;
-      margin: 0;
-      max-width: 56rem;
+    /* Acto 1: cohorte que se desvanece. El stage contiene un grid de siluetas;
+       la mitad derecha se disuelve en partículas que derivan y se apagan. */
+    .cohort { margin: 0; }
+    .cohort-stage {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      aspect-ratio: 760 / 220;
+      margin-bottom: 1.6rem;
     }
-    .stat-lead-num {
+    .cohort-figure {
+      position: absolute;
+      top: 0; left: 0;
+      color: var(--text);
+      transform-origin: center;
+      will-change: transform, opacity;
+    }
+    .cohort-figure svg { display: block; width: 100%; height: 100%; }
+    /* Partícula de disolución (un punto que deriva hacia afuera y se apaga) */
+    .cohort-dot {
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+    /* Caption: el dato como remate, integrado bajo el visual */
+    .cohort-caption {
       font-family: "Manrope", sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.3rem, 2.6vw, 2rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--text-muted);
+      max-width: 30ch;
+      margin: 0;
+      text-wrap: balance;
+    }
+    .cohort-num {
       font-weight: 800;
-      font-size: clamp(2.9rem, 13vw, 7.5rem);
-      line-height: 0.86;
-      letter-spacing: -0.04em;
-      background: linear-gradient(150deg, var(--text) 0%, var(--accent) 130%);
+      letter-spacing: -0.03em;
+      background: linear-gradient(120deg, var(--text) 0%, var(--accent) 120%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      white-space: nowrap;
     }
-    .stat-lead-rest {
-      font-family: "Manrope", sans-serif;
-      font-weight: 500;
-      font-size: clamp(1.35rem, 2.6vw, 2.1rem);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: var(--text-muted);
-      text-wrap: balance;
-    }
+    .cohort-em { color: var(--text); font-weight: 700; }
     .stat-source { font-size: 11px; color: var(--text-faint); margin: 1.1rem 0 0; }
-
-    @media (min-width: 760px) {
-      .stat-lead {
-        grid-template-columns: auto 1fr;
-        gap: 0 2.6rem;
-      }
-      .stat-lead-rest { padding-bottom: 0.5rem; max-width: 24ch; }
-    }
 
     /* Acto 2: ancla — reconecta con el caso del hero y retoma el "6 semanas".
        Peso menor que el headline; no compite, ata. */
@@ -1132,12 +1141,19 @@
       <div class="container">
         <p class="eyebrow reveal">El problema</p>
 
-        <!-- Acto 1: el dato como headline integrado (número + oración, una unidad) -->
-        <p class="stat-lead reveal" data-delay="1">
-          <span class="stat-lead-num">1 de cada 2</span>
-          <span class="stat-lead-rest">jóvenes que empiezan la universidad en América Latina no logra terminarla.</span>
-        </p>
-        <p class="stat-source reveal" data-delay="2">Fuente: Ferreyra, Avitabile, Botero, Haimovich &amp; Urzúa, Banco Mundial, 2017</p>
+        <!-- Acto 1: cohorte que se desvanece. Una muestra de estudiantes; la
+             mitad se mantiene nítida (terminan) y la mitad se disuelve en
+             partículas que derivan hacia afuera (abandonan). El número se
+             integra como remate. Generado por JS determinista. -->
+        <div class="cohort reveal" data-delay="1">
+          <div class="cohort-stage" id="cohort-stage" aria-hidden="true"></div>
+          <p class="cohort-caption">
+            <span class="cohort-num">1 de cada 2</span>
+            jóvenes que empiezan la universidad en América Latina
+            <span class="cohort-em">no logra terminarla.</span>
+          </p>
+          <p class="stat-source">Fuente: Ferreyra, Avitabile, Botero, Haimovich &amp; Urzúa, Banco Mundial, 2017</p>
+        </div>
 
         <!-- Acto 2: ancla que reconecta con el caso del hero (Carlos) sin nombrarlo -->
         <div class="stat-anchor reveal" data-delay="2">
@@ -1524,6 +1540,95 @@
       }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
       reveals.forEach((el) => io.observe(el));
     }
+
+    // ---------- Cohorte que se desvanece ("1 de cada 2") ----------
+    (function cohort() {
+      const stage = document.getElementById("cohort-stage");
+      if (!stage) return;
+
+      const COLS = 10, ROWS = 2, TOTAL = COLS * ROWS;
+      const FIG_W = 6;   // % del stage por figura
+      const FIG_H = 42;  // % del stage de alto por figura
+      const PERSON =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+        '<circle cx="12" cy="7" r="3.4"/><path d="M5.5 21v-1.5a6.5 6.5 0 0 1 13 0V21"/></svg>';
+
+      // PRNG determinista (sin Math.random): hash por índice.
+      const rand = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+
+      const figures = []; // { el, leaves, dots:[{el, dx, dy, delay}] }
+      for (let i = 0; i < TOTAL; i++) {
+        const col = i % COLS, row = Math.floor(i / COLS);
+        // Mitad derecha (cols 5-9) se disuelve; izquierda (0-4) se queda.
+        const leaves = col >= COLS / 2;
+        const fig = document.createElement("div");
+        fig.className = "cohort-figure";
+        fig.style.width = FIG_W + "%";
+        fig.style.height = FIG_H + "%";
+        fig.style.left = (col * (100 / COLS) + (100 / COLS - FIG_W) / 2) + "%";
+        fig.style.top = (row * 52 + 6) + "%";
+        fig.innerHTML = PERSON;
+        stage.appendChild(fig);
+
+        const dots = [];
+        if (leaves) {
+          // Cada figura que abandona emite 5 partículas que derivan hacia
+          // afuera (a la derecha y dispersándose), trayectoria seedeada.
+          for (let d = 0; d < 5; d++) {
+            const dot = document.createElement("span");
+            dot.className = "cohort-dot";
+            dot.style.left = (col * (100 / COLS) + 50 / COLS) + "%";
+            dot.style.top = (row * 52 + 26) + "%";
+            stage.appendChild(dot);
+            const ang = (rand(i * 13 + d) - 0.35) * Math.PI;       // sesgo hacia arriba-derecha
+            const dist = 40 + rand(i * 7 + d) * 90;
+            dots.push({ el: dot, dx: Math.cos(ang) * dist + 30, dy: -Math.abs(Math.sin(ang)) * dist - 10, delay: rand(i + d) * 0.25 });
+          }
+        }
+        figures.push({ el: fig, leaves, col, dots });
+      }
+
+      const stagger = (col) => (col - COLS / 2) / (COLS / 2); // 0→1 por columna que abandona
+
+      function setProgress(p) {
+        // p: 0→1. Las que se quedan: nítidas siempre. Las que abandonan:
+        // nítidas un instante, luego se desvanecen y sueltan partículas.
+        figures.forEach((f) => {
+          if (!f.leaves) { f.el.style.opacity = "1"; return; }
+          const local = Math.max(0, Math.min(1, (p - 0.15 - stagger(f.col) * 0.4) / 0.45));
+          // figura: 1 → 0.12 (queda un vestigio apagado), vira a accent al irse
+          f.el.style.opacity = String(1 - local * 0.88);
+          f.el.style.color = local > 0.05 ? "var(--accent)" : "var(--text)";
+          f.el.style.transform = "translateY(" + (local * -6) + "px) scale(" + (1 - local * 0.12) + ")";
+          f.dots.forEach((dt) => {
+            const dl = Math.max(0, Math.min(1, (local - dt.delay) / (1 - dt.delay)));
+            dt.el.style.opacity = String(dl < 0.5 ? dl * 2 * 0.9 : (1 - dl) * 2 * 0.9);
+            dt.el.style.transform = "translate(" + (dt.dx * dl) + "px," + (dt.dy * dl) + "px)";
+          });
+        });
+      }
+
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        setProgress(1);
+        return;
+      }
+      setProgress(0);
+      let raf = 0, start = 0;
+      const DUR = 2200; // ms
+      const tick = (t) => {
+        if (!start) start = t;
+        const p = Math.min(1, (t - start) / DUR);
+        // ease-out
+        setProgress(1 - Math.pow(1 - p, 3));
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      const cio = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { cancelAnimationFrame(raf); start = 0; raf = requestAnimationFrame(tick); cio.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      cio.observe(stage);
+    })();
 
     // ---------- Calculadora de ROI ----------
     const mxn = new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN", maximumFractionDigits: 0 });
