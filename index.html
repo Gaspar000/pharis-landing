@@ -433,33 +433,47 @@
        Tres actos de una sola narrativa: (1) el dato como headline integrado,
        (2) ancla que reconecta con el caso del hero, (3) por qué pasa esto. */
 
-    /* Acto 1: headline integrado — número display + oración, una sola unidad.
-       El número lleva el peso (display, gradient de marca); la oración fluye en
-       el mismo bloque, peso menor, pero comparte el flujo tipográfico. */
+    /* Acto 1: headline integrado — número display a la izquierda + oración a la
+       derecha asentada en la base. Una sola unidad que aprovecha el ancho; en
+       mobile colapsa a número arriba y oración debajo. */
     .stat-lead {
-      font-family: "Manrope", sans-serif;
-      font-weight: 500;
-      font-size: clamp(1.6rem, 3.6vw, 2.7rem);
-      line-height: 1.18;
-      letter-spacing: -0.02em;
-      color: var(--text-muted);
-      max-width: 18ch;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.4rem 2.2rem;
+      align-items: end;
       margin: 0;
-      text-wrap: balance;
+      max-width: 56rem;
     }
     .stat-lead-num {
+      font-family: "Manrope", sans-serif;
       font-weight: 800;
-      font-size: clamp(3.4rem, 9vw, 6.4rem);
-      line-height: 0.92;
+      font-size: clamp(2.9rem, 13vw, 7.5rem);
+      line-height: 0.86;
       letter-spacing: -0.04em;
-      background: linear-gradient(180deg, var(--text) 0%, var(--accent) 165%);
+      background: linear-gradient(150deg, var(--text) 0%, var(--accent) 130%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      display: block;
-      margin-bottom: 0.12em;
+      white-space: nowrap;
+    }
+    .stat-lead-rest {
+      font-family: "Manrope", sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text-muted);
+      text-wrap: balance;
     }
     .stat-source { font-size: 11px; color: var(--text-faint); margin: 1.1rem 0 0; }
+
+    @media (min-width: 760px) {
+      .stat-lead {
+        grid-template-columns: auto 1fr;
+        gap: 0 2.6rem;
+      }
+      .stat-lead-rest { padding-bottom: 0.5rem; max-width: 24ch; }
+    }
 
     /* Acto 2: ancla — reconecta con el caso del hero y retoma el "6 semanas".
        Peso menor que el headline; no compite, ata. */
@@ -1121,7 +1135,7 @@
         <!-- Acto 1: el dato como headline integrado (número + oración, una unidad) -->
         <p class="stat-lead reveal" data-delay="1">
           <span class="stat-lead-num">1 de cada 2</span>
-          jóvenes que empiezan la universidad en América Latina no logra terminarla.
+          <span class="stat-lead-rest">jóvenes que empiezan la universidad en América Latina no logra terminarla.</span>
         </p>
         <p class="stat-source reveal" data-delay="2">Fuente: Ferreyra, Avitabile, Botero, Haimovich &amp; Urzúa, Banco Mundial, 2017</p>
 
