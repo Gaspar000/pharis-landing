@@ -526,6 +526,84 @@
       .problem-points { grid-template-columns: 1fr 1fr; gap: 3rem; }
     }
 
+    /* ============================================================ CONTRASTE LMS
+       Dos tiras paralelas del mismo alumno a lo largo del semestre. Arriba lo
+       que el LMS ve (todo verde); abajo lo real (la actividad cayendo). El
+       contraste vertical ES el argumento. */
+    .lms-compare {
+      margin-top: clamp(2.5rem, 5vw, 3.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 860px;
+    }
+    .lms-row {
+      background: var(--panel);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem 1.2rem;
+    }
+    .lms-row--real { border-color: var(--rule-strong); }
+    .lms-row-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+    .lms-row-tag {
+      font-family: "Fira Sans", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .lms-row-verdict {
+      font-family: "Manrope", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .lms-ok { color: var(--green); background: var(--green-soft); }
+    .lms-warn { color: var(--amber); background: var(--amber-soft); }
+    /* Tira de celdas semanales */
+    .lms-track { display: grid; grid-template-columns: repeat(16, 1fr); gap: 5px; }
+    .lms-cell { aspect-ratio: 1; border-radius: 4px; position: relative; }
+    /* Moodle: todas "entregado/ok" en verde uniforme */
+    .lms-cell--ok { background: var(--green-soft); border: 1px solid rgba(52,211,153,0.35); }
+    .lms-cell--ok::after {
+      content: ""; position: absolute; inset: 0; margin: auto;
+      width: 32%; height: 18%; border-left: 1.5px solid var(--green);
+      border-bottom: 1.5px solid var(--green); transform: translateY(-12%) rotate(-45deg);
+    }
+    /* Real: gradiente de actividad — de lleno (accent) a vacío (apagado) */
+    .lms-cell--real { border: 1px solid var(--rule); }
+    .lms-axis {
+      display: flex;
+      justify-content: space-between;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-top: 2px;
+    }
+    .lms-kicker {
+      margin: clamp(2rem, 4vw, 3rem) 0 0;
+      max-width: 44ch;
+      font-family: "Manrope", sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      color: var(--text-muted);
+      text-wrap: balance;
+    }
+    .lms-kicker-em { color: var(--amber); font-weight: 700; }
+
     /* ============================================================ LIGHT SECTIONS */
     .on-light { background: var(--light-bg); color: var(--light-text); }
     .on-light .eyebrow { color: var(--light-accent-text); }
@@ -1165,6 +1243,45 @@
       </div>
     </section>
 
+    <!-- ============================================================ CONTRASTE LMS -->
+    <section class="section section--deep" id="contraste">
+      <div class="container">
+        <p class="eyebrow reveal">El punto ciego</p>
+        <h2 class="section-title reveal" data-delay="1">El mismo alumno, dos realidades.</h2>
+        <p class="section-sub reveal" data-delay="2">Tu LMS registra lo que se entrega. No lo que cuesta llegar a entregarlo.</p>
+
+        <div class="lms-compare reveal" data-delay="2">
+          <!-- Fila 1: lo que el LMS registra (todo en verde, aparenta normalidad) -->
+          <div class="lms-row lms-row--lms">
+            <div class="lms-row-head">
+              <span class="lms-row-tag">Lo que Moodle registra</span>
+              <span class="lms-row-verdict lms-ok">Todo en orden</span>
+            </div>
+            <div class="lms-track" id="lms-track-moodle" aria-hidden="true"></div>
+          </div>
+
+          <!-- Fila 2: lo que de verdad pasa (la actividad real cayendo) -->
+          <div class="lms-row lms-row--real">
+            <div class="lms-row-head">
+              <span class="lms-row-tag">Lo que de verdad pasó</span>
+              <span class="lms-row-verdict lms-warn">Se estaba apagando</span>
+            </div>
+            <div class="lms-track" id="lms-track-real" aria-hidden="true"></div>
+          </div>
+
+          <div class="lms-axis" aria-hidden="true">
+            <span>Semana 1</span>
+            <span>Semana 16</span>
+          </div>
+        </div>
+
+        <p class="lms-kicker reveal">
+          Para cuando el LMS muestra el problema, <span class="lms-kicker-em">ya es un cero</span>.
+          Pharis lee la fila de abajo: el esfuerzo, semanas antes.
+        </p>
+      </div>
+    </section>
+
     <!-- ============================================================ COMO FUNCIONA (light) -->
     <section class="section on-light" id="como-funciona">
       <div class="container">
@@ -1624,6 +1741,41 @@
         });
       }, { threshold: 0.4 });
       cio.observe(stage);
+    })();
+
+    // ---------- Contraste LMS: lo que se ve vs lo que pasa ----------
+    (function lmsCompare() {
+      const moodle = document.getElementById("lms-track-moodle");
+      const real = document.getElementById("lms-track-real");
+      if (!moodle || !real) return;
+      const WEEKS = 16;
+      const rand = (n) => { const x = Math.sin(n * 91.7 + 47.3) * 43758.5453; return x - Math.floor(x); };
+
+      for (let w = 0; w < WEEKS; w++) {
+        // Moodle: todo "entregado" en verde, semana a semana.
+        const c1 = document.createElement("span");
+        c1.className = "lms-cell lms-cell--ok";
+        moodle.appendChild(c1);
+
+        // Real: la actividad cae de plena a casi nula a lo largo del semestre.
+        // Caída cuadrática (lenta al inicio, pronunciada al final) + micro-
+        // variación determinista para que se sienta orgánico, no una rampa.
+        const t = w / (WEEKS - 1);
+        const noise = (rand(w) - 0.5) * 0.14;
+        const level = Math.max(0, Math.min(1, (1 - t * t) + noise));
+        const c2 = document.createElement("span");
+        c2.className = "lms-cell lms-cell--real";
+        if (level < 0.18) {
+          // Apagado: gris frío, sin actividad.
+          c2.style.background = "rgba(100,116,139,0.12)";
+          c2.style.borderColor = "rgba(100,116,139,0.18)";
+        } else {
+          // Actividad viva en accent, intensidad proporcional al nivel.
+          c2.style.background = "rgba(80,143,248," + (0.12 + level * 0.7).toFixed(3) + ")";
+          c2.style.borderColor = "rgba(80,143,248," + (0.2 + level * 0.3).toFixed(3) + ")";
+        }
+        real.appendChild(c2);
+      }
     })();
 
     // ---------- Calculadora de ROI ----------
