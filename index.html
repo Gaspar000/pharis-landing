@@ -101,6 +101,13 @@
     h1, h2, h3 { font-family: "Manrope", "Helvetica Neue", Arial, sans-serif; }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 
+    /* Solo para lectores de pantalla: contenido visualmente oculto pero accesible */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+
     /* ============================================================ LAYOUT */
     .container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); }
     .section { padding-block: clamp(4.5rem, 10vw, 8rem); position: relative; }
@@ -787,6 +794,9 @@
       width: 20px; height: 20px; border-radius: 50%;
       background: var(--accent); border: 3px solid var(--bg); cursor: pointer;
     }
+    /* Foco visible por teclado en el thumb del slider (el track lleva outline:none) */
+    .calc-field input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--accent-soft-2), 0 0 0 1px var(--accent); }
+    .calc-field input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 3px var(--accent-soft-2), 0 0 0 1px var(--accent); }
     .calc-num {
       width: 100%;
       background: var(--bg-deep);
@@ -797,7 +807,7 @@
       font-size: 1.05rem;
       padding: 0.7rem 0.85rem;
     }
-    .calc-num:focus { border-color: var(--accent); outline: none; }
+    .calc-num:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft-2); }
 
     .result {
       background: linear-gradient(160deg, var(--panel-2), var(--panel));
@@ -878,7 +888,7 @@
       font-size: 1rem;
       padding: 0.8rem 0.95rem;
     }
-    .form input:focus { border-color: var(--accent); outline: none; }
+    .form input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft-2); }
     .form-note { font-size: 0.82rem; color: var(--text-faint); margin: 0.2rem 0 0; }
     @media (min-width: 860px) { .cta-grid { grid-template-columns: 0.9fr 1.1fr; gap: 4rem; } }
 
@@ -1141,7 +1151,7 @@
                 <span class="mk-grupo">Grupo activo: <b>Costos y Presupuestos</b></span>
                 <span class="mk-bell">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                  <span class="mk-badge">3</span>
+                  <span class="mk-badge">1</span>
                 </span>
               </div>
               <!-- Cards de métricas -->
@@ -1159,7 +1169,7 @@
                     <div class="mk-fitem"><span class="who">Ana García</span> <span class="what">— "punto de equilibrio"</span><span class="when">hace 2 min</span></div>
                     <div class="mk-fitem"><span class="who">Luis Mendoza</span> <span class="what">— "costos fijos vs variables"</span><span class="when">hace 9 min</span></div>
                     <div class="mk-fitem"><span class="who">María Torres</span> <span class="what">— "margen de contribución"</span><span class="when">hace 14 min</span></div>
-                    <div class="mk-fitem"><span class="who">Carlos Reyes</span> <span class="what">— "estado de resultados"</span><span class="when">hace 23 min</span></div>
+                    <div class="mk-fitem"><span class="who">Valeria Cruz</span> <span class="what">— "estado de resultados"</span><span class="when">hace 23 min</span></div>
                   </div>
                 </div>
                 <div class="mk-panel">
@@ -1286,6 +1296,14 @@
         <h2 class="section-title reveal" data-delay="1">El mismo alumno, dos realidades.</h2>
         <p class="section-sub reveal" data-delay="2">Tu LMS registra lo que se entrega. No lo que cuesta llegar a entregarlo.</p>
 
+        <!-- Descripción accesible del gráfico (el gráfico visual es aria-hidden) -->
+        <p class="sr-only">
+          Comparación de un mismo alumno a lo largo de 16 semanas. En Moodle, las 16 semanas
+          figuran como entregadas y en orden. En la realidad, su actividad de estudio cae de
+          forma sostenida hasta apagarse por completo en las últimas semanas del semestre,
+          sin que el LMS lo registre.
+        </p>
+
         <div class="lms-compare reveal" data-delay="2">
           <!-- Fila 1: lo que el LMS registra (todo en verde, aparenta normalidad) -->
           <div class="lms-row lms-row--lms">
@@ -1374,6 +1392,8 @@
             poster="assets/video-poster.jpg"
           >
             <source src="assets/video-pharis.mp4" type="video/mp4">
+            <!-- TODO: añadir el archivo real de subtítulos en assets/video-pharis.es.vtt -->
+            <track kind="subtitles" src="assets/video-pharis.es.vtt" srclang="es" label="Español" default>
           </video>
 
           <button class="video-play-btn" id="video-play-btn" aria-label="Reproducir demo">
@@ -1496,8 +1516,8 @@
             <p class="r-loss" id="loss">$0</p>
             <p class="r-loss-note" id="loss-detail">&nbsp;</p>
             <hr />
-            <p class="r-pay">Con retener apenas <strong>10 alumnos</strong> al año (<span id="retain-value">$0</span>), Pharis se paga <strong>5 veces</strong>.</p>
-            <p class="r-foot">Costo estimado de licencia de campus: <span id="license-cost">$0</span> al año. Cifra ilustrativa; el precio final se define por institución.</p>
+            <p class="r-pay">Retener <strong>10 alumnos</strong> al año vale <span id="retain-value">$0</span>. Una licencia de campus cuesta <strong><span id="license-cost">$0</span></strong> al año.</p>
+            <p class="r-foot">Comparación ilustrativa: el costo de licencia es una estimación de referencia y el precio final se define por institución. La cifra de retención usa tu colegiatura promedio.</p>
           </div>
         </div>
       </div>
