@@ -1551,6 +1551,7 @@
         scored.slice().sort((a, b) => b.score - a.score).slice(0, LEAVE).map((s) => s.i),
       );
 
+      const WINDOW = 0.22; // cuánto tarda cada figura en apagarse, en unidades de progreso
       const figures = []; // { el, leaves, when, dots }
       for (let i = 0; i < TOTAL; i++) {
         const col = i % COLS, row = Math.floor(i / COLS);
@@ -1564,9 +1565,12 @@
         fig.innerHTML = PERSON;
         stage.appendChild(fig);
 
-        // Momento de apagado = posición en el eje temporal (columna) + jitter.
-        // Las de la izquierda (inicio del semestre) se apagan primero.
-        const when = leaves ? Math.min(0.92, col / (COLS - 1) * 0.8 + rand(i * 9.1) * 0.15) : 0;
+        // Momento de inicio del apagado = posición en el eje temporal (columna)
+        // + jitter. Las de la izquierda (inicio del semestre) se apagan primero.
+        // Se acota a [0, 1 - WINDOW] para que TODA figura complete su
+        // desvanecimiento dentro de p ≤ 1 (si no, las últimas quedan a medias).
+        const whenRaw = col / (COLS - 1) * 0.82 + rand(i * 9.1) * 0.16;
+        const when = leaves ? Math.min(1 - WINDOW, whenRaw) : 0;
 
         const dots = [];
         if (leaves) {
@@ -1583,8 +1587,6 @@
         }
         figures.push({ el: fig, leaves, when, dots });
       }
-
-      const WINDOW = 0.22; // cuánto tarda cada figura en apagarse, en unidades de progreso
 
       function setProgress(p) {
         // p: 0→1 barre el semestre. Cada figura que abandona se apaga en su
