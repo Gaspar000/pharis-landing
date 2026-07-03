@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pharis — Alerta temprana de deserción para universidades</title>
-  <meta name="description" content="Pharis es un tutor con IA que acompaña a cada alumno en Moodle y da al profesor un tablero de riesgo de deserción en tiempo real. Detecta al alumno en riesgo semanas antes de que la calificación lo revele." />
+  <title>Pharis — Early dropout detection for universities</title>
+  <meta name="description" content="Pharis is an AI tutor that accompanies each student inside Moodle and gives professors a real-time dropout risk dashboard. Detects at-risk students weeks before grades reveal it." />
   <meta name="theme-color" content="#020617" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Pharis — Alerta temprana de deserción" />
-  <meta property="og:description" content="Un tutor con IA que detecta al alumno en riesgo semanas antes de que la calificación lo revele." />
-  <meta property="og:locale" content="es_419" />
+  <meta property="og:title" content="Pharis — Early dropout detection" />
+  <meta property="og:description" content="An AI tutor that detects at-risk students weeks before grades reveal it." />
+  <meta property="og:locale" content="en_US" />
   <link rel="alternate" hreflang="es" href="https://pharis.mx/" />
   <link rel="alternate" hreflang="en" href="https://pharis.mx/en/" />
 
@@ -1104,17 +1104,17 @@
         <span class="wordmark">Pharis</span>
       </a>
       <div class="nav-links">
-        <a href="#problema">El problema</a>
-        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#problema">The problem</a>
+        <a href="#como-funciona">How it works</a>
         <a href="#demo-video">Demo</a>
-        <a href="#profesor">Profesores</a>
-        <a href="#roi">Retorno</a>
+        <a href="#profesor">Professors</a>
+        <a href="#roi">ROI</a>
       </div>
-      <a href="#demo" class="btn btn-ghost nav-cta">Solicitar demo</a>
+      <a href="#demo" class="btn btn-ghost nav-cta">Request demo</a>
       <div class="lang-switcher">
-        <a href="/" class="lang-btn active" hreflang="es">ES</a>
+        <a href="/" class="lang-btn" hreflang="es">ES</a>
         <span class="lang-divider">·</span>
-        <a href="/en/" class="lang-btn" hreflang="en">EN</a>
+        <a href="/en/" class="lang-btn active" hreflang="en">EN</a>
       </div>
     </div>
   </nav>
@@ -1125,19 +1125,19 @@
     <header class="section hero">
       <div class="container hero-grid">
         <div class="hero-text">
-          <p class="eyebrow reveal">Tutor con IA · Alerta temprana de deserción</p>
-          <h1 class="reveal" data-delay="1">El alumno en riesgo ya dio señales. <strong>Pharis las ve primero.</strong></h1>
-          <p class="sub reveal" data-delay="2">Un tutor con IA que acompaña a cada alumno dentro de Moodle y entrega al profesor un tablero de riesgo de deserción en tiempo real, semanas antes de que la calificación lo revele.</p>
+          <p class="eyebrow reveal">AI Tutor · Early dropout detection</p>
+          <h1 class="reveal" data-delay="1">The at-risk student already gave signals. <strong>Pharis sees them first.</strong></h1>
+          <p class="sub reveal" data-delay="2">An AI tutor that accompanies each student inside Moodle and delivers the professor a real-time dropout risk dashboard, weeks before grades reveal it.</p>
           <div class="hero-ctas reveal" data-delay="3">
-            <a href="#demo" class="btn btn-primary">Solicitar demo</a>
+            <a href="#demo" class="btn btn-primary">Request demo</a>
             <a href="https://chromewebstore.google.com/detail/pharis/fpafndddkkpnkhaojhjbalkpecgjbfeh" target="_blank" rel="noopener" class="btn btn-secondary">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
-              Instalar extensión Chrome
+              Install Chrome extension
             </a>
           </div>
           <p class="hero-note reveal" data-delay="3">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            Funciona sobre tu Moodle actual. Sin instalar servidores.
+            Works on your current Moodle. No server installation needed.
           </p>
         </div>
 
@@ -1264,7 +1264,7 @@
     <!-- ============================================================ PROBLEMA -->
     <section class="section section--deep" id="problema">
       <div class="container">
-        <p class="eyebrow reveal">El problema</p>
+        <p class="eyebrow reveal">The problem</p>
 
         <!-- Acto 1: la cohorte que se apaga GRADUALMENTE a lo largo del
              semestre. No desaparecen de golpe: se van apagando uno a uno, en
@@ -1273,29 +1273,29 @@
         <div class="cohort reveal" data-delay="1">
           <div class="cohort-stage" id="cohort-stage" aria-hidden="true"></div>
           <div class="cohort-axis" aria-hidden="true">
-            <span>Inicio del semestre</span>
-            <span>Fin del semestre</span>
+            <span>Start of semester</span>
+            <span>End of semester</span>
           </div>
           <p class="cohort-caption">
-            <span class="cohort-num">1 de cada 2</span>
-            jóvenes que empiezan la universidad en América Latina
-            <span class="cohort-em">no logra terminarla.</span>
-            No desaparecen de repente: se apagan, semana a semana, en silencio.
+            <span class="cohort-num">1 in 2</span>
+            young people who start university in Latin America
+            <span class="cohort-em">never finish.</span>
+            They don't disappear overnight: they fade out, week by week, in silence.
           </p>
-          <p class="stat-source">Fuente: Ferreyra, Avitabile, Botero, Haimovich &amp; Urzúa, Banco Mundial, 2017</p>
+          <p class="stat-source">Source: Ferreyra, Avitabile, Botero, Haimovich &amp; Urzúa, World Bank, 2017</p>
         </div>
 
         <!-- Acto 2: por qué pasa esto (los dos ángulos del mismo problema) -->
         <div class="problem-why">
-          <p class="problem-why-label reveal">Por qué casi nadie lo ve a tiempo</p>
+          <p class="problem-why-label reveal">Why almost no one sees it in time</p>
           <div class="problem-points">
             <div class="problem-point reveal">
-              <h3>Cuando la calificación cae, ya es tarde</h3>
-              <p>Para cuando aparece el primer cero, el alumno lleva semanas perdido y la conversación de retención llega cuando ya tomó la decisión de irse.</p>
+              <h3>When the grade drops, it's already too late</h3>
+              <p>By the time the first zero appears, the student has been lost for weeks and the retention conversation arrives when they've already decided to leave.</p>
             </div>
             <div class="problem-point reveal" data-delay="1">
-              <h3>El LMS registra entregas, no esfuerzo</h3>
-              <p>Moodle sabe qué se entregó y cuándo. No sabe quién batalló tres horas con un tema, quién dejó de abrir el material ni quién está a punto de rendirse.</p>
+              <h3>The LMS records submissions, not effort</h3>
+              <p>Moodle knows what was submitted and when. It doesn't know who struggled for three hours with a topic, who stopped opening the material, or who is about to give up.</p>
             </div>
           </div>
         </div>
