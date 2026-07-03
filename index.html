@@ -536,31 +536,29 @@
     }
 
     /* ============================================================ CONTRASTE LMS
-       Dos tiras paralelas del mismo alumno a lo largo del semestre. Arriba lo
-       que el LMS ve (todo verde); abajo lo real (la actividad cayendo). El
-       contraste vertical ES el argumento. */
-    .lms-compare {
+       Un solo gráfico con dos lecturas del mismo alumno. La línea del LMS
+       (verde, rígida, con palomitas) se mantiene plana hasta desplomarse en
+       el primer cero; la señal real que ve Pharis (accent, orgánica) cae
+       semanas antes. Los marcadores de semana 6 / 14 y la cota superior
+       convierten esa brecha en el argumento: ocho semanas de ventaja. */
+    .pc-card {
       margin-top: clamp(2.5rem, 5vw, 3.5rem);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      max-width: 860px;
-    }
-    .lms-row {
+      max-width: 880px;
       background: var(--panel);
       border: 1px solid var(--rule);
       border-radius: var(--radius);
-      padding: 1.1rem 1.2rem 1.2rem;
+      padding: 1.15rem 1.25rem 1.05rem;
     }
-    .lms-row--real { border-color: var(--rule-strong); }
-    .lms-row-head {
+    .pc-head {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.9rem;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--rule);
     }
-    .lms-row-tag {
+    .pc-file {
       font-family: "Fira Sans", sans-serif;
       font-size: 0.72rem;
       font-weight: 600;
@@ -568,65 +566,101 @@
       text-transform: uppercase;
       color: var(--text-muted);
     }
-    .lms-row-verdict {
-      font-family: "Manrope", sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
+    .pc-legend { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+    .pc-lg {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
       white-space: nowrap;
     }
-    .lms-ok { color: var(--green); background: var(--green-soft); }
-    .lms-warn { color: var(--amber); background: var(--amber-soft); }
-    /* Tira de celdas semanales */
-    .lms-track { display: grid; grid-template-columns: repeat(16, 1fr); gap: 5px; }
-    .lms-cell { aspect-ratio: 1; border-radius: 4px; position: relative; }
-    /* Moodle: todas "entregado/ok" en verde uniforme */
-    .lms-cell--ok { background: var(--green-soft); border: 1px solid rgba(52,211,153,0.35); }
-    .lms-cell--ok::after {
-      content: ""; position: absolute; inset: 0; margin: auto;
-      width: 32%; height: 18%; border-left: 1.5px solid var(--green);
-      border-bottom: 1.5px solid var(--green); transform: translateY(-12%) rotate(-45deg);
-    }
-    /* Real: gradiente de actividad — de lleno (accent) a vacío (apagado) */
-    .lms-cell--real { border: 1px solid var(--rule); }
+    .pc-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+    .pc-dot--lms { background: var(--green); }
+    .pc-dot--ph { background: var(--accent); }
+    .pc-dot--warn { background: var(--amber); }
 
-    /* Interactivo: hover sincroniza la misma semana en ambas filas */
-    .lms-cell { cursor: pointer; transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease), filter 0.15s var(--ease); }
-    .lms-compare.is-touched .lms-cell:not(.is-active) { filter: brightness(0.62); }
-    .lms-cell.is-active {
-      transform: scale(1.16);
-      z-index: 2;
-      box-shadow: 0 0 0 2px var(--accent), 0 6px 18px -6px rgba(0,0,0,0.7);
-    }
-    /* Tooltip que contrasta Moodle vs real esa semana */
-    .lms-tip {
+    /* Cota de anotaciones: chips ancladas a las semanas 6 y 14, unidas por
+       una línea de medida con la ventaja al centro. En móvil se apilan. */
+    .pc-notes { position: relative; height: 54px; margin: 0.55rem 0 0.15rem; }
+    .pc-span { position: absolute; top: 50%; height: 1px; background: var(--rule-strong); }
+    .pc-note {
       position: absolute;
-      left: 50%;
-      bottom: calc(100% + 12px);
-      transform: translateX(-50%) translateY(6px);
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      max-width: 46%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: var(--panel);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.28rem 0.75rem;
+      font-family: "Manrope", sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.5s var(--ease);
+    }
+    .pc-note--ph { border-color: rgba(80, 143, 248, 0.4); }
+    .pc-note--lms { border-color: rgba(240, 163, 90, 0.38); }
+    .pc-note--gap {
+      border: 0;
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 0.28rem 0.6rem;
+    }
+    .pc-card.is-live .pc-note--ph { opacity: 1; transition-delay: 1.15s; }
+    .pc-card.is-live .pc-note--lms { opacity: 1; transition-delay: 1.35s; }
+    .pc-card.is-live .pc-note--gap { opacity: 1; transition-delay: 1.6s; }
+
+    .pc-plot {
+      position: relative;
+      height: clamp(200px, 30vw, 280px);
+      cursor: crosshair;
+      touch-action: pan-y;
+    }
+    .pc-plot svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+    .pc-svg-label {
+      font-family: "Fira Sans", sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      fill: var(--text-faint);
+    }
+
+    /* Tooltip: contrasta ambas lecturas de la semana bajo el cursor */
+    .pc-tip {
+      position: absolute;
+      top: 10px;
+      left: 0;
       width: max-content;
-      max-width: 230px;
+      max-width: 240px;
       background: var(--panel-2);
       border: 1px solid var(--rule-strong);
       border-radius: var(--radius-sm);
       padding: 0.7rem 0.85rem;
       opacity: 0;
       pointer-events: none;
+      transform: translateY(4px);
       transition: opacity 0.15s var(--ease), transform 0.15s var(--ease);
       z-index: 5;
-      box-shadow: 0 18px 40px -16px rgba(0,0,0,0.8);
+      box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.8);
     }
-    .lms-tip.is-on { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .lms-tip-week { font-family: "Fira Sans", sans-serif; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin: 0 0 0.45rem; }
-    .lms-tip-line { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.82rem; line-height: 1.35; margin: 0; }
-    .lms-tip-line + .lms-tip-line { margin-top: 0.3rem; }
-    .lms-tip-src { font-weight: 700; white-space: nowrap; }
-    .lms-tip-src--lms { color: var(--green); }
-    .lms-tip-src--real { color: var(--amber); }
-    .lms-tip-val { color: var(--text); }
+    .pc-tip.is-on { opacity: 1; transform: translateY(0); }
+    .pc-tip-week { font-family: "Fira Sans", sans-serif; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin: 0 0 0.45rem; }
+    .pc-tip-line { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.82rem; line-height: 1.35; margin: 0; }
+    .pc-tip-line + .pc-tip-line { margin-top: 0.3rem; }
+    .pc-tip-src { font-weight: 700; white-space: nowrap; }
+    .pc-tip-src--lms { color: var(--green); }
+    .pc-tip-src--ph { color: var(--accent-bright); }
+    .pc-tip-val { color: var(--text); }
 
-    .lms-axis {
+    .pc-axis {
       display: flex;
       justify-content: space-between;
       font-family: "Fira Sans", sans-serif;
@@ -634,9 +668,11 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--text-faint);
-      margin-top: 2px;
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--rule);
     }
-    .lms-kicker {
+    .pc-kicker {
       margin: clamp(2rem, 4vw, 3rem) 0 0;
       max-width: 44ch;
       font-family: "Manrope", sans-serif;
@@ -647,7 +683,14 @@
       color: var(--text-muted);
       text-wrap: balance;
     }
-    .lms-kicker-em { color: var(--amber); font-weight: 700; }
+    .pc-kicker-em { color: var(--amber); font-weight: 700; }
+
+    @media (max-width: 760px) {
+      .pc-notes { height: auto; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin: 0.7rem 0 0.8rem; }
+      .pc-note { position: static; transform: none; max-width: 100%; white-space: normal; overflow: visible; }
+      .pc-note--gap { color: var(--text-muted); }
+      .pc-span { display: none; }
+    }
 
     /* ============================================================ LIGHT SECTIONS */
     .on-light { background: var(--light-bg); color: var(--light-text); }
@@ -1311,40 +1354,49 @@
 
         <!-- Descripción accesible del gráfico (el gráfico visual es aria-hidden) -->
         <p class="sr-only">
-          Comparación de un mismo alumno a lo largo de 16 semanas. En tu plataforma educativa, las 16 semanas
-          figuran como entregadas y en orden. En la realidad, su actividad de estudio cae de
-          forma sostenida hasta apagarse por completo en las últimas semanas del semestre,
-          sin que el LMS lo registre.
+          Gráfico de un mismo alumno a lo largo de 16 semanas. La línea del LMS se mantiene
+          plana y en orden hasta la semana 13 y recién cae en la semana 14, cuando aparece
+          el primer cero. La señal real de estudio, que Pharis sí ve, empieza a caer desde
+          la semana 5 y se apaga por completo hacia la semana 13. Pharis alerta en la
+          semana 6: ocho semanas antes de que el LMS muestre el problema.
         </p>
 
-        <div class="lms-compare reveal" data-delay="2">
-          <!-- Fila 1: lo que el LMS registra (todo en verde, aparenta normalidad) -->
-          <div class="lms-row lms-row--lms">
-            <div class="lms-row-head">
-              <span class="lms-row-tag">Lo que registra tu LMS</span>
-              <span class="lms-row-verdict lms-ok">Todo en orden</span>
+        <div class="pc-card reveal" data-delay="2" id="pc-card">
+          <div class="pc-head">
+            <span class="pc-file">Registro del semestre &middot; mismo alumno</span>
+            <div class="pc-legend">
+              <span class="pc-lg"><i class="pc-dot pc-dot--lms"></i>Según tu LMS</span>
+              <span class="pc-lg"><i class="pc-dot pc-dot--ph"></i>Lo que ve Pharis</span>
             </div>
-            <div class="lms-track" id="lms-track-moodle" aria-hidden="true"></div>
           </div>
 
-          <!-- Fila 2: lo que de verdad pasa (la actividad real cayendo) -->
-          <div class="lms-row lms-row--real">
-            <div class="lms-row-head">
-              <span class="lms-row-tag">Lo que de verdad pasó</span>
-              <span class="lms-row-verdict lms-warn">Se estaba apagando</span>
-            </div>
-            <div class="lms-track" id="lms-track-real" aria-hidden="true"></div>
+          <!-- Cota: la ventaja entre la alerta de Pharis y el primer cero del LMS -->
+          <div class="pc-notes">
+            <span class="pc-span" id="pc-span" aria-hidden="true"></span>
+            <span class="pc-note pc-note--ph" id="pc-note-ph"><i class="pc-dot pc-dot--ph"></i>Pharis alerta &middot; semana 6</span>
+            <span class="pc-note pc-note--gap" id="pc-note-gap">8 semanas de ventaja</span>
+            <span class="pc-note pc-note--lms" id="pc-note-lms"><i class="pc-dot pc-dot--warn"></i>El LMS ve el primer cero &middot; semana 14</span>
           </div>
 
-          <div class="lms-axis" aria-hidden="true">
+          <div class="pc-plot" id="pc-plot" aria-hidden="true">
+            <svg id="pc-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div class="pc-tip" id="pc-tip">
+              <p class="pc-tip-week"></p>
+              <p class="pc-tip-line"><span class="pc-tip-src pc-tip-src--lms">Tu LMS</span><span class="pc-tip-val" data-lms></span></p>
+              <p class="pc-tip-line"><span class="pc-tip-src pc-tip-src--ph">Pharis</span><span class="pc-tip-val" data-ph></span></p>
+            </div>
+          </div>
+
+          <div class="pc-axis" aria-hidden="true">
             <span>Semana 1</span>
+            <span>Semana 8</span>
             <span>Semana 16</span>
           </div>
         </div>
 
-        <p class="lms-kicker reveal">
-          Para cuando el LMS muestra el problema, <span class="lms-kicker-em">ya es un cero</span>.
-          Pharis lee la fila de abajo: el esfuerzo, semanas antes.
+        <p class="pc-kicker reveal">
+          Para cuando el LMS muestra el problema, <span class="pc-kicker-em">ya es un cero</span>.
+          Pharis vio la señal apagarse ocho semanas antes.
         </p>
       </div>
     </section>
@@ -1811,92 +1863,207 @@
       cio.observe(stage);
     })();
 
-    // ---------- Contraste LMS: lo que se ve vs lo que pasa ----------
-    (function lmsCompare() {
-      const moodle = document.getElementById("lms-track-moodle");
-      const real = document.getElementById("lms-track-real");
-      const compare = document.querySelector(".lms-compare");
-      if (!moodle || !real || !compare) return;
-      const WEEKS = 16;
-      const OFF = 0.18; // umbral de "apagado"
-      const rand = (n) => { const x = Math.sin(n * 91.7 + 47.3) * 43758.5453; return x - Math.floor(x); };
+    // ---------- El punto ciego: dos lecturas del mismo alumno ----------
+    (function blindSpot() {
+      const card = document.getElementById("pc-card");
+      const plot = document.getElementById("pc-plot");
+      const svg = document.getElementById("pc-svg");
+      const tip = document.getElementById("pc-tip");
+      if (!card || !plot || !svg || !tip) return;
 
-      // Lo que Moodle "ve" cada semana (siempre en orden) y lo real, para tooltip.
-      const moodleSays = ["Entregado a tiempo", "Entregado a tiempo", "Entregado", "Entregado a tiempo"];
-      const realSays = (lvl) =>
-        lvl > 0.66 ? "Activo: varias sesiones de estudio"
-        : lvl > 0.4 ? "Menos actividad que las primeras semanas"
-        : lvl >= OFF ? "Casi no abre el material"
-        : "Sin actividad: días sin conectarse";
+      // Señal real de estudio por semana (0-1): cae sostenido desde la semana 5
+      // y se apaga hacia la 13. El LMS reporta plano hasta el primer cero.
+      const REAL = [0.94, 0.91, 0.87, 0.89, 0.8, 0.71, 0.62, 0.54, 0.44, 0.35, 0.26, 0.18, 0.11, 0.06, 0.03, 0.02];
+      const N = REAL.length;
+      const LMS_OK = 0.965, LMS_ZERO = 0.05;
+      const ALERT_W = 5;  // índice 5 = semana 6: Pharis alerta
+      const ZERO_W = 13;  // índice 13 = semana 14: primer cero visible en el LMS
+      const PAD_L = 6, PAD_R = 6, PAD_T = 18, PAD_B = 10;
 
-      const cellsM = [], cellsR = [];
-      for (let w = 0; w < WEEKS; w++) {
-        const t = w / (WEEKS - 1);
-        const noise = (rand(w) - 0.5) * 0.12;
-        // Caída más agresiva (potencia 2.6): la actividad se desploma y deja
-        // ~6 semanas claramente apagadas al final. Acentúa al alumno que se apaga.
-        const level = Math.max(0, Math.min(1, (1 - Math.pow(t, 2.6) - t * 0.18) + noise));
+      const lmsSays = (w) =>
+        w < ZERO_W ? (w % 3 === 2 ? "Entregado" : "Entregado a tiempo")
+        : w === ZERO_W ? "Sin entrega: primer cero"
+        : "Sin entrega";
+      const phSays = (lvl) =>
+        lvl > 0.66 ? "Ritmo normal de estudio"
+        : lvl > 0.4 ? "La actividad empieza a caer"
+        : lvl > 0.1 ? "Casi no abre el material"
+        : "Sin actividad: se apagó";
 
-        // Moodle: todo "entregado" en verde, semana a semana.
-        const c1 = document.createElement("span");
-        c1.className = "lms-cell lms-cell--ok";
-        c1.dataset.w = w;
-        moodle.appendChild(c1);
-        cellsM.push(c1);
+      const noteA = document.getElementById("pc-note-ph");
+      const noteB = document.getElementById("pc-note-lms");
+      const noteGap = document.getElementById("pc-note-gap");
+      const span = document.getElementById("pc-span");
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const r1 = (n) => n.toFixed(1);
 
-        // Real: actividad viva (accent) → apagado (gris frío).
-        const c2 = document.createElement("span");
-        c2.className = "lms-cell lms-cell--real";
-        c2.dataset.w = w;
-        if (level < OFF) {
-          c2.style.background = "rgba(100,116,139,0.12)";
-          c2.style.borderColor = "rgba(100,116,139,0.18)";
-        } else {
-          c2.style.background = "rgba(80,143,248," + (0.12 + level * 0.7).toFixed(3) + ")";
-          c2.style.borderColor = "rgba(80,143,248," + (0.2 + level * 0.3).toFixed(3) + ")";
+      let W = 0, H = 0, xs = [], yReal = [], yLms = [];
+      let cross = null, dotPh = null, dotLms = null, drawn = false;
+
+      // Curva con tangentes horizontales por tramo: señal orgánica, sin picos.
+      function smoothPath(pts) {
+        let d = "M" + r1(pts[0][0]) + "," + r1(pts[0][1]);
+        for (let i = 1; i < pts.length; i++) {
+          const mx = r1((pts[i - 1][0] + pts[i][0]) / 2);
+          d += "C" + mx + "," + r1(pts[i - 1][1]) + " " + mx + "," + r1(pts[i][1]) + " " + r1(pts[i][0]) + "," + r1(pts[i][1]);
         }
-        real.appendChild(c2);
-        cellsR.push({ el: c2, level });
+        return d;
       }
 
-      // Tooltip único, anclado a la celda real activa.
-      const tip = document.createElement("div");
-      tip.className = "lms-tip";
-      tip.innerHTML =
-        '<p class="lms-tip-week"></p>' +
-        '<p class="lms-tip-line"><span class="lms-tip-src lms-tip-src--lms">Moodle</span><span class="lms-tip-val" data-lms></span></p>' +
-        '<p class="lms-tip-line"><span class="lms-tip-src lms-tip-src--real">Real</span><span class="lms-tip-val" data-real></span></p>';
+      function build() {
+        W = plot.clientWidth; H = plot.clientHeight;
+        if (!W || !H) return;
+        xs = REAL.map((_, i) => PAD_L + (i * (W - PAD_L - PAD_R)) / (N - 1));
+        yReal = REAL.map((v) => PAD_T + (1 - v) * (H - PAD_T - PAD_B));
+        yLms = REAL.map((_, i) => PAD_T + (1 - (i < ZERO_W ? LMS_OK : LMS_ZERO)) * (H - PAD_T - PAD_B));
 
-      function activate(w) {
-        compare.classList.add("is-touched");
-        cellsM.forEach((c, i) => c.classList.toggle("is-active", i === w));
-        cellsR.forEach((c, i) => c.el.classList.toggle("is-active", i === w));
-        const lvl = cellsR[w].level;
-        tip.querySelector(".lms-tip-week").textContent = "Semana " + (w + 1);
-        tip.querySelector("[data-lms]").textContent = moodleSays[w % moodleSays.length];
-        tip.querySelector("[data-real]").textContent = realSays(lvl);
-        cellsR[w].el.appendChild(tip);
-        requestAnimationFrame(() => tip.classList.add("is-on"));
+        const dReal = smoothPath(xs.map((px, i) => [px, yReal[i]]));
+        const dArea = dReal + "L" + r1(xs[N - 1]) + "," + (H - PAD_B) + "L" + r1(xs[0]) + "," + (H - PAD_B) + "Z";
+        const dLms = "M" + r1(xs[0]) + "," + r1(yLms[0]) + "L" + r1(xs[ZERO_W - 1]) + "," + r1(yLms[0]) +
+          "L" + r1(xs[ZERO_W]) + "," + r1(yLms[ZERO_W]) + "L" + r1(xs[N - 1]) + "," + r1(yLms[N - 1]);
+
+        let s = "";
+        // Rejilla recesiva
+        [0.25, 0.5, 0.75].forEach((g) => {
+          const gy = r1(PAD_T + (1 - g) * (H - PAD_T - PAD_B));
+          s += '<line x1="' + PAD_L + '" y1="' + gy + '" x2="' + (W - PAD_R) + '" y2="' + gy + '" stroke="rgba(231,238,247,0.05)"/>';
+        });
+        // Marcadores: alerta de Pharis (accent) y primer cero del LMS (ámbar)
+        s += '<line class="pc-mark" x1="' + r1(xs[ALERT_W]) + '" y1="2" x2="' + r1(xs[ALERT_W]) + '" y2="' + (H - PAD_B) + '" stroke="rgba(80,143,248,0.55)" stroke-dasharray="3 4"/>';
+        s += '<line class="pc-mark" x1="' + r1(xs[ZERO_W]) + '" y1="2" x2="' + r1(xs[ZERO_W]) + '" y2="' + (H - PAD_B) + '" stroke="rgba(240,163,90,0.5)" stroke-dasharray="3 4"/>';
+        // Señal real: área + curva (accent)
+        s += '<path class="pc-area" d="' + dArea + '" fill="rgba(80,143,248,0.09)"/>';
+        s += '<path class="pc-line pc-line--ph" d="' + dReal + '" fill="none" stroke="#508ff8" stroke-width="2" stroke-linecap="round"/>';
+        // Lectura del LMS: plana y rígida hasta el desplome
+        s += '<path class="pc-line pc-line--lms" d="' + dLms + '" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+        // Palomitas de entrega y ceros huecos sobre la línea del LMS
+        for (let i = 0; i < N; i++) {
+          if (i < ZERO_W) {
+            s += '<g class="pc-check"><circle cx="' + r1(xs[i]) + '" cy="' + r1(yLms[i]) + '" r="5" fill="#0a1324"/>' +
+              '<path d="M' + r1(xs[i] - 3.2) + ',' + r1(yLms[i] + 0.2) + ' l2.4,2.4 l4.2,-4.8" fill="none" stroke="#34d399" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>';
+          } else {
+            s += '<g class="pc-check"><circle cx="' + r1(xs[i]) + '" cy="' + r1(yLms[i]) + '" r="3.2" fill="#0a1324" stroke="#f0a35a" stroke-width="1.6"/></g>';
+          }
+        }
+        // Punto final de la señal real: apagada
+        s += '<circle class="pc-end" cx="' + r1(xs[N - 1]) + '" cy="' + r1(yReal[N - 1]) + '" r="3" fill="#020617" stroke="#508ff8" stroke-width="2"/>';
+        // Etiquetas directas de cada serie
+        s += '<text class="pc-svg-label" x="' + r1(xs[0]) + '" y="' + r1(yLms[0] - 9) + '">SEGÚN TU LMS</text>';
+        s += '<text class="pc-svg-label" x="' + r1(xs[1]) + '" y="' + r1(yReal[2] + 22) + '">ACTIVIDAD REAL</text>';
+        // Capa de hover: crosshair + puntos resaltados
+        s += '<line id="pc-cross" y1="2" y2="' + (H - PAD_B) + '" stroke="rgba(231,238,247,0.22)" opacity="0"/>';
+        s += '<circle id="pc-dot-ph" r="4" fill="#508ff8" stroke="#0a1324" stroke-width="2" opacity="0"/>';
+        s += '<circle id="pc-dot-lms" r="4" fill="#34d399" stroke="#0a1324" stroke-width="2" opacity="0"/>';
+
+        svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+        svg.innerHTML = s;
+        cross = svg.querySelector("#pc-cross");
+        dotPh = svg.querySelector("#pc-dot-ph");
+        dotLms = svg.querySelector("#pc-dot-lms");
+        placeNotes();
       }
-      function clear() {
-        compare.classList.remove("is-touched");
-        cellsM.forEach((c) => c.classList.remove("is-active"));
-        cellsR.forEach((c) => c.el.classList.remove("is-active"));
+
+      // Ancla las chips y la línea de medida a las semanas 6 y 14 del plot.
+      function placeNotes() {
+        if (!noteA || !xs.length) return;
+        const xA = xs[ALERT_W], xB = xs[ZERO_W];
+        noteA.style.left = Math.max(xA, noteA.offsetWidth / 2 + 2) + "px";
+        noteB.style.left = Math.min(xB, W - noteB.offsetWidth / 2 - 2) + "px";
+        noteGap.style.left = (xA + xB) / 2 + "px";
+        span.style.left = xA + "px";
+        span.style.width = xB - xA + "px";
+      }
+
+      // Estado previo a la animación de dibujo.
+      function prepHidden() {
+        svg.querySelectorAll(".pc-line").forEach((p) => {
+          const len = p.getTotalLength();
+          p.style.strokeDasharray = len;
+          p.style.strokeDashoffset = len;
+        });
+        svg.querySelectorAll(".pc-area, .pc-check, .pc-mark, .pc-end, .pc-svg-label").forEach((el) => { el.style.opacity = "0"; });
+      }
+
+      // Dibuja: primero la versión oficial del LMS, luego la señal real que
+      // la desmiente; al final los marcadores y la cota.
+      function fire() {
+        if (drawn) return;
+        drawn = true;
+        const ease = "cubic-bezier(0.16, 1, 0.3, 1)";
+        [[svg.querySelector(".pc-line--lms"), 0.1], [svg.querySelector(".pc-line--ph"), 0.55]].forEach((pair) => {
+          if (!pair[0]) return;
+          pair[0].style.transition = "stroke-dashoffset 1.2s " + ease + " " + pair[1] + "s";
+          pair[0].style.strokeDashoffset = "0";
+        });
+        svg.querySelectorAll(".pc-check").forEach((c, i) => {
+          c.style.transition = "opacity 0.35s ease " + (0.2 + i * 0.05).toFixed(2) + "s";
+          c.style.opacity = "1";
+        });
+        svg.querySelectorAll(".pc-svg-label").forEach((t, i) => {
+          t.style.transition = "opacity 0.5s ease " + (0.9 + i * 0.25) + "s";
+          t.style.opacity = "1";
+        });
+        svg.querySelectorAll(".pc-mark").forEach((m, i) => {
+          m.style.transition = "opacity 0.5s ease " + (1.3 + i * 0.2) + "s";
+          m.style.opacity = "1";
+        });
+        const area = svg.querySelector(".pc-area");
+        if (area) { area.style.transition = "opacity 0.9s ease 1.25s"; area.style.opacity = "1"; }
+        const end = svg.querySelector(".pc-end");
+        if (end) { end.style.transition = "opacity 0.4s ease 1.6s"; end.style.opacity = "1"; }
+        card.classList.add("is-live");
+      }
+
+      // Hover: misma semana en ambas series, con crosshair y tooltip.
+      let activeW = -1;
+      function setWeek(w) {
+        if (!xs.length || !cross) return;
+        activeW = w;
+        const px = xs[w];
+        cross.setAttribute("x1", px); cross.setAttribute("x2", px); cross.setAttribute("opacity", "1");
+        dotPh.setAttribute("cx", px); dotPh.setAttribute("cy", yReal[w]); dotPh.setAttribute("opacity", "1");
+        dotLms.setAttribute("cx", px); dotLms.setAttribute("cy", yLms[w]); dotLms.setAttribute("opacity", "1");
+        tip.querySelector(".pc-tip-week").textContent = "Semana " + (w + 1);
+        tip.querySelector("[data-lms]").textContent = lmsSays(w);
+        tip.querySelector("[data-ph]").textContent = phSays(REAL[w]);
+        tip.classList.add("is-on");
+        tip.style.left = Math.max(4, Math.min(px - tip.offsetWidth / 2, W - tip.offsetWidth - 4)) + "px";
+      }
+      function clearWeek() {
+        activeW = -1;
         tip.classList.remove("is-on");
+        if (!cross) return;
+        cross.setAttribute("opacity", "0");
+        dotPh.setAttribute("opacity", "0");
+        dotLms.setAttribute("opacity", "0");
       }
+      function weekFromEvent(e) {
+        const r = plot.getBoundingClientRect();
+        const t = ((e.clientX - r.left - PAD_L) / Math.max(1, r.width - PAD_L - PAD_R)) * (N - 1);
+        return Math.max(0, Math.min(N - 1, Math.round(t)));
+      }
+      plot.addEventListener("pointermove", (e) => { const w = weekFromEvent(e); if (w !== activeW) setWeek(w); });
+      // Tap en móvil: activar la semana tocada.
+      plot.addEventListener("pointerdown", (e) => setWeek(weekFromEvent(e)));
+      plot.addEventListener("pointerleave", clearWeek);
 
-      [moodle, real].forEach((track) => {
-        track.addEventListener("pointermove", (e) => {
-          const cell = e.target.closest(".lms-cell");
-          if (cell && cell.dataset.w != null) activate(Number(cell.dataset.w));
-        });
-        track.addEventListener("pointerleave", clear);
-        // Tap en móvil: activar la celda tocada.
-        track.addEventListener("pointerdown", (e) => {
-          const cell = e.target.closest(".lms-cell");
-          if (cell && cell.dataset.w != null) activate(Number(cell.dataset.w));
-        });
-      });
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting && !drawn) { fire(); io.disconnect(); } });
+      }, { threshold: 0.35 });
+
+      build();
+      if (reduced) { drawn = true; card.classList.add("is-live"); }
+      else { prepHidden(); io.observe(plot); }
+
+      // Redibuja al cambiar el ancho (el alto va atado al ancho vía clamp).
+      let lastW = plot.clientWidth;
+      new ResizeObserver(() => {
+        if (plot.clientWidth === lastW) return;
+        lastW = plot.clientWidth;
+        clearWeek();
+        build();
+        if (!drawn) prepHidden();
+      }).observe(plot);
     })();
 
     // ---------- Calculadora de ROI ----------
