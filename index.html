@@ -269,29 +269,52 @@
     .mk-dots i:nth-child(3) { background: #27c93f; }
     .mk-addr { margin-left: 0.35rem; font-size: 0.55rem; color: var(--text-faint); background: rgba(255, 255, 255, 0.04); border: 1px solid var(--mk-rule); border-radius: 999px; padding: 0.2rem 0.65rem; letter-spacing: 0.02em; }
 
-    /* Dashboard top bar */
-    .mk-top { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; background: var(--mk-bar); border-bottom: 1px solid var(--mk-rule); }
+    /* Shell v2: sidebar lateral + columna central */
+    .mockup-v2 .mk-shell { display: flex; align-items: stretch; }
+    .mk-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      flex-shrink: 0;
+      width: 108px;
+      padding: 0.7rem 0.6rem;
+      background: var(--mk-bar);
+      border-right: 1px solid var(--mk-rule);
+    }
     .mk-brand { display: flex; align-items: center; gap: 0.35rem; }
     .mk-brand svg { width: 13px; height: auto; }
     .mk-brand span { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: -0.01em; }
-    .mk-tabs { display: flex; gap: 0.7rem; margin-left: 0.4rem; }
-    .mk-tab { font-size: 0.58rem; color: var(--text-faint); padding-bottom: 2px; border-bottom: 1.5px solid transparent; white-space: nowrap; }
-    .mk-tab.is-active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
-    .mk-grupo { margin-left: auto; font-size: 0.5rem; letter-spacing: 0.07em; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; }
-    .mk-grupo b { color: var(--text); font-weight: 600; }
-    .mk-bell { position: relative; color: var(--text-muted); display: flex; }
+    .mk-nav { display: flex; flex-direction: column; gap: 0.32rem; }
+    .mk-navlink { display: flex; align-items: center; gap: 0.4rem; font-size: 0.5rem; color: var(--text-faint); padding: 0.32rem 0.4rem; border-radius: var(--radius-sm); white-space: nowrap; }
+    .mk-navlink svg { width: 11px; height: 11px; flex-shrink: 0; }
+    .mk-navlink.is-active { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+    .mk-sb-group { margin-top: auto; display: flex; flex-direction: column; gap: 0.2rem; padding-top: 0.6rem; border-top: 1px solid var(--mk-rule); }
+    .mk-sb-label { font-size: 0.42rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); }
+    .mk-sb-groupname { font-size: 0.48rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+
+    .mk-central { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+    /* Header: buscador + notificaciones */
+    .mk-header { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--mk-rule); }
+    .mk-search { display: flex; align-items: center; gap: 0.35rem; flex: 1; min-width: 0; font-size: 0.5rem; color: var(--text-faint); background: rgba(255, 255, 255, 0.02); border: 1px solid var(--mk-rule); border-radius: var(--radius-sm); padding: 0.32rem 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .mk-search svg { width: 11px; height: 11px; flex-shrink: 0; }
+    .mk-bell { position: relative; color: var(--text-muted); display: flex; flex-shrink: 0; }
     .mk-bell svg { width: 14px; height: 14px; display: block; }
     .mk-badge { position: absolute; top: -5px; right: -5px; background: #ef4444; color: #fff; font-size: 0.42rem; font-weight: 700; min-width: 12px; height: 12px; border-radius: 999px; display: grid; place-items: center; padding: 0 2px; }
 
     /* Metric cards row */
     .mk-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; padding: 0.75rem 0.8rem 0.6rem; }
     .mk-metric { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--mk-rule); border-radius: var(--radius-sm); padding: 0.5rem 0.55rem; }
+    .mk-metric--chart { display: flex; align-items: center; justify-content: space-between; gap: 0.3rem; }
     .mk-mlabel { font-size: 0.45rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); line-height: 1.3; display: block; }
     .mk-mnum { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.2rem; line-height: 1.05; margin-top: 0.25rem; letter-spacing: -0.02em; }
     .is-green { color: var(--green); }
     .is-accent { color: var(--accent); }
     .is-white { color: var(--text); }
     .is-amber { color: var(--amber); }
+    .mk-vbar { flex-shrink: 0; width: 6px; height: 28px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); overflow: hidden; display: flex; align-items: flex-end; }
+    .mk-vbar i { display: block; width: 100%; background: linear-gradient(180deg, var(--accent-bright), var(--accent)); border-radius: 999px; }
+    .mk-gauge { flex-shrink: 0; width: 28px; height: 28px; }
 
     /* Three analytic panels */
     .mk-panels { display: grid; grid-template-columns: 1.1fr 0.85fr 1.05fr; gap: 0.5rem; padding: 0 0.8rem 0.85rem; }
@@ -1184,69 +1207,102 @@
           </p>
         </div>
 
-        <!-- Mockup decorativo del dashboard + cards flotantes -->
+        <!-- Mockup decorativo del dashboard (diseño v2: sidebar + header +
+             métricas con mini-gráfica + paneles) + cards flotantes -->
         <div class="hero-visual reveal" data-delay="2" aria-hidden="true">
           <div class="mockup-wrap">
-            <div class="mockup">
+            <div class="mockup mockup-v2">
               <!-- Chrome del navegador -->
               <div class="mk-chrome">
                 <span class="mk-dots"><i></i><i></i><i></i></span>
                 <span class="mk-addr">app.pharis.mx/panel</span>
               </div>
-              <!-- Barra superior del dashboard -->
-              <div class="mk-top">
-                <span class="mk-brand">
-                  <svg viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z" fill="#508FF8"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z" fill="#508FF8"/></svg>
-                  <span>Pharis</span>
-                </span>
-                <span class="mk-tabs">
-                  <span class="mk-tab is-active">En vivo</span>
-                  <span class="mk-tab">Calificar</span>
-                  <span class="mk-tab">Calendario</span>
-                </span>
-                <span class="mk-grupo">Grupo activo: <b>Costos y Presupuestos</b></span>
-                <span class="mk-bell">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                  <span class="mk-badge">1</span>
-                </span>
-              </div>
-              <!-- Cards de métricas -->
-              <div class="mk-metrics">
-                <div class="mk-metric"><span class="mk-mlabel">Alumnos activos hoy</span><div class="mk-mnum is-green">24</div></div>
-                <div class="mk-metric"><span class="mk-mlabel">Días activos este mes</span><div class="mk-mnum is-accent">18</div></div>
-                <div class="mk-metric"><span class="mk-mlabel">Preguntas este mes</span><div class="mk-mnum is-white">847</div></div>
-                <div class="mk-metric"><span class="mk-mlabel">Promedio por sesión</span><div class="mk-mnum is-amber">6.2</div></div>
-              </div>
-              <!-- Paneles analíticos -->
-              <div class="mk-panels">
-                <div class="mk-panel">
-                  <div class="mk-ptitle">Actividad reciente</div>
-                  <div class="mk-feed">
-                    <div class="mk-fitem"><span class="who">Ana García</span> <span class="what">- "punto de equilibrio"</span><span class="when">hace 2 min</span></div>
-                    <div class="mk-fitem"><span class="who">Luis Mendoza</span> <span class="what">- "costos fijos vs variables"</span><span class="when">hace 9 min</span></div>
-                    <div class="mk-fitem"><span class="who">María Torres</span> <span class="what">- "margen de contribución"</span><span class="when">hace 14 min</span></div>
-                    <div class="mk-fitem"><span class="who">Valeria Cruz</span> <span class="what">- "estado de resultados"</span><span class="when">hace 23 min</span></div>
+              <div class="mk-shell">
+                <!-- Sidebar lateral -->
+                <div class="mk-sidebar">
+                  <span class="mk-brand">
+                    <svg viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z" fill="#508FF8"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z" fill="#508FF8"/></svg>
+                    <span>Pharis</span>
+                  </span>
+                  <nav class="mk-nav">
+                    <span class="mk-navlink is-active">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.4"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.4"/><path d="M19.1 4.9c3.9 3.9 3.9 10.2 0 14.1"/></svg>
+                      En vivo
+                    </span>
+                    <span class="mk-navlink">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+                      Calificar
+                    </span>
+                    <span class="mk-navlink">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+                      Calendario
+                    </span>
+                  </nav>
+                  <div class="mk-sb-group">
+                    <span class="mk-sb-label">Grupo activo</span>
+                    <span class="mk-sb-groupname">Costos y Presupuestos</span>
                   </div>
                 </div>
-                <div class="mk-panel">
-                  <div class="mk-ptitle">Alumnos</div>
-                  <div class="mk-students">
-                    <div class="mk-student"><span class="mk-dot is-on"></span> Ana García</div>
-                    <div class="mk-student"><span class="mk-dot is-on"></span> Luis Mendoza</div>
-                    <div class="mk-student"><span class="mk-dot is-on"></span> María Torres</div>
-                    <div class="mk-student off"><span class="mk-dot is-off"></span> Carlos Reyes</div>
-                    <div class="mk-student"><span class="mk-dot is-on"></span> Sofía Luna</div>
-                    <div class="mk-student off"><span class="mk-dot is-off"></span> Diego Silva</div>
+                <!-- Columna central -->
+                <div class="mk-central">
+                  <div class="mk-header">
+                    <span class="mk-search">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                      Buscar alumnos, materias o entregables…
+                    </span>
+                    <span class="mk-bell">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                      <span class="mk-badge">1</span>
+                    </span>
                   </div>
-                </div>
-                <div class="mk-panel">
-                  <div class="mk-ptitle">Conceptos con más dudas</div>
-                  <div class="mk-concepts">
-                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">punto equilibrio</span><span class="val">23</span></div><div class="mk-bar"><i style="width:100%"></i></div></div>
-                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">costos fijos</span><span class="val">18</span></div><div class="mk-bar"><i style="width:78%"></i></div></div>
-                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">margen contribución</span><span class="val">15</span></div><div class="mk-bar"><i style="width:65%"></i></div></div>
-                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">estado resultados</span><span class="val">12</span></div><div class="mk-bar"><i style="width:52%"></i></div></div>
-                    <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">costos variables</span><span class="val">9</span></div><div class="mk-bar"><i style="width:39%"></i></div></div>
+                  <!-- Cards de métricas -->
+                  <div class="mk-metrics">
+                    <div class="mk-metric"><span class="mk-mlabel">Alumnos activos</span><div class="mk-mnum is-green">24</div></div>
+                    <div class="mk-metric"><span class="mk-mlabel">Promedio por sesión</span><div class="mk-mnum is-white">6.2</div></div>
+                    <div class="mk-metric mk-metric--chart">
+                      <div><span class="mk-mlabel">Promedio de calificación</span><div class="mk-mnum is-accent">8.4</div></div>
+                      <div class="mk-vbar"><i style="height:84%"></i></div>
+                    </div>
+                    <div class="mk-metric mk-metric--chart">
+                      <div><span class="mk-mlabel">Entregas del grupo</span><div class="mk-mnum is-amber">76%</div></div>
+                      <svg class="mk-gauge" viewBox="0 0 36 36">
+                        <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="4"/>
+                        <circle cx="18" cy="18" r="15" fill="none" stroke="var(--amber)" stroke-width="4" stroke-linecap="round" stroke-dasharray="94.2 94.2" stroke-dashoffset="22.6" transform="rotate(-90 18 18)"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <!-- Paneles analíticos -->
+                  <div class="mk-panels">
+                    <div class="mk-panel">
+                      <div class="mk-ptitle">Actividad reciente</div>
+                      <div class="mk-feed">
+                        <div class="mk-fitem"><span class="who">Ana García</span> <span class="what">- "punto de equilibrio"</span><span class="when">hace 2 min</span></div>
+                        <div class="mk-fitem"><span class="who">Luis Mendoza</span> <span class="what">- "costos fijos vs variables"</span><span class="when">hace 9 min</span></div>
+                        <div class="mk-fitem"><span class="who">María Torres</span> <span class="what">- "margen de contribución"</span><span class="when">hace 14 min</span></div>
+                        <div class="mk-fitem"><span class="who">Valeria Cruz</span> <span class="what">- "estado de resultados"</span><span class="when">hace 23 min</span></div>
+                      </div>
+                    </div>
+                    <div class="mk-panel">
+                      <div class="mk-ptitle">Alumnos</div>
+                      <div class="mk-students">
+                        <div class="mk-student"><span class="mk-dot is-on"></span> Ana García</div>
+                        <div class="mk-student"><span class="mk-dot is-on"></span> Luis Mendoza</div>
+                        <div class="mk-student"><span class="mk-dot is-on"></span> María Torres</div>
+                        <div class="mk-student off"><span class="mk-dot is-off"></span> Carlos Reyes</div>
+                        <div class="mk-student"><span class="mk-dot is-on"></span> Sofía Luna</div>
+                        <div class="mk-student off"><span class="mk-dot is-off"></span> Diego Silva</div>
+                      </div>
+                    </div>
+                    <div class="mk-panel">
+                      <div class="mk-ptitle">Conceptos con más dudas</div>
+                      <div class="mk-concepts">
+                        <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">punto equilibrio</span><span class="val">23</span></div><div class="mk-bar"><i style="width:100%"></i></div></div>
+                        <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">costos fijos</span><span class="val">18</span></div><div class="mk-bar"><i style="width:78%"></i></div></div>
+                        <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">margen contribución</span><span class="val">15</span></div><div class="mk-bar"><i style="width:65%"></i></div></div>
+                        <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">estado resultados</span><span class="val">12</span></div><div class="mk-bar"><i style="width:52%"></i></div></div>
+                        <div class="mk-bar-row"><div class="mk-bar-head"><span class="lab">costos variables</span><span class="val">9</span></div><div class="mk-bar"><i style="width:39%"></i></div></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
