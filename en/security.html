@@ -285,7 +285,7 @@
 <li><strong>Conversations with the tutor:</strong> the student’s question and the answer, for continuity and for the instructor’s map of doubts.</li>
 <li><strong>Course context,</strong> read from the LMS on demand: assignments, instructions, rubrics and materials. The student’s grades are only used when their question is about them.</li>
 <li><strong>Group rosters:</strong> name, email and, if the LMS shares it, phone number of enrolled students.</li>
-<li><strong>Weekly grades and last LMS access,</strong> which feed the risk signal.</li>
+<li><strong>Daily last LMS access, submission status and grades,</strong> which feed the risk signal.</li>
 <li><strong>Follow-up:</strong> staff actions on each alert, messages, referrals and appointments.</li>
 </ul>
 <p>The LMS password is never stored: it is exchanged once for an access token, which is stored encrypted with AES-256. Wellbeing cases are marked confidential and instructors cannot see them.</p>
@@ -333,14 +333,14 @@
 <li>Role-based permissions checked on every request, and isolation between institutions.</li>
 <li>Files uploaded by students are processed in memory, never written to the server.</li>
 <li>Automated tests and dependency vulnerability checks on every code change.</li>
-<li>Automatic alerts if a scheduled job or a backup fails.</li>
+<li>Automatic alerts if a scheduled job or a backup stops because of an error.</li>
 </ul>
 <p><strong>What we do not have yet:</strong> SOC 2 or ISO 27001 certification, two-factor authentication or single sign-on (SSO). If your institution requires them, write to us and we will tell you where each one stands.</p>
 
           <h2 id="ai">AI and the risk signal</h2>
 <p>The tutor uses Anthropic models (Claude). Students know they are talking to an AI, and answers draw on their course material.</p>
-<p>The dropout risk signal uses academic variables only: courses passed, enrolled and assessed in recent terms. It does not use socioeconomic data or how much the student uses Pharis. If the institution shares financial signals, such as an outstanding balance, a fixed and explained adjustment is added.</p>
-<p>The model is trained on a public dataset from another university. That is why <strong>we do not publish an accuracy figure</strong>: it would say nothing about your students. During the pilot we calibrate it with your institution’s data. The signal always reaches a person, who decides.</p>
+<p>The dropout risk signal uses only what the student does in the LMS: the days they log in to the course compared with their group, assignments not submitted or submitted late, and the grade on submitted work. Until there are two weeks of logins, it uses courses passed, enrolled and assessed in recent terms. It does not use socioeconomic data or how much the student uses Pharis. If the institution shares financial signals, such as an outstanding balance, a fixed and explained adjustment is added.</p>
+<p>The model is trained on public datasets from other universities. That is why <strong>we do not publish an accuracy figure</strong>: it would say nothing about your students. It can only be calibrated at the end of a full term, with your institution’s actual dropouts. The signal always reaches a person, who decides.</p>
 <p>Detection of risk language in messaging (for example, self-harm) is rule-based, with no AI, and only alerts leadership and wellbeing staff.</p>
 
           <h2 id="jisc">How Pharis aligns with the Jisc Code of practice</h2>
@@ -351,7 +351,7 @@
 <tr><td>Responsibility</td><td>Defined roles (leadership, coordination, wellbeing) for who sees and who acts. The institution appoints owners and consults students and staff.</td></tr>
 <tr><td>Transparency and consent</td><td>In-app privacy notice with recorded, versioned consent, and this page listing data, sources and providers. The institution sets objectives and explains how to read the signal.</td></tr>
 <tr><td>Privacy</td><td>Role-based access, group-level isolation and case-level confidentiality for wellbeing. Screenshots are not stored.</td></tr>
-<tr><td>Validity</td><td>Documented variables and visible reasons on each alert. No accuracy is claimed that has not been measured at the institution; the model is recalibrated with local data.</td></tr>
+<tr><td>Validity</td><td>Documented variables and visible reasons on each alert. No accuracy is claimed that has not been measured at the institution; the model is recalibrated with a full term's dropouts.</td></tr>
 <tr><td>Access</td><td>Students see their conversations. They do not see their risk level in the app today: they can request it, along with a copy of their data, at <a href="mailto:privacidad@pharis.mx">privacidad@pharis.mx</a>.</td></tr>
 <tr><td>Enabling positive interventions</td><td>The signal prompts support, never penalties. Each action is recorded with who, when, channel and outcome, so its effect can be reviewed.</td></tr>
 <tr><td>Minimising adverse impacts</td><td>No socioeconomic data in the model. The signal is presented as a reason to talk, not as a label.</td></tr>
