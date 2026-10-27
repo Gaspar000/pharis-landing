@@ -1,17 +1,16 @@
 # Pharis
 
-> Pharis es un sistema de alerta temprana de deserción para universidades de América Latina, desarrollado en México. Un tutor con IA acompaña al alumno mientras estudia, y un tablero avisa a profesores y administrativos cuando alguien empieza a quedarse atrás, semanas antes de que la calificación lo muestre.
+> Pharis es un sistema de alerta temprana de deserción para universidades de América Latina, desarrollado en México. Un tutor con IA acompaña al alumno mientras estudia, y un tablero que se actualiza cada día con la actividad del LMS avisa a profesores y administrativos cuando alguien empieza a alejarse de su grupo.
 
 ## Qué hace
 
 - **Para el alumno:** un tutor con IA que conoce el contexto de cada materia (tareas, rúbricas, materiales) y orienta el razonamiento sin entregar la tarea resuelta. Disponible como extensión de Chrome y como app ligera para Windows.
-- **Para el profesor:** tablero en tiempo real, alertas de alumnos en riesgo con las razones y una acción sugerida, y análisis de entregas contra la rúbrica con preguntas para orientar su criterio. Pharis no califica: la decisión es del profesor.
+- **Para el profesor:** tablero que se actualiza cada día, alertas de alumnos en riesgo con las razones y una acción sugerida (la señal usa accesos, entregas y calificaciones del LMS, no el uso del tutor), y análisis de entregas contra la rúbrica con preguntas para orientar su criterio. Pharis no califica: la decisión es del profesor.
 - **Para administrativos:** vista institucional con adopción, velocidad y cobertura de calificación por grupo, alumnos que se están apagando por profesor, y alertas de lenguaje de riesgo en la mensajería que solo ve dirección.
 
 ## Integración
 
 - Se conecta con el LMS de la institución en modo solo lectura: consulta materias, grupos, tareas, entregas, rúbricas y calificaciones; nunca escribe en el LMS ni cambia calificaciones.
-- Hoy se integra con Moodle; Canvas y otros LMS están en desarrollo.
 - No requiere servidores ni migraciones: el contenido sigue viviendo en el LMS.
 
 ## Páginas

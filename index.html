@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pharis - Alerta temprana de deserción para universidades</title>
-  <meta name="description" content="Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción en tiempo real. Detecta al alumno en riesgo semanas antes de que la calificación lo revele." />
+  <meta name="description" content="Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción que se actualiza cada día con la actividad del LMS. Avisa cuando un alumno empieza a alejarse de su grupo." />
   <!-- SEO:start -->
   <link rel="canonical" href="https://pharis.mx/" />
   <link rel="alternate" hreflang="es" href="https://pharis.mx/" />
@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Pharis" />
   <meta property="og:url" content="https://pharis.mx/" />
   <meta property="og:title" content="Pharis - Alerta temprana de deserción para universidades" />
-  <meta property="og:description" content="Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción en tiempo real. Detecta al alumno en riesgo semanas antes de que la calificación lo revele." />
+  <meta property="og:description" content="Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción que se actualiza cada día con la actividad del LMS. Avisa cuando un alumno empieza a alejarse de su grupo." />
   <meta property="og:locale" content="es_MX" />
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:image" content="https://pharis.mx/assets/og-pharis-es.jpg" />
@@ -23,9 +23,9 @@
   <meta property="og:image:alt" content="Pharis: El alumno en riesgo ya dio señales. Pharis las ve primero." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Pharis - Alerta temprana de deserción para universidades" />
-  <meta name="twitter:description" content="Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción en tiempo real. Detecta al alumno en riesgo semanas antes de que la calificación lo revele." />
+  <meta name="twitter:description" content="Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción que se actualiza cada día con la actividad del LMS. Avisa cuando un alumno empieza a alejarse de su grupo." />
   <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-es.jpg" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharis.mx/#org", "name": "Pharis", "url": "https://pharis.mx/", "logo": "https://pharis.mx/assets/logo.svg", "email": "contacto@pharis.mx", "areaServed": "Latin America"}, {"@type": "WebSite", "@id": "https://pharis.mx/#website", "url": "https://pharis.mx/", "name": "Pharis", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}, {"@type": "SoftwareApplication", "name": "Pharis", "url": "https://pharis.mx/", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows, Chrome", "description": "Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción en tiempo real. Detecta al alumno en riesgo semanas antes de que la calificación lo revele.", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharis.mx/#org", "name": "Pharis", "url": "https://pharis.mx/", "logo": "https://pharis.mx/assets/logo.svg", "email": "contacto@pharis.mx", "areaServed": "Latin America"}, {"@type": "WebSite", "@id": "https://pharis.mx/#website", "url": "https://pharis.mx/", "name": "Pharis", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}, {"@type": "SoftwareApplication", "name": "Pharis", "url": "https://pharis.mx/", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows, Chrome", "description": "Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción que se actualiza cada día con la actividad del LMS. Avisa cuando un alumno empieza a alejarse de su grupo.", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}]}</script>
   <!-- SEO:end -->
   <meta name="theme-color" content="#f5f8fc" />
 
@@ -2324,7 +2324,7 @@
     <div class="ph2-hero-main">
       <div class="ph2-hero-text">
         <h1 aria-label="El alumno en riesgo ya dio señales. Pharis las ve primero."><span aria-hidden="true">El alumno en riesgo ya dio señales.<br /><strong>Phar<span id="ph2-lamp-tick">ı</span>s las ve primero.</strong></span></h1>
-        <p class="ph2-sub">Pharis acompaña al alumno mientras estudia y avisa a profesores y directivos cuando alguien empieza a quedarse atrás, semanas antes de que la calificación lo muestre.</p>
+        <p class="ph2-sub">Pharis acompaña al alumno mientras estudia y avisa a profesores y directivos cuando alguien empieza a alejarse de su grupo, con base en su actividad y sus entregas en el LMS.</p>
       </div>
 
       <div class="ph2-hero-subject">
@@ -2349,8 +2349,8 @@
             <span><span class="ph2-sig-k">Promedio 54%</span><span class="ph2-sig-v">16 puntos abajo del grupo</span></span>
           </div>
           <div class="ph2-sig ph2-sig--r1 ph2-sig--amber" data-anchor="0.64,0.13" style="--i:1">
-            <span class="ph2-sig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-            <span><span class="ph2-sig-k">Preguntas por semana</span><span class="ph2-sig-v">40% menos que su grupo</span></span>
+            <span class="ph2-sig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+            <span><span class="ph2-sig-k">Días con acceso</span><span class="ph2-sig-v">4 en 28 días; su grupo, 15</span></span>
           </div>
           <div class="ph2-sig ph2-sig--r2 ph2-sig--amber" data-anchor="0.76,0.32" style="--i:3">
             <span class="ph2-sig-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
@@ -2844,15 +2844,15 @@
       <div class="container">
         <p class="eyebrow reveal">El punto ciego</p>
         <h2 class="section-title reveal" data-delay="1">El mismo alumno, dos realidades.</h2>
-        <p class="section-sub reveal" data-delay="2">Tu LMS registra lo que se entrega. No lo que cuesta llegar a entregarlo.</p>
+        <p class="section-sub reveal" data-delay="2">Sus entregas dicen que va bien. Su actividad frente a su grupo dice otra cosa.</p>
 
         <!-- Descripción accesible (las pantallas y el gráfico son aria-hidden) -->
         <p class="sr-only">
-          Caso ilustrativo: Diego Ramírez a lo largo de 16 semanas. Su LMS registra todas
-          las entregas a tiempo hasta la semana 13 y muestra el primer cero en la semana 14.
-          La señal de estudio que ve Pharis empieza a caer desde la semana 5, y en la semana 6
-          Pharis alerta al profesor. Son ocho semanas para intervenir antes de que el LMS
-          muestre el problema.
+          Caso ilustrativo: Diego Ramírez a lo largo de 16 semanas. Sus entregas en el LMS
+          salen a tiempo hasta la semana 13 y el primer cero aparece en la semana 14.
+          Su actividad frente a su grupo, que Pharis lee cada día del mismo LMS, empieza a
+          caer desde la semana 5, y en la semana 6 Pharis alerta al profesor. En este ejemplo
+          son ocho semanas para intervenir antes del primer cero.
         </p>
 
         <div class="pc-card reveal" data-delay="2" id="pc-card">
@@ -2867,7 +2867,7 @@
           <div class="pc-screens" aria-hidden="true">
             <div class="pc-screen pc-screen--lms" id="pc-screen-lms">
               <div class="pc-screen-top">
-                <p class="pc-screen-label"><i class="pc-dot pc-dot--lms"></i>Lo que ve tu LMS</p>
+                <p class="pc-screen-label"><i class="pc-dot pc-dot--lms"></i>Lo que dicen sus entregas</p>
                 <span class="pc-week" data-week>Semana 1</span>
               </div>
               <p class="pc-state" id="pc-lms-state">Al corriente</p>
@@ -2876,11 +2876,11 @@
             </div>
             <div class="pc-screen pc-screen--ph" id="pc-screen-ph">
               <div class="pc-screen-top">
-                <p class="pc-screen-label"><i class="pc-dot pc-dot--ph"></i>Lo que ve Pharis</p>
+                <p class="pc-screen-label"><i class="pc-dot pc-dot--ph"></i>Lo que lee Pharis de su actividad</p>
                 <span class="pc-week" data-week>Semana 1</span>
               </div>
-              <p class="pc-state"><span class="pc-state-num" id="pc-ph-level">94%</span><small>señal de estudio</small></p>
-              <p class="pc-detail" id="pc-ph-detail">Ritmo normal de estudio</p>
+              <p class="pc-state"><span class="pc-state-num" id="pc-ph-level">94%</span><small>actividad frente a su grupo</small></p>
+              <p class="pc-detail" id="pc-ph-detail">Entra como su grupo</p>
               <div class="pc-meter"><i id="pc-ph-meter"></i></div>
               <div class="pc-alert">
                 <span class="pc-alert-score">82<small>/100</small></span>
@@ -2905,7 +2905,7 @@
 
         <div class="pc-close reveal">
           <p class="pc-big">8 semanas</p>
-          <p class="pc-kicker">entre la primera alerta de Pharis y el primer cero en tu LMS. Para cuando el LMS muestra el problema, <span class="pc-kicker-em">ya es un cero</span>.</p>
+          <p class="pc-kicker">en este caso ilustrativo, entre la primera alerta de Pharis y el primer cero. Para cuando el problema aparece en las entregas, <span class="pc-kicker-em">ya es un cero</span>.</p>
         </div>
       </div>
     </section>
@@ -2914,7 +2914,7 @@
     <section class="section on-light" id="como-funciona">
       <div class="container">
         <p class="eyebrow reveal">Cómo funciona</p>
-        <h2 class="section-title reveal" data-delay="1">De la duda del alumno a la alerta del profesor.</h2>
+        <h2 class="section-title reveal" data-delay="1">De la actividad en el LMS a la alerta del profesor.</h2>
         <p class="section-sub reveal" data-delay="2">Tres pasos. El alumno solo estudia como siempre; el sistema hace el resto.</p>
         <div class="stepper" id="stepper">
           <div class="stepper-list">
@@ -2933,8 +2933,8 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
               </span>
               <span class="stepper-copy">
-                <h3>Pharis registra dudas, patrones y señales</h3>
-                <p>Cada pregunta, cada bloqueo y cada sesión de estudio se vuelven datos. El esfuerzo, que antes era invisible, deja rastro.</p>
+                <h3>Pharis lee la actividad del LMS cada día</h3>
+                <p>Accesos, entregas y calificaciones de cada alumno, comparados con los de su grupo. Las dudas que el alumno le hace al tutor van al mapa de dudas del profesor, no a la señal de riesgo.</p>
               </span>
               <span class="stepper-progress" aria-hidden="true"><span class="stepper-progress-fill"></span></span>
             </button>
@@ -2944,7 +2944,7 @@
               </span>
               <span class="stepper-copy">
                 <h3>El profesor ve quién necesita atención</h3>
-                <p>Semanas antes del primer cero, el tablero marca a los alumnos que se están quedando atrás. Hay tiempo para intervenir.</p>
+                <p>Cuando alguien empieza a alejarse de su grupo, el tablero lo marca con las razones y una acción sugerida.</p>
               </span>
               <span class="stepper-progress" aria-hidden="true"><span class="stepper-progress-fill"></span></span>
             </button>
@@ -2967,7 +2967,7 @@
         </div>
         <h2 class="section-title">Míralo en acción.</h2>
         <p class="section-sub">
-          Del alumno con una duda al profesor con una alerta.
+          Del tutor del alumno al tablero del profesor.
           Así es Pharis en menos de dos minutos.
         </p>
 
@@ -3044,12 +3044,12 @@
               <span class="attr">Contexto real de cada materia, no respuestas genéricas.</span>
             </aside>
             <aside class="quote-card quote-card--ghost quote-card--ghost-2">
-              <p>&ldquo;3 de cada 4 preguntas se hacen fuera de horario de clase.&rdquo;</p>
-              <span class="attr">Pharis responde a cualquier hora, sin fila de espera.</span>
+              <p>&ldquo;Sabe que está hablando con una IA.&rdquo;</p>
+              <span class="attr">Pharis se presenta como tutor de IA, nunca como su profesor.</span>
             </aside>
             <aside class="quote-card quote-card--ghost quote-card--ghost-1">
-              <p>&ldquo;No me daba pena preguntarle algo que ya debía saber. Con un profesor sí.&rdquo;</p>
-              <span class="attr">Alumno de segundo semestre.</span>
+              <p>&ldquo;Las capturas de pantalla no se guardan.&rdquo;</p>
+              <span class="attr">Se usan para responder y se descartan.</span>
             </aside>
             <aside class="quote-card quote-card--front">
               <p>&ldquo;No es un atajo para terminar la tarea. Es el compañero que se sienta al lado a explicarte por qué.&rdquo;</p>
@@ -3072,8 +3072,8 @@
               <button type="button" class="prof-benefit" data-area="tablero">
                 <span class="prof-benefit-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></span>
                 <span>
-                  <span class="prof-benefit-title">Tablero en tiempo real</span>
-                  <span class="prof-benefit-text">Quién está estudiando, quién dejó de abrir el material y qué temas le cuestan al grupo. Actualizado al momento.</span>
+                  <span class="prof-benefit-title">Tablero que se actualiza cada día</span>
+                  <span class="prof-benefit-text">Quién está entrando, quién dejó de abrir el material y qué temas le cuestan al grupo, con la actividad del LMS de cada día.</span>
                 </span>
               </button>
             </li>
@@ -3139,17 +3139,17 @@
                       <div class="pm-vs pm-vs--red">↓ 16 puntos abajo del promedio del grupo</div>
                     </div>
                     <div class="pm-stat">
-                      <div class="pm-stat-hd"><span class="pm-stat-label">Preguntas por semana</span><span class="pm-stat-value">1.2</span></div>
-                      <div class="pm-bar"><i style="--fill:50%"></i></div>
-                      <div class="pm-vs">Pregunta 40% menos que el promedio del grupo</div>
+                      <div class="pm-stat-hd"><span class="pm-stat-label">Días con acceso (28 días)</span><span class="pm-stat-value">4</span></div>
+                      <div class="pm-bar"><i style="--fill:27%"></i></div>
+                      <div class="pm-vs">Su grupo entra 15 días</div>
                     </div>
                     <div class="pm-stat">
                       <div class="pm-stat-hd"><span class="pm-stat-label">Actividad digital</span><span class="pm-stat-value pm-stat-value--prosa pm-stat-value--amber">Hace 9 días</span></div>
                       <div class="pm-bar pm-bar--amber"><i style="--fill:66%"></i></div>
                     </div>
                     <ul class="pm-reasons">
-                      <li>Caída de aprobación respecto al periodo anterior.</li>
-                      <li>Tiene materias inscritas que no presentó a evaluación.</li>
+                      <li>No ha entrado al curso en 9 días.</li>
+                      <li>Su promedio en lo entregado está por debajo de 60.</li>
                     </ul>
                     <div class="pm-action">Agenda 10 minutos con este alumno esta semana.</div>
                   </div>
@@ -3308,8 +3308,8 @@
     <section class="section on-light on-light-alt" id="roi">
       <div class="container">
         <p class="eyebrow reveal">El retorno</p>
-        <h2 class="section-title reveal" data-delay="1">La deserción cuesta más que evitarla.</h2>
-        <p class="section-sub reveal" data-delay="2">Ajusta las cifras de tu institución y compara lo que pierdes cada año con lo que cuesta la licencia.</p>
+        <h2 class="section-title reveal" data-delay="1">Lo que cuesta la deserción.</h2>
+        <p class="section-sub reveal" data-delay="2">Ajusta las cifras de tu institución y mira cuánto ingreso se pierde cada año.</p>
         <div class="roi-grid">
           <div class="calc reveal">
             <div class="calc-field">
@@ -3330,8 +3330,8 @@
             <p class="r-loss" id="loss">$0</p>
             <p class="r-loss-note" id="loss-detail">&nbsp;</p>
             <hr />
-            <p class="r-pay">Retener <strong>10 alumnos</strong> al año vale <span id="retain-value">$0</span>. Una licencia de campus cuesta <strong><span id="license-cost">$0</span></strong> al año.</p>
-            <p class="r-foot">Comparación ilustrativa: el costo de licencia es una estimación de referencia y el precio final se define por institución. La cifra de retención usa tu colegiatura promedio. La deserción inicial (7%) es la tasa nacional de abandono en educación superior, ciclo 2023-2024 (SEP, Principales Cifras 2024-2025); ajústala a la de tu institución.</p>
+            <p class="r-pay">Si se quedaran <strong>10 alumnos</strong> más al año, serían <span id="retain-value">$0</span> de colegiatura que no se pierde.</p>
+            <p class="r-foot">Escenario ilustrativo, no un resultado prometido: cuántos alumnos se quedan depende de lo que la institución haga con cada alerta, y se mide al cierre de un ciclo. La cifra usa tu colegiatura promedio. La deserción inicial (7%) es la tasa nacional de abandono en educación superior, ciclo 2023-2024 (SEP, Principales Cifras 2024-2025); ajústala a la de tu institución.</p>
           </div>
         </div>
       </div>
@@ -3379,7 +3379,7 @@
             <div class="flow-card flow-dest" data-flow="dest" data-dest="profesor" tabindex="0">
               <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></span>
               <strong>Profesor</strong>
-              <p class="flow-dest-text" aria-live="polite">Tablero en tiempo real y alertas de alumnos en riesgo.</p>
+              <p class="flow-dest-text" aria-live="polite">Tablero que se actualiza cada día y alertas de alumnos en riesgo.</p>
             </div>
             <div class="flow-card flow-dest" data-flow="dest" data-dest="direccion" tabindex="0">
               <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg></span>
@@ -3415,11 +3415,11 @@
           <div class="cta-copy">
             <p class="eyebrow reveal">Empieza este semestre</p>
             <h2 class="reveal" data-delay="1">Llega antes que el primer cero.</h2>
-            <p class="cta-lead reveal" data-delay="2">Agenda una demo para tu institución. Te mostramos el tablero con un caso real y calculamos juntos el retorno para tu campus. Sin compromiso.</p>
+            <p class="cta-lead reveal" data-delay="2">Agenda una demo para tu institución. Te mostramos el tablero con datos simulados y calculamos juntos el retorno para tu campus. Sin compromiso.</p>
             <ul class="cta-points reveal" data-delay="2">
               <li>
                 <span class="cta-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-                <span><strong>Se conecta con tu Moodle</strong><span>El contexto de cada materia, sin cambiar de plataforma.</span></span>
+                <span><strong>Se conecta con tu LMS</strong><span>El contexto de cada materia, sin cambiar de plataforma.</span></span>
               </li>
               <li>
                 <span class="cta-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
@@ -3480,7 +3480,7 @@
                   <label class="lms-chip"><input type="radio" name="lms" value="Blackboard" /><span>Blackboard</span></label>
                   <label class="lms-chip"><input type="radio" name="lms" value="Otro" /><span>Otro</span></label>
                 </div>
-                <p class="lms-note" id="lms-note" hidden>Hoy Pharis se integra con Moodle; Canvas y otros LMS están en desarrollo. Igual podemos platicar.</p>
+                <p class="lms-note" id="lms-note" hidden>Cuéntanos qué LMS usan y revisamos contigo cómo se conecta Pharis.</p>
               </fieldset>
               <div class="form-hp" aria-hidden="true">
                 <label for="f-website">No llenar</label>
@@ -4589,7 +4589,7 @@
       const phMeter = document.getElementById("pc-ph-meter");
       const weekLabels = card.querySelectorAll("[data-week]");
 
-      // Señal de estudio por semana (0-1): cae sostenido desde la semana 5
+      // Actividad frente al grupo por semana (0-1): cae sostenido desde la semana 5
       // y se apaga hacia la 13. El LMS reporta plano hasta el primer cero.
       const REAL = [0.94, 0.91, 0.87, 0.89, 0.8, 0.71, 0.62, 0.54, 0.44, 0.35, 0.26, 0.18, 0.11, 0.06, 0.03, 0.02];
       const N = REAL.length;
@@ -4604,10 +4604,10 @@
         : w === ZERO_W ? "Sin entrega esta semana"
         : "Sin entregas";
       const phSays = (lvl) =>
-        lvl > 0.82 ? "Ritmo normal de estudio"
-        : lvl > 0.4 ? "La actividad empieza a caer"
-        : lvl > 0.1 ? "Casi no abre el material"
-        : "Sin actividad: se apagó";
+        lvl > 0.82 ? "Entra como su grupo"
+        : lvl > 0.4 ? "Entra menos que su grupo"
+        : lvl > 0.1 ? "Solo entra para entregar"
+        : "Dejó de entrar";
       const r1 = (n) => n.toFixed(1);
 
       grades.innerHTML = REAL.map(() => "<i></i>").join("");
@@ -4689,7 +4689,7 @@
           }
         }
         s += '<text class="pc-svg-label" x="' + r1(xs[0]) + '" y="' + r1(yLms[0] - 12) + '">ENTREGAS EN TU LMS</text>';
-        s += '<text class="pc-svg-label" x="' + r1(xs[1]) + '" y="' + r1(yReal[ALERT_W] + 30) + '">SEÑAL DE ESTUDIO</text>';
+        s += '<text class="pc-svg-label" x="' + r1(xs[1]) + '" y="' + r1(yReal[ALERT_W] + 30) + '">ACTIVIDAD FRENTE AL GRUPO</text>';
         s += '</g>';
         s += markGroup("pc-alert-mark", xA, yReal[ALERT_W], "#c8372f");
         s += markGroup("pc-zero-mark", xB, yLms[ZERO_W], "#e8963f");
@@ -4819,7 +4819,6 @@
     const lossEl = document.getElementById("loss");
     const lossDetailEl = document.getElementById("loss-detail");
     const retainValueEl = document.getElementById("retain-value");
-    const licenseCostEl = document.getElementById("license-cost");
 
     // Anima el valor de un elemento interpolando con requestAnimationFrame (easeOutCubic).
     function animateNumber(el, to, formatter, duration = 300) {
@@ -4856,9 +4855,8 @@
       const desertores = Math.round(alumnos * desercion);
       const perdida = desertores * colegiatura;
 
-      // Modelo ilustrativo: retener 10 alumnos = 5x la licencia => licencia = (10 * colegiatura) / 5
+      // Escenario ilustrativo: colegiatura de 10 alumnos que no se pierde.
       const valorRetener10 = 10 * colegiatura;
-      const licencia = valorRetener10 / 5;
 
       // Etiquetas de los sliders: instantáneas (espejo del control).
       alumnosVal.textContent = num.format(alumnos);
@@ -4868,7 +4866,6 @@
       animateNumber(lossEl, perdida, fmtMxn);
       animateNumber(lossDetailEl, desertores, fmtDetail);
       animateNumber(retainValueEl, valorRetener10, fmtMxn);
-      animateNumber(licenseCostEl, licencia, fmtMxn);
     }
 
     [alumnosEl, desercionEl, colegiaturaEl].forEach((el) => el.addEventListener("input", recalc));
