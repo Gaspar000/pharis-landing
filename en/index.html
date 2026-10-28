@@ -325,7 +325,6 @@
       padding: 1.35rem 1.3rem 1.25rem;
       transition: translate 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
     }
-    .dp-cause--neutral { --dp-tint: var(--light-text); }
     .dp-cause::after {
       content: "";
       position: absolute;
@@ -372,19 +371,6 @@
     }
     .dp-cause h4 { margin: 0 0 0.4rem; font-family: "Manrope", sans-serif; font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; color: var(--light-text); }
     .dp-cause p { margin: 0; font-size: 0.9rem; line-height: 1.55; color: var(--light-muted); }
-    /* Las causas que sí dejan huella en cómo estudia el alumno */
-    .dp-signal {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      align-self: flex-start;
-      margin-top: auto;
-      padding-top: 1rem;
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--light-accent-text);
-    }
-    .dp-signal::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(80, 143, 248, 0.18); }
-    .dp-signal--none { color: var(--light-muted); font-weight: 500; }
-    .dp-signal--none::before { background: #b9c3d3; box-shadow: none; }
 
     .dp-bridge {
       margin: clamp(3.5rem, 7vw, 5rem) auto 0;
@@ -533,8 +519,8 @@
       margin-top: 0.9rem;
       padding: 0.7rem 0.8rem;
       border-radius: 10px;
-      background: color-mix(in srgb, var(--pc-red) 8%, white);
-      border: 1px solid color-mix(in srgb, var(--pc-red) 22%, transparent);
+      background: #fff;
+      border: 1px solid color-mix(in srgb, var(--pc-red) 55%, transparent);
       opacity: 0;
       transform: translateY(6px);
       transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
@@ -1042,19 +1028,28 @@
     .pm-profile-name { font-size: 12.5px; font-weight: 700; }
     .pm-profile-group { font-size: 10px; color: var(--m-muted); }
     .pm-risk {
-      border-radius: 14px; padding: 12px 13px;
-      background: color-mix(in srgb, var(--m-red) 10%, var(--m-surface));
-      border: 1px solid color-mix(in srgb, var(--m-red) 22%, transparent);
+      border-radius: 14px; padding: 13px 14px;
+      background: var(--m-surface);
+      border: 1px solid color-mix(in srgb, var(--m-red) 55%, var(--m-border));
     }
-    .pm-risk-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .pm-risk-top {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+      padding-bottom: 11px; border-bottom: 1px solid var(--m-border);
+    }
     .pm-risk-score { display: flex; align-items: baseline; gap: 2px; color: var(--m-red); font-family: var(--m-mono); }
     .pm-risk-score b { font-size: 26px; font-weight: 700; line-height: 1; }
     .pm-risk-score small { font-size: 11px; font-weight: 600; opacity: 0.5; }
-    .pm-risk-label { display: block; margin-top: 3px; font-size: 10.5px; font-weight: 600; color: var(--m-red); }
+    .pm-risk-label {
+      display: inline-flex; align-items: center; gap: 4px;
+      margin-top: 6px; padding: 2px 7px 2px 6px; border-radius: 999px;
+      font-size: 9.5px; font-weight: 600; white-space: nowrap; color: var(--m-red);
+      background: color-mix(in srgb, var(--m-red) 10%, transparent);
+    }
+    .pm-risk-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
     .pm-risk-vs {
       display: inline-flex; align-items: center; gap: 3px;
       padding: 2px 8px; border-radius: 999px;
-      font-size: 9.5px; font-weight: 700; white-space: nowrap;
+      font-size: 9px; font-weight: 700; white-space: nowrap; flex: none;
       color: var(--m-red); background: color-mix(in srgb, var(--m-red) 14%, transparent);
     }
     .pm-stat { margin-top: 11px; }
@@ -1064,16 +1059,21 @@
     .pm-stat-value--prosa { font-family: "Manrope", sans-serif; }
     .pm-stat-value--red { color: var(--m-red); } .pm-stat-value--amber { color: var(--m-amber); }
     .pm-bar { height: 6px; border-radius: 999px; background: var(--m-border); overflow: hidden; }
-    .pm-bar i { display: block; height: 100%; width: var(--fill); border-radius: 999px; background: var(--m-muted); }
+    .pm-bar i { display: block; height: 100%; width: var(--fill); border-radius: 999px; background: color-mix(in srgb, var(--m-muted) 45%, var(--m-border)); }
     .pm-bar--red i { background: var(--m-red); } .pm-bar--amber i { background: var(--m-amber); }
     .pm-vs { margin-top: 4px; font-size: 9.5px; line-height: 1.4; color: var(--m-muted); }
     .pm-vs--red { color: var(--m-red); }
-    .pm-reasons { margin: 11px 0 0; padding-left: 14px; font-size: 9.5px; line-height: 1.5; color: var(--m-text2); }
+    .pm-motivos { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--m-border); }
+    .pm-motivos-titulo { margin-bottom: 4px; font-size: 10.5px; font-weight: 500; color: var(--m-text2); }
+    .pm-reasons { margin: 0; padding-left: 14px; font-size: 10px; line-height: 1.5; color: var(--m-text); }
+    .pm-reasons li::marker { color: var(--m-muted); }
     .pm-action {
-      margin-top: 10px; padding-top: 10px;
-      border-top: 1px solid var(--m-border);
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 10px; padding: 7px 9px; border-radius: 8px;
+      background: color-mix(in srgb, var(--m-accent) 7%, transparent);
       font-size: 10.5px; font-weight: 600; line-height: 1.4; color: var(--m-accent);
     }
+    .pm-action svg { flex: none; }
 
     /* Análisis de Pharis (réplica del modal de Calificar) */
     .pm-analysis { padding-bottom: 11px; }
@@ -2221,7 +2221,7 @@
     #ph2-hero .ph2-sig--alert {
       top: 56%; left: calc(50% + 160px);
       width: 280px; display: block;
-      background: color-mix(in srgb, #c8372f 6%, white);
+      background: #fff;
       opacity: 0; filter: none; transform: translateY(14px);
     }
     #ph2-hero .ph2-signals.is-seen .ph2-sig--alert { opacity: 1; transform: none; }
@@ -2807,29 +2807,25 @@
           <h3 class="dp-why-title reveal">Why they leave</h3>
           <p class="dp-why-sub reveal">The causes identified by the SEP rarely come alone.</p>
           <div class="dp-causes">
-            <article class="dp-cause dp-cause--neutral reveal">
+            <article class="dp-cause reveal">
               <span class="dp-cause-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></span>
               <h4>Money and work</h4>
               <p>Lack of resources, the need to work, and the cost of transport, materials and housing.</p>
-              <span class="dp-signal dp-signal--none">Needs institutional support</span>
             </article>
             <article class="dp-cause reveal" data-delay="1">
               <span class="dp-cause-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
               <h4>Academic gaps</h4>
               <p>Gaps from earlier schooling that pile up course after course.</p>
-              <span class="dp-signal">Leaves signs in how they study</span>
             </article>
             <article class="dp-cause reveal" data-delay="2">
               <span class="dp-cause-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
               <h4>Emotional health</h4>
               <p>Stress, anxiety and mental health struggles that change how and how much they study.</p>
-              <span class="dp-signal">Leaves signs in how they study</span>
             </article>
             <article class="dp-cause reveal" data-delay="3">
               <span class="dp-cause-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
               <h4>Adjustment and career fit</h4>
               <p>Trouble adjusting to university life, or doubts about the chosen degree.</p>
-              <span class="dp-signal">Leaves signs in how they study</span>
             </article>
           </div>
           <p class="dp-source reveal">Causes cited by the SEP at the Universia Rectors' Meeting, May 2026.</p>
@@ -3131,7 +3127,7 @@
                         <span class="pm-risk-score"><b>82</b><small>/100</small></span>
                         <span class="pm-risk-label">High risk</span>
                       </div>
-                      <span class="pm-risk-vs">↑ +12% vs last week</span>
+                      <span class="pm-risk-vs">↑ +12% this week</span>
                     </div>
                     <div class="pm-stat">
                       <div class="pm-stat-hd"><span class="pm-stat-label">Average</span><span class="pm-stat-value pm-stat-value--red">54%</span></div>
@@ -3147,11 +3143,14 @@
                       <div class="pm-stat-hd"><span class="pm-stat-label">Digital activity</span><span class="pm-stat-value pm-stat-value--prosa pm-stat-value--amber">9 days ago</span></div>
                       <div class="pm-bar pm-bar--amber"><i style="--fill:66%"></i></div>
                     </div>
-                    <ul class="pm-reasons">
-                      <li>Has not logged in to the course in 9 days.</li>
-                      <li>Average on submitted work is below 60.</li>
-                    </ul>
-                    <div class="pm-action">Schedule 10 minutes with this student this week.</div>
+                    <div class="pm-motivos">
+                      <div class="pm-motivos-titulo">Why they are at risk</div>
+                      <ul class="pm-reasons">
+                        <li>Has not logged in to the course in 9 days.</li>
+                        <li>Average on submitted work is below 60.</li>
+                      </ul>
+                    </div>
+                    <div class="pm-action"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18M9 15l2 2 4-4"/></svg><span>Schedule 10 minutes with this student this week.</span></div>
                   </div>
                 </div>
 
