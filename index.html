@@ -218,351 +218,139 @@
     }
 
     /* ============================================================ PROBLEMA
-       La deserción universitaria en tres capas: cuánto (cohorte de 100 que
-       se apaga hasta 46, dato del Banco Mundial para la región), cuándo
-       (3 de cada 10 en el primer año, dato de la SEP para México) y por qué
-       (causas de la SEP). Cada cifra lleva su fuente y no se mezclan en una
-       misma figura. Cierra con la frase que lleva a "El punto ciego". */
-    .dp-grid { display: grid; gap: clamp(2.5rem, 5vw, 3.5rem); margin-top: clamp(2.5rem, 5vw, 3.5rem); align-items: start; }
-    @media (min-width: 900px) { .dp-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; } }
+       Una sola cifra (graduación en la región, Banco Mundial) contada con
+       10 figuras que se llenan de abajo hacia arriba, las causas en una
+       línea y la frase que lleva a "El punto ciego". */
+    .dq-head { max-width: 900px; margin: 0 auto; text-align: center; }
+    .dq-head .section-sub { margin: 0 auto; }
+    .dq-em, .dq-num, .dz-big {
+      background: linear-gradient(120deg, #2f6fe0 0%, #74a6fb 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .dq-figure {
+      display: grid; gap: clamp(1.75rem, 4vw, 3.5rem); align-items: center;
+      max-width: 1000px; margin: clamp(2.75rem, 6vw, 4.5rem) auto 0;
+    }
+    @media (min-width: 900px) { .dq-figure { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); } }
+    .dq-people { display: flex; align-items: flex-end; gap: clamp(6px, 1.3vw, 16px); }
+    .dq-p { position: relative; flex: 1 1 0; aspect-ratio: 40 / 96; }
+    .dq-p svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .dq-base { fill: #dfe5ef; }
+    .dq-fill {
+      fill: var(--accent);
+      clip-path: inset(100% 0 0 0);
+      transition: clip-path 0.9s var(--ease) calc(var(--i) * 110ms + 0.25s);
+    }
+    .dq-figure.is-visible .dq-fill { clip-path: inset(calc(100% - var(--f)) 0 0 0); }
+    .dq-cap { margin: 0; }
+    .dq-num {
+      display: block; font-family: "Manrope", sans-serif; font-weight: 800;
+      font-size: clamp(4rem, 10vw, 7rem); line-height: 0.95; letter-spacing: -0.05em;
+    }
+    .dq-cap-txt { display: block; margin-top: 0.6rem; font-family: "Manrope", sans-serif; font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 600; line-height: 1.35; color: var(--light-text); }
+    .dq-src { display: block; margin-top: 0.9rem; max-width: 52ch; font-size: 0.78rem; line-height: 1.5; color: var(--light-muted); }
 
-    /* Cohorte: 100 siluetas; las que abandonan pasan a un contorno gris */
-    .dp-cohort { margin: 0; }
-    .dp-people { display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: clamp(6px, 1.2vw, 14px) clamp(1px, 0.4vw, 4px); }
-    .dp-person { display: block; color: var(--light-text); transition: color 0.7s var(--ease), opacity 0.7s var(--ease), transform 0.7s var(--ease); }
-    .dp-person svg { display: block; width: 100%; height: auto; }
-    .dp-person.is-gone { color: #9aa6b8; opacity: 0.32; transform: scale(0.88); }
-    .dp-count {
-      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 1.4rem;
-      margin-top: 1.4rem;
-      padding-top: 1.1rem;
-      border-top: 1px solid var(--light-rule);
-      font-family: "Manrope", sans-serif;
-      font-size: 1rem;
-      color: var(--light-muted);
+    .dq-why { margin-top: clamp(3.5rem, 7vw, 5rem); padding-top: clamp(1.75rem, 3vw, 2.25rem); border-top: 1px solid var(--light-rule); }
+    .dq-why-hd { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.9rem; }
+    .dq-why-hd h3 { margin: 0; font-family: "Manrope", sans-serif; font-size: clamp(1.25rem, 2.2vw, 1.5rem); font-weight: 700; letter-spacing: -0.015em; color: var(--light-text); }
+    .dq-why-hd p { margin: 0; font-size: 1rem; color: var(--light-muted); }
+    .dq-causes { list-style: none; margin: 1.35rem 0 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (min-width: 900px) { .dq-causes { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .dq-causes li {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.9rem 1rem; border-radius: 12px;
+      background: var(--light-panel); border: 1px solid var(--light-rule);
+      font-family: "Manrope", sans-serif; font-size: 0.97rem; font-weight: 600; line-height: 1.3; color: var(--light-text);
     }
-    .dp-count b { font-family: "Inter", sans-serif; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.03em; color: var(--light-text); font-variant-numeric: tabular-nums; margin-right: 0.35rem; }
-    .dp-count-end b { min-width: 2.2ch; display: inline-block; }
-    .dp-source { margin: 0.8rem 0 0; font-size: 0.74rem; line-height: 1.5; color: var(--light-muted); }
-
-    /* Columna de cifras */
-    .dp-side { display: grid; gap: 2.25rem; }
-    .dp-block + .dp-block { padding-top: 2.25rem; border-top: 1px solid var(--light-rule); }
-    .dp-label {
-      margin: 0 0 1rem;
-      font-family: "Fira Sans", sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--light-muted);
+    .dq-ic { flex: none; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 10px; background: #eef1f6; color: var(--light-text); }
+    .dq-ic svg { width: 18px; height: 18px; }
+    .dq-why .dq-src { max-width: none; margin-top: 0.85rem; }
+    .dq-bridge {
+      margin: clamp(3.5rem, 7vw, 5rem) auto 0; max-width: 26ch; text-align: center; text-wrap: balance;
+      font-family: "Manrope", sans-serif; font-size: clamp(1.45rem, 3vw, 2.1rem); font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; color: var(--light-text);
     }
-    .dp-bars { display: grid; gap: 0.85rem; }
-    .dp-bar { display: grid; grid-template-columns: 7.5rem 1fr 3rem; align-items: center; gap: 0.8rem; font-size: 0.92rem; color: var(--light-text); }
-    .dp-bar-track { height: 10px; border-radius: 999px; background: var(--light-rule); overflow: hidden; }
-    .dp-bar-track i { display: block; height: 100%; width: 0; border-radius: 999px; background: var(--light-text); transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s; }
-    .dp-bar--ref .dp-bar-track i { background: #b9c3d3; }
-    .dp-side.is-in .dp-bar-track i { width: var(--w); }
-    .dp-bar b { font-family: "Inter", sans-serif; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
-    .dp-bar--ref { color: var(--light-muted); }
-    .dp-big {
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(2.6rem, 5.5vw, 3.6rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      color: var(--light-text);
-    }
-    .dp-text { margin: 0.7rem 0 0; font-size: 1.02rem; line-height: 1.6; color: var(--light-muted); }
-    .dp-text strong { color: var(--light-text); font-weight: 600; }
-    .dp-ten { display: flex; gap: 6px; margin-top: 1.1rem; }
-    .dp-ten .dp-person { width: 24px; }
-
-    /* Por qué se van */
-    .dp-why { margin-top: clamp(4rem, 8vw, 5.5rem); }
-    .dp-why-title { margin: 0; font-family: "Manrope", sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.02em; color: var(--light-text); }
-    .dp-why-sub { margin: 0.5rem 0 0; font-size: 1.02rem; color: var(--light-muted); }
-    .dp-causes { display: grid; gap: 1rem; margin-top: 1.75rem; }
-    @media (min-width: 640px) { .dp-causes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (min-width: 1040px) { .dp-causes { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-    /* Hover: la tarjeta se eleva (con `translate`, para no chocar con el
-       transform de .reveal), el ícono toma el color de acento y una línea
-       crece en la base, igual que en las tarjetas de "Para el alumno". */
-    .dp-cause {
-      --dp-tint: var(--accent);
-      position: relative;
-      overflow: hidden;
-      display: flex; flex-direction: column;
-      background: var(--light-panel);
-      border: 1px solid var(--light-rule);
-      border-radius: var(--radius);
-      padding: 1.35rem 1.3rem 1.25rem;
-      transition: translate 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
-    }
-    .dp-cause::after {
-      content: "";
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 3px;
-      background: var(--dp-tint);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.45s var(--ease);
-    }
-    .dp-cause:hover {
-      translate: 0 -5px;
-      border-color: color-mix(in srgb, var(--dp-tint) 30%, transparent);
-      box-shadow: 0 20px 40px -20px rgba(15, 23, 42, 0.3);
-    }
-    .dp-cause:hover::after { transform: scaleX(1); }
-    .dp-cause-ic {
-      width: 38px; height: 38px;
-      display: grid; place-items: center;
-      margin-bottom: 1rem;
-      border-radius: 10px;
-      background: #eef1f6;
-      color: var(--light-text);
-      transition: background 0.35s var(--ease), color 0.35s var(--ease), scale 0.35s var(--ease);
-    }
-    .dp-cause:hover .dp-cause-ic { background: var(--dp-tint); color: #fff; scale: 1.06; }
-    .dp-cause-ic svg { width: 19px; height: 19px; }
-    /* Íconos que se dibujan trazo por trazo (pathLength=1 lo pone el JS).
-       Ciclo en loop: se forman, se sostienen y se borran. Solo corre
-       mientras la fila está en pantalla; fuera de ella queda en pausa. */
-    .dp-cause-ic svg > * { stroke-dasharray: 1 1.02; stroke-dashoffset: 1; opacity: 0; }
-    .dp-cause.is-drawn .dp-cause-ic svg > * {
-      animation: dpDraw 4.8s cubic-bezier(0.65, 0, 0.35, 1) infinite both;
-      animation-delay: calc(var(--dp-d, 0s) + var(--dp-i, 0) * 0.14s);
-    }
-    .dp-causes:not(.is-visible) .dp-cause-ic svg > * { animation-play-state: paused; }
-    @keyframes dpDraw {
-      0% { stroke-dashoffset: 1; opacity: 0; }
-      3% { opacity: 1; }
-      26% { stroke-dashoffset: 0; opacity: 1; }
-      76% { stroke-dashoffset: 0; opacity: 1; }
-      94% { stroke-dashoffset: -1; opacity: 1; }
-      100% { stroke-dashoffset: -1; opacity: 0; }
-    }
-    .dp-cause h4 { margin: 0 0 0.4rem; font-family: "Manrope", sans-serif; font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; color: var(--light-text); }
-    .dp-cause p { margin: 0; font-size: 0.9rem; line-height: 1.55; color: var(--light-muted); }
-
-    .dp-bridge {
-      margin: clamp(3.5rem, 7vw, 5rem) auto 0;
-      max-width: 30ch;
-      text-align: center;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(1.5rem, 3.4vw, 2.3rem);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.025em;
-      color: var(--light-text);
-      text-wrap: balance;
-    }
-    .dp-bridge span { color: #b7791f; }
+    .dq-bridge span { color: var(--light-accent-text); }
 
     /* ============================================================ EL PUNTO CIEGO
-       El semestre de un mismo alumno leído por dos sistemas. Un cursor
-       recorre las 16 semanas una sola vez al entrar en pantalla: el panel
-       del LMS acumula palomitas mientras el de Pharis ve la señal caer y
-       alerta en la semana 6. La franja entre esa alerta y el primer cero
-       es el argumento: ocho semanas para intervenir. Al terminar, el
-       gráfico queda libre para revisarlo semana por semana. */
-    .pc-card {
-      --pc-blue: #508ff8;
-      --pc-green: #1fb987;
-      --pc-green-text: #0d8f6a;
-      --pc-amber: #e8963f;
-      --pc-amber-text: #b7791f;
-      --pc-red: #c8372f;
+       El semestre de Diego en una sola línea de tiempo de 16 semanas: arriba,
+       lo que muestra el LMS (al corriente hasta el primer cero); abajo, su
+       actividad frente al grupo, que cae desde la semana 5. Las marcas de la
+       alerta y del primer cero cierran la llave de 8 semanas. */
+    .dz-card {
+      --dz-red: #c8372f; --dz-ok: #1fb987;
       margin-top: clamp(2.5rem, 5vw, 3.5rem);
-      background: var(--light-panel);
-      border: 1px solid var(--light-rule);
-      border-radius: var(--radius);
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
-      padding: clamp(1.1rem, 2.4vw, 1.75rem);
+      padding: clamp(1.25rem, 3vw, 2rem);
+      background: var(--light-panel); border: 1px solid var(--light-rule); border-radius: 18px;
     }
-    .pc-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem 1rem;
-      padding-bottom: 1.1rem;
-      border-bottom: 1px solid var(--light-rule);
-    }
-    .pc-student { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
-    .pc-avatar {
-      width: 38px; height: 38px;
-      flex: none;
-      display: grid; place-items: center;
-      border-radius: 50%;
-      background: rgba(80, 143, 248, 0.12);
-      color: var(--light-accent-text);
-      font-family: "Manrope", sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-    .pc-student strong { display: block; white-space: nowrap; font-family: "Manrope", sans-serif; font-size: 1rem; font-weight: 700; color: var(--light-text); }
-    .pc-student small { display: block; font-size: 0.82rem; color: var(--light-muted); }
-    .pc-tag {
-      flex: none;
-      font-family: "Fira Sans", sans-serif;
-      font-size: 0.66rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--light-muted);
-      border: 1px solid var(--light-rule);
-      border-radius: 999px;
-      padding: 0.3rem 0.7rem;
-      white-space: nowrap;
-    }
+    .dz-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--light-rule); }
+    .dz-student { display: flex; align-items: center; gap: 0.75rem; }
+    .dz-avatar { flex: none; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: #eef1f6; font-family: "Manrope", sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--light-text); }
+    .dz-student strong { display: block; font-family: "Manrope", sans-serif; font-size: 0.98rem; color: var(--light-text); }
+    .dz-student small { display: block; font-size: 0.8rem; color: var(--light-muted); }
+    .dz-tag { flex: none; padding: 0.25rem 0.7rem; border-radius: 999px; background: #eef1f6; font-size: 0.72rem; font-weight: 600; color: var(--light-muted); white-space: nowrap; }
 
-    /* Dos pantallas sincronizadas con el cursor del gráfico */
-    .pc-screens { display: grid; gap: 0.9rem; margin: 1.25rem 0 1.1rem; }
-    @media (min-width: 720px) { .pc-screens { grid-template-columns: 1fr 1fr; } }
-    .pc-screen {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      background: var(--light-bg);
-      border: 1px solid var(--light-rule);
-      border-radius: 12px;
-      padding: 1rem 1.1rem 1.1rem;
-      transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
+    .dz-track {
+      display: grid; grid-template-columns: repeat(16, minmax(0, 1fr));
+      grid-template-rows: auto 44px auto 72px auto 14px auto;
+      column-gap: clamp(3px, 0.55vw, 6px); row-gap: 0.65rem;
+      margin-top: 1.6rem;
     }
-    .pc-screen-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.7rem; }
-    .pc-screen-label {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      margin: 0;
-      font-family: "Fira Sans", sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--light-muted);
+    .dz-lane-hd { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.2rem 1rem; }
+    .dz-lane-hd { position: relative; z-index: 3; }
+    .dz-lane-hd > span { background: var(--light-panel); }
+    .dz-lane-k { padding-right: 0.4rem; }
+    .dz-lane-v { padding-left: 0.4rem; }
+    .dz-lane-hd--ph { margin-top: 0.9rem; }
+    .dz-lane-k { display: inline-flex; align-items: center; gap: 0.5rem; font-family: "Manrope", sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--light-text); }
+    .dz-lane-k i { width: 8px; height: 8px; border-radius: 50%; background: var(--dz-ok); }
+    .dz-lane-hd--ph .dz-lane-k i { background: var(--accent); }
+    .dz-lane-v { font-size: 0.85rem; color: var(--light-muted); }
+    .dz-c, .dz-b { position: relative; z-index: 1; }
+    .dz-c {
+      grid-row: 2; border-radius: 6px;
+      background: color-mix(in srgb, var(--dz-ok) 22%, transparent);
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.35s ease calc(var(--i) * 60ms + 0.3s), transform 0.35s ease calc(var(--i) * 60ms + 0.3s);
     }
-    .pc-week { font-family: "Inter", sans-serif; font-size: 0.76rem; font-weight: 600; color: var(--light-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-    .pc-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
-    .pc-dot--lms { background: var(--pc-green); }
-    .pc-dot--ph { background: var(--pc-blue); }
-    .pc-state {
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(1.3rem, 2.2vw, 1.6rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--light-text);
-      transition: color 0.3s var(--ease);
+    .dz-c--zero { background: var(--dz-red); }
+    .dz-b {
+      grid-row: 4; align-self: end; height: calc(var(--a) * 100%); border-radius: 6px 6px 3px 3px;
+      background: var(--accent); transform: scaleY(0); transform-origin: bottom;
+      transition: transform 0.5s var(--ease) calc(var(--i) * 60ms + 0.3s);
     }
-    .pc-screen--lms .pc-state { color: var(--pc-green-text); }
-    .pc-screen--lms.is-zero .pc-state { color: var(--pc-amber-text); }
-    .pc-screen--lms.is-zero { border-color: color-mix(in srgb, var(--pc-amber) 35%, transparent); }
-    .pc-state-num { font-family: "Inter", sans-serif; font-variant-numeric: tabular-nums; }
-    .pc-state small { margin-left: 0.4rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0; color: var(--light-muted); }
-    .pc-detail { margin: 0.3rem 0 0; min-height: 1.4em; font-size: 0.88rem; color: var(--light-muted); }
-
-    /* Libro de calificaciones: una celda por semana */
-    .pc-grades { display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); gap: 4px; margin-top: auto; padding-top: 0.95rem; }
-    .pc-grades i {
-      aspect-ratio: 1;
-      display: grid; place-items: center;
-      border-radius: 4px;
-      border: 1px solid var(--light-rule);
-      background: var(--light-panel);
-      transition: background 0.25s var(--ease), border-color 0.25s var(--ease);
+    .dz-b--low { background: color-mix(in srgb, var(--dz-red) 75%, white); }
+    .dz-mark {
+      grid-row: 2 / 6; justify-self: start; position: relative; z-index: 2;
+      width: 0; margin-left: calc(clamp(3px, 0.55vw, 6px) / -2); border-left: 2px dashed var(--accent);
+      opacity: 0; transition: opacity 0.4s ease 1.4s;
     }
-    .pc-grades i.is-ok { background: color-mix(in srgb, var(--pc-green) 20%, white); border-color: transparent; }
-    .pc-grades i.is-ok::after {
-      content: "";
-      width: 38%; height: 20%;
-      border-left: 2px solid var(--pc-green-text);
-      border-bottom: 2px solid var(--pc-green-text);
-      transform: translateY(-15%) rotate(-45deg);
+    .dz-mark--zero { border-left-color: var(--dz-red); transition-delay: 1.7s; }
+    .dz-label { grid-row: 5; position: relative; z-index: 3; background: var(--light-panel); font-size: 0.75rem; font-weight: 600; line-height: 1.3; color: var(--light-muted); }
+    .dz-label--alert { color: var(--light-accent-text); }
+    .dz-label--zero { color: var(--dz-red); }
+    @media (max-width: 640px) {
+      .dz-label--alert { grid-column: 6 / 11 !important; }
+      .dz-label--zero { grid-column: 11 / -1 !important; text-align: right; }
     }
-    .pc-grades i.is-zero { background: color-mix(in srgb, var(--pc-amber) 24%, white); border-color: transparent; }
-    .pc-grades i.is-zero::after { content: "0"; font-family: "Inter", sans-serif; font-size: 0.62rem; font-weight: 700; color: var(--pc-amber-text); }
-
-    .pc-meter { height: 6px; margin-top: 0.95rem; border-radius: 999px; background: var(--light-rule); overflow: hidden; }
-    .pc-meter i { display: block; height: 100%; width: 94%; border-radius: 999px; background: var(--pc-blue); transition: width 0.3s var(--ease); }
-
-    /* La alerta ocupa su lugar desde el inicio para no mover el layout */
-    .pc-alert {
-      display: flex; align-items: flex-start; gap: 0.75rem;
-      margin-top: 0.9rem;
-      padding: 0.7rem 0.8rem;
-      border-radius: 10px;
-      background: #fff;
-      border: 1px solid color-mix(in srgb, var(--pc-red) 55%, transparent);
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+    .dz-brace {
+      grid-row: 6; border: 2px solid var(--accent); border-top: 0; border-radius: 0 0 10px 10px;
+      transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--ease) 1.9s;
     }
-    .pc-screen--ph.is-alert .pc-alert { opacity: 1; transform: none; }
-    .pc-screen--ph.is-alert { border-color: color-mix(in srgb, var(--pc-red) 26%, transparent); }
-    .pc-alert-score { flex: none; font-family: "Inter", sans-serif; font-size: 1.3rem; font-weight: 700; line-height: 1; color: var(--pc-red); }
-    .pc-alert-score small { font-size: 0.66rem; font-weight: 600; opacity: 0.55; }
-    .pc-alert-title { display: block; font-size: 0.8rem; font-weight: 700; color: var(--pc-red); }
-    .pc-alert-action { display: block; margin-top: 0.15rem; font-size: 0.8rem; font-weight: 600; color: var(--light-accent-text); }
-
-    .pc-plot { position: relative; height: clamp(190px, 26vw, 260px); cursor: ew-resize; touch-action: pan-y; }
-    .pc-plot svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
-    .pc-svg-label { font-family: "Fira Sans", sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; fill: var(--light-muted); }
-    .pc-band-label { font-family: "Manrope", sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.04em; fill: var(--light-accent-text); transition: opacity 0.5s var(--ease); }
-    .pc-mark-g { transition: opacity 0.35s var(--ease); }
-    .pc-ping { transform-box: fill-box; transform-origin: center; animation: pcPing 1.8s ease-out infinite; }
-    @keyframes pcPing {
-      from { transform: scale(1); opacity: 0.7; }
-      to { transform: scale(3); opacity: 0; }
+    .dz-span { grid-row: 7; text-align: center; opacity: 0; transition: opacity 0.5s ease 2.3s; }
+    .dz-big { display: block; font-family: "Manrope", sans-serif; font-weight: 800; font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1; letter-spacing: -0.045em; }
+    .dz-span small { display: block; margin-top: 0.3rem; font-size: 0.85rem; color: var(--light-muted); }
+    .dz-card.is-visible .dz-c { opacity: 1; transform: none; }
+    .dz-card.is-visible .dz-b { transform: scaleY(1); }
+    .dz-card.is-visible .dz-mark, .dz-card.is-visible .dz-span { opacity: 1; }
+    .dz-card.is-visible .dz-brace { transform: scaleX(1); }
+    .dz-kicker {
+      margin: clamp(2rem, 4vw, 2.75rem) auto 0; max-width: 46ch; text-align: center; text-wrap: balance;
+      font-family: "Manrope", sans-serif; font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 500; line-height: 1.45; color: var(--light-muted);
     }
-    .pc-axis {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 0.6rem;
-      padding-top: 0.6rem;
-      border-top: 1px solid var(--light-rule);
-      font-family: "Fira Sans", sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--light-muted);
+    .dz-kicker strong { color: var(--light-text); font-weight: 700; }
+    @media (prefers-reduced-motion: reduce) {
+      .dq-fill, .dz-c, .dz-b, .dz-mark, .dz-brace, .dz-span { transition: none; }
     }
-    .pc-hint { margin: 0.55rem 0 0; text-align: right; font-size: 0.78rem; color: var(--light-muted); opacity: 0; transition: opacity 0.6s var(--ease); }
-    .pc-card.is-done .pc-hint { opacity: 1; }
-    @media (max-width: 560px) {
-      .pc-grades { gap: 3px; }
-      .pc-grades i { border-radius: 3px; }
-      .pc-grades i.is-zero::after { font-size: 0.5rem; }
-      .pc-hint { text-align: left; }
-    }
-
-    /* Cierre: la ventaja como número grande */
-    .pc-close { margin-top: clamp(3rem, 6vw, 4.5rem); text-align: center; }
-    .pc-big {
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(3.4rem, 9vw, 6.5rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.045em;
-      background: linear-gradient(120deg, #2f6fe0 0%, #74a6fb 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .pc-kicker {
-      margin: 1rem auto 0;
-      max-width: 62ch;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(1.05rem, 2vw, 1.3rem);
-      font-weight: 500;
-      line-height: 1.45;
-      color: var(--light-muted);
-      text-wrap: balance;
-    }
-    .pc-kicker-em { color: var(--light-text); font-weight: 700; }
 
     /* ============================================================ PREGUNTAS FRECUENTES */
     #preguntas { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
@@ -2775,77 +2563,56 @@
     <!-- ============================================================ PROBLEMA -->
     <section class="section on-light" id="problema">
       <div class="container">
-        <h2 class="section-title reveal" data-delay="1">Menos de la mitad de quienes entran a la universidad se gradúa.</h2>
-        <p class="section-sub reveal" data-delay="2">La deserción no es la excepción en la región: es la norma, y empieza desde el primer año.</p>
-
-        <div class="dp-grid">
-          <figure class="dp-cohort reveal" id="dp-cohort">
-            <div class="dp-people" id="dp-people" aria-hidden="true"></div>
-            <figcaption class="dp-count">
-              <span><b>100</b>empiezan</span>
-              <span class="dp-count-end"><b id="dp-left">100</b>se gradúan</span>
-            </figcaption>
-            <p class="dp-source">América Latina y el Caribe, graduación a los 25-29 años. Fuente: Ferreyra, Avitabile, Botero, Haimovich &amp; Urzúa, <em>At a Crossroads</em>, Banco Mundial, 2017.</p>
-          </figure>
-
-          <div class="dp-side" id="dp-side">
-            <div class="dp-block reveal">
-              <p class="dp-label">Tasa de graduación</p>
-              <div class="dp-bars">
-                <div class="dp-bar"><span>América Latina</span><span class="dp-bar-track"><i style="--w:46%"></i></span><b>46%</b></div>
-                <div class="dp-bar dp-bar--ref"><span>Estados Unidos</span><span class="dp-bar-track"><i style="--w:67%"></i></span><b>67%</b></div>
-              </div>
-              <p class="dp-source">Fuente: Banco Mundial, 2017.</p>
-            </div>
-            <div class="dp-block reveal" data-delay="1">
-              <p class="dp-label">En México</p>
-              <p class="dp-big">3 de cada 10</p>
-              <p class="dp-text">alumnos que entran a una licenciatura <strong>la abandonan durante el primer año</strong>, en universidades públicas y privadas. La ventana para actuar es corta.</p>
-              <div class="dp-ten" id="dp-ten" aria-hidden="true"></div>
-              <p class="dp-source">Fuente: SEP, Dirección General de Educación Superior Universitaria e Intercultural, mayo de 2026.</p>
-            </div>
-          </div>
+        <div class="dq-head">
+          <h2 class="section-title reveal">De cada 10 que entran a la universidad, <span class="dq-em">menos de 5 se gradúan.</span></h2>
+          <p class="section-sub reveal" data-delay="1">En América Latina, la deserción no es la excepción: es la norma.</p>
         </div>
 
-        <div class="dp-why">
-          <h3 class="dp-why-title reveal">Por qué se van</h3>
-          <p class="dp-why-sub reveal">Son causas comunes en las universidades de la región, y rara vez llegan solas.</p>
-          <div class="dp-causes">
-            <article class="dp-cause reveal">
-              <span class="dp-cause-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></span>
-              <h4>Económicas y trabajo</h4>
-              <p>Falta de recursos, necesidad de trabajar y costos de transporte, materiales y vivienda.</p>
-            </article>
-            <article class="dp-cause reveal" data-delay="1">
-              <span class="dp-cause-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-              <h4>Rezago académico</h4>
-              <p>Vacíos de niveles anteriores que se acumulan materia tras materia.</p>
-            </article>
-            <article class="dp-cause reveal" data-delay="2">
-              <span class="dp-cause-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
-              <h4>Salud emocional</h4>
-              <p>Estrés, ansiedad y dificultades de salud mental que cambian cómo y cuánto se estudia.</p>
-            </article>
-            <article class="dp-cause reveal" data-delay="3">
-              <span class="dp-cause-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
-              <h4>Adaptación y vocación</h4>
-              <p>Dificultad para adaptarse al entorno universitario o dudas sobre la carrera elegida.</p>
-            </article>
+        <figure class="dq-figure reveal" data-delay="1">
+          <div class="dq-people" role="img" aria-label="De cada 10 alumnos que entran a la universidad, 4.6 se gradúan.">
+            <span class="dq-p" style="--i:0;--f:100%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
+            <span class="dq-p" style="--i:1;--f:100%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
+            <span class="dq-p" style="--i:2;--f:100%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
+            <span class="dq-p" style="--i:3;--f:100%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
+            <span class="dq-p" style="--i:4;--f:60%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
+            <span class="dq-p" style="--i:5;--f:0%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
+            <span class="dq-p" style="--i:6;--f:0%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
+            <span class="dq-p" style="--i:7;--f:0%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
+            <span class="dq-p" style="--i:8;--f:0%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
+            <span class="dq-p" style="--i:9;--f:0%"><svg class="dq-base" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg><svg class="dq-fill" viewBox="0 0 40 96" aria-hidden="true"><circle cx="20" cy="13" r="11"/><path d="M3 96V47a17 17 0 0 1 34 0v49z"/></svg></span>
           </div>
-          <p class="dp-source reveal">Por ejemplo, son las causas que citó la SEP de México en el Encuentro de Rectores Universia, mayo de 2026.</p>
+          <figcaption class="dq-cap">
+            <b class="dq-num">46%</b>
+            <span class="dq-cap-txt">se gradúa en América Latina y el Caribe.</span>
+            <span class="dq-src">Graduación a los 25-29 años. Fuente: Ferreyra, Avitabile, Botero, Haimovich y Urzúa, <em>At a Crossroads</em>, Banco Mundial, 2017.</span>
+          </figcaption>
+        </figure>
+
+        <div class="dq-why reveal">
+          <div class="dq-why-hd">
+            <h3>Por qué se van</h3>
+            <p>Las causas rara vez llegan solas.</p>
+          </div>
+          <ul class="dq-causes">
+            <li><span class="dq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></span>Económicas y trabajo</li>
+            <li><span class="dq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>Rezago académico</li>
+            <li><span class="dq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>Salud emocional</li>
+            <li><span class="dq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>Adaptación y vocación</li>
+          </ul>
+          <p class="dq-src">Causas comunes en la región. Por ejemplo, las que citó la SEP de México en el Encuentro de Rectores Universia, mayo de 2026.</p>
         </div>
 
-        <p class="dp-bridge reveal">Casi ninguna de estas causas aparece en la boleta <span>hasta que ya es tarde.</span></p>
+        <p class="dq-bridge reveal">Casi ninguna aparece en la boleta <span>hasta que ya es tarde.</span></p>
       </div>
     </section>
 
     <!-- ============================================================ EL PUNTO CIEGO (light) -->
     <section class="section on-light on-light-alt" id="contraste">
       <div class="container">
-        <h2 class="section-title reveal" data-delay="1">El mismo alumno, dos realidades.</h2>
-        <p class="section-sub reveal" data-delay="2">Sus entregas dicen que va bien. Su actividad frente a su grupo dice otra cosa.</p>
+        <h2 class="section-title reveal">El mismo alumno, dos realidades.</h2>
+        <p class="section-sub reveal" data-delay="1">Sus entregas dicen que va bien. Su actividad frente a su grupo dice otra cosa.</p>
 
-        <!-- Descripción accesible (las pantallas y el gráfico son aria-hidden) -->
+        <!-- Descripción accesible (la línea de tiempo es aria-hidden) -->
         <p class="sr-only">
           Caso ilustrativo: Diego Ramírez a lo largo de 16 semanas. Sus entregas en el LMS
           salen a tiempo hasta la semana 13 y el primer cero aparece en la semana 14.
@@ -2854,58 +2621,61 @@
           son ocho semanas para intervenir antes del primer cero.
         </p>
 
-        <div class="pc-card reveal" data-delay="2" id="pc-card">
-          <div class="pc-head">
-            <div class="pc-student">
-              <span class="pc-avatar" aria-hidden="true">DR</span>
+        <div class="dz-card reveal" data-delay="1">
+          <div class="dz-head">
+            <div class="dz-student">
+              <span class="dz-avatar" aria-hidden="true">DR</span>
               <span><strong>Diego Ramírez</strong><small>Costos I &middot; semestre de 16 semanas</small></span>
             </div>
-            <span class="pc-tag">Caso ilustrativo</span>
+            <span class="dz-tag">Caso ilustrativo</span>
           </div>
 
-          <div class="pc-screens" aria-hidden="true">
-            <div class="pc-screen pc-screen--lms" id="pc-screen-lms">
-              <div class="pc-screen-top">
-                <p class="pc-screen-label"><i class="pc-dot pc-dot--lms"></i>Lo que dicen sus entregas</p>
-                <span class="pc-week" data-week>Semana 1</span>
-              </div>
-              <p class="pc-state" id="pc-lms-state">Al corriente</p>
-              <p class="pc-detail" id="pc-lms-detail">Entregado a tiempo</p>
-              <div class="pc-grades" id="pc-grades"></div>
-            </div>
-            <div class="pc-screen pc-screen--ph" id="pc-screen-ph">
-              <div class="pc-screen-top">
-                <p class="pc-screen-label"><i class="pc-dot pc-dot--ph"></i>Lo que lee Pharis de su actividad</p>
-                <span class="pc-week" data-week>Semana 1</span>
-              </div>
-              <p class="pc-state"><span class="pc-state-num" id="pc-ph-level">94%</span><small>actividad frente a su grupo</small></p>
-              <p class="pc-detail" id="pc-ph-detail">Entra como su grupo</p>
-              <div class="pc-meter"><i id="pc-ph-meter"></i></div>
-              <div class="pc-alert">
-                <span class="pc-alert-score">82<small>/100</small></span>
-                <span>
-                  <span class="pc-alert-title">Riesgo alto &middot; alerta al profesor</span>
-                  <span class="pc-alert-action">Agenda 10 minutos con este alumno esta semana.</span>
-                </span>
-              </div>
-            </div>
+          <div class="dz-track" aria-hidden="true">
+            <div class="dz-lane-hd"><span class="dz-lane-k"><i></i>Lo que muestra el LMS</span><span class="dz-lane-v">Al corriente hasta la semana 13</span></div>
+          <i class="dz-c" style="--i:0;grid-column:1"></i>
+          <i class="dz-c" style="--i:1;grid-column:2"></i>
+          <i class="dz-c" style="--i:2;grid-column:3"></i>
+          <i class="dz-c" style="--i:3;grid-column:4"></i>
+          <i class="dz-c" style="--i:4;grid-column:5"></i>
+          <i class="dz-c" style="--i:5;grid-column:6"></i>
+          <i class="dz-c" style="--i:6;grid-column:7"></i>
+          <i class="dz-c" style="--i:7;grid-column:8"></i>
+          <i class="dz-c" style="--i:8;grid-column:9"></i>
+          <i class="dz-c" style="--i:9;grid-column:10"></i>
+          <i class="dz-c" style="--i:10;grid-column:11"></i>
+          <i class="dz-c" style="--i:11;grid-column:12"></i>
+          <i class="dz-c" style="--i:12;grid-column:13"></i>
+          <i class="dz-c dz-c--zero" style="--i:13;grid-column:14"></i>
+          <i class="dz-c dz-c--zero" style="--i:14;grid-column:15"></i>
+          <i class="dz-c dz-c--zero" style="--i:15;grid-column:16"></i>
+            <div class="dz-lane-hd dz-lane-hd--ph" style="grid-row:3"><span class="dz-lane-k"><i></i>Lo que ve Pharis</span><span class="dz-lane-v">Se aleja de su grupo desde la semana 5</span></div>
+          <i class="dz-b" style="--i:0;--a:0.94;grid-column:1"></i>
+          <i class="dz-b" style="--i:1;--a:0.91;grid-column:2"></i>
+          <i class="dz-b" style="--i:2;--a:0.87;grid-column:3"></i>
+          <i class="dz-b" style="--i:3;--a:0.89;grid-column:4"></i>
+          <i class="dz-b" style="--i:4;--a:0.8;grid-column:5"></i>
+          <i class="dz-b dz-b--low" style="--i:5;--a:0.71;grid-column:6"></i>
+          <i class="dz-b dz-b--low" style="--i:6;--a:0.62;grid-column:7"></i>
+          <i class="dz-b dz-b--low" style="--i:7;--a:0.54;grid-column:8"></i>
+          <i class="dz-b dz-b--low" style="--i:8;--a:0.44;grid-column:9"></i>
+          <i class="dz-b dz-b--low" style="--i:9;--a:0.35;grid-column:10"></i>
+          <i class="dz-b dz-b--low" style="--i:10;--a:0.26;grid-column:11"></i>
+          <i class="dz-b dz-b--low" style="--i:11;--a:0.18;grid-column:12"></i>
+          <i class="dz-b dz-b--low" style="--i:12;--a:0.11;grid-column:13"></i>
+          <i class="dz-b dz-b--low" style="--i:13;--a:0.06;grid-column:14"></i>
+          <i class="dz-b dz-b--low" style="--i:14;--a:0.04;grid-column:15"></i>
+          <i class="dz-b dz-b--low" style="--i:15;--a:0.04;grid-column:16"></i>
+            <span class="dz-mark" style="grid-column:6"></span>
+            <span class="dz-mark dz-mark--zero" style="grid-column:14"></span>
+            <span class="dz-label" style="grid-column:1 / 6">Semana 1</span>
+            <span class="dz-label dz-label--alert" style="grid-column:6 / 13">Semana 6 &middot; Pharis alerta</span>
+            <span class="dz-label dz-label--zero" style="grid-column:14 / -1">Semana 14 &middot; Primer cero</span>
+            <span class="dz-brace" style="grid-column:6 / 14"></span>
+            <p class="dz-span" style="grid-column:4 / 16"><b class="dz-big">8 semanas</b><small>para actuar antes del primer cero</small></p>
           </div>
-
-          <div class="pc-plot" id="pc-plot" aria-hidden="true">
-            <svg id="pc-svg" xmlns="http://www.w3.org/2000/svg"></svg>
-          </div>
-          <div class="pc-axis" aria-hidden="true">
-            <span>Semana 1</span>
-            <span>Semana 8</span>
-            <span>Semana 16</span>
-          </div>
-          <p class="pc-hint" aria-hidden="true">Pasa el cursor o toca el gráfico para revisar cada semana.</p>
         </div>
 
-        <div class="pc-close reveal">
-          <p class="pc-big">8 semanas</p>
-          <p class="pc-kicker">Entre la primera alerta de Pharis y el primer cero. Para cuando el problema aparece en las entregas, <span class="pc-kicker-em">ya es un cero</span>.</p>
-        </div>
+        <p class="dz-kicker reveal">Para cuando el problema aparece en las entregas, <strong>ya es un cero</strong>.</p>
       </div>
     </section>
 
@@ -4512,340 +4282,6 @@
         requestAnimationFrame(animate);
       }
       requestAnimationFrame(animate);
-    })();
-
-    // ---------- El problema: cohorte de 100 que se apaga hasta 46 ----------
-    // Una sola vez al entrar en pantalla; no depende de reduced motion
-    // porque solo cambia color y opacidad, sin desplazar nada.
-    (function dropoutCohort() {
-      const people = document.getElementById("dp-people");
-      const ten = document.getElementById("dp-ten");
-      const left = document.getElementById("dp-left");
-      const side = document.getElementById("dp-side");
-      if (!people || !left) return;
-
-      const TOTAL = 100, GRADUATE = 46, DUR_MS = 3200;
-      const PERSON =
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-        '<circle cx="12" cy="7" r="3.4"/><path d="M5.5 21v-1.5a6.5 6.5 0 0 1 13 0V21"/></svg>';
-      const personHtml = '<span class="dp-person">' + PERSON + "</span>";
-
-      people.innerHTML = personHtml.repeat(TOTAL);
-      if (ten) {
-        ten.innerHTML = personHtml.repeat(10);
-        Array.from(ten.children).slice(7).forEach((p) => p.classList.add("is-gone"));
-      }
-      const figs = Array.from(people.children);
-
-      // Orden determinista de salida (sin Math.random): hash por índice.
-      const rand = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
-      const leaving = figs
-        .map((el, i) => ({ el, k: rand(i * 3.7) }))
-        .sort((a, b) => a.k - b.k)
-        .slice(0, TOTAL - GRADUATE)
-        .map((f) => f.el);
-
-      function run() {
-        let remaining = TOTAL;
-        leaving.forEach((el, i) => {
-          // Ritmo que desacelera: muchas salidas al inicio, menos al final.
-          const t = Math.pow((i + 1) / leaving.length, 1.6) * DUR_MS;
-          setTimeout(() => {
-            el.classList.add("is-gone");
-            remaining -= 1;
-            left.textContent = String(remaining);
-          }, t);
-        });
-      }
-
-      if (!("IntersectionObserver" in window)) {
-        leaving.forEach((el) => el.classList.add("is-gone"));
-        left.textContent = String(GRADUATE);
-        if (side) side.classList.add("is-in");
-        return;
-      }
-      const io = new IntersectionObserver((entries) => {
-        if (!entries[0].isIntersecting) return;
-        io.disconnect();
-        run();
-      }, { threshold: 0.4 });
-      io.observe(people);
-      if (side) {
-        const sio = new IntersectionObserver((entries) => {
-          if (!entries[0].isIntersecting) return;
-          sio.disconnect();
-          side.classList.add("is-in");
-        }, { threshold: 0.4 });
-        sio.observe(side);
-      }
-    })();
-
-    // Íconos de "Por qué se van": se dibujan en loop, en cascada por
-    // tarjeta, solo mientras la fila está en pantalla. En hover, la
-    // tarjeta reinicia su ciclo para formarse de inmediato.
-    (function drawCauseIcons() {
-      const cards = Array.from(document.querySelectorAll(".dp-cause"));
-      if (!cards.length) return;
-      cards.forEach((card, c) => {
-        card.querySelectorAll(".dp-cause-ic svg > *").forEach((el, i) => {
-          el.setAttribute("pathLength", "1");
-          el.style.setProperty("--dp-i", String(i));
-        });
-        card.style.setProperty("--dp-d", (0.25 + c * 0.18).toFixed(2) + "s");
-        card.addEventListener("mouseenter", () => {
-          card.style.setProperty("--dp-d", "0s");
-          card.classList.remove("is-drawn");
-          void card.offsetWidth; // reinicia la animación
-          card.classList.add("is-drawn");
-        });
-      });
-      const row = cards[0].parentElement;
-      if (!("IntersectionObserver" in window)) {
-        row.classList.add("is-visible");
-        cards.forEach((c) => c.classList.add("is-drawn"));
-        return;
-      }
-      new IntersectionObserver((entries) => {
-        const visible = entries[0].isIntersecting;
-        row.classList.toggle("is-visible", visible);
-        if (visible) cards.forEach((c) => c.classList.add("is-drawn"));
-      }, { threshold: 0.3 }).observe(row);
-    })();
-
-    // ---------- El punto ciego: el semestre de Diego en dos pantallas ----------
-    // Un cursor recorre las 16 semanas una sola vez al entrar en pantalla
-    // (con una pausa breve en la alerta) y sincroniza ambas pantallas.
-    // Después, el gráfico queda libre para revisarlo semana por semana.
-    (function blindSpot() {
-      const card = document.getElementById("pc-card");
-      const plot = document.getElementById("pc-plot");
-      const svg = document.getElementById("pc-svg");
-      const grades = document.getElementById("pc-grades");
-      const screenLms = document.getElementById("pc-screen-lms");
-      const screenPh = document.getElementById("pc-screen-ph");
-      if (!card || !plot || !svg || !grades || !screenLms || !screenPh) return;
-      const lmsState = document.getElementById("pc-lms-state");
-      const lmsDetail = document.getElementById("pc-lms-detail");
-      const phLevel = document.getElementById("pc-ph-level");
-      const phDetail = document.getElementById("pc-ph-detail");
-      const phMeter = document.getElementById("pc-ph-meter");
-      const weekLabels = card.querySelectorAll("[data-week]");
-
-      // Actividad frente al grupo por semana (0-1): cae sostenido desde la semana 5
-      // y se apaga hacia la 13. El LMS reporta plano hasta el primer cero.
-      const REAL = [0.94, 0.91, 0.87, 0.89, 0.8, 0.71, 0.62, 0.54, 0.44, 0.35, 0.26, 0.18, 0.11, 0.06, 0.03, 0.02];
-      const N = REAL.length;
-      const LMS_OK = 0.965, LMS_ZERO = 0.05;
-      const ALERT_W = 5;  // índice 5 = semana 6: Pharis alerta
-      const ZERO_W = 13;  // índice 13 = semana 14: primer cero visible en el LMS
-      const PAD_L = 8, PAD_R = 8, PAD_T = 34, PAD_B = 10;
-      const WEEK_MS = 420, ALERT_HOLD_MS = 1100;
-
-      const lmsSays = (w) =>
-        w < ZERO_W ? (w % 3 === 2 ? "Entregado" : "Entregado a tiempo")
-        : w === ZERO_W ? "Sin entrega esta semana"
-        : "Sin entregas";
-      const phSays = (lvl) =>
-        lvl > 0.82 ? "Entra como su grupo"
-        : lvl > 0.4 ? "Entra menos que su grupo"
-        : lvl > 0.1 ? "Solo entra para entregar"
-        : "Dejó de entrar";
-      const r1 = (n) => n.toFixed(1);
-
-      grades.innerHTML = REAL.map(() => "<i></i>").join("");
-      const cells = Array.from(grades.children);
-
-      let W = 0, H = 0, xs = [], yReal = [], yLms = [];
-      let clipRect = null, band = null, bandLabel = null, cross = null;
-      let dotPh = null, dotLms = null, alertMark = null, zeroMark = null;
-      let playT = 0, done = false, lastWeek = -1;
-
-      // Curva con tangentes horizontales por tramo: señal orgánica, sin picos.
-      function smoothPath(pts) {
-        let d = "M" + r1(pts[0][0]) + "," + r1(pts[0][1]);
-        for (let i = 1; i < pts.length; i++) {
-          const mx = r1((pts[i - 1][0] + pts[i][0]) / 2);
-          d += "C" + mx + "," + r1(pts[i - 1][1]) + " " + mx + "," + r1(pts[i][1]) + " " + r1(pts[i][0]) + "," + r1(pts[i][1]);
-        }
-        return d;
-      }
-      const xAt = (t) => PAD_L + (t * (W - PAD_L - PAD_R)) / (N - 1);
-      // Altura exacta de la curva en t: resuelve el parámetro del tramo
-      // cúbico (controles en el punto medio) para que el punto del cursor
-      // quede sobre la línea y no entre semanas.
-      function curveY(t) {
-        const i = Math.min(N - 2, Math.floor(t));
-        const u = t - i;
-        let s = u;
-        for (let k = 0; k < 5; k++) {
-          s -= (1.5 * s - 1.5 * s * s + s * s * s - u) / (1.5 - 3 * s + 3 * s * s);
-        }
-        s = Math.max(0, Math.min(1, s));
-        return yReal[i] + (yReal[i + 1] - yReal[i]) * (3 * s * s - 2 * s * s * s);
-      }
-      function lmsY(t) {
-        if (t <= ZERO_W - 1) return yLms[0];
-        if (t >= ZERO_W) return yLms[ZERO_W];
-        return yLms[0] + (yLms[ZERO_W] - yLms[0]) * (t - (ZERO_W - 1));
-      }
-      function markGroup(id, cx, cy, color) {
-        return '<g class="pc-mark-g" id="' + id + '" opacity="0">' +
-          '<circle class="pc-ping" cx="' + r1(cx) + '" cy="' + r1(cy) + '" r="5" fill="none" stroke="' + color + '" stroke-width="2"/>' +
-          '<circle cx="' + r1(cx) + '" cy="' + r1(cy) + '" r="5" fill="' + color + '" stroke="#fff" stroke-width="2"/></g>';
-      }
-
-      function build() {
-        W = plot.clientWidth; H = plot.clientHeight;
-        if (!W || !H) return;
-        const plotH = H - PAD_T - PAD_B;
-        xs = REAL.map((_, i) => xAt(i));
-        yReal = REAL.map((v) => PAD_T + (1 - v) * plotH);
-        yLms = REAL.map((_, i) => PAD_T + (1 - (i < ZERO_W ? LMS_OK : LMS_ZERO)) * plotH);
-
-        const dReal = smoothPath(xs.map((px, i) => [px, yReal[i]]));
-        const dArea = dReal + "L" + r1(xs[N - 1]) + "," + (H - PAD_B) + "L" + r1(xs[0]) + "," + (H - PAD_B) + "Z";
-        const dLms = "M" + r1(xs[0]) + "," + r1(yLms[0]) + "L" + r1(xs[ZERO_W - 1]) + "," + r1(yLms[0]) +
-          "L" + r1(xs[ZERO_W]) + "," + r1(yLms[ZERO_W]) + "L" + r1(xs[N - 1]) + "," + r1(yLms[N - 1]);
-        const xA = xs[ALERT_W], xB = xs[ZERO_W];
-
-        let s = '<defs><clipPath id="pc-clip"><rect id="pc-clip-rect" x="0" y="0" width="0" height="' + H + '"/></clipPath></defs>';
-        // Franja de ventaja: crece de la alerta al cursor
-        s += '<rect id="pc-band" x="' + r1(xA) + '" y="2" width="0" height="' + (H - PAD_B - 2) + '" fill="rgba(80,143,248,0.09)"/>';
-        s += '<text class="pc-band-label" id="pc-band-label" x="' + r1((xA + xB) / 2) + '" y="14" text-anchor="middle" opacity="0">8 SEMANAS PARA INTERVENIR</text>';
-        [0.25, 0.5, 0.75].forEach((g) => {
-          const gy = r1(PAD_T + (1 - g) * plotH);
-          s += '<line x1="' + PAD_L + '" y1="' + gy + '" x2="' + (W - PAD_R) + '" y2="' + gy + '" stroke="rgba(15,23,42,0.06)"/>';
-        });
-        s += '<g clip-path="url(#pc-clip)">';
-        s += '<line x1="' + r1(xA) + '" y1="22" x2="' + r1(xA) + '" y2="' + (H - PAD_B) + '" stroke="rgba(80,143,248,0.6)" stroke-dasharray="3 4"/>';
-        s += '<line x1="' + r1(xB) + '" y1="22" x2="' + r1(xB) + '" y2="' + (H - PAD_B) + '" stroke="rgba(232,150,63,0.6)" stroke-dasharray="3 4"/>';
-        s += '<path d="' + dArea + '" fill="rgba(80,143,248,0.08)"/>';
-        s += '<path d="' + dReal + '" fill="none" stroke="#508ff8" stroke-width="2" stroke-linecap="round"/>';
-        s += '<path d="' + dLms + '" fill="none" stroke="#1fb987" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
-        for (let i = 0; i < N; i++) {
-          if (i < ZERO_W) {
-            s += '<circle cx="' + r1(xs[i]) + '" cy="' + r1(yLms[i]) + '" r="5.5" fill="#fff" stroke="#1fb987" stroke-width="1.5"/>' +
-              '<path d="M' + r1(xs[i] - 2.6) + ',' + r1(yLms[i] + 0.1) + ' l1.9,1.9 l3.4,-3.9" fill="none" stroke="#0d8f6a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>';
-          } else {
-            s += '<circle cx="' + r1(xs[i]) + '" cy="' + r1(yLms[i]) + '" r="3.5" fill="#fff" stroke="#e8963f" stroke-width="1.6"/>';
-          }
-        }
-        s += '<text class="pc-svg-label" x="' + r1(xs[0]) + '" y="' + r1(yLms[0] - 12) + '">ENTREGAS EN TU LMS</text>';
-        s += '<text class="pc-svg-label" x="' + r1(xs[1]) + '" y="' + r1(yReal[ALERT_W] + 30) + '">ACTIVIDAD FRENTE AL GRUPO</text>';
-        s += '</g>';
-        s += markGroup("pc-alert-mark", xA, yReal[ALERT_W], "#c8372f");
-        s += markGroup("pc-zero-mark", xB, yLms[ZERO_W], "#e8963f");
-        // Cursor: línea vertical y un punto sobre cada serie
-        s += '<line id="pc-cross" y1="22" y2="' + (H - PAD_B) + '" stroke="rgba(15,23,42,0.22)"/>';
-        s += '<circle id="pc-dot-lms" r="4.5" fill="#1fb987" stroke="#fff" stroke-width="2"/>';
-        s += '<circle id="pc-dot-ph" r="4.5" fill="#508ff8" stroke="#fff" stroke-width="2"/>';
-
-        svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-        svg.innerHTML = s;
-        clipRect = svg.querySelector("#pc-clip-rect");
-        band = svg.querySelector("#pc-band");
-        bandLabel = svg.querySelector("#pc-band-label");
-        alertMark = svg.querySelector("#pc-alert-mark");
-        zeroMark = svg.querySelector("#pc-zero-mark");
-        cross = svg.querySelector("#pc-cross");
-        dotPh = svg.querySelector("#pc-dot-ph");
-        dotLms = svg.querySelector("#pc-dot-lms");
-      }
-
-      function setPanels(w) {
-        lastWeek = w;
-        weekLabels.forEach((el) => { el.textContent = "Semana " + (w + 1); });
-        cells.forEach((c, i) => { c.className = i > w ? "" : i < ZERO_W ? "is-ok" : "is-zero"; });
-        const zero = w >= ZERO_W;
-        screenLms.classList.toggle("is-zero", zero);
-        lmsState.textContent = zero ? "Primer cero" : "Al corriente";
-        lmsDetail.textContent = lmsSays(w);
-        phLevel.textContent = Math.round(REAL[w] * 100) + "%";
-        phDetail.textContent = phSays(REAL[w]);
-        phMeter.style.width = Math.round(REAL[w] * 100) + "%";
-        screenPh.classList.toggle("is-alert", w >= ALERT_W);
-      }
-
-      // Durante el recorrido, lo dibujado y la franja avanzan con el cursor;
-      // al terminar queda todo visible y el cursor solo marca la semana.
-      function render(t) {
-        if (!xs.length || !cross) return;
-        const px = xAt(t);
-        const xA = xs[ALERT_W], xB = xs[ZERO_W];
-        clipRect.setAttribute("width", done ? W : px + 7);
-        band.setAttribute("width", r1(done ? xB - xA : Math.max(0, Math.min(px, xB) - xA)));
-        bandLabel.setAttribute("opacity", done || t >= ZERO_W ? "1" : "0");
-        alertMark.setAttribute("opacity", done || t >= ALERT_W ? "1" : "0");
-        zeroMark.setAttribute("opacity", done || t >= ZERO_W ? "1" : "0");
-        cross.setAttribute("x1", r1(px)); cross.setAttribute("x2", r1(px));
-        dotPh.setAttribute("cx", r1(px)); dotPh.setAttribute("cy", r1(curveY(t)));
-        dotLms.setAttribute("cx", r1(px)); dotLms.setAttribute("cy", r1(lmsY(t)));
-        const w = Math.min(N - 1, Math.floor(t + 1e-6));
-        if (w !== lastWeek) setPanels(w);
-      }
-
-      function finish() {
-        done = true;
-        card.classList.add("is-done");
-        render(N - 1);
-      }
-
-      // Recorrido único. Se congela si la sección sale de pantalla y
-      // retoma al volver; no depende de reduced motion porque no hay
-      // desplazamiento, solo un cambio de estado de los datos.
-      let visible = false, started = false;
-      function play() {
-        started = true;
-        let last = performance.now(), held = 0;
-        function frame(now) {
-          if (done) return;
-          const dt = Math.min(50, now - last);
-          last = now;
-          if (visible) {
-            if (playT >= ALERT_W && held < ALERT_HOLD_MS) held += dt;
-            else playT = Math.min(N - 1, playT + dt / WEEK_MS);
-            render(playT);
-            if (playT >= N - 1) { finish(); return; }
-          }
-          requestAnimationFrame(frame);
-        }
-        requestAnimationFrame(frame);
-      }
-
-      // Explorar: el mouse toma el control al moverse; en touch, un tap
-      // (pointerup no llega si el dedo estaba haciendo scroll).
-      function tFromEvent(e) {
-        const r = plot.getBoundingClientRect();
-        const t = ((e.clientX - r.left - PAD_L) / Math.max(1, r.width - PAD_L - PAD_R)) * (N - 1);
-        return Math.max(0, Math.min(N - 1, t));
-      }
-      function scrub(e) {
-        if (!done) finish();
-        render(tFromEvent(e));
-      }
-      plot.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse") scrub(e); });
-      plot.addEventListener("pointerup", (e) => { if (e.pointerType !== "mouse") scrub(e); });
-      plot.addEventListener("pointerleave", (e) => { if (done && e.pointerType === "mouse") render(N - 1); });
-
-      build();
-      render(0);
-      if (!("IntersectionObserver" in window)) finish();
-      else {
-        new IntersectionObserver((entries) => {
-          visible = entries[0].isIntersecting;
-          if (visible && !started && !done) play();
-        }, { threshold: 0.35 }).observe(plot);
-      }
-
-      // Redibuja al cambiar el ancho (el alto va atado al ancho vía clamp).
-      let lastW = plot.clientWidth;
-      new ResizeObserver(() => {
-        if (plot.clientWidth === lastW) return;
-        lastW = plot.clientWidth;
-        build();
-        lastWeek = -1;
-        render(done ? N - 1 : playT);
-      }).observe(plot);
     })();
 
     // ---------- Calculadora de ROI ----------
