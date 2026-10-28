@@ -391,6 +391,65 @@
       .dq-fill, .dz-c, .dz-b, .dz-mark, .dz-brace, .dz-span { transition: none; }
     }
 
+    /* ============================================================ PERFILES: SELECTOR POR ROL
+       Una pestaña por rol con qué ve, de dónde sale y su garantía, junto a
+       una ventana de ejemplo marcada como ilustrativa. */
+    .rv { margin-top: clamp(2rem, 4vw, 2.75rem); }
+    .rv-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .rv-tab { padding: 0.55rem 1rem; border-radius: 999px; border: 1px solid var(--light-rule); background: var(--light-panel); font: 600 0.92rem "Manrope", sans-serif; color: var(--light-text); cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s; }
+    .rv-tab:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+    .rv-tab.is-active { background: color-mix(in srgb, var(--accent) 12%, var(--light-panel)); border-color: color-mix(in srgb, var(--accent) 45%, transparent); color: var(--light-accent-text); }
+    .rv-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .rv-panel { display: grid; gap: 2rem; align-items: center; margin-top: 1.75rem; animation: rvIn 0.4s var(--ease); }
+    .rv-panel[hidden] { display: none; }
+    @media (min-width: 960px) { .rv-panel { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 3.5rem; } }
+    @keyframes rvIn { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
+    @media (prefers-reduced-motion: reduce) { .rv-panel { animation: none; } }
+    .rv-copy h3 { margin: 0; font-family: "Manrope", sans-serif; font-size: clamp(1.4rem, 2.6vw, 1.85rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--light-text); }
+    .rv-copy > p { margin: 0.7rem 0 0; font-size: 1.02rem; line-height: 1.6; color: var(--light-muted); }
+    .rv-meta { display: grid; grid-template-columns: auto 1fr; gap: 0.45rem 1.1rem; margin: 1.3rem 0 0; font-size: 0.92rem; }
+    .rv-meta dt { color: var(--light-muted); }
+    .rv-meta dd { margin: 0; color: var(--light-text); }
+    .rv-gate { display: flex; align-items: flex-start; gap: 0.55rem; margin: 1.3rem 0 0; padding-top: 1.1rem; border-top: 1px solid var(--light-rule); font-weight: 600; color: var(--light-text); }
+    .rv-gate svg { flex: none; width: 20px; height: 20px; color: var(--light-accent-text); }
+    .rv-window { border-radius: 16px; background: var(--light-panel); border: 1px solid var(--light-rule); box-shadow: 0 24px 50px -30px rgba(15, 23, 42, 0.35); overflow: hidden; }
+    .rv-bar { display: flex; align-items: center; gap: 6px; padding: 0.7rem 1rem; border-bottom: 1px solid var(--light-rule); font-size: 0.8rem; font-weight: 600; color: var(--light-muted); }
+    .rv-bar i { width: 9px; height: 9px; border-radius: 50%; background: #dfe5ef; }
+    .rv-bar span { margin-left: 0.5rem; }
+    .rv-body { padding: 1.2rem; font-size: 0.9rem; color: var(--light-text); }
+    .rv-note { margin: 0.6rem 0 0; text-align: right; font-size: 0.75rem; color: var(--light-muted); }
+    .rv-msg { max-width: 88%; padding: 0.7rem 0.9rem; border-radius: 14px; background: #eef1f6; line-height: 1.5; }
+    .rv-msg + .rv-msg { margin-top: 0.6rem; }
+    .rv-msg--yo { margin-left: auto; background: var(--accent); color: #fff; }
+    .rv-input { margin-top: 1rem; padding: 0.65rem 0.9rem; border-radius: 999px; border: 1px solid var(--light-rule); color: var(--light-muted); font-size: 0.85rem; }
+    .rv-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .rv-head b { font-family: "Manrope", sans-serif; font-size: 1rem; }
+    .rv-pill { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.18rem 0.6rem; border-radius: 999px; background: #eef1f6; font-size: 0.75rem; font-weight: 600; color: var(--light-muted); white-space: nowrap; }
+    .rv-pill--red { color: #c8372f; background: color-mix(in srgb, #c8372f 10%, transparent); }
+    .rv-pill--amber { color: #b7791f; background: color-mix(in srgb, #e8963f 14%, transparent); }
+    .rv-score { margin-top: 0.6rem; font-family: "Manrope", sans-serif; color: #c8372f; }
+    .rv-score b { font-size: 2.3rem; font-weight: 800; letter-spacing: -0.04em; }
+    .rv-score small { font-size: 0.9rem; opacity: 0.55; }
+    .rv-reasons { margin: 0.6rem 0 0; padding-left: 1.1rem; line-height: 1.55; }
+    .rv-text { margin: 0.7rem 0 0; line-height: 1.55; color: var(--light-muted); }
+    .rv-action { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.9rem; padding: 0.65rem 0.8rem; border-radius: 10px; background: color-mix(in srgb, var(--accent) 8%, transparent); color: var(--light-accent-text); font-weight: 600; }
+    .rv-action svg { flex: none; width: 17px; height: 17px; }
+    .rv-action--warn { background: color-mix(in srgb, #e8963f 12%, transparent); color: #b7791f; }
+    .rv-action--ok { background: color-mix(in srgb, #1fb987 12%, transparent); color: #0d8f6a; }
+    .rv-btns { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+    .rv-btn { padding: 0.45rem 0.9rem; border-radius: 999px; background: var(--accent); color: #fff; font-size: 0.82rem; font-weight: 700; }
+    .rv-btn--ghost { background: transparent; color: var(--light-text); border: 1px solid var(--light-rule); }
+    .rv-table { display: grid; font-size: 0.86rem; }
+    .rv-tr { display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; padding: 0.55rem 0; border-bottom: 1px solid var(--light-rule); }
+    .rv-th { color: var(--light-muted); font-size: 0.75rem; }
+    .rv-ok { color: #0d8f6a; font-weight: 700; }
+    .rv-warn { color: #b7791f; font-weight: 700; }
+    .rv-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+    .rv-kpis div { padding: 0.75rem; border-radius: 12px; border: 1px solid var(--light-rule); }
+    .rv-kpis small { display: block; font-size: 0.72rem; color: var(--light-muted); }
+    .rv-kpis b { display: block; margin-top: 0.15rem; font-family: "Manrope", sans-serif; font-size: 1.35rem; letter-spacing: -0.02em; }
+    .rv-kpis span { font-size: 0.72rem; color: var(--light-muted); }
+
     /* ============================================================ PREGUNTAS FRECUENTES */
     #preguntas { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
     .faq-grid { display: grid; gap: 2rem; }
@@ -3111,8 +3170,98 @@
       </div>
     </section>
 
+    <!-- ============================================================ PERFILES: SELECTOR POR ROL -->
+    <section class="section on-light on-light-alt" id="perfiles">
+      <div class="container">
+        <h2 class="section-title reveal">Everyone sees what they need.</h2>
+        <p class="section-sub reveal" data-delay="1">The same signal reaches the student, the professor and each area of the institution, with what each one needs to act.</p>
+        <div class="rv reveal" data-delay="1">
+          <div class="rv-tabs" role="tablist" aria-label="Profiles">
+            <button type="button" class="rv-tab" role="tab" id="rv-tab-alumno" aria-controls="rv-panel-alumno" aria-selected="false" tabindex="-1" data-rol="alumno">Student</button>
+            <button type="button" class="rv-tab is-active" role="tab" id="rv-tab-profesor" aria-controls="rv-panel-profesor" aria-selected="true" data-rol="profesor">Professor</button>
+            <button type="button" class="rv-tab" role="tab" id="rv-tab-coordinacion" aria-controls="rv-panel-coordinacion" aria-selected="false" tabindex="-1" data-rol="coordinacion">Coordinators</button>
+            <button type="button" class="rv-tab" role="tab" id="rv-tab-bienestar" aria-controls="rv-panel-bienestar" aria-selected="false" tabindex="-1" data-rol="bienestar">Wellbeing</button>
+            <button type="button" class="rv-tab" role="tab" id="rv-tab-finanzas" aria-controls="rv-panel-finanzas" aria-selected="false" tabindex="-1" data-rol="finanzas">Finance</button>
+            <button type="button" class="rv-tab" role="tab" id="rv-tab-direccion" aria-controls="rv-panel-direccion" aria-selected="false" tabindex="-1" data-rol="direccion">Leadership</button>
+          </div>
+          <div class="rv-panel" role="tabpanel" id="rv-panel-alumno" aria-labelledby="rv-tab-alumno" hidden>
+            <div class="rv-copy">
+              <h3>A tutor that knows the course.</h3>
+              <p>Pharis knows their assignments, instructions and materials, and guides them step by step so they understand instead of copying.</p>
+              <dl class="rv-meta"><dt>What they see</dt><dd>Their own conversations and messages from their professor.</dd><dt>Where it comes from</dt><dd>Their courses, assignments and materials in the LMS.</dd></dl>
+              <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Students always know they are talking to an AI.</span></p>
+            </div>
+            <div class="rv-visual">
+              <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>Pharis &middot; Financial Mathematics</span></div><div class="rv-body"><div class="rv-msg rv-msg--yo">How do I get the present value of $10,000 I will receive in 3 years, at 8% a year?</div><div class="rv-msg">Bring that $10,000 back to today: <b>PV = FV ÷ (1 + i)<sup>n</sup></b>. With i = 0.08 and n = 3, what do you get for (1.08)<sup>3</sup>? With that number you are almost there.</div><div class="rv-input">Type your question…</div></div></div>
+              <p class="rv-note">Illustrated example, fictional data.</p>
+            </div>
+          </div>
+          <div class="rv-panel" role="tabpanel" id="rv-panel-profesor" aria-labelledby="rv-tab-profesor">
+            <div class="rv-copy">
+              <h3>Who is falling behind, and why.</h3>
+              <p>A dashboard of their groups that updates every day, with the risk score, the reasons and what to do this week.</p>
+              <dl class="rv-meta"><dt>What they see</dt><dd>Only the students in their groups.</dd><dt>Where it comes from</dt><dd>LMS logins, submissions and grades, compared with the group.</dd></dl>
+              <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Pharis suggests; the professor decides whether to write, meet or refer.</span></p>
+            </div>
+            <div class="rv-visual">
+              <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>My groups &middot; Cost Accounting I</span></div><div class="rv-body"><div class="rv-head"><b>Diego Ramírez</b><span class="rv-pill rv-pill--red">High risk</span></div><div class="rv-score"><b>82</b><small>/100</small></div><ul class="rv-reasons"><li>Has not logged in to the course in 9 days.</li><li>Average on submitted work is below 60.</li></ul><div class="rv-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span>Schedule 10 minutes with this student this week.</span></div><div class="rv-btns"><span class="rv-btn">Message</span><span class="rv-btn rv-btn--ghost">Refer to tutoring</span></div></div></div>
+              <p class="rv-note">Illustrated example, fictional data.</p>
+            </div>
+          </div>
+          <div class="rv-panel" role="tabpanel" id="rv-panel-coordinacion" aria-labelledby="rv-tab-coordinacion" hidden>
+            <div class="rv-copy">
+              <h3>Which alerts already have a contact.</h3>
+              <p>Follow-up for the groups they coordinate: how many students are at risk and which ones are still waiting for someone to reach out.</p>
+              <dl class="rv-meta"><dt>What they see</dt><dd>Risk, follow-up and activity of the groups assigned to them.</dd><dt>Where it comes from</dt><dd>The same LMS signals and the actions logged by professors and tutors.</dd></dl>
+              <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Every contact is logged: who, when, through which channel and how it ended.</span></p>
+            </div>
+            <div class="rv-visual">
+              <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>Coordination &middot; Assigned groups</span></div><div class="rv-body"><div class="rv-table"><div class="rv-tr rv-th"><span>Group</span><span>At risk</span><span>Followed up</span></div><div class="rv-tr"><span>Cost Accounting I</span><span>3</span><span class="rv-ok">3</span></div><div class="rv-tr"><span>Finance II</span><span>2</span><span class="rv-ok">2</span></div><div class="rv-tr"><span>Statistics</span><span>4</span><span class="rv-warn">1</span></div></div><div class="rv-action rv-action--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span>3 Statistics students have gone more than 72 h without contact.</span></div></div></div>
+              <p class="rv-note">Illustrated example, fictional data.</p>
+            </div>
+          </div>
+          <div class="rv-panel" role="tabpanel" id="rv-panel-bienestar" aria-labelledby="rv-tab-bienestar" hidden>
+            <div class="rv-copy">
+              <h3>The cases referred to them, with context.</h3>
+              <p>Receives referrals from professors and tutors with what they need to handle them, and books the appointment from there.</p>
+              <dl class="rv-meta"><dt>What they see</dt><dd>The referrals for their area.</dd><dt>Where it comes from</dt><dd>What the professor or tutor records when referring the case.</dd></dl>
+              <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Wellbeing cases are confidential: professors do not see them.</span></p>
+            </div>
+            <div class="rv-visual">
+              <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>Wellbeing &middot; Referrals</span></div><div class="rv-body"><div class="rv-head"><b>New referral</b><span class="rv-pill">Confidential</span></div><p class="rv-text">Referred by Tutoring. Absences over the last two weeks and a workload the student reports is hard to keep up with.</p><div class="rv-btns"><span class="rv-btn">Book appointment</span><span class="rv-btn rv-btn--ghost">Log follow-up</span></div></div></div>
+              <p class="rv-note">Illustrated example, fictional data.</p>
+            </div>
+          </div>
+          <div class="rv-panel" role="tabpanel" id="rv-panel-finanzas" aria-labelledby="rv-tab-finanzas" hidden>
+            <div class="rv-copy">
+              <h3>The financial signal, next to the academic one.</h3>
+              <p>If the institution shares outstanding balances or scholarships, Pharis adds them to the risk to reach students about to leave over money sooner.</p>
+              <dl class="rv-meta"><dt>What they see</dt><dd>The referrals for their area and the financial signals the institution shares.</dd><dt>Where it comes from</dt><dd>A file from the institution with balances or scholarships.</dd></dl>
+              <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>It is optional and adds to the risk with a fixed, explained adjustment.</span></p>
+            </div>
+            <div class="rv-visual">
+              <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>Finance &middot; Signals</span></div><div class="rv-body"><div class="rv-head"><b>Diego Ramírez</b><span class="rv-pill rv-pill--amber">Balance reported</span></div><p class="rv-text">High academic risk and an outstanding balance reported this month. The financial adjustment is already added to the score.</p><div class="rv-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span>Review support options before enrollment closes.</span></div></div></div>
+              <p class="rv-note">Illustrated example, fictional data.</p>
+            </div>
+          </div>
+          <div class="rv-panel" role="tabpanel" id="rv-panel-direccion" aria-labelledby="rv-tab-direccion" hidden>
+            <div class="rv-copy">
+              <h3>The whole institution, in one view.</h3>
+              <p>Risk, follow-up, grading speed and which actions are working, by professor and by course.</p>
+              <dl class="rv-meta"><dt>What they see</dt><dd>Everything in their institution, nothing from others.</dd><dt>Where it comes from</dt><dd>What professors and areas see, aggregated.</dd></dl>
+              <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>No decision about a student is automatic.</span></p>
+            </div>
+            <div class="rv-visual">
+              <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>Institutional panel</span></div><div class="rv-body"><div class="rv-kpis"><div><small>Dropout risk</small><b>13</b><span>4 high &middot; 9 medium</span></div><div><small>Followed up</small><b>85%</b><span>2 with no action</span></div><div><small>Grading speed</small><b>8.4 days</b><span>target: 7 days</span></div><div><small>Coverage</small><b>81%</b><span>submissions graded</span></div></div><div class="rv-action rv-action--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>2 students left the risk list after an action.</span></div></div></div>
+              <p class="rv-note">Illustrated example, fictional data.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============================================================ ROI -->
-    <section class="section on-light on-light-alt" id="roi">
+    <section class="section on-light" id="roi">
       <div class="container">
         <h2 class="section-title reveal" data-delay="1">What dropout costs.</h2>
         <p class="section-sub reveal" data-delay="2">Enter your institution's numbers and see how much revenue is lost each year.</p>
@@ -3144,7 +3293,7 @@
     </section>
 
     <!-- ============================================================ INTEGRACION (light) -->
-    <section class="section on-light" id="integracion">
+    <section class="section on-light on-light-alt" id="integracion">
       <div class="container">
         <h2 class="section-title reveal" data-delay="1">It connects to your LMS. Nothing else changes.</h2>
         <p class="section-sub reveal" data-delay="2">Pharis reads the context that already lives in your learning platform and turns it into help for students and signals for professors. It doesn't replace your LMS: it understands it.</p>
@@ -3214,7 +3363,7 @@
     </section>
 
     <!-- ============================================================ PREGUNTAS FRECUENTES -->
-    <section class="section on-light on-light-alt" id="preguntas">
+    <section class="section on-light" id="preguntas">
       <div class="container">
         <div class="faq-grid">
           <div class="faq-head">
@@ -4353,6 +4502,31 @@
         row.classList.toggle("is-drawing", visible);
         if (visible) cards.forEach((c) => c.classList.add("is-drawn"));
       }, { threshold: 0.3 }).observe(row);
+    })();
+
+    // Selector por rol de "Cada quien ve lo que le toca": pestañas accesibles
+    // (clic y flechas izquierda/derecha).
+    (function roleSelector() {
+      const tabs = Array.from(document.querySelectorAll(".rv-tab"));
+      if (!tabs.length) return;
+      function select(id, focus) {
+        tabs.forEach((t) => {
+          const on = t.dataset.rol === id;
+          t.classList.toggle("is-active", on);
+          t.setAttribute("aria-selected", String(on));
+          t.tabIndex = on ? 0 : -1;
+          document.getElementById("rv-panel-" + t.dataset.rol).hidden = !on;
+          if (on && focus) t.focus();
+        });
+      }
+      tabs.forEach((t, i) => {
+        t.addEventListener("click", () => select(t.dataset.rol));
+        t.addEventListener("keydown", (e) => {
+          if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+          const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+          select(next.dataset.rol, true);
+        });
+      });
     })();
 
     // ---------- Calculadora de ROI ----------
