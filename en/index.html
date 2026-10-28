@@ -27,6 +27,7 @@
   <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-en.jpg" />
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharis.mx/#org", "name": "Pharis", "url": "https://pharis.mx/", "logo": "https://pharis.mx/assets/logo.svg", "email": "contacto@pharis.mx", "areaServed": "Latin America"}, {"@type": "WebSite", "@id": "https://pharis.mx/en/#website", "url": "https://pharis.mx/en/", "name": "Pharis", "inLanguage": "en", "publisher": {"@id": "https://pharis.mx/#org"}}, {"@type": "SoftwareApplication", "name": "Pharis", "url": "https://pharis.mx/en/", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows, Chrome", "description": "Pharis is an AI tutor that supports every student inside their learning platform and gives professors a dropout risk dashboard that updates every day with LMS activity. It flags students who start drifting away from their group.", "inLanguage": "en", "publisher": {"@id": "https://pharis.mx/#org"}}]}</script>
   <!-- SEO:end -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"Which learning platform does it work with?","acceptedAnswer":{"@type":"Answer","text":"With the LMS your institution already uses, through its web services and in read-only mode. Before any pilot we check together that your platform has those services enabled."}},{"@type":"Question","name":"Do we need to install anything on our servers?","acceptedAnswer":{"@type":"Answer","text":"No. Nothing is installed on the LMS server and no administrator access is needed. Professors and administrators use a web browser; students use a Chrome extension or a lightweight Windows app."}},{"@type":"Question","name":"Does the tutor do students' homework?","acceptedAnswer":{"@type":"Answer","text":"No. Pharis explains the method using their course material and guides them to reach the answer themselves. Students always know they are talking to an AI."}},{"@type":"Question","name":"How accurate is the risk signal?","acceptedAnswer":{"@type":"Answer","text":"It uses only what the student does in the LMS: days with access compared with their group, missing or late assignments, and grades. It is trained on public data from other universities, so we do not publish an accuracy figure: it is calibrated at the end of a full term, with your institution's actual dropouts. Every alert shows its reasons. Details in How Pharis calculates dropout risk."}},{"@type":"Question","name":"Does Pharis make decisions about students?","acceptedAnswer":{"@type":"Answer","text":"No. The risk level is a signal for a person, who decides whether and how to act. The signal suggests support, never sanctions."}},{"@type":"Question","name":"Can financial data be added?","acceptedAnswer":{"@type":"Answer","text":"Yes, optionally. If the institution shares signals such as an outstanding balance or a scholarship, they are added to the risk with a fixed, explained adjustment, and the finance team sees only what concerns them."}},{"@type":"Question","name":"What happens to our students' data?","acceptedAnswer":{"@type":"Answer","text":"Pharis only reads from the LMS, everyone sees only their own data, and we do not train AI models on your data. When the contract ends we delete everything, and backups expire within 30 days."}},{"@type":"Question","name":"How do we get started?","acceptedAnswer":{"@type":"Answer","text":"With a demo on your institution's real data: we connect your LMS in read-only mode and show you your groups, the students at risk today and why. Then an 8-week pilot with a few volunteer professors. If you do not continue, we delete the institution's data."}}]}</script>
   <meta name="theme-color" content="#f5f8fc" />
 
   <!-- Open Graph -->
@@ -304,6 +305,7 @@
       .dq-causes li.is-drawn .dq-ic svg > * { animation: none; }
     }
     .dq-why .dq-src { max-width: none; margin-top: 0.85rem; }
+    .dq-src a { color: var(--light-accent-text); text-decoration: underline; text-underline-offset: 3px; }
     .dq-bridge {
       margin: clamp(3.5rem, 7vw, 5rem) auto 0; max-width: 26ch; text-align: center; text-wrap: balance;
       font-family: "Manrope", sans-serif; font-size: clamp(1.45rem, 3vw, 2.1rem); font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; color: var(--light-text);
@@ -2215,7 +2217,7 @@
     <div class="ph2-hero-main">
       <div class="ph2-hero-text">
         <h1 aria-label="The at-risk student already showed the signs. Pharis sees them first."><span aria-hidden="true">The at-risk student already showed the signs.<br /><strong>Phar<span id="ph2-lamp-tick">ı</span>s sees them first.</strong></span></h1>
-        <p class="ph2-sub">Pharis supports students while they study and alerts professors and administrators when someone starts drifting away from their group, based on their activity and submissions in the LMS.</p>
+        <p class="ph2-sub">Pharis is an early warning system for university dropout: it supports students while they study and alerts professors and administrators when someone starts drifting away from their group, based on their activity and submissions in the LMS.</p>
       </div>
 
       <div class="ph2-hero-subject">
@@ -2697,7 +2699,7 @@
             <li><span class="dq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>Emotional health</li>
             <li><span class="dq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>Adjustment and career fit</li>
           </ul>
-          <p class="dq-src">Common causes across the region. For example, those cited by Mexico's SEP at the Universia Rectors' Meeting, May 2026.</p>
+          <p class="dq-src">Common causes across the region. For example, those cited by Mexico's SEP at the Universia Rectors' Meeting, May 2026. More figures and sources in <a href="university-dropout.html">University dropout in Latin America</a>.</p>
         </div>
 
         <p class="dq-bridge reveal">Almost none of them shows up on a report card <span>until it is too late.</span></p>
@@ -3385,7 +3387,7 @@
             </details>
             <details class="faq-item">
               <summary>How accurate is the risk signal?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>It uses only what the student does in the LMS: days with access compared with their group, missing or late assignments, and grades. It is trained on public data from other universities, so we do not publish an accuracy figure: it is calibrated at the end of a full term, with your institution's actual dropouts. Every alert shows its reasons.</p></div>
+              <div class="faq-a"><p>It uses only what the student does in the LMS: days with access compared with their group, missing or late assignments, and grades. It is trained on public data from other universities, so we do not publish an accuracy figure: it is calibrated at the end of a full term, with your institution's actual dropouts. Every alert shows its reasons. Details in <a href="methodology.html">How Pharis calculates dropout risk</a>.</p></div>
             </details>
             <details class="faq-item">
               <summary>Does Pharis make decisions about students?<span class="faq-ic" aria-hidden="true"></span></summary>
@@ -3544,10 +3546,12 @@
               </ul>
             </div>
             <div class="footer-col">
-              <h3>The problem</h3>
+              <h3>Resources</h3>
               <ul>
-                <li><a href="#problema">University dropout</a></li>
+                <li><a href="#problema">The problem</a></li>
                 <li><a href="#contraste">The blind spot</a></li>
+                <li><a href="methodology.html">How we calculate risk</a></li>
+                <li><a href="university-dropout.html">Dropout in Latin America</a></li>
               </ul>
             </div>
           </nav>

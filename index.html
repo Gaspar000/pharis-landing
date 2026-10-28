@@ -27,6 +27,7 @@
   <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-es.jpg" />
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharis.mx/#org", "name": "Pharis", "url": "https://pharis.mx/", "logo": "https://pharis.mx/assets/logo.svg", "email": "contacto@pharis.mx", "areaServed": "Latin America"}, {"@type": "WebSite", "@id": "https://pharis.mx/#website", "url": "https://pharis.mx/", "name": "Pharis", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}, {"@type": "SoftwareApplication", "name": "Pharis", "url": "https://pharis.mx/", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows, Chrome", "description": "Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción que se actualiza cada día con la actividad del LMS. Avisa cuando un alumno empieza a alejarse de su grupo.", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}]}</script>
   <!-- SEO:end -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Con qué plataforma educativa funciona?","acceptedAnswer":{"@type":"Answer","text":"Con el LMS que ya usa tu institución, a través de sus servicios web y en modo solo lectura. Antes de cualquier piloto revisamos juntos que tu plataforma tenga esos servicios habilitados."}},{"@type":"Question","name":"¿Hay que instalar algo en nuestros servidores?","acceptedAnswer":{"@type":"Answer","text":"No. No hace falta instalar nada en el servidor del LMS ni dar acceso de administrador. El profesor y la dirección entran desde el navegador; el alumno usa una extensión de Chrome o una app ligera para Windows."}},{"@type":"Question","name":"¿El tutor le hace la tarea al alumno?","acceptedAnswer":{"@type":"Answer","text":"No. Pharis le explica el procedimiento con el material de su curso y lo guía para que llegue él a la respuesta. El alumno sabe en todo momento que habla con una IA."}},{"@type":"Question","name":"¿Qué tan precisa es la señal de riesgo?","acceptedAnswer":{"@type":"Answer","text":"Usa solo lo que el alumno hace en el LMS: días con acceso comparados con su grupo, tareas sin entregar o entregadas tarde y calificaciones. Está entrenada con datos públicos de otras universidades, así que no publicamos una cifra de precisión: se calibra al cierre de un ciclo completo, con las bajas reales de tu institución. Cada alerta muestra sus motivos. El detalle está en Cómo calcula Pharis el riesgo."}},{"@type":"Question","name":"¿Pharis toma decisiones sobre los alumnos?","acceptedAnswer":{"@type":"Answer","text":"No. El nivel de riesgo es una señal para una persona, que decide si actúa y cómo. La señal propone apoyo, nunca sanciones."}},{"@type":"Question","name":"¿Se pueden sumar datos financieros?","acceptedAnswer":{"@type":"Answer","text":"Sí, de forma opcional. Si la institución comparte señales como un adeudo o una beca, se suman al riesgo con un ajuste fijo y explicado, y el área de Finanzas ve solo lo que le corresponde."}},{"@type":"Question","name":"¿Qué pasa con los datos de nuestros alumnos?","acceptedAnswer":{"@type":"Answer","text":"Pharis solo lee del LMS, cada quien ve solo lo suyo y no entrenamos modelos de IA con tus datos. Al terminar el contrato borramos todo y los respaldos caducan en 30 días."}},{"@type":"Question","name":"¿Cómo empezamos?","acceptedAnswer":{"@type":"Answer","text":"Con una demo sobre los datos reales de tu institución: conectamos tu LMS en modo solo lectura y te mostramos tus grupos, los alumnos que hoy van en riesgo y por qué. Después, un piloto de 8 semanas con unos cuantos profesores voluntarios. Si no continúan, borramos los datos de la institución."}}]}</script>
   <meta name="theme-color" content="#f5f8fc" />
 
   <!-- Open Graph -->
@@ -304,6 +305,7 @@
       .dq-causes li.is-drawn .dq-ic svg > * { animation: none; }
     }
     .dq-why .dq-src { max-width: none; margin-top: 0.85rem; }
+    .dq-src a { color: var(--light-accent-text); text-decoration: underline; text-underline-offset: 3px; }
     .dq-bridge {
       margin: clamp(3.5rem, 7vw, 5rem) auto 0; max-width: 26ch; text-align: center; text-wrap: balance;
       font-family: "Manrope", sans-serif; font-size: clamp(1.45rem, 3vw, 2.1rem); font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; color: var(--light-text);
@@ -2215,7 +2217,7 @@
     <div class="ph2-hero-main">
       <div class="ph2-hero-text">
         <h1 aria-label="El alumno en riesgo ya dio señales. Pharis las ve primero."><span aria-hidden="true">El alumno en riesgo ya dio señales.<br /><strong>Phar<span id="ph2-lamp-tick">ı</span>s las ve primero.</strong></span></h1>
-        <p class="ph2-sub">Pharis acompaña al alumno mientras estudia y avisa a profesores y directivos cuando alguien empieza a alejarse de su grupo, con base en su actividad y sus entregas en el LMS.</p>
+        <p class="ph2-sub">Pharis es un sistema de alerta temprana de deserción universitaria: acompaña al alumno mientras estudia y avisa a profesores y directivos cuando alguien empieza a alejarse de su grupo, con base en su actividad y sus entregas en el LMS.</p>
       </div>
 
       <div class="ph2-hero-subject">
@@ -2697,7 +2699,7 @@
             <li><span class="dq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>Salud emocional</li>
             <li><span class="dq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>Adaptación y vocación</li>
           </ul>
-          <p class="dq-src">Causas comunes en la región. Por ejemplo, las que citó la SEP de México en el Encuentro de Rectores Universia, mayo de 2026.</p>
+          <p class="dq-src">Causas comunes en la región. Por ejemplo, las que citó la SEP de México en el Encuentro de Rectores Universia, mayo de 2026. Más cifras y fuentes en <a href="desercion-universitaria.html">Deserción universitaria en América Latina</a>.</p>
         </div>
 
         <p class="dq-bridge reveal">Casi ninguna aparece en la boleta <span>hasta que ya es tarde.</span></p>
@@ -3385,7 +3387,7 @@
             </details>
             <details class="faq-item">
               <summary>¿Qué tan precisa es la señal de riesgo?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>Usa solo lo que el alumno hace en el LMS: días con acceso comparados con su grupo, tareas sin entregar o entregadas tarde y calificaciones. Está entrenada con datos públicos de otras universidades, así que no publicamos una cifra de precisión: se calibra al cierre de un ciclo completo, con las bajas reales de tu institución. Cada alerta muestra sus motivos.</p></div>
+              <div class="faq-a"><p>Usa solo lo que el alumno hace en el LMS: días con acceso comparados con su grupo, tareas sin entregar o entregadas tarde y calificaciones. Está entrenada con datos públicos de otras universidades, así que no publicamos una cifra de precisión: se calibra al cierre de un ciclo completo, con las bajas reales de tu institución. Cada alerta muestra sus motivos. El detalle está en <a href="metodologia.html">Cómo calcula Pharis el riesgo</a>.</p></div>
             </details>
             <details class="faq-item">
               <summary>¿Pharis toma decisiones sobre los alumnos?<span class="faq-ic" aria-hidden="true"></span></summary>
@@ -3544,10 +3546,12 @@
               </ul>
             </div>
             <div class="footer-col">
-              <h3>El problema</h3>
+              <h3>Recursos</h3>
               <ul>
-                <li><a href="#problema">Deserción universitaria</a></li>
+                <li><a href="#problema">El problema</a></li>
                 <li><a href="#contraste">El punto ciego</a></li>
+                <li><a href="metodologia.html">Cómo calculamos el riesgo</a></li>
+                <li><a href="desercion-universitaria.html">Deserción en América Latina</a></li>
               </ul>
             </div>
           </nav>

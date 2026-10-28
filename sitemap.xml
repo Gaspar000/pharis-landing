@@ -3,28 +3,58 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://pharis.mx/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/" />
   </url>
   <url>
     <loc>https://pharis.mx/en/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/metodologia.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/metodologia.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/methodology.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/metodologia.html" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/methodology.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/metodologia.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/methodology.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/metodologia.html" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/desercion-universitaria.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/desercion-universitaria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/university-dropout.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/desercion-universitaria.html" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/university-dropout.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/desercion-universitaria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/university-dropout.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/desercion-universitaria.html" />
   </url>
   <url>
     <loc>https://pharis.mx/privacy.html</loc>
     <lastmod>2026-09-29</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/privacy.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/privacy.html" />
   </url>
   <url>
     <loc>https://pharis.mx/en/privacy.html</loc>
     <lastmod>2026-09-29</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/privacy.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/privacy.html" />
   </url>
 </urlset>

@@ -1,26 +1,29 @@
 # Pharis
 
-> Pharis es un sistema de alerta temprana de deserción para universidades de América Latina, desarrollado en México. Un tutor con IA acompaña al alumno mientras estudia, y un tablero que se actualiza cada día con la actividad del LMS avisa a profesores y administrativos cuando alguien empieza a alejarse de su grupo.
+> Pharis es un sistema de alerta temprana de deserción universitaria para instituciones de América Latina, desarrollado en México. Lee la plataforma educativa (LMS) de la institución en modo solo lectura, calcula cada día el riesgo de cada alumno con señales explicables y avisa a profesores y áreas de la institución con los motivos y una acción sugerida. También incluye un tutor con IA para el alumno.
 
 ## Qué hace
 
-- **Para el alumno:** un tutor con IA que conoce el contexto de cada materia (tareas, rúbricas, materiales) y orienta el razonamiento sin entregar la tarea resuelta. Disponible como extensión de Chrome y como app ligera para Windows.
-- **Para el profesor:** tablero que se actualiza cada día, alertas de alumnos en riesgo con las razones y una acción sugerida (la señal usa accesos, entregas y calificaciones del LMS, no el uso del tutor), y análisis de entregas contra la rúbrica con preguntas para orientar su criterio. Pharis no califica: la decisión es del profesor.
-- **Para administrativos:** vista institucional con adopción, velocidad y cobertura de calificación por grupo, alumnos que se están apagando por profesor, y alertas de lenguaje de riesgo en la mensajería que solo ve dirección.
+- **Alumno:** un tutor con IA que conoce sus tareas, instrucciones y materiales, y lo guía paso a paso sin entregar la tarea resuelta. Disponible como app para Windows y extensión de Chrome.
+- **Profesor:** tablero de sus grupos que se actualiza cada día, con puntaje de riesgo, motivos en palabras y una acción sugerida. Pharis sugiere; el profesor decide.
+- **Coordinación, Bienestar y Finanzas:** cada área ve solo lo que le corresponde: seguimiento de sus grupos, derivaciones confidenciales o señales financieras que la institución decida compartir.
+- **Dirección:** vista institucional con riesgo, seguimiento, velocidad de calificación y qué acciones están funcionando.
 
-## Integración
+## Cómo calcula el riesgo
 
-- Se conecta con el LMS de la institución en modo solo lectura: consulta materias, grupos, tareas, entregas, rúbricas y calificaciones; nunca escribe en el LMS ni cambia calificaciones.
-- No requiere servidores ni migraciones: el contenido sigue viviendo en el LMS.
+- Usa accesos, entregas y calificaciones del LMS, comparados con el grupo del alumno. No usa datos socioeconómicos ni el uso del tutor.
+- Regresión logística entrenada con datos públicos de otras universidades (OULAD y UCI 697). No se publica una cifra de precisión porque no diría nada sobre una institución concreta; se recalibra con los desenlaces propios al cierre de un ciclo.
+- Ninguna decisión sobre un alumno es automática.
 
 ## Páginas
 
-- [Inicio (español)](https://pharis.mx/): producto, problema de la deserción, cómo funciona, retorno y solicitud de demo.
-- [Home (English)](https://pharis.mx/en/): the same content in English.
-- [Política de privacidad](https://pharis.mx/privacy.html): datos que se recopilan, finalidades, conservación y derechos ARCO conforme a la LFPDPPP.
-- [Privacy policy](https://pharis.mx/en/privacy.html)
+- [Inicio](https://pharis.mx/): producto, el problema de la deserción, cómo funciona, perfiles, retorno, preguntas frecuentes y solicitud de demo.
+- [Cómo calcula Pharis el riesgo de deserción](https://pharis.mx/metodologia.html): datos que usa, qué deja fuera, con qué se entrenó y por qué no publica una cifra de precisión.
+- [Deserción universitaria en América Latina](https://pharis.mx/desercion-universitaria.html): cifras con fuente, cuándo y por qué abandonan los alumnos, y qué puede hacer una institución.
+- [Política de privacidad](https://pharis.mx/privacy.html)
+- English: [Home](https://pharis.mx/en/), [How Pharis calculates dropout risk](https://pharis.mx/en/methodology.html), [University dropout in Latin America](https://pharis.mx/en/university-dropout.html), [Privacy policy](https://pharis.mx/en/privacy.html)
 
 ## Contacto
 
-- Demos y ventas: contacto@pharis.mx
+- Demos: contacto@pharis.mx
 - Datos personales: privacidad@pharis.mx
