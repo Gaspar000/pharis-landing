@@ -18,11 +18,11 @@
 ## Páginas
 
 - [Inicio](https://pharis.mx/): producto, el problema de la deserción, cómo funciona, perfiles, retorno, preguntas frecuentes y solicitud de demo.
-- [Cómo calcula Pharis el riesgo de deserción](https://pharis.mx/metodologia.html): datos que usa, qué deja fuera, con qué se entrenó y por qué no publica una cifra de precisión.
-- [Deserción universitaria en América Latina](https://pharis.mx/desercion-universitaria.html): cifras con fuente, cuándo y por qué abandonan los alumnos, y qué puede hacer una institución.
-- [Alerta temprana de deserción en Moodle](https://pharis.mx/alerta-temprana-moodle.html): qué necesita Moodle, cómo se conecta Pharis (servicios web de la app móvil, solo lectura, sin plugin) y qué funciones de la API consulta.
-- [Política de privacidad](https://pharis.mx/privacy.html)
-- English: [Home](https://pharis.mx/en/), [How Pharis calculates dropout risk](https://pharis.mx/en/methodology.html), [University dropout in Latin America](https://pharis.mx/en/university-dropout.html), [Early warning in Moodle](https://pharis.mx/en/moodle-early-warning.html), [Privacy policy](https://pharis.mx/en/privacy.html)
+- [Cómo calcula Pharis el riesgo de deserción](https://pharis.mx/metodologia): datos que usa, qué deja fuera, con qué se entrenó y por qué no publica una cifra de precisión.
+- [Deserción universitaria en América Latina](https://pharis.mx/desercion-universitaria): cifras con fuente, cuándo y por qué abandonan los alumnos, y qué puede hacer una institución.
+- [Alerta temprana de deserción en Moodle](https://pharis.mx/alerta-temprana-moodle): qué gana una institución que usa Moodle, cómo se empieza y qué no cambia en su plataforma.
+- [Política de privacidad](https://pharis.mx/privacy)
+- English: [Home](https://pharis.mx/en/), [How Pharis calculates dropout risk](https://pharis.mx/en/methodology), [University dropout in Latin America](https://pharis.mx/en/university-dropout), [Early warning in Moodle](https://pharis.mx/en/moodle-early-warning), [Privacy policy](https://pharis.mx/en/privacy)
 
 ## Contacto
 
