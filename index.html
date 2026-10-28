@@ -137,31 +137,6 @@
     .section { padding-block: clamp(4.5rem, 10vw, 8rem); position: relative; }
     .section--flush-bottom { padding-bottom: 2.5rem; }
 
-    .eyebrow {
-      font-family: "Fira Sans", sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 1.1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .eyebrow::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent-bright);
-      box-shadow:
-        0 0 6px rgba(80, 143, 248, 0.9),
-        0 0 12px rgba(80, 143, 248, 0.6),
-        0 0 20px rgba(80, 143, 248, 0.3);
-      flex-shrink: 0;
-    }
-
     h2.section-title {
       font-size: var(--h2);
       font-weight: 700;
@@ -579,7 +554,7 @@
     }
     .pc-kicker {
       margin: 1rem auto 0;
-      max-width: 42ch;
+      max-width: 62ch;
       font-family: "Manrope", sans-serif;
       font-size: clamp(1.05rem, 2vw, 1.3rem);
       font-weight: 500;
@@ -587,7 +562,39 @@
       color: var(--light-muted);
       text-wrap: balance;
     }
-    .pc-kicker-em { color: #b7791f; font-weight: 700; }
+    .pc-kicker-em { color: var(--light-text); font-weight: 700; }
+
+    /* ============================================================ PREGUNTAS FRECUENTES */
+    #preguntas { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+    .faq-grid { display: grid; gap: 2rem; }
+    @media (min-width: 960px) {
+      .faq-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); gap: 4rem; align-items: start; }
+      .faq-head { position: sticky; top: 7rem; }
+    }
+    .faq-head .section-sub { margin-bottom: 0; }
+    .faq-list { border-top: 1px solid var(--light-rule); }
+    .faq-item { border-bottom: 1px solid var(--light-rule); }
+    .faq-item summary {
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      padding: 1.25rem 0;
+      list-style: none; cursor: pointer;
+      font-family: "Manrope", sans-serif; font-size: 1.05rem; font-weight: 600; line-height: 1.4;
+      color: var(--light-text);
+      transition: color 0.2s var(--ease);
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { color: var(--light-accent-text); }
+    .faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+    .faq-ic { position: relative; flex: none; width: 14px; height: 14px; color: var(--light-muted); }
+    .faq-ic::before, .faq-ic::after {
+      content: ""; position: absolute; left: 0; top: 6px;
+      width: 14px; height: 2px; border-radius: 2px; background: currentColor;
+      transition: transform 0.3s var(--ease);
+    }
+    .faq-ic::after { transform: rotate(90deg); }
+    .faq-item[open] .faq-ic::after { transform: rotate(0deg); }
+    .faq-a p { margin: 0 0 1.35rem; max-width: 62ch; font-size: 0.98rem; line-height: 1.65; color: var(--light-muted); }
+    .faq-a a { color: var(--light-accent-text); text-decoration: underline; text-underline-offset: 3px; }
 
     /* ============================================================ LIGHT SECTIONS */
     /* Sin fondo sólido propio: el patrón de baldosas (fixed, a nivel
@@ -604,8 +611,6 @@
     .on-light-alt {
       background: linear-gradient(var(--light-bg-2-veil), var(--light-bg-2-veil));
     }
-    .on-light .eyebrow { color: var(--light-accent-text); }
-    .on-light .eyebrow::before { background: var(--light-accent-text); }
     .on-light .section-sub { color: var(--light-muted); }
     .on-light .feature-list p { color: var(--light-muted); }
     .on-light .feature-ic {
@@ -2770,7 +2775,6 @@
     <!-- ============================================================ PROBLEMA -->
     <section class="section on-light" id="problema">
       <div class="container">
-        <p class="eyebrow reveal">El problema</p>
         <h2 class="section-title reveal" data-delay="1">Menos de la mitad de quienes entran a la universidad se gradúa.</h2>
         <p class="section-sub reveal" data-delay="2">La deserción no es la excepción en la región: es la norma, y empieza desde el primer año.</p>
 
@@ -2838,7 +2842,6 @@
     <!-- ============================================================ EL PUNTO CIEGO (light) -->
     <section class="section on-light on-light-alt" id="contraste">
       <div class="container">
-        <p class="eyebrow reveal">El punto ciego</p>
         <h2 class="section-title reveal" data-delay="1">El mismo alumno, dos realidades.</h2>
         <p class="section-sub reveal" data-delay="2">Sus entregas dicen que va bien. Su actividad frente a su grupo dice otra cosa.</p>
 
@@ -2901,7 +2904,7 @@
 
         <div class="pc-close reveal">
           <p class="pc-big">8 semanas</p>
-          <p class="pc-kicker">en este caso ilustrativo, entre la primera alerta de Pharis y el primer cero. Para cuando el problema aparece en las entregas, <span class="pc-kicker-em">ya es un cero</span>.</p>
+          <p class="pc-kicker">Entre la primera alerta de Pharis y el primer cero. Para cuando el problema aparece en las entregas, <span class="pc-kicker-em">ya es un cero</span>.</p>
         </div>
       </div>
     </section>
@@ -2909,7 +2912,6 @@
     <!-- ============================================================ COMO FUNCIONA (light) -->
     <section class="section on-light" id="como-funciona">
       <div class="container">
-        <p class="eyebrow reveal">Cómo funciona</p>
         <h2 class="section-title reveal" data-delay="1">De la actividad en el LMS a la alerta del profesor.</h2>
         <p class="section-sub reveal" data-delay="2">Tres pasos. El alumno solo estudia como siempre; el sistema hace el resto.</p>
         <div class="stepper" id="stepper">
@@ -2993,7 +2995,6 @@
       <div class="container">
         <div class="split">
           <div>
-            <p class="eyebrow reveal">Para el alumno</p>
             <h2 class="section-title reveal" data-delay="1">Un tutor que conoce su clase, no un buscador genérico.</h2>
             <p class="section-sub reveal" data-delay="2">Pharis acompaña al alumno con el contexto de su propia materia y lo lleva a entender, no a copiar.</p>
             <ul class="feature-list">
@@ -3059,7 +3060,6 @@
     <!-- ============================================================ PARA EL PROFESOR (light) -->
     <section class="section on-light on-light-alt" id="profesor">
       <div class="container">
-        <p class="eyebrow reveal">Para el profesor</p>
         <h2 class="section-title reveal" data-delay="1">El tablero que tu LMS no te da.</h2>
         <p class="section-sub reveal" data-delay="2">Pharis convierte el trabajo diario de cada alumno en analítica pedagógica accionable, sin pedirte una hora extra.</p>
         <div class="prof-showcase" id="prof-showcase">
@@ -3179,7 +3179,6 @@
     <!-- ============================================================ PARA ADMINISTRATIVO (light) -->
     <section class="section on-light" id="administrativo">
       <div class="container adm" id="adm">
-        <p class="eyebrow reveal">Para administrativo</p>
         <h2 class="section-title reveal" data-delay="1">Toda la institución, en una sola vista.</h2>
         <p class="section-sub reveal" data-delay="2">Adopción, calificación y alumnos que se están apagando, por profesor y por materia. Sin pedir reportes.</p>
 
@@ -3306,7 +3305,6 @@
     <!-- ============================================================ ROI -->
     <section class="section on-light on-light-alt" id="roi">
       <div class="container">
-        <p class="eyebrow reveal">El retorno</p>
         <h2 class="section-title reveal" data-delay="1">Lo que cuesta la deserción.</h2>
         <p class="section-sub reveal" data-delay="2">Ajusta las cifras de tu institución y mira cuánto ingreso se pierde cada año.</p>
         <div class="roi-grid">
@@ -3339,7 +3337,6 @@
     <!-- ============================================================ INTEGRACION (light) -->
     <section class="section on-light" id="integracion">
       <div class="container">
-        <p class="eyebrow reveal">Integración</p>
         <h2 class="section-title reveal" data-delay="1">Se conecta con tu LMS. Nada más cambia.</h2>
         <p class="section-sub reveal" data-delay="2">Pharis lee el contexto que ya vive en tu plataforma educativa y lo convierte en ayuda para el alumno y en señales para el profesor. No reemplaza tu LMS: lo entiende.</p>
 
@@ -3407,12 +3404,57 @@
       </div>
     </section>
 
+    <!-- ============================================================ PREGUNTAS FRECUENTES -->
+    <section class="section on-light on-light-alt" id="preguntas">
+      <div class="container">
+        <div class="faq-grid">
+          <div class="faq-head">
+            <h2 class="section-title reveal">Preguntas frecuentes</h2>
+            <p class="section-sub reveal" data-delay="1">Lo que suelen preguntar las instituciones antes de una demo.</p>
+          </div>
+          <div class="faq-list reveal" data-delay="1">
+            <details class="faq-item">
+              <summary>¿Con qué plataforma educativa funciona?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <div class="faq-a"><p>Con el LMS que ya usa tu institución, a través de sus servicios web y en modo solo lectura. Antes de cualquier piloto revisamos juntos que tu plataforma tenga esos servicios habilitados.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary>¿Hay que instalar algo en nuestros servidores?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <div class="faq-a"><p>No. No hace falta instalar nada en el servidor del LMS ni dar acceso de administrador. El profesor y la dirección entran desde el navegador; el alumno usa una extensión de Chrome o una app ligera para Windows.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary>¿El tutor le hace la tarea al alumno?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <div class="faq-a"><p>No. Pharis le explica el procedimiento con el material de su curso y lo guía para que llegue él a la respuesta. El alumno sabe en todo momento que habla con una IA.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary>¿Qué tan precisa es la señal de riesgo?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <div class="faq-a"><p>Usa solo lo que el alumno hace en el LMS: días con acceso comparados con su grupo, tareas sin entregar o entregadas tarde y calificaciones. Está entrenada con datos públicos de otras universidades, así que no publicamos una cifra de precisión: se calibra al cierre de un ciclo completo, con las bajas reales de tu institución. Cada alerta muestra sus motivos.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary>¿Pharis toma decisiones sobre los alumnos?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <div class="faq-a"><p>No. El nivel de riesgo es una señal para una persona, que decide si actúa y cómo. La señal propone apoyo, nunca sanciones.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary>¿Se pueden sumar datos financieros?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <div class="faq-a"><p>Sí, de forma opcional. Si la institución comparte señales como un adeudo o una beca, se suman al riesgo con un ajuste fijo y explicado, y el área de Finanzas ve solo lo que le corresponde.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary>¿Qué pasa con los datos de nuestros alumnos?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <div class="faq-a"><p>Pharis solo lee del LMS, cada quien ve solo lo suyo y no entrenamos modelos de IA con tus datos. Al terminar el contrato borramos todo y los respaldos caducan en 30 días. El detalle está en <a href="seguridad.html">Seguridad y privacidad</a>.</p></div>
+            </details>
+            <details class="faq-item">
+              <summary>¿Cómo empezamos?<span class="faq-ic" aria-hidden="true"></span></summary>
+              <div class="faq-a"><p>Con una demo sobre una universidad ficticia, sin conectar nada. Después, un piloto de 8 semanas con unos cuantos profesores voluntarios; si no continúan, borramos los datos. Los pasos están en <a href="piloto.html">Piloto</a>.</p></div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============================================================ CTA / DEMO -->
     <section class="section on-light on-light-alt section--flush-bottom" id="demo">
       <div class="container">
         <div class="cta-grid">
           <div class="cta-copy">
-            <p class="eyebrow reveal">Empieza este semestre</p>
             <h2 class="reveal" data-delay="1">Llega antes que el primer cero.</h2>
             <p class="cta-lead reveal" data-delay="2">Agenda una demo para tu institución. Te mostramos el tablero con datos simulados y calculamos juntos el retorno para tu campus. Sin compromiso.</p>
             <ul class="cta-points reveal" data-delay="2">
@@ -3532,6 +3574,7 @@
                 <li><a href="#demo-video">Demo</a></li>
                 <li><a href="#integracion">Integración</a></li>
                 <li><a href="#roi">Retorno</a></li>
+                <li><a href="#preguntas">Preguntas frecuentes</a></li>
               </ul>
             </div>
             <div class="footer-col">
