@@ -27,7 +27,6 @@
   <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-es.jpg" />
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharis.mx/#org", "name": "Pharis", "url": "https://pharis.mx/", "logo": "https://pharis.mx/assets/logo.svg", "email": "contacto@pharis.mx", "areaServed": "Latin America"}, {"@type": "WebSite", "@id": "https://pharis.mx/#website", "url": "https://pharis.mx/", "name": "Pharis", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}, {"@type": "SoftwareApplication", "name": "Pharis", "url": "https://pharis.mx/", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows, Chrome", "description": "Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción que se actualiza cada día con la actividad del LMS. Avisa cuando un alumno empieza a alejarse de su grupo.", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}]}</script>
   <!-- SEO:end -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"es-MX","mainEntity":[{"@type":"Question","name":"¿Con qué plataforma educativa funciona?","acceptedAnswer":{"@type":"Answer","text":"Con el LMS que ya usa tu institución, a través de sus servicios web y en modo solo lectura. Antes de cualquier piloto revisamos juntos que tu plataforma tenga esos servicios habilitados. Hoy Pharis se conecta con Moodle; el detalle está en Alerta temprana en Moodle."}},{"@type":"Question","name":"¿Hay que instalar algo en nuestros servidores?","acceptedAnswer":{"@type":"Answer","text":"No. No hace falta instalar nada en el servidor del LMS ni dar acceso de administrador. El profesor y la dirección entran desde el navegador; el alumno usa una extensión de Chrome o una app ligera para Windows."}},{"@type":"Question","name":"¿El tutor le hace la tarea al alumno?","acceptedAnswer":{"@type":"Answer","text":"No. Pharis le explica el procedimiento con el material de su curso y lo guía para que llegue él a la respuesta. El alumno sabe en todo momento que habla con una IA."}},{"@type":"Question","name":"¿Qué tan precisa es la señal de riesgo?","acceptedAnswer":{"@type":"Answer","text":"Usa solo lo que el alumno hace en el LMS: días con acceso comparados con su grupo, tareas sin entregar o entregadas tarde y calificaciones. Está entrenada con datos públicos de otras universidades, así que no publicamos una cifra de precisión: se calibra al cierre de un ciclo completo, con las bajas reales de tu institución. Cada alerta muestra sus motivos. El detalle está en Cómo calcula Pharis el riesgo."}},{"@type":"Question","name":"¿Pharis toma decisiones sobre los alumnos?","acceptedAnswer":{"@type":"Answer","text":"No. El nivel de riesgo es una señal para una persona, que decide si actúa y cómo. La señal propone apoyo, nunca sanciones."}},{"@type":"Question","name":"¿Se pueden sumar datos financieros?","acceptedAnswer":{"@type":"Answer","text":"Sí, de forma opcional. Si la institución comparte señales como un adeudo o una beca, se suman al riesgo con un ajuste fijo y explicado, y el área de Finanzas ve solo lo que le corresponde."}},{"@type":"Question","name":"¿Qué pasa con los datos de nuestros alumnos?","acceptedAnswer":{"@type":"Answer","text":"Pharis solo lee del LMS, cada quien ve solo lo suyo y no entrenamos modelos de IA con tus datos. Al terminar el contrato borramos todo y los respaldos caducan en 30 días."}},{"@type":"Question","name":"¿Cómo empezamos?","acceptedAnswer":{"@type":"Answer","text":"Con una demo sobre los datos reales de tu institución: conectamos tu LMS en modo solo lectura y te mostramos tus grupos, los alumnos que hoy van en riesgo y por qué. Después, un piloto de 8 semanas con unos cuantos profesores voluntarios. Si no continúan, borramos los datos de la institución."}}]}</script>
   <meta name="theme-color" content="#f5f8fc" />
 
   <!-- Open Graph -->
@@ -451,6 +450,14 @@
     .rv-kpis small { display: block; font-size: 0.72rem; color: var(--light-muted); }
     .rv-kpis b { display: block; margin-top: 0.15rem; font-family: "Manrope", sans-serif; font-size: 1.35rem; letter-spacing: -0.02em; }
     .rv-kpis span { font-size: 0.72rem; color: var(--light-muted); }
+
+    /* ============================================================ HOME Y SUBPÁGINAS */
+    .hx-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 1.6rem; position: relative; z-index: 3; }
+    .hx-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 1.6rem; border-radius: 999px; font-weight: 700; }
+    #ph2-hero.is-sub { min-height: 0; padding-bottom: 0; }
+    h1.section-title { font-size: var(--h2); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 1.1rem; }
+    .cta-corto { text-align: center; }
+    .cta-corto .section-sub { margin: 0 auto 1.9rem; }
 
     /* ============================================================ PREGUNTAS FRECUENTES */
     #preguntas { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
@@ -2183,9 +2190,7 @@
           </svg>
         </a>
         <ul class="ph2-nav-links">
-          <li><a href="#problema">El problema</a></li>
           <li><a href="#como-funciona">Cómo funciona</a></li>
-          <li><a href="#demo-video">Demo</a></li>
           <li class="ph2-nav-dd">
             <button type="button" class="ph2-nav-dd-btn" id="ph2-perfiles-btn" aria-haspopup="true" aria-expanded="false" aria-controls="ph2-perfiles-menu">
               Perfiles
@@ -2206,10 +2211,12 @@
               </a>
             </div>
           </li>
-          <li><a href="#roi">Retorno</a></li>
+          <li><a href="integracion">Integración</a></li>
+          <li><a href="retorno">Retorno</a></li>
+          <li><a href="preguntas">Preguntas</a></li>
         </ul>
         <div class="ph2-nav-ctas">
-          <a href="#demo" class="ph2-nav-btn ph2-nav-btn-solid">Solicitar demo</a>
+          <a href="demo" class="ph2-nav-btn ph2-nav-btn-solid">Solicitar demo</a>
         </div>
       </nav>
     </header>
@@ -2218,6 +2225,7 @@
       <div class="ph2-hero-text">
         <h1 aria-label="El alumno en riesgo ya dio señales. Pharis las ve primero."><span aria-hidden="true">El alumno en riesgo ya dio señales.<br /><strong>Phar<span id="ph2-lamp-tick">ı</span>s las ve primero.</strong></span></h1>
         <p class="ph2-sub">Pharis es un sistema de alerta temprana de deserción universitaria: acompaña al alumno mientras estudia y avisa a profesores y directivos cuando alguien empieza a alejarse de su grupo, con base en su actividad y sus entregas en el LMS.</p>
+        <div class="hx-ctas"><a class="btn btn-primary hx-btn" href="demo">Agenda una demo</a></div>
       </div>
 
       <div class="ph2-hero-subject">
@@ -2826,42 +2834,8 @@
       </div>
     </section>
 
-    <!-- ============================================================ DEMO VIDEO -->
-    <section class="section-video on-light on-light-alt reveal" id="demo-video">
-      <div class="container">
-        <div class="section-label">
-          <span class="label-line"></span>
-          DEMO
-        </div>
-        <h2 class="section-title">Míralo en acción.</h2>
-        <p class="section-sub">
-          Del tutor del alumno al tablero del profesor.
-          Así es Pharis en menos de dos minutos.
-        </p>
-
-        <div class="video-wrapper">
-          <video
-            id="pharis-demo-video"
-            playsinline
-            preload="metadata"
-            poster="assets/video-poster.jpg"
-          >
-            <source src="https://assets.pharis.mx/video-pharis.mp4" type="video/mp4">
-            <!-- Subtítulos pendientes: cuando exista assets/video-pharis.es.vtt, agregar
-                 <track kind="subtitles" src="assets/video-pharis.es.vtt" srclang="es" label="Español" default> -->
-          </video>
-
-          <button class="video-play-btn" id="video-play-btn" aria-label="Reproducir demo">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </section>
-
     <!-- ============================================================ PARA EL ALUMNO -->
-    <section class="section on-light" id="alumno">
+    <section class="section on-light on-light-alt" id="alumno">
       <div class="container">
         <div class="split">
           <div>
@@ -2928,7 +2902,7 @@
     </section>
 
     <!-- ============================================================ PARA EL PROFESOR (light) -->
-    <section class="section on-light on-light-alt" id="profesor">
+    <section class="section on-light" id="profesor">
       <div class="container">
         <h2 class="section-title reveal" data-delay="1">El tablero que tu LMS no te da.</h2>
         <p class="section-sub reveal" data-delay="2">Pharis convierte el trabajo diario de cada alumno en analítica pedagógica accionable, sin pedirte una hora extra.</p>
@@ -3047,7 +3021,7 @@
     </section>
 
     <!-- ============================================================ PARA ADMINISTRATIVO (light) -->
-    <section class="section on-light" id="administrativo">
+    <section class="section on-light on-light-alt" id="administrativo">
       <div class="container adm" id="adm">
         <h2 class="section-title reveal" data-delay="1">Toda la institución, en una sola vista.</h2>
         <p class="section-sub reveal" data-delay="2">Adopción, calificación y alumnos que se están apagando, por profesor y por materia. Sin pedir reportes.</p>
@@ -3173,7 +3147,7 @@
     </section>
 
     <!-- ============================================================ PERFILES: SELECTOR POR ROL -->
-    <section class="section on-light on-light-alt" id="perfiles">
+    <section class="section on-light" id="perfiles">
       <div class="container">
         <h2 class="section-title reveal">Cada quien ve lo que le toca.</h2>
         <p class="section-sub reveal" data-delay="1">La misma señal llega al alumno, al profesor y a cada área de la institución, con lo que cada uno necesita para actuar.</p>
@@ -3262,243 +3236,12 @@
       </div>
     </section>
 
-    <!-- ============================================================ ROI -->
-    <section class="section on-light" id="roi">
-      <div class="container">
-        <h2 class="section-title reveal" data-delay="1">Lo que cuesta la deserción.</h2>
-        <p class="section-sub reveal" data-delay="2">Ajusta las cifras de tu institución y mira cuánto ingreso se pierde cada año.</p>
-        <div class="roi-grid">
-          <div class="calc reveal">
-            <div class="calc-field">
-              <label for="alumnos">Alumnos matriculados <span class="val" id="alumnos-val">2,000</span></label>
-              <input type="range" id="alumnos" min="200" max="20000" step="100" value="2000" />
-            </div>
-            <div class="calc-field">
-              <label for="desercion">Deserción anual <span class="val" id="desercion-val">7%</span></label>
-              <input type="range" id="desercion" min="1" max="50" step="1" value="7" />
-            </div>
-            <div class="calc-field">
-              <label for="colegiatura">Arancel / colegiatura promedio al año (MXN)</label>
-              <input class="calc-num" type="number" id="colegiatura" min="10000" step="5000" value="85000" inputmode="numeric" />
-            </div>
-          </div>
-          <div class="result reveal" data-delay="1">
-            <span class="r-label">Ingreso perdido por deserción al año</span>
-            <p class="r-loss" id="loss">$0</p>
-            <p class="r-loss-note" id="loss-detail">&nbsp;</p>
-            <hr />
-            <p class="r-pay">Si se quedaran <strong>10 alumnos</strong> más al año, serían <span id="retain-value">$0</span> de colegiatura que no se pierde.</p>
-            <p class="r-foot">Escenario ilustrativo, no un resultado prometido: cuántos alumnos se quedan depende de lo que la institución haga con cada alerta, y se mide al cierre de un ciclo. La cifra usa tu colegiatura promedio. La deserción inicial (7%) es la tasa nacional de abandono en educación superior, ciclo 2023-2024 (SEP, Principales Cifras 2024-2025); ajústala a la de tu institución.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================ INTEGRACION (light) -->
-    <section class="section on-light on-light-alt" id="integracion">
-      <div class="container">
-        <h2 class="section-title reveal" data-delay="1">Se conecta con tu LMS. Nada más cambia.</h2>
-        <p class="section-sub reveal" data-delay="2">Pharis lee el contexto que ya vive en tu plataforma educativa y lo convierte en ayuda para el alumno y en señales para el profesor. No reemplaza tu LMS: lo entiende.</p>
-
-        <div class="flow reveal" id="flow">
-          <svg class="flow-lines" id="flow-lines" aria-hidden="true"></svg>
-
-          <div class="flow-col">
-            <div class="flow-card" data-flow="src">
-              <div class="flow-card-hd">
-                <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-                <strong>Tu LMS</strong>
-                <span class="flow-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Solo lectura</span>
-              </div>
-              <ul class="flow-reads">
-                <li><button type="button" class="flow-read" data-key="grupos" aria-pressed="false">Materias y grupos</button></li>
-                <li><button type="button" class="flow-read" data-key="tareas" aria-pressed="false">Tareas y entregas</button></li>
-                <li><button type="button" class="flow-read" data-key="rubricas" aria-pressed="false">Rúbricas y calificaciones</button></li>
-              </ul>
-              <p class="flow-hint">Toca un dato para ver en qué se convierte.</p>
-            </div>
-          </div>
-
-          <div class="flow-col flow-mid">
-            <div class="flow-core" data-flow="core">
-              <svg viewBox="0 0 21 17" fill="#ffffff" aria-hidden="true"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z"/></svg>
-              <span>Pharis</span>
-            </div>
-          </div>
-
-          <div class="flow-col flow-out">
-            <div class="flow-card flow-dest" data-flow="dest" data-dest="alumno" tabindex="0">
-              <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
-              <strong>Alumno</strong>
-              <p class="flow-dest-text" aria-live="polite">Un tutor que conoce cada materia, en Chrome o en Windows.</p>
-            </div>
-            <div class="flow-card flow-dest" data-flow="dest" data-dest="profesor" tabindex="0">
-              <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></span>
-              <strong>Profesor</strong>
-              <p class="flow-dest-text" aria-live="polite">Tablero que se actualiza cada día y alertas de alumnos en riesgo.</p>
-            </div>
-            <div class="flow-card flow-dest" data-flow="dest" data-dest="direccion" tabindex="0">
-              <span class="flow-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg></span>
-              <strong>Administrativo</strong>
-              <p class="flow-dest-text" aria-live="polite">Vista institucional de todos los grupos.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="integ-foot">
-          <ul class="integ-list reveal">
-            <li>
-              <span class="cta-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <span><strong>Solo lectura.</strong> Pharis consulta tu LMS; nunca escribe en él ni cambia calificaciones.</span>
-            </li>
-            <li>
-              <span class="cta-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <span><strong>Sin servidores ni migraciones.</strong> Tu contenido sigue viviendo en tu LMS.</span>
-            </li>
-            <li>
-              <span class="cta-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <span><strong>Para el alumno,</strong> una extensión de Chrome o una app ligera para Windows.</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================ PREGUNTAS FRECUENTES -->
-    <section class="section on-light" id="preguntas">
-      <div class="container">
-        <div class="faq-grid">
-          <div class="faq-head">
-            <h2 class="section-title reveal">Preguntas frecuentes</h2>
-            <p class="section-sub reveal" data-delay="1">Lo que suelen preguntar las instituciones antes de una demo.</p>
-          </div>
-          <div class="faq-list reveal" data-delay="1">
-            <details class="faq-item">
-              <summary>¿Con qué plataforma educativa funciona?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>Con el LMS que ya usa tu institución, a través de sus servicios web y en modo solo lectura. Antes de cualquier piloto revisamos juntos que tu plataforma tenga esos servicios habilitados. Hoy Pharis se conecta con Moodle; el detalle está en <a href="alerta-temprana-moodle">Alerta temprana en Moodle</a>.</p></div>
-            </details>
-            <details class="faq-item">
-              <summary>¿Hay que instalar algo en nuestros servidores?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>No. No hace falta instalar nada en el servidor del LMS ni dar acceso de administrador. El profesor y la dirección entran desde el navegador; el alumno usa una extensión de Chrome o una app ligera para Windows.</p></div>
-            </details>
-            <details class="faq-item">
-              <summary>¿El tutor le hace la tarea al alumno?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>No. Pharis le explica el procedimiento con el material de su curso y lo guía para que llegue él a la respuesta. El alumno sabe en todo momento que habla con una IA.</p></div>
-            </details>
-            <details class="faq-item">
-              <summary>¿Qué tan precisa es la señal de riesgo?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>Usa solo lo que el alumno hace en el LMS: días con acceso comparados con su grupo, tareas sin entregar o entregadas tarde y calificaciones. Está entrenada con datos públicos de otras universidades, así que no publicamos una cifra de precisión: se calibra al cierre de un ciclo completo, con las bajas reales de tu institución. Cada alerta muestra sus motivos. El detalle está en <a href="metodologia">Cómo calcula Pharis el riesgo</a>.</p></div>
-            </details>
-            <details class="faq-item">
-              <summary>¿Pharis toma decisiones sobre los alumnos?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>No. El nivel de riesgo es una señal para una persona, que decide si actúa y cómo. La señal propone apoyo, nunca sanciones.</p></div>
-            </details>
-            <details class="faq-item">
-              <summary>¿Se pueden sumar datos financieros?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>Sí, de forma opcional. Si la institución comparte señales como un adeudo o una beca, se suman al riesgo con un ajuste fijo y explicado, y el área de Finanzas ve solo lo que le corresponde.</p></div>
-            </details>
-            <details class="faq-item">
-              <summary>¿Qué pasa con los datos de nuestros alumnos?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>Pharis solo lee del LMS, cada quien ve solo lo suyo y no entrenamos modelos de IA con tus datos. Al terminar el contrato borramos todo y los respaldos caducan en 30 días.</p></div>
-            </details>
-            <details class="faq-item">
-              <summary>¿Cómo empezamos?<span class="faq-ic" aria-hidden="true"></span></summary>
-              <div class="faq-a"><p>Con una demo sobre los datos reales de tu institución: conectamos tu LMS en modo solo lectura y te mostramos tus grupos, los alumnos que hoy van en riesgo y por qué. Después, un piloto de 8 semanas con unos cuantos profesores voluntarios. Si no continúan, borramos los datos de la institución.</p></div>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================ CTA / DEMO -->
-    <section class="section on-light on-light-alt section--flush-bottom" id="demo">
-      <div class="container">
-        <div class="cta-grid">
-          <div class="cta-copy">
-            <h2 class="reveal" data-delay="1">Llega antes que el primer cero.</h2>
-            <p class="cta-lead reveal" data-delay="2">Agenda una demo para tu institución. La hacemos con tus datos reales: conectamos tu LMS en modo solo lectura, te mostramos quién va en riesgo en tus grupos y calculamos juntos el retorno para tu campus.</p>
-            <ul class="cta-points reveal" data-delay="2">
-              <li>
-                <span class="cta-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-                <span><strong>Se conecta con tu LMS</strong><span>El contexto de cada materia, sin cambiar de plataforma.</span></span>
-              </li>
-              <li>
-                <span class="cta-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-                <span><strong>No califica: orienta</strong><span>Cada alerta y cada análisis es un punto de partida.</span></span>
-              </li>
-              <li>
-                <span class="cta-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-                <span><strong>El profesor decide</strong><span>Pharis sugiere; la decisión siempre es del profesor.</span></span>
-              </li>
-            </ul>
-            <p class="cta-direct reveal">¿Prefieres escribirnos? <a href="mailto:contacto@pharis.mx?subject=Solicitud%20de%20demo%20Pharis">contacto@pharis.mx</a></p>
-          </div>
-
-          <form class="form reveal" data-delay="1" id="demo-form" novalidate>
-            <div class="form-fields" id="demo-fields">
-              <div class="form-row">
-                <div>
-                  <label for="f-nombre">Nombre</label>
-                  <input type="text" id="f-nombre" name="nombre" autocomplete="name" required maxlength="120" placeholder="Tu nombre" />
-                </div>
-                <div>
-                  <label for="f-email">Correo institucional</label>
-                  <input type="email" id="f-email" name="email" autocomplete="email" required maxlength="200" placeholder="tu@universidad.mx" />
-                </div>
-              </div>
-              <div>
-                <label for="f-institucion">Institución</label>
-                <input type="text" id="f-institucion" name="institucion" autocomplete="organization" required maxlength="160" placeholder="Universidad o campus" />
-              </div>
-              <div class="form-row">
-                <div>
-                  <label for="f-rol">Tu rol</label>
-                  <select id="f-rol" name="rol" required>
-                    <option value="" disabled selected>Selecciona</option>
-                    <option>Rectoría o dirección</option>
-                    <option>Coordinación académica</option>
-                    <option>Profesor</option>
-                    <option>Tecnología (TI)</option>
-                    <option>Otro</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="f-tamano">Alumnos en tu institución</label>
-                  <select id="f-tamano" name="tamano" required>
-                    <option value="" disabled selected>Selecciona</option>
-                    <option>Menos de 1,000</option>
-                    <option>1,000 a 5,000</option>
-                    <option>5,000 a 20,000</option>
-                    <option>Más de 20,000</option>
-                  </select>
-                </div>
-              </div>
-              <fieldset>
-                <legend>¿Qué LMS usan?</legend>
-                <div class="lms-chips">
-                  <label class="lms-chip"><input type="radio" name="lms" value="Moodle" required /><span>Moodle</span></label>
-                  <label class="lms-chip"><input type="radio" name="lms" value="Canvas" /><span>Canvas</span></label>
-                  <label class="lms-chip"><input type="radio" name="lms" value="Blackboard" /><span>Blackboard</span></label>
-                  <label class="lms-chip"><input type="radio" name="lms" value="Otro" /><span>Otro</span></label>
-                </div>
-                <p class="lms-note" id="lms-note" hidden>Cuéntanos qué LMS usan y revisamos contigo cómo se conecta Pharis.</p>
-              </fieldset>
-              <div class="form-hp" aria-hidden="true">
-                <label for="f-website">No llenar</label>
-                <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
-              </div>
-              <button type="submit" class="btn btn-primary btn-block" id="demo-submit">Solicitar demo</button>
-              <p class="form-error" id="demo-error" role="alert"></p>
-              <p class="form-note">Al enviar aceptas nuestro <a href="privacy">aviso de privacidad</a>. Respondemos en menos de 24 horas hábiles.</p>
-            </div>
-
-            <div class="form-success" id="demo-success" role="status" hidden>
-              <span class="form-success-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <h3>Recibimos tu solicitud.</h3>
-              <p>Te escribiremos a <strong id="demo-success-email"></strong> en menos de 24 horas hábiles.</p>
-            </div>
-          </form>
-        </div>
+    <!-- ============================================================ CTA CORTO -->
+    <section class="section on-light on-light-alt" id="demo-cta">
+      <div class="container cta-corto">
+        <h2 class="section-title reveal">Llega antes que el primer cero.</h2>
+        <p class="section-sub reveal" data-delay="1">Agenda una demo con los datos de tu institución: conectamos tu LMS en modo solo lectura y te mostramos quién va en riesgo en tus grupos.</p>
+        <a class="btn btn-primary hx-btn reveal" data-delay="2" href="demo">Agenda una demo</a>
       </div>
     </section>
   </main>
@@ -3516,7 +3259,7 @@
               <span>Pharis</span>
             </a>
             <p class="footer-tagline">Desarrollado en México para universidades latinoamericanas.</p>
-            <a class="footer-cta" href="#demo">Solicitar demo
+            <a class="footer-cta" href="demo">Solicitar demo
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
           </div>
@@ -3531,10 +3274,10 @@
               <h3>Producto</h3>
               <ul>
                 <li><a href="#como-funciona">Cómo funciona</a></li>
-                <li><a href="#demo-video">Demo</a></li>
-                <li><a href="#integracion">Integración</a></li>
-                <li><a href="#roi">Retorno</a></li>
-                <li><a href="#preguntas">Preguntas frecuentes</a></li>
+                <li><a href="demo#demo-video">Demo</a></li>
+                <li><a href="integracion">Integración</a></li>
+                <li><a href="retorno">Retorno</a></li>
+                <li><a href="preguntas">Preguntas frecuentes</a></li>
               </ul>
             </div>
             <div class="footer-col">
@@ -4535,6 +4278,7 @@
     })();
 
     // ---------- Calculadora de ROI ----------
+    if (document.getElementById("alumnos")) {
     const mxn = new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN", maximumFractionDigits: 0 });
     const num = new Intl.NumberFormat("es-MX");
 
@@ -4598,6 +4342,8 @@
 
     [alumnosEl, desercionEl, colegiaturaEl].forEach((el) => el.addEventListener("input", recalc));
     recalc();
+
+    }
 
     // ---------- Enlaces internos sin "#" en la URL ----------
     // Los enlaces a secciones (#problema, #demo...) desplazan la página

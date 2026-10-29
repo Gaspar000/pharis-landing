@@ -17,12 +17,16 @@
 
 ## Páginas
 
-- [Inicio](https://pharis.mx/): producto, el problema de la deserción, cómo funciona, perfiles, retorno, preguntas frecuentes y solicitud de demo.
+- [Inicio](https://pharis.mx/): el problema de la deserción, el punto ciego de las calificaciones, cómo funciona, el tutor del alumno, el tablero del profesor, la vista institucional y qué ve cada rol.
+- [Integración](https://pharis.mx/integracion): cómo se conecta Pharis con el LMS de la institución, en modo solo lectura.
+- [Solicitar demo](https://pharis.mx/demo): video del producto y solicitud de una demo con los datos de la institución.
+- [Retorno](https://pharis.mx/retorno): calculadora de lo que cuesta la deserción a una institución.
+- [Preguntas frecuentes](https://pharis.mx/preguntas): plataforma, instalación, precisión de la señal de riesgo, datos y cómo empezar.
 - [Cómo calcula Pharis el riesgo de deserción](https://pharis.mx/metodologia): datos que usa, qué deja fuera, con qué se entrenó y por qué no publica una cifra de precisión.
 - [Deserción universitaria en América Latina](https://pharis.mx/desercion-universitaria): cifras con fuente, cuándo y por qué abandonan los alumnos, y qué puede hacer una institución.
 - [Alerta temprana de deserción en Moodle](https://pharis.mx/alerta-temprana-moodle): qué gana una institución que usa Moodle, cómo se empieza y qué no cambia en su plataforma.
 - [Política de privacidad](https://pharis.mx/privacy)
-- English: [Home](https://pharis.mx/en/), [How Pharis calculates dropout risk](https://pharis.mx/en/methodology), [University dropout in Latin America](https://pharis.mx/en/university-dropout), [Early warning in Moodle](https://pharis.mx/en/moodle-early-warning), [Privacy policy](https://pharis.mx/en/privacy)
+- English: [Home](https://pharis.mx/en/), [Integration](https://pharis.mx/en/integration), [Demo](https://pharis.mx/en/demo), [Return](https://pharis.mx/en/roi), [FAQ](https://pharis.mx/en/faq), [How Pharis calculates dropout risk](https://pharis.mx/en/methodology), [University dropout in Latin America](https://pharis.mx/en/university-dropout), [Early warning in Moodle](https://pharis.mx/en/moodle-early-warning), [Privacy policy](https://pharis.mx/en/privacy)
 
 ## Contacto
 

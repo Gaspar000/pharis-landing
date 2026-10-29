@@ -71,4 +71,60 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/moodle-early-warning" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/alerta-temprana-moodle" />
   </url>
+  <url>
+    <loc>https://pharis.mx/integracion</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/integracion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/integration" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/integracion" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/integration</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/integracion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/integration" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/integracion" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/demo</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/demo" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/demo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/demo" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/demo</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/demo" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/demo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/demo" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/retorno</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/retorno" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/roi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/retorno" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/roi</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/retorno" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/roi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/retorno" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/preguntas</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/preguntas" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/preguntas" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/faq</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/preguntas" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/preguntas" />
+  </url>
 </urlset>
