@@ -559,6 +559,43 @@
     .pf-cta { margin-top: clamp(4rem, 8vw, 6rem); }
     @media (prefers-reduced-motion: reduce) { .pf-ev { opacity: 1; translate: 0 0; transition: none; } }
 
+    /* ============================================================ RETORNO: GRÁFICAS
+       Cuadrícula de alumnos (cada punto = N alumnos) y barras de la pérdida
+       acumulada a 5 años. Rojo: se van; azul: los 10 que podrían quedarse. */
+    .roi-viz { margin-top: 1.9rem; padding-top: 1.5rem; border-top: 1px solid var(--light-rule); }
+    .roi-viz-hd { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.3rem 1rem; margin-bottom: 0.9rem; }
+    .roi-viz-t { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--light-text); }
+    .roi-viz-u { font-size: 0.78rem; color: var(--light-muted); }
+    .roi-dots { display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 5px; }
+    .roi-dot { aspect-ratio: 1; border-radius: 50%; background: #dfe5ef; transition: background-color 0.45s ease, transform 0.45s var(--ease); transition-delay: calc(var(--d, 0) * 12ms); }
+    .roi-dot.is-lose { background: #c8372f; transform: translateY(2px) scale(0.86); }
+    .roi-dot.is-save { background: #508ff8; transform: none; box-shadow: 0 0 0 2px color-mix(in srgb, #508ff8 25%, transparent); }
+    .roi-dot.is-part { background: linear-gradient(90deg, #508ff8 var(--f), #c8372f var(--f)); transform: translateY(2px) scale(0.86); }
+    .roi-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin: 0.9rem 0 0; padding: 0; font-size: 0.8rem; color: var(--light-muted); }
+    .roi-legend li { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .roi-legend i { width: 10px; height: 10px; border-radius: 50%; }
+    .k-stay { background: #dfe5ef; } .k-lose { background: #c8372f; } .k-save { background: #508ff8; }
+
+    .roi-chart { margin-top: 2.2rem; padding: clamp(1.4rem, 3vw, 2rem); border-radius: var(--radius-lg, 18px); background: var(--light-panel); border: 1px solid var(--light-rule); }
+    .roi-chart h2 { margin: 0; font-family: "Manrope", sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.5rem); font-weight: 700; letter-spacing: -0.015em; color: var(--light-text); }
+    .roi-chart > p { margin: 0.4rem 0 0; max-width: 62ch; font-size: 0.92rem; line-height: 1.55; color: var(--light-muted); }
+    .roi-bars { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(0.8rem, 3vw, 2.2rem); align-items: end; height: 240px; margin-top: 2.6rem; padding: 0 0.25rem; border-bottom: 1px solid var(--light-rule); }
+    .roi-bar { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; cursor: default; outline: none; }
+    .roi-col { display: flex; flex-direction: column; gap: 2px; height: var(--h, 0%); transition: height 0.6s var(--ease); }
+    .roi-seg { display: block; min-height: 0; }
+    .roi-seg--save { background: #508ff8; border-radius: 4px 4px 0 0; flex: 0 0 var(--s, 0%); transition: flex-basis 0.6s var(--ease); }
+    .roi-seg--lose { background: #c8372f; flex: 1 1 auto; opacity: 0.88; }
+    .roi-bar:hover .roi-seg, .roi-bar:focus-visible .roi-seg { filter: brightness(1.08); }
+    .roi-val { position: absolute; left: 50%; bottom: calc(var(--h, 0%) + 8px); transform: translateX(-50%); white-space: nowrap; font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--light-text); transition: bottom 0.6s var(--ease); }
+    .roi-bar:not([data-y="5"]) .roi-val { opacity: 0; transition: opacity 0.2s, bottom 0.6s var(--ease); }
+    .roi-bar:hover .roi-val, .roi-bar:focus-visible .roi-val { opacity: 1; }
+    .roi-xs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(0.8rem, 3vw, 2.2rem); padding: 0.55rem 0.25rem 0; font-size: 0.78rem; color: var(--light-muted); text-align: center; }
+    .roi-tip { position: absolute; z-index: 5; min-width: 200px; padding: 0.65rem 0.8rem; border-radius: 10px; background: #0f1b30; color: #fff; font-size: 0.8rem; line-height: 1.45; pointer-events: none; opacity: 0; transform: translate(-50%, -6px); transition: opacity 0.15s; }
+    .roi-tip.is-on { opacity: 1; }
+    .roi-tip b { display: block; margin-bottom: 0.2rem; font-family: "Manrope", sans-serif; }
+    .roi-tip i { display: inline-block; width: 8px; height: 8px; margin-right: 0.35rem; border-radius: 50%; }
+    @media (prefers-reduced-motion: reduce) { .roi-dot, .roi-col, .roi-seg--save, .roi-val { transition: none; } }
+
     /* ============================================================ PREGUNTAS FRECUENTES */
     #preguntas { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
     .faq-grid { display: grid; gap: 2rem; }
@@ -2416,6 +2453,11 @@
               <label for="colegiatura">Average annual tuition (MXN)</label>
               <input class="calc-num" type="number" id="colegiatura" min="10000" step="5000" value="85000" inputmode="numeric" />
             </div>
+            <div class="roi-viz" aria-live="polite">
+              <div class="roi-viz-hd"><span class="roi-viz-t">What your enrollment looks like</span><span class="roi-viz-u" id="roi-unit"></span></div>
+              <div class="roi-dots" id="roi-dots" role="img"></div>
+              <ul class="roi-legend"><li><i class="k-stay"></i>Stay</li><li><i class="k-lose"></i>Leave every year</li><li><i class="k-save"></i>10 who could stay</li></ul>
+            </div>
           </div>
           <div class="result reveal" data-delay="1">
             <span class="r-label">Revenue lost to dropout each year</span>
@@ -2425,6 +2467,20 @@
             <p class="r-pay">If <strong>10 more students</strong> stayed each year, that would be <span id="retain-value">$0</span> in tuition that is not lost.</p>
             <p class="r-foot">Illustrative scenario, not a promised result: how many students stay depends on what the institution does with each alert, and it is measured at the end of a term. The figure uses your average tuition. The starting dropout rate (7%) is Mexico's national higher-education dropout rate for the 2023-2024 school year (SEP, Principales Cifras 2024-2025); adjust it to your institution's.</p>
           </div>
+        </div>
+        <div class="roi-chart reveal">
+          <h2>What adds up over five years</h2>
+          <p>Cumulative revenue lost to dropout, and the part that would not be lost if 10 more students stayed each year.</p>
+          <div class="roi-bars" id="roi-bars">
+            <div class="roi-bar" tabindex="0" data-y="1"><span class="roi-val"></span><span class="roi-col"><span class="roi-seg roi-seg--save"></span><span class="roi-seg roi-seg--lose"></span></span></div>
+            <div class="roi-bar" tabindex="0" data-y="2"><span class="roi-val"></span><span class="roi-col"><span class="roi-seg roi-seg--save"></span><span class="roi-seg roi-seg--lose"></span></span></div>
+            <div class="roi-bar" tabindex="0" data-y="3"><span class="roi-val"></span><span class="roi-col"><span class="roi-seg roi-seg--save"></span><span class="roi-seg roi-seg--lose"></span></span></div>
+            <div class="roi-bar" tabindex="0" data-y="4"><span class="roi-val"></span><span class="roi-col"><span class="roi-seg roi-seg--save"></span><span class="roi-seg roi-seg--lose"></span></span></div>
+            <div class="roi-bar" tabindex="0" data-y="5"><span class="roi-val"></span><span class="roi-col"><span class="roi-seg roi-seg--save"></span><span class="roi-seg roi-seg--lose"></span></span></div>
+            <div class="roi-tip" id="roi-tip" role="status"></div>
+          </div>
+          <div class="roi-xs"><span>Year 1</span><span>Year 2</span><span>Year 3</span><span>Year 4</span><span>Year 5</span></div>
+          <ul class="roi-legend"><li><i class="k-lose"></i>Cumulative loss</li><li><i class="k-save"></i>Recoverable with 10 more students a year</li></ul>
         </div>
       </div>
     </section>
@@ -3505,6 +3561,72 @@
     const fmtMxn = (v) => mxn.format(Math.round(v));
     const fmtDetail = (v) => num.format(Math.round(v)) + " students who don't re-enroll each year.";
 
+    // Gráficas de la calculadora: cuadrícula de alumnos y barras a 5 años.
+    const vizTxt = {"unit":"Each dot = {n} students","unit1":"Each dot = 1 student","aria":"Out of {total} students, {lose} leave every year.","year":"Year","tipLose":"Cumulative loss","tipSave":"Recoverable"};
+    const dotsEl = document.getElementById("roi-dots");
+    const unitEl = document.getElementById("roi-unit");
+    const bars = Array.from(document.querySelectorAll(".roi-bar"));
+    const tipEl = document.getElementById("roi-tip");
+    const corto = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 });
+    const fmtCorto = (v) => "$" + corto.format(Math.round(v));
+    let vizEstado = null;
+    function renderViz(alumnos, desertores, colegiatura) {
+      const pasos = [1, 2, 5, 10, 20, 25, 50, 100, 200];
+      const unidad = pasos.find((u) => alumnos / u <= 200) || 200;
+      const total = Math.max(1, Math.ceil(alumnos / unidad));
+      const pierde = Math.min(total, desertores > 0 ? Math.max(1, Math.round(desertores / unidad)) : 0);
+      const salva = Math.min(10, desertores) / unidad; // en puntos, puede ser fracción
+      if (dotsEl.children.length !== total) dotsEl.innerHTML = Array.from({ length: total }, (_, i) => '<i class="roi-dot"></i>').join("");
+      const dots = dotsEl.children;
+      const inicioPierde = total - pierde;
+      for (let i = 0; i < total; i++) {
+        const d = dots[i];
+        const k = i - inicioPierde; // posición dentro de los que se van
+        d.style.setProperty("--d", Math.max(0, k));
+        d.classList.toggle("is-lose", k >= 0);
+        const lleno = k >= 0 && k < Math.floor(salva);
+        const parcial = k >= 0 && k === Math.floor(salva) && salva % 1 > 0.04;
+        d.classList.toggle("is-save", lleno);
+        d.classList.toggle("is-part", parcial);
+        if (parcial) d.style.setProperty("--f", Math.round((salva % 1) * 100) + "%");
+      }
+      unitEl.textContent = unidad === 1 ? vizTxt.unit1 : vizTxt.unit.replace("{n}", num.format(unidad));
+      dotsEl.setAttribute("aria-label", vizTxt.aria.replace("{total}", num.format(alumnos)).replace("{lose}", num.format(desertores)));
+      // Barras: pérdida acumulada por año; arriba, lo recuperable con 10 alumnos más al año.
+      const perdidaAnual = desertores * colegiatura;
+      const recuperableAnual = Math.min(10, desertores) * colegiatura;
+      const max = perdidaAnual * 5 || 1;
+      vizEstado = { perdidaAnual, recuperableAnual };
+      bars.forEach((bar, i) => {
+        const y = i + 1;
+        const perdida = perdidaAnual * y;
+        bar.style.setProperty("--h", (perdida / max) * 100 + "%");
+        bar.querySelector(".roi-col").style.setProperty("--h", (perdida / max) * 100 + "%");
+        bar.querySelector(".roi-seg--save").style.setProperty("--s", perdida ? (recuperableAnual / perdidaAnual) * 100 + "%" : "0%");
+        bar.querySelector(".roi-val").textContent = fmtCorto(perdida);
+      });
+    }
+    function mostrarTip(bar) {
+      if (!vizEstado) return;
+      const y = Number(bar.dataset.y);
+      tipEl.innerHTML = "<b>" + vizTxt.year + " " + y + "</b>" +
+        '<i style="background:#c8372f"></i>' + vizTxt.tipLose + ": " + fmtMxn(vizEstado.perdidaAnual * y) + "<br>" +
+        '<i style="background:#508ff8"></i>' + vizTxt.tipSave + ": " + fmtMxn(vizEstado.recuperableAnual * y);
+      const caja = bar.parentElement.getBoundingClientRect();
+      const r = bar.getBoundingClientRect();
+      const col = bar.querySelector(".roi-col").getBoundingClientRect();
+      const x = Math.min(Math.max(r.left + r.width / 2 - caja.left, 110), caja.width - 110);
+      tipEl.style.left = x + "px";
+      tipEl.style.top = Math.max(0, col.top - caja.top - 74) + "px";
+      tipEl.classList.add("is-on");
+    }
+    bars.forEach((bar) => {
+      bar.addEventListener("mouseenter", () => mostrarTip(bar));
+      bar.addEventListener("focus", () => mostrarTip(bar));
+      bar.addEventListener("mouseleave", () => tipEl.classList.remove("is-on"));
+      bar.addEventListener("blur", () => tipEl.classList.remove("is-on"));
+    });
+
     function recalc() {
       const alumnos = Math.max(0, Number(alumnosEl.value) || 0);
       const desercion = Math.max(0, Number(desercionEl.value) || 0) / 100;
@@ -3524,6 +3646,7 @@
       animateNumber(lossEl, perdida, fmtMxn);
       animateNumber(lossDetailEl, desertores, fmtDetail);
       animateNumber(retainValueEl, valorRetener10, fmtMxn);
+      renderViz(alumnos, desertores, colegiatura);
     }
 
     [alumnosEl, desercionEl, colegiaturaEl].forEach((el) => el.addEventListener("input", recalc));
