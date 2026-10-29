@@ -4147,7 +4147,8 @@
       // cursor, con una estela corta. El avance sigue al scroll con
       // suavizado: no salta a cada tic de la rueda. Si el mouse todavía
       // no se movió, viaja hacia el centro de la pantalla.
-      const ph2Hero = document.getElementById("ph2-hero");
+      // Solo donde está el haz (home): las subpáginas reusan #ph2-hero para el menú.
+      const ph2Hero = ph2BeamCanvasRef ? document.getElementById("ph2-hero") : null;
       const lampTick = document.getElementById("ph2-lamp-tick");
       const RANGE = 420;          // px de scroll que dura el traslado
       const SMOOTH = 0.14;        // suavizado del progreso por cuadro
