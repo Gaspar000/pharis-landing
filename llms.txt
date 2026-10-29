@@ -29,6 +29,8 @@
 - [Cómo calcula Pharis el riesgo de deserción](https://pharis.mx/metodologia): datos que usa, qué deja fuera, con qué se entrenó y por qué no publica una cifra de precisión.
 - [Deserción universitaria en América Latina](https://pharis.mx/desercion-universitaria): cifras con fuente, cuándo y por qué abandonan los alumnos, y qué puede hacer una institución.
 - [Alerta temprana de deserción en Moodle](https://pharis.mx/alerta-temprana-moodle): qué gana una institución que usa Moodle, cómo se empieza y qué no cambia en su plataforma.
+- [Seguridad y privacidad](https://pharis.mx/seguridad): qué datos usa Pharis, quién ve qué, proveedores, conservación y borrado, y medidas de seguridad.
+- [Piloto](https://pharis.mx/piloto): cómo se evalúa Pharis, qué necesita la institución, permisos mínimos y qué se mide.
 - [Política de privacidad](https://pharis.mx/privacy)
 - English: [Home](https://pharis.mx/en/), [For leadership](https://pharis.mx/en/for-leadership), [For professors](https://pharis.mx/en/for-professors), [For coordinators and tutors](https://pharis.mx/en/for-coordinators), [For students](https://pharis.mx/en/for-students), [Integration](https://pharis.mx/en/integration), [Demo](https://pharis.mx/en/demo), [Return](https://pharis.mx/en/roi), [FAQ](https://pharis.mx/en/faq), [How Pharis calculates dropout risk](https://pharis.mx/en/methodology), [University dropout in Latin America](https://pharis.mx/en/university-dropout), [Early warning in Moodle](https://pharis.mx/en/moodle-early-warning), [Privacy policy](https://pharis.mx/en/privacy)
 
