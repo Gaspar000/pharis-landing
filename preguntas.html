@@ -4180,6 +4180,8 @@
       // no se movió, viaja hacia el centro de la pantalla.
       // Solo donde está el haz (home): las subpáginas reusan #ph2-hero para el menú.
       const ph2Hero = ph2BeamCanvasRef ? document.getElementById("ph2-hero") : null;
+      // Sin haz no hay traslado: el cursor arranca ya como el foco de luz.
+      if (!ph2Hero) { dot.classList.add("is-beam"); ring.classList.add("is-beam"); }
       const lampTick = document.getElementById("ph2-lamp-tick");
       const RANGE = 420;          // px de scroll que dura el traslado
       const SMOOTH = 0.14;        // suavizado del progreso por cuadro
