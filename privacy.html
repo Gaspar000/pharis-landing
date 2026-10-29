@@ -210,6 +210,21 @@
       .footer-top, .footer-bottom { flex-direction: column; text-align: center; }
       .footer-tagline { margin-inline: auto; }
     }
+    /* Desplegables del menú (mismos que el de la landing) */
+    .nav-links .nd { position: relative; }
+    .nd-btn { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.3rem 0; border: 0; background: none; font: inherit; font-size: 0.94rem; color: var(--light-text); cursor: pointer; }
+    .nd-btn svg { width: 14px; height: 14px; opacity: 0.6; transition: transform 0.2s ease; }
+    .nd-menu { position: absolute; top: calc(100% + 0.9rem); left: 50%; transform: translate(-50%, 6px); min-width: 310px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.15rem; background: #fff; border: 1px solid rgba(15, 23, 42, 0.08); border-radius: 1rem; box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s; z-index: 20; }
+    .nd-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -1.1rem; height: 1.1rem; }
+    .nd:hover .nd-menu, .nd:focus-within .nd-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
+    .nd:hover .nd-btn svg { transform: rotate(180deg); }
+    .nav-links .nd-menu a { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.65rem 0.75rem; border-radius: 0.65rem; white-space: normal; font-size: 0.92rem; color: var(--light-text); }
+    .nav-links .nd-menu a::after { content: none; }
+    .nav-links .nd-menu a:hover { background: rgba(80, 143, 248, 0.08); color: var(--light-accent-text); }
+    .nd-menu a svg { flex: none; width: 17px; height: 17px; margin-top: 2px; color: #508ff8; }
+    .dd-txt { display: flex; flex-direction: column; gap: 0.12rem; }
+    .dd-t { font-weight: 600; line-height: 1.3; }
+    .dd-d { font-size: 0.8rem; line-height: 1.35; color: var(--light-muted); }
   </style>
 </head>
 <body>
@@ -221,10 +236,32 @@
       <svg viewBox="0 0 21 17" fill="#508FF8" aria-hidden="true"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z"/></svg>
     </a>
     <ul class="nav-links">
-      <li><a href="./#como-funciona">Cómo funciona</a></li>
-      <li><a href="integracion">Integración</a></li>
-      <li><a href="retorno">Retorno</a></li>
-      <li><a href="preguntas">Preguntas</a></li>
+      <li class="nd">
+        <button type="button" class="nd-btn" aria-haspopup="true">Perfiles<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="nd-menu">
+          <a href="para-direccion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/></svg><span class="dd-txt"><span class="dd-t">Dirección</span><span class="dd-d">Riesgo, seguimiento y resultados de toda la institución</span></span></a>
+          <a href="para-profesores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg><span class="dd-txt"><span class="dd-t">Profesores</span><span class="dd-d">Quién se está quedando atrás en tus grupos, y por qué</span></span></a>
+          <a href="para-coordinacion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></svg><span class="dd-txt"><span class="dd-t">Coordinación y tutoría</span><span class="dd-d">Que ninguna alerta se quede sin seguimiento</span></span></a>
+          <a href="para-alumnos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="dd-txt"><span class="dd-t">Alumnos</span><span class="dd-d">Un tutor con IA que conoce su materia</span></span></a>
+        </div>
+      </li>
+      <li class="nd">
+        <button type="button" class="nd-btn" aria-haspopup="true">Cómo funciona<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="nd-menu">
+          <a href="./#como-funciona"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="dd-txt"><span class="dd-t">Del LMS a la alerta</span><span class="dd-d">Los tres pasos, de la actividad a la acción</span></span></a>
+          <a href="metodologia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><span class="dd-txt"><span class="dd-t">Cómo calculamos el riesgo</span><span class="dd-d">Qué datos usa el modelo y qué deja fuera</span></span></a>
+          <a href="integracion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6M15 2v6M7 8h10v4a5 5 0 0 1-10 0z"/><path d="M12 17v5"/></svg><span class="dd-txt"><span class="dd-t">Integración con tu LMS</span><span class="dd-d">Solo lectura, sin servidores ni migraciones</span></span></a>
+          <a href="alerta-temprana-moodle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg><span class="dd-txt"><span class="dd-t">Pharis en Moodle</span><span class="dd-d">Qué gana una institución que usa Moodle</span></span></a>
+          <a href="retorno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2s1.3 1.7 3 2 3 .9 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></svg><span class="dd-txt"><span class="dd-t">Retorno</span><span class="dd-d">Lo que cuesta la deserción a tu institución</span></span></a>
+        </div>
+      </li>
+      <li class="nd">
+        <button type="button" class="nd-btn" aria-haspopup="true">Recursos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="nd-menu">
+          <a href="desercion-universitaria"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg><span class="dd-txt"><span class="dd-t">Deserción en América Latina</span><span class="dd-d">Cifras con fuente, causas y qué hacer</span></span></a>
+          <a href="preguntas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg><span class="dd-txt"><span class="dd-t">Preguntas frecuentes</span><span class="dd-d">Plataforma, datos, precisión y cómo empezar</span></span></a>
+        </div>
+      </li>
     </ul>
     <a class="nav-btn" href="demo">Solicitar demo</a>
   </nav>

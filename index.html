@@ -459,6 +459,106 @@
     .cta-corto { text-align: center; }
     .cta-corto .section-sub { margin: 0 auto 1.9rem; }
 
+    /* ============================================================ NAV: DESPLEGABLES CON DESCRIPCIÓN */
+    #ph2-hero .ph2-nav-dd-menu { min-width: 310px; left: 50%; }
+    #ph2-hero .ph2-nav-dd-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -1.1rem; height: 1.1rem; }
+    #ph2-hero .ph2-nav-dd-menu a { align-items: flex-start; white-space: normal; padding: 0.65rem 0.75rem; }
+    #ph2-hero .ph2-nav-dd-menu a svg { margin-top: 2px; }
+    .dd-txt { display: flex; flex-direction: column; gap: 0.12rem; }
+    .dd-t { font-weight: 600; line-height: 1.3; }
+    .dd-d { font-size: 0.8rem; font-weight: 400; line-height: 1.35; color: var(--ph2-text-muted, #5b6472); }
+    @media (hover: hover) {
+      #ph2-hero .ph2-nav-dd:hover .ph2-nav-dd-menu, #ph2-hero .ph2-nav-dd:focus-within .ph2-nav-dd-menu {
+        opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+      }
+      #ph2-hero .ph2-nav-dd:hover .ph2-nav-dd-caret { transform: rotate(180deg); }
+    }
+    .rv-more { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.1rem; font-family: "Manrope", sans-serif; font-weight: 700; color: var(--light-accent-text); }
+    .rv-more::after { content: "→"; transition: translate 0.2s ease; }
+    .rv-more:hover::after { translate: 3px 0; }
+
+    /* ============================================================ PÁGINAS DE PERFIL */
+    .pf-hero { padding-top: clamp(2rem, 5vw, 3.5rem); }
+    .pf-hero-grid { display: grid; gap: clamp(2rem, 5vw, 3rem); align-items: center; }
+    @media (min-width: 960px) { .pf-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; } }
+    h1.pf-h1 { font-size: clamp(2.3rem, 4.6vw, 3.5rem); line-height: 1.06; letter-spacing: -0.03em; margin: 0 0 1.2rem; }
+    .pf-lead { margin: 0; max-width: 52ch; font-size: 1.12rem; line-height: 1.6; color: var(--light-muted); }
+    .pf-rol { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem; padding: 0.35rem 0.8rem 0.35rem 0.4rem; border-radius: 999px; background: var(--light-panel); border: 1px solid var(--light-rule); font-family: "Manrope", sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--light-text); }
+    .pf-rol span { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--light-accent-text); }
+    .pf-rol svg { width: 14px; height: 14px; }
+    .pf-stat-h { margin: 0 auto; max-width: 24ch; text-align: center; text-wrap: balance; font-family: "Manrope", sans-serif; font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--light-text); }
+    .pf-stat { display: grid; gap: 1.25rem; align-items: center; max-width: 920px; margin: clamp(2.25rem, 5vw, 3.5rem) auto 0; }
+    @media (min-width: 900px) { .pf-stat { grid-template-columns: auto minmax(0, 1fr); gap: 3rem; } }
+    .pf-stat .dq-num { font-size: clamp(3.6rem, 9vw, 6.2rem); white-space: nowrap; }
+    .pf-stat .dq-src a { color: var(--light-accent-text); text-decoration: underline; text-underline-offset: 3px; }
+    .hw-steps { list-style: none; margin: clamp(2rem, 4vw, 3rem) 0 0; padding: 0; display: grid; gap: 1.25rem; }
+    @media (min-width: 640px) { .hw-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1040px) { .hw-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .hw-step { transition: translate 0.35s var(--ease); }
+    .hw-step:hover { translate: 0 -4px; }
+    .hw-visual { height: 180px; display: grid; place-items: center; padding: 1rem; border-radius: 16px; background: #f1f4f9; border: 1px solid var(--light-rule); }
+    .hw-step h3 { margin: 1rem 0 0.35rem; font-family: "Manrope", sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--light-text); }
+    .hw-step h3 span { color: var(--light-accent-text); }
+    .hw-step p { margin: 0; font-size: 0.92rem; line-height: 1.55; color: var(--light-muted); }
+    .hw-mini { width: 100%; max-width: 240px; padding: 0.8rem; border-radius: 12px; background: var(--light-panel); border: 1px solid var(--light-rule); box-shadow: 0 10px 24px -18px rgba(15, 23, 42, 0.35); font-size: 0.78rem; color: var(--light-text); }
+    .hw-mini-hd { margin-bottom: 0.45rem; font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.8rem; }
+    .hw-li { display: flex; align-items: center; gap: 0.45rem; padding: 0.3rem 0; border-top: 1px solid var(--light-rule); }
+    .hw-li span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .hw-dot { flex: none; width: 7px; height: 7px; border-radius: 50%; }
+    .hw-dot--ok { background: #1fb987; } .hw-dot--warn { background: #e8963f; } .hw-dot--red { background: #c8372f; }
+    .hw-v { font-weight: 700; font-size: 0.72rem; } .hw-v--ok { color: #0d8f6a; } .hw-v--warn { color: #b7791f; } .hw-v--red { color: #c8372f; }
+    .hw-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; }
+    .hw-kpis div { padding: 0.5rem; border-radius: 9px; border: 1px solid var(--light-rule); }
+    .hw-kpis small { display: block; font-size: 0.66rem; color: var(--light-muted); line-height: 1.25; }
+    .hw-kpis b { display: block; margin-top: 0.15rem; font-family: "Manrope", sans-serif; font-size: 1.2rem; letter-spacing: -0.02em; }
+    .hw-ic { flex: none; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 8px; background: #eef1f6; }
+    .hw-ic svg { width: 14px; height: 14px; }
+    .hw-chip { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.68rem; font-weight: 700; }
+    .hw-chip--ok { color: #0d8f6a; background: color-mix(in srgb, #1fb987 14%, transparent); }
+    .hw-time { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.4rem; letter-spacing: -0.03em; color: var(--light-accent-text); }
+    .hw-list { display: grid; gap: 0.3rem; margin-top: 0.4rem; }
+    .hw-list span { display: flex; align-items: center; gap: 0.4rem; }
+    .hw-list svg { width: 13px; height: 13px; color: #0d8f6a; }
+    .hw-alert { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem; border-radius: 10px; border: 1px solid color-mix(in srgb, #c8372f 55%, var(--light-rule)); }
+    .hw-score { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 1.3rem; color: #c8372f; }
+    .hw-alert b, .hw-log b { display: block; font-family: "Manrope", sans-serif; }
+    .hw-alert small, .hw-log small { color: var(--light-muted); }
+    .hw-roles { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.55rem; }
+    .hw-roles span { padding: 0.12rem 0.5rem; border-radius: 999px; background: #eef1f6; font-size: 0.68rem; font-weight: 600; }
+    .hw-log { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.55rem; }
+    .hw-btns { display: flex; gap: 0.35rem; }
+    .hw-btn { padding: 0.25rem 0.6rem; border-radius: 999px; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; }
+    .hw-btn--ghost { background: transparent; color: var(--light-text); border: 1px solid var(--light-rule); }
+    .hw-msg { max-width: 92%; padding: 0.45rem 0.6rem; border-radius: 10px; background: #eef1f6; line-height: 1.4; }
+    .hw-msg + .hw-msg { margin-top: 0.4rem; }
+    .hw-msg--yo { margin-left: auto; background: var(--accent); color: #fff; }
+    .tr-cards { display: grid; gap: 1.25rem; margin-top: clamp(2rem, 4vw, 2.75rem); }
+    @media (min-width: 900px) { .tr-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .tr-art { height: 150px; display: grid; place-items: center; border-radius: 16px; background: #f1f4f9; border: 1px solid var(--light-rule); }
+    .tr-main { width: 72px; height: 72px; display: grid; place-items: center; border-radius: 22px; background: var(--light-panel); border: 1px solid var(--light-rule); box-shadow: 0 14px 30px -20px rgba(15, 23, 42, 0.4); color: var(--light-accent-text); transition: scale 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease); }
+    .tr-card:hover .tr-main { scale: 1.06; background: var(--accent); color: #fff; }
+    .tr-main svg { width: 32px; height: 32px; }
+    .tr-card h3 { margin: 1.1rem 0 0.4rem; font-family: "Manrope", sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--light-text); }
+    .tr-card p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--light-muted); }
+    .pf-case-grid { display: grid; gap: 2.5rem; align-items: center; margin-top: clamp(2rem, 4vw, 2.75rem); }
+    @media (min-width: 960px) { .pf-case-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; } }
+    .pf-case { padding: 1.4rem; border-radius: 18px; background: var(--light-panel); border: 1px solid var(--light-rule); box-shadow: 0 24px 50px -30px rgba(15, 23, 42, 0.35); }
+    .pf-case-hd { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--light-rule); }
+    .pf-case-hd strong { display: block; font-family: "Manrope", sans-serif; }
+    .pf-case-hd small { color: var(--light-muted); }
+    .pf-case ol { list-style: none; margin: 1.1rem 0 0; padding: 0; position: relative; }
+    .pf-case ol::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: var(--light-rule); }
+    .pf-ev { position: relative; padding: 0 0 1.1rem 1.9rem; opacity: 0; translate: 0 8px; transition: opacity 0.5s ease, translate 0.5s var(--ease); transition-delay: calc(var(--i) * 0.25s + 0.2s); }
+    .pf-case.is-visible .pf-ev { opacity: 1; translate: 0 0; }
+    .pf-ev:last-child { padding-bottom: 0; }
+    .pf-ev::before { content: ""; position: absolute; left: 0; top: 4px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--light-panel); box-shadow: 0 0 0 1px var(--light-rule); }
+    .pf-ev--red::before { background: #c8372f; } .pf-ev--blue::before { background: var(--accent); } .pf-ev--green::before { background: #1fb987; }
+    .pf-ev small { font-size: 0.75rem; font-weight: 600; color: var(--light-muted); }
+    .pf-ev b { display: block; font-family: "Manrope", sans-serif; font-size: 0.98rem; color: var(--light-text); }
+    .pf-ev span { font-size: 0.88rem; color: var(--light-muted); }
+    .pf-cta { margin-top: clamp(4rem, 8vw, 6rem); }
+    @media (prefers-reduced-motion: reduce) { .pf-ev { opacity: 1; translate: 0 0; transition: none; } }
+
     /* ============================================================ PREGUNTAS FRECUENTES */
     #preguntas { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
     .faq-grid { display: grid; gap: 2rem; }
@@ -2190,30 +2290,41 @@
           </svg>
         </a>
         <ul class="ph2-nav-links">
-          <li><a href="#como-funciona">Cómo funciona</a></li>
           <li class="ph2-nav-dd">
-            <button type="button" class="ph2-nav-dd-btn" id="ph2-perfiles-btn" aria-haspopup="true" aria-expanded="false" aria-controls="ph2-perfiles-menu">
+            <button type="button" class="ph2-nav-dd-btn" aria-haspopup="true" aria-expanded="false" aria-controls="ph2-dd-perfiles">
               Perfiles
               <svg class="ph2-nav-dd-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div class="ph2-nav-dd-menu" id="ph2-perfiles-menu" role="menu">
-              <a href="#alumno" role="menuitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5z"/><path d="M3 21c0-4.4 4-8 9-8s9 3.6 9 8"/></svg>
-                Para el alumno
-              </a>
-              <a href="#profesor" role="menuitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
-                Para el profesor
-              </a>
-              <a href="#administrativo" role="menuitem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg>
-                Para administrativo
-              </a>
+            <div class="ph2-nav-dd-menu" id="ph2-dd-perfiles" role="menu">
+              <a href="para-direccion" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/></svg><span class="dd-txt"><span class="dd-t">Dirección</span><span class="dd-d">Riesgo, seguimiento y resultados de toda la institución</span></span></a>
+              <a href="para-profesores" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg><span class="dd-txt"><span class="dd-t">Profesores</span><span class="dd-d">Quién se está quedando atrás en tus grupos, y por qué</span></span></a>
+              <a href="para-coordinacion" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></svg><span class="dd-txt"><span class="dd-t">Coordinación y tutoría</span><span class="dd-d">Que ninguna alerta se quede sin seguimiento</span></span></a>
+              <a href="para-alumnos" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="dd-txt"><span class="dd-t">Alumnos</span><span class="dd-d">Un tutor con IA que conoce su materia</span></span></a>
             </div>
           </li>
-          <li><a href="integracion">Integración</a></li>
-          <li><a href="retorno">Retorno</a></li>
-          <li><a href="preguntas">Preguntas</a></li>
+          <li class="ph2-nav-dd">
+            <button type="button" class="ph2-nav-dd-btn" aria-haspopup="true" aria-expanded="false" aria-controls="ph2-dd-funciona">
+              Cómo funciona
+              <svg class="ph2-nav-dd-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="ph2-nav-dd-menu" id="ph2-dd-funciona" role="menu">
+              <a href="#como-funciona" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="dd-txt"><span class="dd-t">Del LMS a la alerta</span><span class="dd-d">Los tres pasos, de la actividad a la acción</span></span></a>
+              <a href="metodologia" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><span class="dd-txt"><span class="dd-t">Cómo calculamos el riesgo</span><span class="dd-d">Qué datos usa el modelo y qué deja fuera</span></span></a>
+              <a href="integracion" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6M15 2v6M7 8h10v4a5 5 0 0 1-10 0z"/><path d="M12 17v5"/></svg><span class="dd-txt"><span class="dd-t">Integración con tu LMS</span><span class="dd-d">Solo lectura, sin servidores ni migraciones</span></span></a>
+              <a href="alerta-temprana-moodle" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg><span class="dd-txt"><span class="dd-t">Pharis en Moodle</span><span class="dd-d">Qué gana una institución que usa Moodle</span></span></a>
+              <a href="retorno" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2s1.3 1.7 3 2 3 .9 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></svg><span class="dd-txt"><span class="dd-t">Retorno</span><span class="dd-d">Lo que cuesta la deserción a tu institución</span></span></a>
+            </div>
+          </li>
+          <li class="ph2-nav-dd">
+            <button type="button" class="ph2-nav-dd-btn" aria-haspopup="true" aria-expanded="false" aria-controls="ph2-dd-recursos">
+              Recursos
+              <svg class="ph2-nav-dd-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="ph2-nav-dd-menu" id="ph2-dd-recursos" role="menu">
+              <a href="desercion-universitaria" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg><span class="dd-txt"><span class="dd-t">Deserción en América Latina</span><span class="dd-d">Cifras con fuente, causas y qué hacer</span></span></a>
+              <a href="preguntas" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg><span class="dd-txt"><span class="dd-t">Preguntas frecuentes</span><span class="dd-d">Plataforma, datos, precisión y cómo empezar</span></span></a>
+            </div>
+          </li>
         </ul>
         <div class="ph2-nav-ctas">
           <a href="demo" class="ph2-nav-btn ph2-nav-btn-solid">Solicitar demo</a>
@@ -3165,6 +3276,7 @@
               <p>Pharis conoce sus tareas, instrucciones y materiales, y lo guía paso a paso para que entienda, no para que copie.</p>
               <dl class="rv-meta"><dt>Qué ve</dt><dd>Sus conversaciones y los mensajes de su profesor.</dd><dt>De dónde sale</dt><dd>Sus cursos, tareas y materiales en el LMS.</dd></dl>
               <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Sabe en todo momento que habla con una IA.</span></p>
+              <a class="rv-more" href="para-alumnos">Conoce Pharis para alumnos</a>
             </div>
             <div class="rv-visual">
               <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>Pharis &middot; Matemáticas Financieras</span></div><div class="rv-body"><div class="rv-msg rv-msg--yo">¿Cómo saco el valor presente de $10,000 que voy a recibir en 3 años, al 8% anual?</div><div class="rv-msg">Trae esos $10,000 al presente: <b>VP = VF ÷ (1 + i)<sup>n</sup></b>. Con i = 0.08 y n = 3, ¿cuánto te da (1.08)<sup>3</sup>? Con ese número ya casi lo tienes.</div><div class="rv-input">Escribe tu pregunta…</div></div></div>
@@ -3177,6 +3289,7 @@
               <p>Un tablero de sus grupos que se actualiza cada día, con el puntaje de riesgo, los motivos y qué hacer esta semana.</p>
               <dl class="rv-meta"><dt>Qué ve</dt><dd>Solo a los alumnos de sus grupos.</dd><dt>De dónde sale</dt><dd>Accesos, entregas y calificaciones del LMS, comparados con el grupo.</dd></dl>
               <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Pharis sugiere; el profesor decide si escribe, agenda o canaliza.</span></p>
+              <a class="rv-more" href="para-profesores">Conoce Pharis para profesores</a>
             </div>
             <div class="rv-visual">
               <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>Mis grupos &middot; Costos I</span></div><div class="rv-body"><div class="rv-head"><b>Diego Ramírez</b><span class="rv-pill rv-pill--red">Riesgo alto</span></div><div class="rv-score"><b>82</b><small>/100</small></div><ul class="rv-reasons"><li>No ha entrado al curso en 9 días.</li><li>Su promedio en lo entregado está por debajo de 60.</li></ul><div class="rv-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span>Agenda 10 minutos con este alumno esta semana.</span></div><div class="rv-btns"><span class="rv-btn">Escribirle</span><span class="rv-btn rv-btn--ghost">Canalizar a tutoría</span></div></div></div>
@@ -3189,6 +3302,7 @@
               <p>El seguimiento de los grupos que coordina: cuántos alumnos están en riesgo y cuáles siguen esperando a que alguien los contacte.</p>
               <dl class="rv-meta"><dt>Qué ve</dt><dd>Riesgo, seguimiento y actividad de los grupos que se le asignan.</dd><dt>De dónde sale</dt><dd>Las mismas señales del LMS y las acciones registradas por profesores y tutores.</dd></dl>
               <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Cada contacto queda registrado: quién, cuándo, por qué canal y cómo terminó.</span></p>
+              <a class="rv-more" href="para-coordinacion">Conoce Pharis para coordinación</a>
             </div>
             <div class="rv-visual">
               <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>Coordinación &middot; Grupos asignados</span></div><div class="rv-body"><div class="rv-table"><div class="rv-tr rv-th"><span>Grupo</span><span>En riesgo</span><span>Con seguimiento</span></div><div class="rv-tr"><span>Costos I</span><span>3</span><span class="rv-ok">3</span></div><div class="rv-tr"><span>Finanzas II</span><span>2</span><span class="rv-ok">2</span></div><div class="rv-tr"><span>Estadística</span><span>4</span><span class="rv-warn">1</span></div></div><div class="rv-action rv-action--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span>3 alumnos de Estadística llevan más de 72 h sin contacto.</span></div></div></div>
@@ -3225,6 +3339,7 @@
               <p>Riesgo, seguimiento, velocidad de calificación y qué acciones están funcionando, por profesor y por materia.</p>
               <dl class="rv-meta"><dt>Qué ve</dt><dd>Todo lo de su institución, nada de otras.</dd><dt>De dónde sale</dt><dd>Lo mismo que ven profesores y áreas, agregado.</dd></dl>
               <p class="rv-gate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Ninguna decisión sobre un alumno es automática.</span></p>
+              <a class="rv-more" href="para-direccion">Conoce Pharis para dirección</a>
             </div>
             <div class="rv-visual">
               <div class="rv-window" aria-hidden="true"><div class="rv-bar"><i></i><i></i><i></i><span>Panel institucional</span></div><div class="rv-body"><div class="rv-kpis"><div><small>Riesgo de deserción</small><b>13</b><span>4 alto &middot; 9 medio</span></div><div><small>Con seguimiento</small><b>85%</b><span>2 sin ninguna acción</span></div><div><small>Velocidad de calificación</small><b>8.4 días</b><span>referencia: 7 días</span></div><div><small>Cobertura</small><b>81%</b><span>entregas calificadas</span></div></div><div class="rv-action rv-action--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>2 alumnos salieron de riesgo después de una acción.</span></div></div></div>
@@ -3282,9 +3397,10 @@
             <div class="footer-col">
               <h3>Perfiles</h3>
               <ul>
-                <li><a href="#alumno">Para el alumno</a></li>
-                <li><a href="#profesor">Para el profesor</a></li>
-                <li><a href="#administrativo">Para administrativo</a></li>
+                <li><a href="para-direccion">Dirección</a></li>
+                <li><a href="para-profesores">Profesores</a></li>
+                <li><a href="para-coordinacion">Coordinación y tutoría</a></li>
+                <li><a href="para-alumnos">Alumnos</a></li>
               </ul>
             </div>
             <div class="footer-col">
@@ -4913,34 +5029,27 @@
       });
     })();
 
-    /* ---- Dropdown "Perfiles" del nav ---- */
+    /* ---- Desplegables del nav (Perfiles, Cómo funciona, Recursos) ---- */
     (function () {
-      const dd = document.querySelector(".ph2-nav-dd");
-      const btn = document.getElementById("ph2-perfiles-btn");
-      if (!dd || !btn) return;
-
-      function closeDD() {
+      const dds = Array.from(document.querySelectorAll(".ph2-nav-dd"));
+      if (!dds.length) return;
+      const close = () => dds.forEach((dd) => {
         dd.classList.remove("is-open");
-        btn.setAttribute("aria-expanded", "false");
-      }
-      function toggleDD() {
-        const open = dd.classList.toggle("is-open");
-        btn.setAttribute("aria-expanded", String(open));
-      }
-
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        toggleDD();
+        dd.querySelector(".ph2-nav-dd-btn").setAttribute("aria-expanded", "false");
       });
-      document.addEventListener("click", (e) => {
-        if (!dd.contains(e.target)) closeDD();
+      dds.forEach((dd) => {
+        const btn = dd.querySelector(".ph2-nav-dd-btn");
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const open = !dd.classList.contains("is-open");
+          close();
+          dd.classList.toggle("is-open", open);
+          btn.setAttribute("aria-expanded", String(open));
+        });
+        dd.querySelectorAll(".ph2-nav-dd-menu a").forEach((a) => a.addEventListener("click", close));
       });
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeDD();
-      });
-      dd.querySelectorAll(".ph2-nav-dd-menu a").forEach((link) => {
-        link.addEventListener("click", closeDD);
-      });
+      document.addEventListener("click", (e) => { if (!e.target.closest(".ph2-nav-dd")) close(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
     })();
 
     /* ---- Custom cursor ---- */

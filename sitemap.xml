@@ -127,4 +127,60 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/faq" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/preguntas" />
   </url>
+  <url>
+    <loc>https://pharis.mx/para-direccion</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/para-direccion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/for-leadership" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/para-direccion" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/for-leadership</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/para-direccion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/for-leadership" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/para-direccion" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/para-profesores</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/para-profesores" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/for-professors" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/para-profesores" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/for-professors</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/para-profesores" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/for-professors" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/para-profesores" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/para-coordinacion</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/para-coordinacion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/for-coordinators" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/para-coordinacion" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/for-coordinators</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/para-coordinacion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/for-coordinators" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/para-coordinacion" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/para-alumnos</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/para-alumnos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/for-students" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/para-alumnos" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/for-students</loc>
+    <lastmod>2026-10-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/para-alumnos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/for-students" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/para-alumnos" />
+  </url>
 </urlset>

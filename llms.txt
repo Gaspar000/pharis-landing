@@ -18,6 +18,10 @@
 ## Páginas
 
 - [Inicio](https://pharis.mx/): el problema de la deserción, el punto ciego de las calificaciones, cómo funciona, el tutor del alumno, el tablero del profesor, la vista institucional y qué ve cada rol.
+- [Pharis para dirección](https://pharis.mx/para-direccion): Una vista de toda la institución: qué alumnos están en riesgo, qué alertas ya tienen contacto, qué tan rápido califica cada profesor y qué acciones están funcionando.
+- [Pharis para profesores](https://pharis.mx/para-profesores): Un tablero de tus grupos que se actualiza cada día con la actividad del LMS: quién se está quedando atrás, por qué y qué hacer esta semana, sin una hora extra.
+- [Pharis para coordinación y tutoría](https://pharis.mx/para-coordinacion): El seguimiento de los grupos que coordinas: cuántos alumnos están en riesgo, cuáles ya tienen contacto y cuáles siguen esperando, con cada acción registrada.
+- [Pharis para alumnos](https://pharis.mx/para-alumnos): Un tutor con IA que conoce las tareas, instrucciones y materiales de cada curso y guía al alumno paso a paso para que entienda, no para que copie.
 - [Integración](https://pharis.mx/integracion): cómo se conecta Pharis con el LMS de la institución, en modo solo lectura.
 - [Solicitar demo](https://pharis.mx/demo): video del producto y solicitud de una demo con los datos de la institución.
 - [Retorno](https://pharis.mx/retorno): calculadora de lo que cuesta la deserción a una institución.
@@ -26,7 +30,7 @@
 - [Deserción universitaria en América Latina](https://pharis.mx/desercion-universitaria): cifras con fuente, cuándo y por qué abandonan los alumnos, y qué puede hacer una institución.
 - [Alerta temprana de deserción en Moodle](https://pharis.mx/alerta-temprana-moodle): qué gana una institución que usa Moodle, cómo se empieza y qué no cambia en su plataforma.
 - [Política de privacidad](https://pharis.mx/privacy)
-- English: [Home](https://pharis.mx/en/), [Integration](https://pharis.mx/en/integration), [Demo](https://pharis.mx/en/demo), [Return](https://pharis.mx/en/roi), [FAQ](https://pharis.mx/en/faq), [How Pharis calculates dropout risk](https://pharis.mx/en/methodology), [University dropout in Latin America](https://pharis.mx/en/university-dropout), [Early warning in Moodle](https://pharis.mx/en/moodle-early-warning), [Privacy policy](https://pharis.mx/en/privacy)
+- English: [Home](https://pharis.mx/en/), [For leadership](https://pharis.mx/en/for-leadership), [For professors](https://pharis.mx/en/for-professors), [For coordinators and tutors](https://pharis.mx/en/for-coordinators), [For students](https://pharis.mx/en/for-students), [Integration](https://pharis.mx/en/integration), [Demo](https://pharis.mx/en/demo), [Return](https://pharis.mx/en/roi), [FAQ](https://pharis.mx/en/faq), [How Pharis calculates dropout risk](https://pharis.mx/en/methodology), [University dropout in Latin America](https://pharis.mx/en/university-dropout), [Early warning in Moodle](https://pharis.mx/en/moodle-early-warning), [Privacy policy](https://pharis.mx/en/privacy)
 
 ## Contacto
 
