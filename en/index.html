@@ -2288,6 +2288,173 @@
       #ph2-hero .ph2-hero-text h1 strong { white-space: normal; }
       #ph2-hero .ph2-subject-photo { height: clamp(380px, 62vh, 520px); }
     }
+
+    /* ============================================================ MÓVIL (≤640px)
+       Diseño propio para celular, no el de escritorio apilado. Todo vive
+       en este bloque: escritorio no cambia. El menú, la barra fija de
+       demo y los puntos del carrusel los crea el script "MÓVIL" al final. */
+    .ph2-sub--m, .ph2-hero-cta, .m-menu-btn, .m-menu, .m-bar, .m-dots { display: none; }
+
+    @media (max-width: 640px) {
+      .section { padding-block: 3.25rem; }
+
+      /* --- Píldora: logo y menú. La demo pasa al hero y a la barra de abajo. */
+      #ph2-hero .ph2-nav-pill { padding: 0.45rem 0.45rem 0.45rem 1.1rem; }
+      #ph2-hero .ph2-nav-ctas { display: none; }
+      .m-menu-btn {
+        display: inline-grid; place-items: center;
+        width: 44px; height: 44px; border-radius: 9999px;
+        border: 1px solid rgba(15, 23, 42, 0.1); background: #fff; color: #0f1b30;
+        cursor: pointer;
+      }
+      .m-menu-btn svg { width: 20px; height: 20px; }
+      /* Con #ph2-hero: "#ph2-hero svg { display: block }" ganaba y se veían los dos íconos. */
+      #ph2-hero .m-menu-btn .m-ic-close { display: none; }
+      body.m-menu-open #ph2-hero .m-menu-btn .m-ic-open { display: none; }
+      body.m-menu-open #ph2-hero .m-menu-btn .m-ic-close { display: block; }
+
+      /* --- Hoja del menú: debajo de la píldora, encima de todo lo demás. */
+      .m-menu {
+        display: block; position: fixed; inset: 0; z-index: 99;
+        overflow-y: auto; overscroll-behavior: contain;
+        padding: 6.25rem 1.5rem 2rem;
+        background: #ffffff;
+        font-family: "Fira Sans", sans-serif; text-align: left; line-height: 1.4;
+        opacity: 0; visibility: hidden; transform: translateY(-8px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+      }
+      body.m-menu-open { overflow: hidden; }
+      body.m-menu-open .m-menu { opacity: 1; visibility: visible; transform: none; }
+      .m-menu-group + .m-menu-group { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid rgba(15, 23, 42, 0.08); }
+      .m-menu-group h2 {
+        margin: 0 0 0.5rem; font-family: "Fira Sans", sans-serif;
+        font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+        color: #508ff8;
+      }
+      .m-menu-group a {
+        display: flex; align-items: center; gap: 0.75rem;
+        min-height: 44px; padding: 0.35rem 0;
+        font-family: "Manrope", sans-serif; font-size: 1.08rem; font-weight: 600; color: #0f1b30;
+      }
+      .m-menu-group a svg { width: 19px; height: 19px; flex: none; color: #508ff8; }
+      .m-menu-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+      .m-menu-foot .m-lang { font-size: 0.95rem; color: #475569; text-decoration: underline; text-underline-offset: 3px; }
+
+      .m-demo {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 48px; padding: 0 1.4rem; border-radius: 9999px;
+        background: #508ff8; color: #ffffff !important;
+        font-family: "Manrope", sans-serif; font-weight: 700; font-size: 1rem;
+        text-decoration: none;
+      }
+
+      /* --- Hero: título, frase corta y botón en la primera pantalla; el
+         alumno a la izquierda y sus señales a la derecha, en columna. */
+      #ph2-hero { padding: 1.25rem 1rem 2rem; }
+      #ph2-hero .ph2-hero-main { padding-top: 0.75rem; }
+      #ph2-hero .ph2-hero-text h1 { font-size: 2.15rem; line-height: 1.1; margin-bottom: 0.9rem; }
+      #ph2-hero .ph2-sub { display: none; }
+      #ph2-hero .ph2-sub--m { display: block; font-size: 1.02rem; line-height: 1.5; max-width: 30em; }
+      #ph2-hero .ph2-hero-cta { display: inline-flex; margin-top: 1.3rem; }
+      #ph2-hero .ph2-hero-subject { margin-top: 1.5rem; width: 100%; }
+
+      #ph2-hero .ph2-signals {
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-rows: auto repeat(4, auto) auto;
+        column-gap: 0.85rem; row-gap: 0.55rem;
+        padding-top: 0; width: 100%;
+        align-items: center;
+      }
+      #ph2-hero .ph2-sig-name {
+        position: static; transform: none; grid-column: 1 / -1;
+        text-align: left; font-size: 0.92rem; margin: 0 0 0.2rem;
+      }
+      #ph2-hero .ph2-subject-photo {
+        grid-column: 1; grid-row: 2 / span 4;
+        height: 300px; margin: 0; align-self: center;
+      }
+      #ph2-hero .ph2-sig { grid-column: 2; padding: 0.55rem 0.65rem; gap: 0.5rem; border-radius: 12px; }
+      #ph2-hero .ph2-sig-ic { width: 28px; height: 28px; border-radius: 8px; }
+      #ph2-hero .ph2-sig-ic svg { width: 15px; height: 15px; }
+      #ph2-hero .ph2-sig-k { font-size: 0.82rem; }
+      #ph2-hero .ph2-sig-v { font-size: 0.76rem; }
+      #ph2-hero .ph2-sig--alert { grid-column: 1 / -1; margin-top: 0.6rem; padding: 0.85rem 0.95rem; }
+
+      /* --- Testimonios: carrusel que se desliza con el dedo, la frontal
+         primero. Sin rotación, sin abanico y sin el desenfoque del hover. */
+      .quote-stack {
+        display: flex; gap: 0.85rem;
+        overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+        translate: none; padding: 0.25rem 1.25rem 0.5rem; margin-inline: -1.25rem;
+        scroll-padding-inline: 1.25rem;
+      }
+      .quote-stack::-webkit-scrollbar { display: none; }
+      .quote-stack .quote-card,
+      .quote-stack .quote-card--ghost,
+      .quote-stack:not(.is-dealt) .quote-card {
+        position: relative; inset: auto; z-index: 1;
+        flex: 0 0 86%; scroll-snap-align: start;
+        transform: none !important; filter: none !important; opacity: 1 !important;
+        padding: 1.6rem 1.4rem;
+      }
+      .quote-stack .quote-card--front { order: -1; }
+      .quote-stack .quote-card p { font-size: 1.15rem; }
+      .quote-stack .quote-card .attr { font-size: 0.88rem; margin-top: 0.9rem; }
+      .quote-card--ghost p, .quote-card--ghost .attr { opacity: 1; }
+      .m-dots { display: flex; justify-content: center; gap: 0.45rem; margin-top: -1.25rem; }
+      .m-dots button {
+        width: 8px; height: 8px; padding: 0; border: 0; border-radius: 9999px;
+        background: rgba(15, 23, 42, 0.18); cursor: pointer;
+        transition: width 0.25s ease, background 0.25s ease;
+      }
+      .m-dots button.is-on { width: 22px; background: #508ff8; }
+
+      /* --- Tablero del profesor: solo la lista de alumnos, nítida. */
+      .pm-shell { grid-template-columns: 1fr; }
+      .pm-sidebar { display: none; }
+      .pm-main { grid-template-columns: 1fr; grid-template-areas: "tablero"; padding: 12px; }
+      .pm-area[data-area="alertas"], .pm-area[data-area="entregables"] { display: none; }
+      .prof-showcase[data-focus] .pm-area { opacity: 1; filter: none; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08); }
+      .pm-name { font-size: 12.5px; }
+      .pm-q { font-size: 11px; }
+      .pm-score { font-size: 12px; }
+      .pm-title { font-size: 13px; }
+
+      /* --- Pestañas institucionales: el borde se desvanece para avisar
+         que hay más pestañas al deslizar. */
+      .adm-tabs {
+        margin-inline: -1.25rem; padding-inline: 1.25rem;
+        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 2.5rem), transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 2.5rem), transparent 100%);
+      }
+
+      /* --- Pie: alineado a la izquierda, enlaces en dos columnas. */
+      .footer-top, .footer-bottom { text-align: left; justify-items: start; justify-content: flex-start; }
+      .footer-tagline { margin-inline: 0; }
+      .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem 1.25rem; text-align: left; }
+      .footer-col:first-child, .footer-col:last-child { grid-column: 1 / -1; }
+      .footer-col ul { justify-items: start; gap: 0.55rem; }
+      .footer-col a, .footer-soon { white-space: normal; }
+      .footer-col a { font-size: 0.92rem; line-height: 1.35; }
+      .footer-legal-links { display: grid; grid-template-columns: repeat(3, auto); gap: 0.7rem 1.4rem; justify-content: start; }
+      .footer-legal-links a { white-space: nowrap; }
+
+      /* --- Barra fija de demo: aparece al salir del hero y se oculta al
+         llegar a la llamada final y al pie (ahí ya hay botón). */
+      .m-bar {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+        padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+        background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(15, 23, 42, 0.08);
+        transform: translateY(110%); transition: transform 0.3s ease;
+      }
+      .m-bar .m-demo { width: 100%; }
+      body.m-bar-on .m-bar { transform: none; }
+      body.m-menu-open .m-bar { transform: translateY(110%); }
+    }
+    @media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+      .m-menu, .m-bar, .m-dots button { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -2360,6 +2527,8 @@
       <div class="ph2-hero-text">
         <h1 aria-label="The at-risk student already showed the signs. Pharis sees them first."><span aria-hidden="true">The at-risk student already showed the signs.<br /><strong>Phar<span id="ph2-lamp-tick">ı</span>s sees them first.</strong></span></h1>
         <p class="ph2-sub">Pharis is an early warning system for university dropout: it supports students while they study and alerts professors and administrators when someone starts drifting away from their group, based on their activity and submissions in the LMS.</p>
+        <p class="ph2-sub ph2-sub--m">Alerts professors and administrators when a student starts drifting away from their group, before it shows up in their grades.</p>
+        <a class="ph2-hero-cta m-demo" href="demo">Book a demo</a>
       </div>
 
       <div class="ph2-hero-subject">
@@ -5233,5 +5402,130 @@
       })(performance.now());
     })();
   </script>
+  <!-- ============================================================ MÓVIL
+       Piezas del diseño de celular (estilos en el bloque "MÓVIL"): menú,
+       barra fija de demo y puntos del carrusel de testimonios. Los textos
+       salen del propio DOM (menús de escritorio, botón de la llamada final,
+       enlace de idioma del pie), así este bloque es igual en ES y EN. -->
+  <script>
+    (function () {
+      const mq = window.matchMedia("(max-width: 640px)");
+      const en = document.documentElement.lang === "en";
+      const body = document.body;
+      const pill = document.querySelector("#ph2-hero .ph2-nav-pill");
+      const finalCta = document.querySelector("#demo-cta .btn-primary");
+      if (!pill || !finalCta) return;
+
+      function demoLink(extra) {
+        const a = document.createElement("a");
+        a.href = finalCta.getAttribute("href");
+        a.className = "m-demo" + (extra ? " " + extra : "");
+        a.textContent = finalCta.textContent.trim();
+        return a;
+      }
+
+      // --- Menú: botón en la píldora y hoja con los grupos del menú de escritorio.
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "m-menu-btn";
+      btn.setAttribute("aria-expanded", "false");
+      btn.setAttribute("aria-controls", "m-menu");
+      btn.setAttribute("aria-label", en ? "Menu" : "Menú");
+      btn.innerHTML =
+        '<svg class="m-ic-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>' +
+        '<svg class="m-ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+      pill.appendChild(btn);
+
+      const menu = document.createElement("nav");
+      menu.className = "m-menu";
+      menu.id = "m-menu";
+      menu.setAttribute("aria-label", en ? "Main menu" : "Menú principal");
+      pill.querySelectorAll(".ph2-nav-dd").forEach((dd) => {
+        const group = document.createElement("div");
+        group.className = "m-menu-group";
+        const h = document.createElement("h2");
+        h.textContent = dd.querySelector(".ph2-nav-dd-btn").textContent.trim();
+        group.appendChild(h);
+        dd.querySelectorAll(".ph2-nav-dd-menu a").forEach((src) => {
+          const a = document.createElement("a");
+          a.href = src.getAttribute("href");
+          const ic = src.querySelector("svg");
+          if (ic) a.appendChild(ic.cloneNode(true));
+          a.appendChild(document.createTextNode(src.querySelector(".dd-t").textContent));
+          group.appendChild(a);
+        });
+        menu.appendChild(group);
+      });
+      const foot = document.createElement("div");
+      foot.className = "m-menu-foot";
+      const langSrc = document.querySelector(".footer-legal-links a[hreflang]");
+      if (langSrc) {
+        const lang = langSrc.cloneNode(true);
+        lang.className = "m-lang";
+        foot.appendChild(lang);
+      }
+      foot.appendChild(demoLink());
+      menu.appendChild(foot);
+      pill.parentNode.insertBefore(menu, pill.nextSibling);
+
+      function setMenu(open) {
+        body.classList.toggle("m-menu-open", open);
+        btn.setAttribute("aria-expanded", String(open));
+      }
+      btn.addEventListener("click", () => setMenu(!body.classList.contains("m-menu-open")));
+      menu.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && body.classList.contains("m-menu-open")) { setMenu(false); btn.focus(); }
+      });
+      mq.addEventListener("change", (e) => { if (!e.matches) setMenu(false); });
+
+      // --- Barra fija de demo: visible entre el final del hero y la llamada final.
+      const bar = document.createElement("div");
+      bar.className = "m-bar";
+      bar.appendChild(demoLink());
+      body.appendChild(bar);
+      const hero = document.getElementById("ph2-hero");
+      const fin = document.getElementById("demo-cta");
+      if ("IntersectionObserver" in window && hero && fin) {
+        let heroVisible = true, finVisible = false;
+        const update = () => body.classList.toggle("m-bar-on", !heroVisible && !finVisible);
+        new IntersectionObserver((es) => { heroVisible = es[0].isIntersecting; update(); }, { rootMargin: "0px 0px -35% 0px" }).observe(hero);
+        new IntersectionObserver((es) => { finVisible = es.some((x) => x.isIntersecting); update(); }).observe(fin);
+        const footer = document.querySelector(".site-footer");
+        if (footer) new IntersectionObserver((es) => { if (es[0].isIntersecting) { finVisible = true; update(); } }).observe(footer);
+      }
+
+      // --- Puntos del carrusel de testimonios (solo se ven en móvil).
+      const stack = document.querySelector(".quote-stack");
+      if (stack) {
+        const cards = Array.from(stack.querySelectorAll(".quote-card"));
+        // En móvil la frontal va primero (order: -1): mismo orden para los puntos.
+        const ordered = cards.filter((c) => c.classList.contains("quote-card--front")).concat(cards.filter((c) => !c.classList.contains("quote-card--front")));
+        const dots = document.createElement("div");
+        dots.className = "m-dots";
+        const buttons = ordered.map((card, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.setAttribute("aria-label", (en ? "Quote " : "Testimonio ") + (i + 1));
+          b.addEventListener("click", () => stack.scrollTo({ left: card.offsetLeft - stack.offsetLeft - parseFloat(getComputedStyle(stack).scrollPaddingLeft || 0), behavior: "smooth" }));
+          dots.appendChild(b);
+          return b;
+        });
+        stack.parentNode.insertBefore(dots, stack.nextSibling);
+        function markDot() {
+          const left = stack.getBoundingClientRect().left;
+          let best = 0, bestDist = Infinity;
+          ordered.forEach((c, i) => {
+            const d = Math.abs(c.getBoundingClientRect().left - left);
+            if (d < bestDist) { bestDist = d; best = i; }
+          });
+          buttons.forEach((b, i) => b.classList.toggle("is-on", i === best));
+        }
+        stack.addEventListener("scroll", () => requestAnimationFrame(markDot), { passive: true });
+        markDot();
+      }
+    })();
+  </script>
+
 </body>
 </html>
