@@ -2304,6 +2304,41 @@
       #ph2-hero .ph2-hero-text h1 strong { white-space: normal; }
       #ph2-hero .ph2-subject-photo { height: clamp(380px, 62vh, 520px); }
     }
+  /* ============================================================ PIE MÓVIL (≤640px)
+       Mismo pie compacto que la home: alineado a la izquierda, sin el botón
+       de demo y Producto, Perfiles y Recursos plegables (los arma el script
+       "PIE MÓVIL" al final). */
+    @media (max-width: 640px) {
+      .footer-panel { padding: 2.6rem 0 1.4rem; border-radius: 40px 24px 24px 24px; }
+      .footer-top, .footer-bottom { text-align: left; justify-items: start; justify-content: flex-start; }
+      .footer-top { gap: 1.6rem; grid-template-columns: minmax(0, 1fr); }
+      .footer-brand svg { width: 38px; }
+      .footer-brand span { font-size: 2rem; }
+      .footer-tagline { margin: 0.6rem 0 0; font-size: 0.92rem; }
+      .footer-cta { display: none; }
+      .footer-cols { grid-template-columns: 1fr; gap: 0; justify-self: stretch; width: 100%; text-align: left; }
+      .footer-col ul { justify-items: start; gap: 0.55rem; }
+      .footer-col a, .footer-soon { white-space: normal; }
+      .footer-col a { font-size: 0.92rem; line-height: 1.35; }
+      .footer-col:first-child { padding-bottom: 0.9rem; }
+      .footer-col.m-fold { border-top: 1px solid rgba(255, 255, 255, 0.2); }
+      .footer-col.m-fold h3 { margin: 0; }
+      .m-fold-btn {
+        display: flex; align-items: center; justify-content: space-between; width: 100%;
+        min-height: 48px; padding: 0; border: 0; background: none; cursor: pointer;
+        font: inherit; color: inherit; text-align: left;
+      }
+      .m-fold-btn svg { width: 18px; height: 18px; transition: transform 0.2s ease; }
+      .m-fold-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+      .footer-col.m-fold ul { display: none; padding-bottom: 1rem; }
+      .footer-col.m-fold.is-open ul { display: grid; }
+      .footer-bottom { margin-top: 0.4rem; }
+      .footer-legal-links { display: grid; grid-template-columns: repeat(3, auto); gap: 0.7rem 1.4rem; justify-content: start; }
+      .footer-legal-links a { white-space: nowrap; }
+    }
+    @media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+      .m-fold-btn svg { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -4404,6 +4439,43 @@
         }
         requestAnimationFrame(tick);
       })(performance.now());
+    })();
+  </script>
+<!-- ============================================================ PIE MÓVIL
+       Producto, Perfiles y Recursos plegables solo en celular (estilos en
+       el bloque "PIE MÓVIL"). Igual en ES y EN: el texto sale del h3. -->
+  <script>
+    (function () {
+      const mq = window.matchMedia("(max-width: 640px)");
+      const foldCols = Array.from(document.querySelectorAll(".footer-col")).slice(1);
+      function setFold(on) {
+        foldCols.forEach((col) => {
+          const h = col.querySelector("h3");
+          if (!h) return;
+          const btn = h.querySelector(".m-fold-btn");
+          if (on && !btn) {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "m-fold-btn";
+            b.setAttribute("aria-expanded", "false");
+            b.innerHTML = "<span></span>" + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
+            b.firstChild.textContent = h.textContent.trim();
+            b.addEventListener("click", () => {
+              const open = !col.classList.contains("is-open");
+              col.classList.toggle("is-open", open);
+              b.setAttribute("aria-expanded", String(open));
+            });
+            h.textContent = "";
+            h.appendChild(b);
+            col.classList.add("m-fold");
+          } else if (!on && btn) {
+            h.textContent = btn.textContent.trim();
+            col.classList.remove("m-fold", "is-open");
+          }
+        });
+      }
+      setFold(mq.matches);
+      mq.addEventListener("change", (e) => setFold(e.matches));
     })();
   </script>
 </body>
