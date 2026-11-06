@@ -2432,7 +2432,7 @@
       .footer-top, .footer-bottom { text-align: left; justify-items: start; justify-content: flex-start; }
       .footer-tagline { margin-inline: 0; }
       .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem 1.25rem; text-align: left; }
-      .footer-col:first-child, .footer-col:last-child { grid-column: 1 / -1; }
+      .footer-col:first-child { grid-column: 1 / -1; }
       .footer-col ul { justify-items: start; gap: 0.55rem; }
       .footer-col a, .footer-soon { white-space: normal; }
       .footer-col a { font-size: 0.92rem; line-height: 1.35; }
@@ -2451,6 +2451,47 @@
       .m-bar .m-demo { width: 100%; }
       body.m-bar-on .m-bar { transform: none; }
       body.m-menu-open .m-bar { transform: translateY(110%); }
+      /* --- Perfiles: pestañas en una fila y el ejemplo justo debajo, para
+         ver botones y ejemplo a la vez. La descripción, "Qué ve / De dónde
+         sale" y la nota quedan para la página de cada perfil. */
+      .rv-tabs {
+        flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+        margin-inline: -1.25rem; padding: 0.15rem 1.25rem;
+        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 2.5rem), transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 2.5rem), transparent 100%);
+      }
+      .rv-tabs::-webkit-scrollbar { display: none; }
+      .rv-tab { flex: none; }
+      .rv-panel { display: flex; flex-direction: column; align-items: stretch; gap: 0.9rem; margin-top: 1.1rem; }
+      .rv-panel[hidden] { display: none; }
+      .rv-copy { display: contents; }
+      .rv-copy h3 { order: 1; font-size: 1.2rem; }
+      .rv-visual { order: 2; }
+      .rv-more { order: 3; margin-top: 0; }
+      #perfiles .section-sub, .rv-copy > p, .rv-meta, .rv-copy > .rv-gate { display: none; }
+
+      /* --- Pie compacto: sin el botón de demo (la llamada final está justo
+         arriba) y Producto, Perfiles y Recursos plegables. */
+      .footer-panel { padding: 2.6rem 0 1.4rem; border-radius: 40px 24px 24px 24px; }
+      .footer-brand svg { width: 38px; }
+      .footer-brand span { font-size: 2rem; }
+      .footer-tagline { margin-top: 0.6rem; font-size: 0.92rem; }
+      .footer-cta { display: none; }
+      .footer-top { gap: 1.6rem; grid-template-columns: minmax(0, 1fr); }
+      .footer-cols { grid-template-columns: 1fr; gap: 0; justify-self: stretch; width: 100%; }
+      .footer-col:first-child { padding-bottom: 0.9rem; }
+      .footer-col.m-fold { border-top: 1px solid rgba(255, 255, 255, 0.2); }
+      .footer-col.m-fold h3 { margin: 0; }
+      .m-fold-btn {
+        display: flex; align-items: center; justify-content: space-between; width: 100%;
+        min-height: 48px; padding: 0; border: 0; background: none; cursor: pointer;
+        font: inherit; color: inherit; text-align: left;
+      }
+      .m-fold-btn svg { width: 18px; height: 18px; transition: transform 0.2s ease; }
+      .m-fold-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+      .footer-col.m-fold ul { display: none; padding-bottom: 1rem; }
+      .footer-col.m-fold.is-open ul { display: grid; }
+      .footer-bottom { margin-top: 0.4rem; }
     }
     @media (max-width: 640px) and (prefers-reduced-motion: reduce) {
       .m-menu, .m-bar, .m-dots button { transition: none; }
@@ -5494,6 +5535,36 @@
         const footer = document.querySelector(".site-footer");
         if (footer) new IntersectionObserver((es) => { if (es[0].isIntersecting) { finVisible = true; update(); } }).observe(footer);
       }
+
+      // --- Pie: Producto, Perfiles y Recursos plegables solo en móvil.
+      const foldCols = Array.from(document.querySelectorAll(".footer-col")).slice(1);
+      function setFold(on) {
+        foldCols.forEach((col) => {
+          const h = col.querySelector("h3");
+          const btn = h.querySelector(".m-fold-btn");
+          if (on && !btn) {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "m-fold-btn";
+            b.setAttribute("aria-expanded", "false");
+            b.innerHTML = "<span></span>" + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
+            b.firstChild.textContent = h.textContent.trim();
+            b.addEventListener("click", () => {
+              const open = !col.classList.contains("is-open");
+              col.classList.toggle("is-open", open);
+              b.setAttribute("aria-expanded", String(open));
+            });
+            h.textContent = "";
+            h.appendChild(b);
+            col.classList.add("m-fold");
+          } else if (!on && btn) {
+            h.textContent = btn.textContent.trim();
+            col.classList.remove("m-fold", "is-open");
+          }
+        });
+      }
+      setFold(mq.matches);
+      mq.addEventListener("change", (e) => setFold(e.matches));
 
       // --- Puntos del carrusel de testimonios (solo se ven en móvil).
       const stack = document.querySelector(".quote-stack");
