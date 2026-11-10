@@ -1,0 +1,64 @@
+# Avisa a Bing (y a los demás buscadores de IndexNow) qué páginas cambiaron
+# en cada publicación, para que las vuelvan a rastrear sin esperar.
+# La clave es pública por diseño: el archivo 730ee8438fddc27a175661ca9143f750.txt
+# en la raíz del sitio demuestra que el aviso viene del dueño de pharis.mx.
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      todas:
+        description: "Avisar todas las páginas del sitemap"
+        type: boolean
+        default: false
+
+jobs:
+  avisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Esperar a que GitHub Pages publique
+        run: sleep 90
+
+      - name: Avisar a IndexNow
+        env:
+          CLAVE: 730ee8438fddc27a175661ca9143f750
+          TODAS: ${{ github.event_name == 'workflow_dispatch' && inputs.todas }}
+        run: |
+          set -euo pipefail
+          # Solo se avisan páginas del sitemap: las de promoción y prueba no.
+          grep -oE '<loc>[^<]+' sitemap.xml | sed 's/<loc>//' | sort -u > sitemap.txt
+
+          if [ "$TODAS" = "true" ]; then
+            cp sitemap.txt avisar.txt
+          else
+            # archivo.html -> URL publicada: index.html es "/", en/x.html es "/en/x".
+            git diff --name-only HEAD^ HEAD -- '*.html' \
+              | sed -E 's#(^|/)index\.html$#\1#; s#\.html$##; s#^#https://pharis.mx/#' \
+              | sort -u | comm -12 - sitemap.txt > avisar.txt
+          fi
+
+          if [ ! -s avisar.txt ]; then
+            echo "Ninguna página del sitemap cambió."
+            exit 0
+          fi
+          cat avisar.txt
+
+          jq -n --arg key "$CLAVE" --rawfile urls avisar.txt '{
+            host: "pharis.mx",
+            key: $key,
+            keyLocation: ("https://pharis.mx/" + $key + ".txt"),
+            urlList: ($urls | split("\n") | map(select(length > 0)))
+          }' > cuerpo.json
+
+          codigo=$(curl -s -o respuesta.txt -w '%{http_code}' -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' --data @cuerpo.json)
+          echo "IndexNow respondió $codigo"
+          cat respuesta.txt || true
+          # 200 = recibido, 202 = recibido y la clave se está validando.
+          [ "$codigo" = "200" ] || [ "$codigo" = "202" ]
