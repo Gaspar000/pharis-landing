@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to spot at-risk students in Moodle - Pharis</title>
+  <meta name="description" content="Which risk signals Moodle already stores, where to see them, a 15-minute weekly routine for instructors and what Moodle's risk model does." />
+  <!-- SEO:start -->
+  <link rel="canonical" href="https://pharis.mx/en/at-risk-students-moodle" />
+  <link rel="alternate" hreflang="es" href="https://pharis.mx/alumnos-en-riesgo-moodle" />
+  <link rel="alternate" hreflang="en" href="https://pharis.mx/en/at-risk-students-moodle" />
+  <link rel="alternate" hreflang="x-default" href="https://pharis.mx/alumnos-en-riesgo-moodle" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pharis" />
+  <meta property="og:url" content="https://pharis.mx/en/at-risk-students-moodle" />
+  <meta property="og:title" content="How to spot at-risk students in Moodle - Pharis" />
+  <meta property="og:description" content="Which risk signals Moodle already stores, where to see them, a 15-minute weekly routine for instructors and what Moodle's risk model does." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="es_MX" />
+  <meta property="og:image" content="https://pharis.mx/assets/og-pharis-en.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to spot at-risk students in Moodle - Pharis" />
+  <meta name="twitter:description" content="Which risk signals Moodle already stores, where to see them, a 15-minute weekly routine for instructors and what Moodle's risk model does." />
+  <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-en.jpg" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://pharis.mx/#org","name":"Pharis","url":"https://pharis.mx/","logo":"https://pharis.mx/assets/logo.svg","email":"contacto@pharis.mx"},{"@type":"Article","@id":"https://pharis.mx/en/at-risk-students-moodle#article","headline":"How to spot at-risk students in Moodle","description":"Which risk signals Moodle already stores, where to see them, a 15-minute weekly routine for instructors and what Moodle's risk model does.","inLanguage":"en","datePublished":"2026-11-15","dateModified":"2026-11-15","mainEntityOfPage":"https://pharis.mx/en/at-risk-students-moodle","author":{"@id":"https://pharis.mx/#org"},"publisher":{"@id":"https://pharis.mx/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pharis","item":"https://pharis.mx/en/"},{"@type":"ListItem","position":2,"name":"How to spot at-risk students in Moodle","item":"https://pharis.mx/en/at-risk-students-moodle"}]}]}</script>
+  <!-- SEO:end -->
+  <meta name="theme-color" content="#f5f8fc" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Mismo sistema visual que la landing (index.html): fondo claro con
+       baldosas, Manrope para títulos, Fira Sans para texto, píldora de
+       navegación fija y pie de página azul. */
+    :root {
+      --accent: #508ff8;
+      --accent-bright: #2f6fe0;
+      --accent-soft-2: rgba(80, 143, 248, 0.18);
+      --light-bg: #f5f8fc;
+      --light-panel: #ffffff;
+      --light-rule: rgba(15, 23, 42, 0.10);
+      --light-text: #0f1b30;
+      --light-muted: #475569;
+      --light-faint: #64748b;
+      --light-accent-text: #1f5fd0;
+      --radius: 16px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 110px; }
+    body {
+      position: relative; isolation: isolate;
+      margin: 0;
+      background: var(--light-bg);
+      color: var(--light-text);
+      font-family: "Fira Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--light-accent-text); text-decoration: none; }
+    svg { display: block; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    /* --- Fondo de baldosas (igual que la landing) --- */
+    .tile-grid {
+      position: absolute; top: 0; left: 0; right: 0; z-index: -1;
+      display: grid; grid-template-columns: repeat(auto-fill, 104px); grid-auto-rows: 104px;
+      gap: 16px; padding: 12px; justify-content: center;
+      pointer-events: none; opacity: 0.7; overflow: hidden;
+    }
+    .tile-grid .tile { aspect-ratio: 1; background: #fff; border-radius: 20px; box-shadow: 0 2px 6px -1px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02); }
+    .tile-grid .tile.elevated { box-shadow: 0 8px 18px -4px rgba(0,0,0,0.06), 0 3px 6px -2px rgba(0,0,0,0.03); transform: translateY(-2px); }
+    .tile-grid .tile.soft { background: #fbfcfd; opacity: 0.85; }
+    .tile-grid .tile.dimmed { background: #f1f3f6; opacity: 0.65; }
+
+    /* --- Píldora de navegación fija --- */
+    .nav-pill {
+      position: fixed; top: clamp(1rem, 3vw, 1.75rem); left: 0; right: 0; z-index: 100;
+      width: calc(100% - 2 * clamp(1rem, 4vw, 3rem)); max-width: 792px; margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.1rem;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px);
+      border: 1px solid rgba(15, 23, 42, 0.06); border-radius: 9999px;
+      padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+    }
+    .nav-logo svg { width: 38px; height: auto; }
+    .nav-logo:hover { opacity: 0.75; }
+    .nav-links { display: flex; align-items: center; gap: 1.3rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { position: relative; padding: 0.3rem 0; font-size: 0.94rem; color: var(--light-text); white-space: nowrap; transition: color 0.2s ease; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -2px; height: 1.5px; background: var(--accent); transition: right 0.25s ease; }
+    .nav-links a:hover { color: var(--accent-bright); }
+    .nav-links a:hover::after { right: 0; }
+    .nav-btn {
+      display: inline-flex; align-items: center; padding: 0.7rem 1.3rem; border-radius: 9999px;
+      background: var(--accent); color: #fff; font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.92rem; white-space: nowrap;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .nav-btn:hover { background: var(--accent-bright); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(80, 143, 248, 0.4); }
+    @media (max-width: 900px) { .nav-links { display: none; } }
+
+    .container { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); }
+
+    /* --- Encabezado --- */
+    .page-head { padding: clamp(8rem, 16vw, 10.5rem) 0 clamp(2.5rem, 5vw, 3.5rem); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem; margin: 0 0 1.1rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light-accent-text);
+    }
+    .eyebrow::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 6px rgba(80, 143, 248, 0.9), 0 0 12px rgba(80, 143, 248, 0.6), 0 0 20px rgba(80, 143, 248, 0.3);
+    }
+    h1 { font-family: "Manrope", sans-serif; font-weight: 700; font-size: clamp(2.5rem, 6.2vw, 4.2rem); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 1rem; }
+    .updated {
+      display: inline-flex; align-items: center; gap: 0.5rem; margin: 0 0 1.6rem;
+      padding: 0.3rem 0.8rem; border: 1px solid var(--light-rule); border-radius: 999px; background: rgba(255, 255, 255, 0.8);
+      font-size: 0.84rem; color: var(--light-muted);
+    }
+    .lead { max-width: 46em; margin: 0; font-size: 1.2rem; line-height: 1.6; color: var(--light-muted); }
+
+    /* --- Cuerpo: índice fijo + documento --- */
+    .doc-layout { display: grid; gap: 2rem; padding-bottom: clamp(4rem, 9vw, 6.5rem); align-items: start; }
+    @media (min-width: 960px) { .doc-layout { grid-template-columns: 240px minmax(0, 1fr); gap: 3rem; } }
+    .toc { position: sticky; top: 110px; }
+    .toc p { margin: 0 0 0.8rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light-faint); }
+    .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; counter-reset: toc; }
+    .toc li { counter-increment: toc; }
+    .toc a {
+      display: flex; gap: 0.6rem; padding: 0.45rem 0.7rem; border-radius: 10px;
+      font-size: 0.92rem; line-height: 1.35; color: var(--light-muted);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .toc a::before { content: counter(toc); min-width: 1.1em; font-family: "Inter", "Manrope", sans-serif; font-weight: 600; color: var(--light-faint); }
+    .toc a:hover { background: rgba(255, 255, 255, 0.8); color: var(--light-text); }
+    .toc a.is-active { background: var(--light-panel); color: var(--light-accent-text); font-weight: 600; box-shadow: 0 6px 16px -10px rgba(15, 23, 42, 0.25); }
+    .toc a.is-active::before { color: var(--light-accent-text); }
+    @media (max-width: 959px) { .toc { display: none; } }
+
+    .doc {
+      background: var(--light-panel);
+      border: 1px solid var(--light-rule);
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px -34px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      padding: clamp(1.6rem, 4.5vw, 3.2rem);
+    }
+    .doc h2 {
+      font-family: "Manrope", sans-serif; font-weight: 700; font-size: 1.5rem; line-height: 1.25; letter-spacing: -0.02em;
+      margin: 2.6rem 0 0.8rem; padding-top: 2.2rem; border-top: 1px solid var(--light-rule);
+    }
+    .doc h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .doc p { margin: 0 0 1.1rem; color: var(--light-muted); }
+    .doc strong { color: var(--light-text); font-weight: 600; }
+    .doc ul { margin: 0 0 1.2rem; padding: 0; list-style: none; display: grid; gap: 0.7rem; }
+    .doc li { position: relative; padding-left: 1.4rem; color: var(--light-muted); }
+    .doc li::before { content: ""; position: absolute; left: 0.2rem; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .doc a { text-decoration: underline; text-decoration-color: rgba(80, 143, 248, 0.45); text-underline-offset: 3px; }
+
+    .contact-box {
+      display: flex; align-items: center; gap: 1rem; margin: 1.4rem 0 0;
+      padding: 1.2rem 1.4rem; border-radius: 14px;
+      background: rgba(80, 143, 248, 0.07); border: 1px solid rgba(80, 143, 248, 0.25);
+    }
+    .contact-ic { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 12px; background: var(--accent); color: #fff; }
+    .contact-ic svg { width: 20px; height: 20px; }
+    .contact-box .label { margin: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-faint); }
+    .contact-box a { font-family: "Manrope", sans-serif; font-size: 1.1rem; font-weight: 700; text-decoration: none; color: var(--light-accent-text); }
+
+    /* --- Pie de página (igual que la landing) --- */
+    .site-footer { padding: 0 clamp(0.75rem, 1.6vw, 1.25rem) clamp(0.75rem, 1.6vw, 1.25rem); }
+    .footer-panel {
+      position: relative; overflow: hidden; isolation: isolate;
+      border-radius: clamp(56px, 12vw, 200px) 28px 28px 28px;
+      background: linear-gradient(140deg, #2d62dc 0%, #1f47b8 55%, #173a9c 100%);
+      color: #fff; padding: clamp(3rem, 7vw, 4.5rem) 0 clamp(1.6rem, 3vw, 2.2rem);
+    }
+    .footer-glow { position: absolute; z-index: -1; width: 620px; height: 620px; right: -160px; top: -260px; border-radius: 50%; background: radial-gradient(circle, rgba(143, 185, 255, 0.45) 0%, rgba(143, 185, 255, 0) 65%); }
+    .footer-mark { position: absolute; z-index: -1; width: clamp(240px, 26vw, 360px); height: auto; right: clamp(-90px, -4vw, -30px); top: -20px; opacity: 0.1; transform: rotate(-12deg); }
+    .footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.6rem; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 0.7rem; color: #fff; }
+    .footer-brand svg { width: 46px; height: auto; }
+    .footer-brand span { font-family: "Manrope", sans-serif; font-size: clamp(2.2rem, 4.4vw, 3rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .footer-tagline { margin: 0.9rem 0 0; max-width: 30ch; font-size: 0.98rem; color: rgba(255, 255, 255, 0.82); }
+    .footer-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.2rem; border-radius: 999px;
+      background: #fff; color: #1f47b8; font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.95rem;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+    .footer-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.35); }
+    .footer-cta svg { width: 16px; height: 16px; }
+    .footer-bottom {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem 1.5rem;
+      margin-top: clamp(2.2rem, 5vw, 3rem); padding-top: 1.4rem; border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.82rem; color: rgba(255, 255, 255, 0.78);
+    }
+    .footer-bottom p { margin: 0; }
+    .footer-links { display: flex; align-items: center; gap: 1.4rem; }
+    .footer-links a { color: rgba(255, 255, 255, 0.85); }
+    .footer-links a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+    .footer-links a[aria-current] { color: #fff; font-weight: 600; }
+    @media (max-width: 699px) {
+      .footer-top, .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-tagline { margin-inline: auto; }
+    }
+    /* Desplegables del menú (mismos que el de la landing) */
+    .nav-links .nd { position: relative; }
+    .nd-btn { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.3rem 0; border: 0; background: none; font: inherit; font-size: 0.94rem; color: var(--light-text); cursor: pointer; }
+    .nd-btn svg { width: 14px; height: 14px; opacity: 0.6; transition: transform 0.2s ease; }
+    .nd-menu { position: absolute; top: calc(100% + 0.9rem); left: 50%; transform: translate(-50%, 6px); min-width: 310px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.15rem; background: #fff; border: 1px solid rgba(15, 23, 42, 0.08); border-radius: 1rem; box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s; z-index: 20; }
+    .nd-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -1.1rem; height: 1.1rem; }
+    .nd:hover .nd-menu, .nd:focus-within .nd-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
+    .nd:hover .nd-btn svg { transform: rotate(180deg); }
+    .nav-links .nd-menu a { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.65rem 0.75rem; border-radius: 0.65rem; white-space: normal; font-size: 0.92rem; color: var(--light-text); }
+    .nav-links .nd-menu a::after { content: none; }
+    .nav-links .nd-menu a:hover { background: rgba(80, 143, 248, 0.08); color: var(--light-accent-text); }
+    .nd-menu a svg { flex: none; width: 17px; height: 17px; margin-top: 2px; color: #508ff8; }
+    .dd-txt { display: flex; flex-direction: column; gap: 0.12rem; }
+    .dd-t { font-weight: 600; line-height: 1.3; }
+    .dd-d { font-size: 0.8rem; line-height: 1.35; color: var(--light-muted); }
+
+    /* Guías: figuras, tablas, listas numeradas, fórmula y fuentes. */
+    .doc ol { margin: 0 0 1.2rem; padding-left: 1.4rem; display: grid; gap: 0.7rem; color: var(--light-muted); }
+    .doc ol li { padding-left: 0.3rem; }
+    .doc ol li::before { content: none; }
+    .doc ol li::marker { color: var(--light-accent-text); font-weight: 700; }
+    .doc .fig { margin: 1.6rem 0 1.8rem; padding: 1.25rem; background: var(--light-panel); border: 1px solid var(--light-rule); border-radius: var(--radius); }
+    .doc .fig svg { display: block; width: 100%; height: auto; }
+    .doc .fig figcaption { margin-top: 0.8rem; font-size: 0.85rem; line-height: 1.5; color: var(--light-faint); }
+    .doc .table-wrap { margin: 0 0 1.2rem; overflow-x: auto; border: 1px solid var(--light-rule); border-radius: 12px; background: var(--light-panel); }
+    .doc table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    .doc th { text-align: left; padding: 0.7rem 0.9rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light-faint); border-bottom: 1px solid var(--light-rule); }
+    .doc td { padding: 0.7rem 0.9rem; vertical-align: top; color: var(--light-muted); border-bottom: 1px solid var(--light-rule); }
+    .doc tr:last-child td { border-bottom: none; }
+    .doc td:first-child { color: var(--light-text); font-weight: 600; }
+    .doc .formula { margin: 0 0 1.2rem; padding: 1rem 1.2rem; border-left: 3px solid var(--accent); background: var(--light-panel); border-radius: 0 12px 12px 0; }
+    .doc .formula p:last-child { margin-bottom: 0; }
+    .doc .formula-eq { font-weight: 700; color: var(--light-text); }
+    .doc ol.fuentes { font-size: 0.9rem; gap: 0.5rem; }
+    .doc { min-width: 0; }
+    .doc .formula-eq { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+
+  <div class="tile-grid" id="tile-grid" aria-hidden="true"></div>
+
+  <nav class="nav-pill" aria-label="Main">
+    <a class="nav-logo" href="./" aria-label="Pharis, home">
+      <svg viewBox="0 0 21 17" fill="#508FF8" aria-hidden="true"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z"/></svg>
+    </a>
+    <ul class="nav-links">
+      <li class="nd">
+        <button type="button" class="nd-btn" aria-haspopup="true">Profiles<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="nd-menu">
+          <a href="for-leadership"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/></svg><span class="dd-txt"><span class="dd-t">Leadership</span><span class="dd-d">Risk, follow-up and results across the institution</span></span></a>
+          <a href="for-professors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg><span class="dd-txt"><span class="dd-t">Professors</span><span class="dd-d">Who is falling behind in your groups, and why</span></span></a>
+          <a href="for-coordinators"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></svg><span class="dd-txt"><span class="dd-t">Coordinators and tutors</span><span class="dd-d">No alert left without follow-up</span></span></a>
+          <a href="for-students"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="dd-txt"><span class="dd-t">Students</span><span class="dd-d">An AI tutor that knows their course</span></span></a>
+        </div>
+      </li>
+      <li class="nd">
+        <button type="button" class="nd-btn" aria-haspopup="true">How it works<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="nd-menu">
+          <a href="./#como-funciona"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="dd-txt"><span class="dd-t">From LMS to alert</span><span class="dd-d">The three steps, from activity to action</span></span></a>
+          <a href="methodology"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><span class="dd-txt"><span class="dd-t">How we calculate risk</span><span class="dd-d">What data the model uses and what it leaves out</span></span></a>
+          <a href="integration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6M15 2v6M7 8h10v4a5 5 0 0 1-10 0z"/><path d="M12 17v5"/></svg><span class="dd-txt"><span class="dd-t">Integration with your LMS</span><span class="dd-d">Read-only, no servers or migrations</span></span></a>
+          <a href="moodle-early-warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg><span class="dd-txt"><span class="dd-t">Pharis in Moodle</span><span class="dd-d">What an institution using Moodle gains</span></span></a>
+          <a href="roi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2s1.3 1.7 3 2 3 .9 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></svg><span class="dd-txt"><span class="dd-t">Return</span><span class="dd-d">What dropout costs your institution</span></span></a>
+        </div>
+      </li>
+      <li class="nd">
+        <button type="button" class="nd-btn" aria-haspopup="true">Resources<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="nd-menu">
+          <a href="university-dropout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg><span class="dd-txt"><span class="dd-t">Dropout in Latin America</span><span class="dd-d">Sourced figures, causes and what to do</span></span></a>
+          <a href="dropout-early-warning-guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dd-txt"><span class="dd-t">Early warning guide</span><span class="dd-d">What it is and how to implement it</span></span></a>
+          <a href="at-risk-students-moodle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6M11 8v6"/></svg><span class="dd-txt"><span class="dd-t">At-risk students in Moodle</span><span class="dd-d">What to check and where, every week</span></span></a>
+          <a href="student-retention-indicators"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg><span class="dd-txt"><span class="dd-t">Retention indicators</span><span class="dd-d">Which to track and how to calculate them</span></span></a>
+          <a href="faq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg><span class="dd-txt"><span class="dd-t">FAQ</span><span class="dd-d">Platform, data, accuracy and how to start</span></span></a>
+        </div>
+      </li>
+    </ul>
+    <a class="nav-btn" href="demo">Request a demo</a>
+  </nav>
+
+  <main>
+    <header class="page-head">
+      <div class="container">
+        <h1>How to spot at-risk students in Moodle</h1>
+        <p class="updated">Last updated: November 2026</p>
+        <p class="lead">Moodle already records almost everything you need to see in time that a student is drifting away. This guide shows where each signal lives, how to read it against the group and what to do with it every week.</p>
+      </div>
+    </header>
+
+    <div class="container doc-layout">
+      <nav class="toc" aria-label="Contents">
+        <p>Contents</p>
+        <ol>
+            <li><a href="#summary">In short</a></li>
+            <li><a href="#signals">The signals Moodle already stores</a></li>
+            <li><a href="#relative">Compare the student with their group</a></li>
+            <li><a href="#routine">A 15-minute weekly routine</a></li>
+            <li><a href="#moodle-model">Moodle's built-in risk model</a></li>
+            <li><a href="#limits">The limits of doing it by hand</a></li>
+            <li><a href="#pharis">How Pharis does it</a></li>
+            <li><a href="#sources">Sources</a></li>
+        </ol>
+      </nav>
+
+      <article class="doc">
+          <h2 id="summary">In short</h2>
+          <ul>
+          <li>Moodle already stores almost everything you need to spot a student at risk: last access, activity logs, submissions and grades.</li>
+          <li>The earliest signal is usually activity, not grades: the student logs in less than their group weeks before failing.</li>
+          <li>An instructor can review it in about 15 minutes a week with the reports Moodle already includes.</li>
+          <li>Moodle ships with a "Students at risk of dropping out" model that is useful but has requirements and limits worth knowing.</li>
+          </ul>
+
+          <h2 id="signals">The signals Moodle already stores</h2>
+          <p>You do not need to install anything to start. These are the most useful signals and where to find them in a standard Moodle:</p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Signal</th><th>Where to see it</th><th>What it tells you</th></tr></thead>
+            <tbody>
+              <tr><td>Last access to the course</td><td>Participants</td><td>Days without logging in. The simplest signal and one of the earliest.</td></tr>
+              <tr><td>Activity per resource</td><td>Reports, Logs and Course participation</td><td>Whether they open the material or only log in to submit.</td></tr>
+              <tr><td>Submissions</td><td>Each assignment, View all submissions</td><td>Missing or late assignments.</td></tr>
+              <tr><td>Progress</td><td>Activity completion (if enabled)</td><td>Which course activities they have completed.</td></tr>
+              <tr><td>Grades</td><td>Grader report</td><td>Performance on what they submitted. It arrives after the others.</td></tr>
+              <tr><td>Participation</td><td>Course forums</td><td>Whether they take part or have disappeared from discussions.</td></tr>
+            </tbody>
+          </table></div>
+          <p>Names may vary slightly with your Moodle version and theme, and some reports depend on the permissions your institution gives to the teacher role.</p>
+
+          <h2 id="relative">Compare the student with their group</h2>
+          <p>Three days without logging in do not mean the same in a course with one weekly assignment as in one with daily classes. That is why the useful comparison is against the student's own group: a student who logs in half as often as the group median, two weeks in a row, deserves attention even before failing anything.</p>
+          <figure class="fig">
+            <svg viewBox="0 0 640 280" role="img" aria-labelledby="fig3-t">
+              <title id="fig3-t">Illustrative example: a student's weekly logins fall below their group's from week 3; the first failing grade arrives in week 9</title>
+              <g font-family="Manrope, sans-serif" font-size="12">
+                <g stroke="rgba(15,23,42,0.10)"><line x1="60" y1="40" x2="620" y2="40"/><line x1="60" y1="100" x2="620" y2="100"/><line x1="60" y1="160" x2="620" y2="160"/><line x1="60" y1="220" x2="620" y2="220"/></g>
+                <g fill="#64748b" text-anchor="end"><text x="52" y="44">6</text><text x="52" y="104">4</text><text x="52" y="164">2</text><text x="52" y="224">0</text></g>
+                <g fill="#64748b" text-anchor="middle"><text x="80" y="244">1</text><text x="140" y="244">2</text><text x="200" y="244">3</text><text x="260" y="244">4</text><text x="320" y="244">5</text><text x="380" y="244">6</text><text x="440" y="244">7</text><text x="500" y="244">8</text><text x="560" y="244">9</text><text x="320" y="268">Week of the term</text></g>
+                <polyline fill="none" stroke="#cbd5e1" stroke-width="3" points="80,70 140,70 200,85 260,70 320,85 380,70 440,85 500,70 560,85"/>
+                <polyline fill="none" stroke="#508ff8" stroke-width="3" points="80,70 140,85 200,130 260,145 320,160 380,175 440,190 500,205 560,205"/>
+                <circle cx="200" cy="130" r="6" fill="#ffffff" stroke="#508ff8" stroke-width="3"/>
+                <line x1="560" y1="40" x2="560" y2="220" stroke="#e11d48" stroke-width="2" stroke-dasharray="5 5"/>
+                <text x="208" y="122" fill="#1f5fd0" font-weight="700">Activity starts to drop</text>
+                <text x="552" y="34" fill="#e11d48" font-weight="700" text-anchor="end">First zero</text>
+                <g font-weight="700"><text x="66" y="22" fill="#94a3b8">Group median</text><text x="180" y="22" fill="#1f5fd0">Student</text></g>
+              </g>
+            </svg>
+            <figcaption>Illustrative example, not real data: a student's weekly logins versus their group's median. Activity warns six weeks before the grade does.</figcaption>
+          </figure>
+
+          <h2 id="routine">A 15-minute weekly routine</h2>
+          <ol>
+          <li><strong>Open Participants</strong> and sort by last access to the course. Note anyone who has gone longer without logging in than the rest of their group.</li>
+          <li><strong>Check the latest assignment</strong> in View all submissions: who did not submit and who was late for the second time.</li>
+          <li><strong>Cross the two lists.</strong> Whoever appears on both is your priority this week.</li>
+          <li><strong>Send a short, specific message</strong>: what you noticed, what support exists and how to reach you. Avoid a reproachful tone.</li>
+          <li><strong>Note whom you contacted and what they answered</strong>, to follow up next week and to alert tutoring if there is no reply.</li>
+          </ol>
+
+          <h2 id="moodle-model">Moodle's built-in risk model</h2>
+          <p>Since version 3.4, Moodle includes an analytics feature with a model called <strong>Students at risk of dropping out</strong>. According to the official documentation:</p>
+          <ul>
+          <li>It considers that a student dropped out if they have no activity in the last quarter of the course.</li>
+          <li>Its indicators are based on the Community of Inquiry model: the cognitive depth and social breadth of participation in each activity.</li>
+          <li>It learns from finished courses at the same institution and predicts for each course enrolment.</li>
+          <li>It needs courses with correct start and end dates and sections that split the time; it does not work for rolling-enrolment courses and only considers standard Moodle activities.</li>
+          </ul>
+          <p>It is a good option if your institution has a history of well-configured courses and someone to enable and train the model. Its limits: it works course by course, does not see the student across all their courses at once and does not keep a record of who contacted them or how it ended.</p>
+
+          <h2 id="limits">The limits of doing it by hand</h2>
+          <ul>
+          <li><strong>Course by course.</strong> Each instructor sees only their own course; nobody notices the same student drifting away in three at once.</li>
+          <li><strong>It depends on each instructor's time.</strong> The routine works when there is time, and the hard weeks are the ones that matter most.</li>
+          <li><strong>No shared follow-up.</strong> Tutoring, wellbeing and finance do not know what the instructor already tried.</li>
+          </ul>
+
+          <h2 id="pharis">How Pharis does it</h2>
+          <p>Pharis runs this routine for you across every course: it reads Moodle every day in read-only mode, compares each student with their group in each course, combines the signals from all their courses and sends the alert to the instructor or area that owns it, with the follow-up recorded. It connects without installing plugins: see <a href="moodle-early-warning">Dropout early warning for Moodle</a>.</p>
+          <p><a href="demo">Book a demo with your institution's data</a>.</p>
+
+          <h2 id="sources">Sources</h2>
+          <ol class="fuentes">
+          <li>Moodle Docs. <a href="https://docs.moodle.org/404/en/Students_at_risk_of_dropping_out"><em>Students at risk of dropping out</em></a> (version 4.4).</li>
+          <li>Moodle Docs. <a href="https://docs.moodle.org/404/en/Using_analytics"><em>Using analytics</em></a> (version 4.4).</li>
+          </ol>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <span class="footer-glow" aria-hidden="true"></span>
+      <svg class="footer-mark" viewBox="0 0 21 17" fill="#ffffff" aria-hidden="true"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z"/></svg>
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <a class="footer-brand" href="./" aria-label="Pharis, home">
+              <svg viewBox="0 0 21 17" fill="#ffffff" aria-hidden="true"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z"/></svg>
+              <span>Pharis</span>
+            </a>
+            <p class="footer-tagline">Built in Mexico for Latin American universities.</p>
+          </div>
+          <a class="footer-cta" href="./">Back to home
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="year">2026</span> Pharis. All rights reserved.</p>
+          <div class="footer-links">
+            <a href="methodology">How Pharis calculates dropout risk</a>
+            <a href="privacy">Privacy notice</a>
+            <a href="../alumnos-en-riesgo-moodle" hreflang="es" lang="es">Español</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Baldosas del fondo (mismo patrón que la landing), al alto real del contenido.
+    (function buildTileGrid() {
+      const grid = document.getElementById("tile-grid");
+      const cell = 120;
+      const variantAt = (r, c) => {
+        const k = (r * 7 + c * 3) % 11;
+        if (k === 0 || k === 6) return " elevated";
+        if (k === 2 || k === 8) return " soft";
+        if (k === 4 || k === 9) return " dimmed";
+        return "";
+      };
+      let last = "";
+      function build() {
+        grid.style.display = "none";
+        const h = document.documentElement.scrollHeight;
+        grid.style.display = "";
+        const cols = Math.ceil(innerWidth / cell) + 1, rows = Math.ceil(h / cell) + 1;
+        grid.style.height = h + "px";
+        if (cols + "x" + rows === last) return;
+        last = cols + "x" + rows;
+        let html = "";
+        for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) html += '<div class="tile' + variantAt(r, c) + '"></div>';
+        grid.innerHTML = html;
+      }
+      build();
+      addEventListener("resize", build);
+      addEventListener("load", build);
+      if ("ResizeObserver" in window) new ResizeObserver(build).observe(document.body);
+    })();
+
+    // Índice: marca la sección que se está leyendo.
+    (function tocSpy() {
+      const links = Array.from(document.querySelectorAll(".toc a"));
+      if (!links.length || !("IntersectionObserver" in window)) return;
+      const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          links.forEach((a) => a.classList.toggle("is-active", a === byId.get(e.target.id)));
+        });
+      }, { rootMargin: "-120px 0px -65% 0px" });
+      document.querySelectorAll(".doc h2[id]").forEach((h) => io.observe(h));
+    })();
+  </script>
+</body>
+</html>

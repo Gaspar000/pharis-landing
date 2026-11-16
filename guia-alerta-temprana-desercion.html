@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alerta temprana de deserción: qué es y cómo implementarla - Pharis</title>
+  <meta name="description" content="Qué es un sistema de alerta temprana de deserción, sus cinco piezas, qué dice la evidencia y cómo implementarlo en tu universidad en seis pasos." />
+  <!-- SEO:start -->
+  <link rel="canonical" href="https://pharis.mx/guia-alerta-temprana-desercion" />
+  <link rel="alternate" hreflang="es" href="https://pharis.mx/guia-alerta-temprana-desercion" />
+  <link rel="alternate" hreflang="en" href="https://pharis.mx/en/dropout-early-warning-guide" />
+  <link rel="alternate" hreflang="x-default" href="https://pharis.mx/guia-alerta-temprana-desercion" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pharis" />
+  <meta property="og:url" content="https://pharis.mx/guia-alerta-temprana-desercion" />
+  <meta property="og:title" content="Alerta temprana de deserción: qué es y cómo implementarla - Pharis" />
+  <meta property="og:description" content="Qué es un sistema de alerta temprana de deserción, sus cinco piezas, qué dice la evidencia y cómo implementarlo en tu universidad en seis pasos." />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://pharis.mx/assets/og-pharis-es.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Alerta temprana de deserción: qué es y cómo implementarla - Pharis" />
+  <meta name="twitter:description" content="Qué es un sistema de alerta temprana de deserción, sus cinco piezas, qué dice la evidencia y cómo implementarlo en tu universidad en seis pasos." />
+  <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-es.jpg" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://pharis.mx/#org","name":"Pharis","url":"https://pharis.mx/","logo":"https://pharis.mx/assets/logo.svg","email":"contacto@pharis.mx"},{"@type":"Article","@id":"https://pharis.mx/guia-alerta-temprana-desercion#article","headline":"Alerta temprana de deserción: qué es y cómo implementarla","description":"Qué es un sistema de alerta temprana de deserción, sus cinco piezas, qué dice la evidencia y cómo implementarlo en tu universidad en seis pasos.","inLanguage":"es-MX","datePublished":"2026-11-15","dateModified":"2026-11-15","mainEntityOfPage":"https://pharis.mx/guia-alerta-temprana-desercion","author":{"@id":"https://pharis.mx/#org"},"publisher":{"@id":"https://pharis.mx/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pharis","item":"https://pharis.mx/"},{"@type":"ListItem","position":2,"name":"Alerta temprana de deserción: qué es y cómo implementarla","item":"https://pharis.mx/guia-alerta-temprana-desercion"}]}]}</script>
+  <!-- SEO:end -->
+  <meta name="theme-color" content="#f5f8fc" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Mismo sistema visual que la landing (index.html): fondo claro con
+       baldosas, Manrope para títulos, Fira Sans para texto, píldora de
+       navegación fija y pie de página azul. */
+    :root {
+      --accent: #508ff8;
+      --accent-bright: #2f6fe0;
+      --accent-soft-2: rgba(80, 143, 248, 0.18);
+      --light-bg: #f5f8fc;
+      --light-panel: #ffffff;
+      --light-rule: rgba(15, 23, 42, 0.10);
+      --light-text: #0f1b30;
+      --light-muted: #475569;
+      --light-faint: #64748b;
+      --light-accent-text: #1f5fd0;
+      --radius: 16px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 110px; }
+    body {
+      position: relative; isolation: isolate;
+      margin: 0;
+      background: var(--light-bg);
+      color: var(--light-text);
+      font-family: "Fira Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--light-accent-text); text-decoration: none; }
+    svg { display: block; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    /* --- Fondo de baldosas (igual que la landing) --- */
+    .tile-grid {
+      position: absolute; top: 0; left: 0; right: 0; z-index: -1;
+      display: grid; grid-template-columns: repeat(auto-fill, 104px); grid-auto-rows: 104px;
+      gap: 16px; padding: 12px; justify-content: center;
+      pointer-events: none; opacity: 0.7; overflow: hidden;
+    }
+    .tile-grid .tile { aspect-ratio: 1; background: #fff; border-radius: 20px; box-shadow: 0 2px 6px -1px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02); }
+    .tile-grid .tile.elevated { box-shadow: 0 8px 18px -4px rgba(0,0,0,0.06), 0 3px 6px -2px rgba(0,0,0,0.03); transform: translateY(-2px); }
+    .tile-grid .tile.soft { background: #fbfcfd; opacity: 0.85; }
+    .tile-grid .tile.dimmed { background: #f1f3f6; opacity: 0.65; }
+
+    /* --- Píldora de navegación fija --- */
+    .nav-pill {
+      position: fixed; top: clamp(1rem, 3vw, 1.75rem); left: 0; right: 0; z-index: 100;
+      width: calc(100% - 2 * clamp(1rem, 4vw, 3rem)); max-width: 792px; margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.1rem;
+      background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px);
+      border: 1px solid rgba(15, 23, 42, 0.06); border-radius: 9999px;
+      padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+    }
+    .nav-logo svg { width: 38px; height: auto; }
+    .nav-logo:hover { opacity: 0.75; }
+    .nav-links { display: flex; align-items: center; gap: 1.3rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { position: relative; padding: 0.3rem 0; font-size: 0.94rem; color: var(--light-text); white-space: nowrap; transition: color 0.2s ease; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -2px; height: 1.5px; background: var(--accent); transition: right 0.25s ease; }
+    .nav-links a:hover { color: var(--accent-bright); }
+    .nav-links a:hover::after { right: 0; }
+    .nav-btn {
+      display: inline-flex; align-items: center; padding: 0.7rem 1.3rem; border-radius: 9999px;
+      background: var(--accent); color: #fff; font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.92rem; white-space: nowrap;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .nav-btn:hover { background: var(--accent-bright); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(80, 143, 248, 0.4); }
+    @media (max-width: 900px) { .nav-links { display: none; } }
+
+    .container { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); }
+
+    /* --- Encabezado --- */
+    .page-head { padding: clamp(8rem, 16vw, 10.5rem) 0 clamp(2.5rem, 5vw, 3.5rem); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem; margin: 0 0 1.1rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light-accent-text);
+    }
+    .eyebrow::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 6px rgba(80, 143, 248, 0.9), 0 0 12px rgba(80, 143, 248, 0.6), 0 0 20px rgba(80, 143, 248, 0.3);
+    }
+    h1 { font-family: "Manrope", sans-serif; font-weight: 700; font-size: clamp(2.5rem, 6.2vw, 4.2rem); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 1rem; }
+    .updated {
+      display: inline-flex; align-items: center; gap: 0.5rem; margin: 0 0 1.6rem;
+      padding: 0.3rem 0.8rem; border: 1px solid var(--light-rule); border-radius: 999px; background: rgba(255, 255, 255, 0.8);
+      font-size: 0.84rem; color: var(--light-muted);
+    }
+    .lead { max-width: 46em; margin: 0; font-size: 1.2rem; line-height: 1.6; color: var(--light-muted); }
+
+    /* --- Cuerpo: índice fijo + documento --- */
+    .doc-layout { display: grid; gap: 2rem; padding-bottom: clamp(4rem, 9vw, 6.5rem); align-items: start; }
+    @media (min-width: 960px) { .doc-layout { grid-template-columns: 240px minmax(0, 1fr); gap: 3rem; } }
+    .toc { position: sticky; top: 110px; }
+    .toc p { margin: 0 0 0.8rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light-faint); }
+    .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; counter-reset: toc; }
+    .toc li { counter-increment: toc; }
+    .toc a {
+      display: flex; gap: 0.6rem; padding: 0.45rem 0.7rem; border-radius: 10px;
+      font-size: 0.92rem; line-height: 1.35; color: var(--light-muted);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .toc a::before { content: counter(toc); min-width: 1.1em; font-family: "Inter", "Manrope", sans-serif; font-weight: 600; color: var(--light-faint); }
+    .toc a:hover { background: rgba(255, 255, 255, 0.8); color: var(--light-text); }
+    .toc a.is-active { background: var(--light-panel); color: var(--light-accent-text); font-weight: 600; box-shadow: 0 6px 16px -10px rgba(15, 23, 42, 0.25); }
+    .toc a.is-active::before { color: var(--light-accent-text); }
+    @media (max-width: 959px) { .toc { display: none; } }
+
+    .doc {
+      background: var(--light-panel);
+      border: 1px solid var(--light-rule);
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px -34px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      padding: clamp(1.6rem, 4.5vw, 3.2rem);
+    }
+    .doc h2 {
+      font-family: "Manrope", sans-serif; font-weight: 700; font-size: 1.5rem; line-height: 1.25; letter-spacing: -0.02em;
+      margin: 2.6rem 0 0.8rem; padding-top: 2.2rem; border-top: 1px solid var(--light-rule);
+    }
+    .doc h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .doc p { margin: 0 0 1.1rem; color: var(--light-muted); }
+    .doc strong { color: var(--light-text); font-weight: 600; }
+    .doc ul { margin: 0 0 1.2rem; padding: 0; list-style: none; display: grid; gap: 0.7rem; }
+    .doc li { position: relative; padding-left: 1.4rem; color: var(--light-muted); }
+    .doc li::before { content: ""; position: absolute; left: 0.2rem; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .doc a { text-decoration: underline; text-decoration-color: rgba(80, 143, 248, 0.45); text-underline-offset: 3px; }
+
+    .contact-box {
+      display: flex; align-items: center; gap: 1rem; margin: 1.4rem 0 0;
+      padding: 1.2rem 1.4rem; border-radius: 14px;
+      background: rgba(80, 143, 248, 0.07); border: 1px solid rgba(80, 143, 248, 0.25);
+    }
+    .contact-ic { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 12px; background: var(--accent); color: #fff; }
+    .contact-ic svg { width: 20px; height: 20px; }
+    .contact-box .label { margin: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-faint); }
+    .contact-box a { font-family: "Manrope", sans-serif; font-size: 1.1rem; font-weight: 700; text-decoration: none; color: var(--light-accent-text); }
+
+    /* --- Pie de página (igual que la landing) --- */
+    .site-footer { padding: 0 clamp(0.75rem, 1.6vw, 1.25rem) clamp(0.75rem, 1.6vw, 1.25rem); }
+    .footer-panel {
+      position: relative; overflow: hidden; isolation: isolate;
+      border-radius: clamp(56px, 12vw, 200px) 28px 28px 28px;
+      background: linear-gradient(140deg, #2d62dc 0%, #1f47b8 55%, #173a9c 100%);
+      color: #fff; padding: clamp(3rem, 7vw, 4.5rem) 0 clamp(1.6rem, 3vw, 2.2rem);
+    }
+    .footer-glow { position: absolute; z-index: -1; width: 620px; height: 620px; right: -160px; top: -260px; border-radius: 50%; background: radial-gradient(circle, rgba(143, 185, 255, 0.45) 0%, rgba(143, 185, 255, 0) 65%); }
+    .footer-mark { position: absolute; z-index: -1; width: clamp(240px, 26vw, 360px); height: auto; right: clamp(-90px, -4vw, -30px); top: -20px; opacity: 0.1; transform: rotate(-12deg); }
+    .footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.6rem; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 0.7rem; color: #fff; }
+    .footer-brand svg { width: 46px; height: auto; }
+    .footer-brand span { font-family: "Manrope", sans-serif; font-size: clamp(2.2rem, 4.4vw, 3rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .footer-tagline { margin: 0.9rem 0 0; max-width: 30ch; font-size: 0.98rem; color: rgba(255, 255, 255, 0.82); }
+    .footer-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.2rem; border-radius: 999px;
+      background: #fff; color: #1f47b8; font-family: "Manrope", sans-serif; font-weight: 700; font-size: 0.95rem;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+    .footer-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.35); }
+    .footer-cta svg { width: 16px; height: 16px; }
+    .footer-bottom {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem 1.5rem;
+      margin-top: clamp(2.2rem, 5vw, 3rem); padding-top: 1.4rem; border-top: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.82rem; color: rgba(255, 255, 255, 0.78);
+    }
+    .footer-bottom p { margin: 0; }
+    .footer-links { display: flex; align-items: center; gap: 1.4rem; }
+    .footer-links a { color: rgba(255, 255, 255, 0.85); }
+    .footer-links a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+    .footer-links a[aria-current] { color: #fff; font-weight: 600; }
+    @media (max-width: 699px) {
+      .footer-top, .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-tagline { margin-inline: auto; }
+    }
+    /* Desplegables del menú (mismos que el de la landing) */
+    .nav-links .nd { position: relative; }
+    .nd-btn { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.3rem 0; border: 0; background: none; font: inherit; font-size: 0.94rem; color: var(--light-text); cursor: pointer; }
+    .nd-btn svg { width: 14px; height: 14px; opacity: 0.6; transition: transform 0.2s ease; }
+    .nd-menu { position: absolute; top: calc(100% + 0.9rem); left: 50%; transform: translate(-50%, 6px); min-width: 310px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.15rem; background: #fff; border: 1px solid rgba(15, 23, 42, 0.08); border-radius: 1rem; box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s; z-index: 20; }
+    .nd-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -1.1rem; height: 1.1rem; }
+    .nd:hover .nd-menu, .nd:focus-within .nd-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
+    .nd:hover .nd-btn svg { transform: rotate(180deg); }
+    .nav-links .nd-menu a { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.65rem 0.75rem; border-radius: 0.65rem; white-space: normal; font-size: 0.92rem; color: var(--light-text); }
+    .nav-links .nd-menu a::after { content: none; }
+    .nav-links .nd-menu a:hover { background: rgba(80, 143, 248, 0.08); color: var(--light-accent-text); }
+    .nd-menu a svg { flex: none; width: 17px; height: 17px; margin-top: 2px; color: #508ff8; }
+    .dd-txt { display: flex; flex-direction: column; gap: 0.12rem; }
+    .dd-t { font-weight: 600; line-height: 1.3; }
+    .dd-d { font-size: 0.8rem; line-height: 1.35; color: var(--light-muted); }
+
+    /* Guías: figuras, tablas, listas numeradas, fórmula y fuentes. */
+    .doc ol { margin: 0 0 1.2rem; padding-left: 1.4rem; display: grid; gap: 0.7rem; color: var(--light-muted); }
+    .doc ol li { padding-left: 0.3rem; }
+    .doc ol li::before { content: none; }
+    .doc ol li::marker { color: var(--light-accent-text); font-weight: 700; }
+    .doc .fig { margin: 1.6rem 0 1.8rem; padding: 1.25rem; background: var(--light-panel); border: 1px solid var(--light-rule); border-radius: var(--radius); }
+    .doc .fig svg { display: block; width: 100%; height: auto; }
+    .doc .fig figcaption { margin-top: 0.8rem; font-size: 0.85rem; line-height: 1.5; color: var(--light-faint); }
+    .doc .table-wrap { margin: 0 0 1.2rem; overflow-x: auto; border: 1px solid var(--light-rule); border-radius: 12px; background: var(--light-panel); }
+    .doc table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    .doc th { text-align: left; padding: 0.7rem 0.9rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light-faint); border-bottom: 1px solid var(--light-rule); }
+    .doc td { padding: 0.7rem 0.9rem; vertical-align: top; color: var(--light-muted); border-bottom: 1px solid var(--light-rule); }
+    .doc tr:last-child td { border-bottom: none; }
+    .doc td:first-child { color: var(--light-text); font-weight: 600; }
+    .doc .formula { margin: 0 0 1.2rem; padding: 1rem 1.2rem; border-left: 3px solid var(--accent); background: var(--light-panel); border-radius: 0 12px 12px 0; }
+    .doc .formula p:last-child { margin-bottom: 0; }
+    .doc .formula-eq { font-weight: 700; color: var(--light-text); }
+    .doc ol.fuentes { font-size: 0.9rem; gap: 0.5rem; }
+    .doc { min-width: 0; }
+    .doc .formula-eq { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+
+  <div class="tile-grid" id="tile-grid" aria-hidden="true"></div>
+
+  <nav class="nav-pill" aria-label="Principal">
+    <a class="nav-logo" href="./" aria-label="Pharis, inicio">
+      <svg viewBox="0 0 21 17" fill="#508FF8" aria-hidden="true"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z"/></svg>
+    </a>
+    <ul class="nav-links">
+      <li class="nd">
+        <button type="button" class="nd-btn" aria-haspopup="true">Perfiles<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="nd-menu">
+          <a href="para-direccion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M9 17h1M14 17h1"/></svg><span class="dd-txt"><span class="dd-t">Dirección</span><span class="dd-d">Riesgo, seguimiento y resultados de toda la institución</span></span></a>
+          <a href="para-profesores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg><span class="dd-txt"><span class="dd-t">Profesores</span><span class="dd-d">Quién se está quedando atrás en tus grupos, y por qué</span></span></a>
+          <a href="para-coordinacion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></svg><span class="dd-txt"><span class="dd-t">Coordinación y tutoría</span><span class="dd-d">Que ninguna alerta se quede sin seguimiento</span></span></a>
+          <a href="para-alumnos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="dd-txt"><span class="dd-t">Alumnos</span><span class="dd-d">Un tutor con IA que conoce su materia</span></span></a>
+        </div>
+      </li>
+      <li class="nd">
+        <button type="button" class="nd-btn" aria-haspopup="true">Cómo funciona<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="nd-menu">
+          <a href="./#como-funciona"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="dd-txt"><span class="dd-t">Del LMS a la alerta</span><span class="dd-d">Los tres pasos, de la actividad a la acción</span></span></a>
+          <a href="metodologia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><span class="dd-txt"><span class="dd-t">Cómo calculamos el riesgo</span><span class="dd-d">Qué datos usa el modelo y qué deja fuera</span></span></a>
+          <a href="integracion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6M15 2v6M7 8h10v4a5 5 0 0 1-10 0z"/><path d="M12 17v5"/></svg><span class="dd-txt"><span class="dd-t">Integración con tu LMS</span><span class="dd-d">Solo lectura, sin servidores ni migraciones</span></span></a>
+          <a href="alerta-temprana-moodle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg><span class="dd-txt"><span class="dd-t">Pharis en Moodle</span><span class="dd-d">Qué gana una institución que usa Moodle</span></span></a>
+          <a href="retorno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2s1.3 1.7 3 2 3 .9 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></svg><span class="dd-txt"><span class="dd-t">Retorno</span><span class="dd-d">Lo que cuesta la deserción a tu institución</span></span></a>
+        </div>
+      </li>
+      <li class="nd">
+        <button type="button" class="nd-btn" aria-haspopup="true">Recursos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="nd-menu">
+          <a href="desercion-universitaria"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg><span class="dd-txt"><span class="dd-t">Deserción en América Latina</span><span class="dd-d">Cifras con fuente, causas y qué hacer</span></span></a>
+          <a href="guia-alerta-temprana-desercion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="dd-txt"><span class="dd-t">Guía de alerta temprana</span><span class="dd-d">Qué es y cómo implementarla</span></span></a>
+          <a href="alumnos-en-riesgo-moodle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6M11 8v6"/></svg><span class="dd-txt"><span class="dd-t">Alumnos en riesgo en Moodle</span><span class="dd-d">Qué revisar y dónde, cada semana</span></span></a>
+          <a href="indicadores-permanencia-estudiantil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg><span class="dd-txt"><span class="dd-t">Indicadores de permanencia</span><span class="dd-d">Cuáles medir y cómo calcularlos</span></span></a>
+          <a href="preguntas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg><span class="dd-txt"><span class="dd-t">Preguntas frecuentes</span><span class="dd-d">Plataforma, datos, precisión y cómo empezar</span></span></a>
+        </div>
+      </li>
+    </ul>
+    <a class="nav-btn" href="demo">Solicitar demo</a>
+  </nav>
+
+  <main>
+    <header class="page-head">
+      <div class="container">
+        <h1>Alerta temprana de deserción: qué es y cómo implementarla</h1>
+        <p class="updated">Última actualización: noviembre de 2026</p>
+        <p class="lead">Detectar a tiempo a un alumno en riesgo es solo la mitad del trabajo. Esta guía explica las piezas de un sistema de alerta temprana, lo que dicen los estudios rigurosos y cómo ponerlo en marcha sin que las alertas se queden sin atender.</p>
+      </div>
+    </header>
+
+    <div class="container doc-layout">
+      <nav class="toc" aria-label="Contenido">
+        <p>Contenido</p>
+        <ol>
+            <li><a href="#resumen">En resumen</a></li>
+            <li><a href="#que-es">Qué es un sistema de alerta temprana</a></li>
+            <li><a href="#piezas">Las cinco piezas</a></li>
+            <li><a href="#evidencia">Qué dice la evidencia</a></li>
+            <li><a href="#implementar">Cómo implementarla en seis pasos</a></li>
+            <li><a href="#errores">Errores comunes</a></li>
+            <li><a href="#pharis">Cómo lo hace Pharis</a></li>
+            <li><a href="#fuentes">Fuentes</a></li>
+        </ol>
+      </nav>
+
+      <article class="doc">
+          <h2 id="resumen">En resumen</h2>
+          <ul>
+          <li>Un sistema de alerta temprana detecta a tiempo a los alumnos que muestran señales de riesgo y hace que cada alerta llegue a una persona que actúa.</li>
+          <li>Tiene cinco piezas: indicadores, umbrales, responsables, intervención y evaluación. Sin las últimas tres, solo es un reporte.</li>
+          <li>La evidencia es mixta: en un ensayo con 73 escuelas, el sistema bajó el ausentismo crónico y la reprobación, pero no el promedio. En otro con más de 10 mil universitarios, no cambió la titulación.</li>
+          <li>Lo que más pesa es la capacidad de responder: quién contacta, en cuánto tiempo y qué ofrece.</li>
+          </ul>
+
+          <h2 id="que-es">Qué es un sistema de alerta temprana</h2>
+          <p>Un sistema de alerta temprana de deserción mide con frecuencia indicadores que anticipan el abandono, marca a los alumnos que cruzan un umbral y asigna cada caso a alguien que lo atiende. La palabra clave es <strong>temprana</strong>: la alerta tiene que llegar cuando todavía hay tiempo de cambiar el resultado, no cuando la boleta ya lo confirmó.</p>
+          <p>No es lo mismo que un modelo que predice quién va a desertar. Un modelo calcula un riesgo; un sistema de alerta temprana es el proceso completo que convierte ese riesgo en una conversación con el alumno y registra qué pasó después.</p>
+
+          <h2 id="piezas">Las cinco piezas</h2>
+          <figure class="fig">
+            <svg viewBox="0 0 640 300" role="img" aria-labelledby="fig1-t">
+              <title id="fig1-t">Ciclo de un sistema de alerta temprana: indicadores, umbral, responsable, intervención y evaluación, que vuelve a los indicadores</title>
+              <defs><marker id="f1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#508ff8"/></marker></defs>
+              <g font-family="Manrope, sans-serif" text-anchor="middle">
+                <g stroke="#508ff8" stroke-width="2" fill="none" marker-end="url(#f1a)">
+                  <path d="M168 82 Q244 40 284 56"/><path d="M402 62 Q470 60 490 112"/><path d="M482 196 Q440 252 380 252"/><path d="M262 252 Q190 252 160 206"/><path d="M118 150 Q112 120 120 104"/>
+                </g>
+                <g fill="#ffffff" stroke="rgba(15,23,42,0.14)" stroke-width="1.5">
+                  <rect x="40" y="40" width="150" height="62" rx="14"/><rect x="290" y="28" width="150" height="62" rx="14"/><rect x="452" y="118" width="150" height="62" rx="14"/><rect x="250" y="222" width="150" height="62" rx="14"/><rect x="40" y="150" width="150" height="62" rx="14"/>
+                </g>
+                <g font-size="15" font-weight="700" fill="#0f1b30"><text x="115" y="68">1. Indicadores</text><text x="365" y="56">2. Umbral</text><text x="527" y="146">3. Responsable</text><text x="325" y="250">4. Intervención</text><text x="115" y="178">5. Evaluación</text></g>
+                <g font-size="11.5" fill="#64748b"><text x="115" y="88">qué medir, cada semana</text><text x="365" y="76">cuándo se marca</text><text x="527" y="166">quién y en cuánto tiempo</text><text x="325" y="270">qué se le ofrece</text><text x="115" y="198">qué funcionó y se ajusta</text></g>
+              </g>
+            </svg>
+            <figcaption>Las cinco piezas forman un ciclo: lo que se aprende al evaluar ajusta los indicadores y los umbrales del siguiente periodo.</figcaption>
+          </figure>
+          <ul>
+          <li><strong>Indicadores.</strong> Lo que se mide de cada alumno: accesos a la plataforma, entregas, calificaciones parciales, asistencia, adeudos. Conviene que se actualicen cada semana o cada día, no al cierre del periodo.</li>
+          <li><strong>Umbral.</strong> El punto a partir del cual un alumno se marca. Funciona mejor comparar al alumno con su propio grupo que con una cifra fija, porque cada materia tiene su ritmo.</li>
+          <li><strong>Responsable.</strong> Cada alerta necesita a alguien que la tome y un plazo para hacerlo: el profesor, un tutor, el área de bienestar o la de finanzas, según el motivo.</li>
+          <li><strong>Intervención.</strong> Lo que se le ofrece al alumno: una conversación, una asesoría, un ajuste de pagos, una canalización. La alerta sin intervención no cambia nada.</li>
+          <li><strong>Evaluación.</strong> Registrar cada contacto y cómo terminó, y revisar al cierre del ciclo qué alertas acertaron y qué acciones ayudaron.</li>
+          </ul>
+
+          <h2 id="evidencia">Qué dice la evidencia</h2>
+          <p>Hay pocos estudios rigurosos, y sus resultados piden prudencia. Tres casos ayudan a entender qué esperar.</p>
+          <p><strong>EWIMS (Estados Unidos, preparatorias).</strong> El Laboratorio Regional de Educación del Medio Oeste asignó al azar 73 escuelas de tres estados: la mitad usó el sistema de alerta temprana EWIMS durante el ciclo 2014-2015 y la otra mitad esperó. Después de un año, en las escuelas con el sistema bajaron el ausentismo crónico y la reprobación de materias de los alumnos de primero y segundo. No hubo un efecto detectable en el promedio, en las suspensiones ni en los créditos acumulados, y los autores señalan que la implementación fue limitada.</p>
+          <figure class="fig">
+            <svg viewBox="0 0 640 250" role="img" aria-labelledby="fig2-t">
+              <title id="fig2-t">Resultados de EWIMS: ausentismo crónico 10% con el sistema contra 14% sin él; reprobaron al menos una materia 21% contra 26%</title>
+              <g font-family="Manrope, sans-serif">
+                <g font-size="13" font-weight="700" fill="#0f1b30"><text x="20" y="62">Ausentismo crónico</text><text x="20" y="162">Reprobaron una materia o más</text></g>
+                <rect x="20" y="74" width="240" height="22" rx="6" fill="#508ff8"/><text x="268" y="90" font-size="13" font-weight="700" fill="#1f5fd0">10% con el sistema</text>
+                <rect x="20" y="102" width="336" height="22" rx="6" fill="#cbd5e1"/><text x="364" y="118" font-size="13" fill="#475569">14% sin él</text>
+                <rect x="20" y="174" width="504" height="22" rx="6" fill="#508ff8"/><text x="532" y="190" font-size="13" font-weight="700" fill="#1f5fd0">21%</text>
+                <rect x="20" y="202" width="600" height="22" rx="6" fill="#cbd5e1"/><text x="585" y="218" font-size="13" fill="#0f1b30" text-anchor="end">26%</text>
+                <text x="20" y="28" font-size="12" fill="#64748b">Alumnos de primero y segundo de preparatoria, después de un año</text>
+              </g>
+            </svg>
+            <figcaption>Fuente: Faria y otros, <em>Getting Students on Track for Graduation: Impacts of the Early Warning Intervention and Monitoring System After One Year</em>, REL Midwest, 2017.</figcaption>
+          </figure>
+          <p><strong>MAAPS (Estados Unidos, universidades).</strong> Varias universidades públicas probaron, con asignación al azar de más de 10 mil alumnos, asesoría proactiva apoyada en analítica y alertas. La evaluación independiente de Ithaka S+R encontró que, seis años después, el programa no tuvo un efecto significativo en la titulación ni en la permanencia de la muestra completa, aunque a los cuatro años sí se habían visto efectos positivos en un grupo de alumnos de una de las universidades.</p>
+          <p><strong>Georgia State University.</strong> Es el caso más citado: un sistema que revisa cada día más de 700 señales de riesgo y avisa a los asesores. La universidad reportó 6 puntos más de titulación desde 2013. Pero al mismo tiempo contrató 42 asesores, y más del 90% del costo del proyecto fue personal, no tecnología.</p>
+          <p>La lección de los tres casos es la misma: <strong>la alerta no retiene a nadie; lo hacen las personas que responden a ella.</strong> Un sistema vale lo que vale la capacidad de la institución para atender sus alertas a tiempo.</p>
+
+          <h2 id="implementar">Cómo implementarla en seis pasos</h2>
+          <ol>
+          <li><strong>Define qué quieres evitar y en qué población.</strong> Por ejemplo, el abandono durante el primer año de licenciatura. Una meta concreta permite elegir indicadores y medir si funcionó.</li>
+          <li><strong>Elige indicadores que ya tienes.</strong> La plataforma educativa (LMS) registra accesos, entregas y calificaciones parciales; servicios escolares, la inscripción; finanzas, los adeudos. Empieza por lo que se actualiza solo, sin captura manual.</li>
+          <li><strong>Fija umbrales y revísalos cada semana.</strong> Compara a cada alumno con su grupo. Al principio, prefiere pocas alertas bien fundadas que muchas que nadie alcanza a atender.</li>
+          <li><strong>Asigna un responsable y un plazo a cada alerta.</strong> Por ejemplo, 48 horas para el primer contacto. Si nadie la toma, que suba a coordinación o dirección.</li>
+          <li><strong>Registra cada contacto y cómo terminó.</strong> Canal, fecha, qué se ofreció y si el alumno volvió a entregar. Sin ese registro no hay forma de saber qué funciona.</li>
+          <li><strong>Evalúa al cierre del ciclo.</strong> Revisa qué alertas acertaron y qué acciones ayudaron. Si puedes, activa las alertas en unos grupos antes que en otros para tener con qué comparar.</li>
+          </ol>
+
+          <h2 id="errores">Errores comunes</h2>
+          <ul>
+          <li><strong>Alertas sin dueño.</strong> Un reporte que todos ven y nadie atiende.</li>
+          <li><strong>Esperar a la calificación.</strong> La boleta confirma el problema semanas después de que la actividad del alumno ya cambió.</li>
+          <li><strong>Demasiadas alertas.</strong> Si el personal no alcanza a atenderlas, deja de abrirlas.</li>
+          <li><strong>Etiquetar en vez de apoyar.</strong> La señal es un motivo para conversar, no una sanción ni un juicio sobre el alumno. El Código de práctica de Jisc para la analítica del aprendizaje recomienda transparencia con los alumnos y que las intervenciones sean siempre de apoyo.</li>
+          <li><strong>No medir el efecto.</strong> Sin registro de desenlaces, el sistema no aprende ni se puede justificar ante la dirección.</li>
+          </ul>
+
+          <h2 id="pharis">Cómo lo hace Pharis</h2>
+          <p>Pharis cubre las cinco piezas: lee el LMS cada día en modo solo lectura, compara a cada alumno con su grupo, hace llegar cada alerta al profesor o al área que corresponde con los motivos y un plazo, y registra cada contacto y su desenlace. Para ver qué indicadores usa, consulta <a href="metodologia">Cómo calcula Pharis el riesgo</a>; para empezar con un grupo acotado, el <a href="piloto">piloto de bajo riesgo</a>.</p>
+          <p><a href="demo">Agenda una demo con los datos de tu institución</a>.</p>
+
+          <h2 id="fuentes">Fuentes</h2>
+          <ol class="fuentes">
+          <li>Faria, A.-M. y otros (2017). <a href="https://ies.ed.gov/use-work/resource-library/report/impact-study/getting-students-track-graduation-impacts-early-warning-intervention-and-monitoring-system-after-one"><em>Getting Students on Track for Graduation: Impacts of the Early Warning Intervention and Monitoring System After One Year</em></a> (REL 2017-272). Regional Educational Laboratory Midwest, Institute of Education Sciences.</li>
+          <li>Rossman, D., Kurzweil, M. y Lewis, K. (2023). <a href="https://sr.ithaka.org/wp-content/uploads/2023/05/SR_Report_MAAPS_EvaluationFindings_6Years_05162023.pdf"><em>MAAPS Advising Experiment: Evaluation Findings after Six Years</em></a>. Ithaka S+R.</li>
+          <li>NPR (2016). <a href="https://www.npr.org/sections/ed/2016/10/30/499200614/how-one-university-used-big-data-to-boost-graduation-rates"><em>How One University Used Big Data To Boost Graduation Rates</em></a>.</li>
+          <li>Jisc (2015). <a href="https://www.jisc.ac.uk/guides/code-of-practice-for-learning-analytics"><em>Code of practice for learning analytics</em></a>.</li>
+          </ol>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-panel">
+      <span class="footer-glow" aria-hidden="true"></span>
+      <svg class="footer-mark" viewBox="0 0 21 17" fill="#ffffff" aria-hidden="true"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z"/></svg>
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <a class="footer-brand" href="./" aria-label="Pharis, inicio">
+              <svg viewBox="0 0 21 17" fill="#ffffff" aria-hidden="true"><path d="M0.018654 0C0.291685 0.0346468 1.06363 0.351087 1.35507 0.444175C2.00683 0.652386 2.66098 0.893337 3.30632 1.1157L7.44425 2.51569C8.06511 2.72709 8.66921 2.90399 9.28163 3.14897C9.27745 3.58039 9.21329 4.21939 9.18326 4.67222C9.11664 5.7132 9.04471 6.75378 8.96742 7.79399C8.90088 8.70041 8.87595 9.5429 8.82382 10.438L8.61194 13.5626C8.55515 14.428 8.39189 15.9957 8.40472 16.8065C7.86712 16.785 7.20704 16.8116 6.65379 16.8015C6.24697 16.7941 5.34462 16.7703 4.9748 16.8225C5.17644 16.3851 5.28948 15.8819 5.4424 15.4234C6.19564 13.1646 6.9358 10.8953 7.67625 8.63259C7.92098 7.93723 8.10071 7.37357 8.29986 6.66252C7.99596 6.82813 7.43703 6.98952 7.09294 7.10483L5.15151 7.75164C3.9828 8.13023 2.75982 8.58522 1.59136 8.9865C1.14081 9.14125 0.395517 9.31603 0.0199016 9.55254C0.00992916 8.76633 -0.022738 7.75843 0.0263541 6.98817C0.650986 6.90894 9.11771 4.70463 9.03973 4.77851C8.91731 4.62324 7.17078 4.26203 6.87252 4.18944L3.81818 3.43088C2.59209 3.13691 1.23158 2.74788 0.000468966 2.50575C0.0457848 1.81065 0.0160509 0.727473 0.018654 0Z"/><path d="M20.2672 0.0289993L20.3871 0.0302827C20.4597 0.124471 20.4258 2.21354 20.4249 2.49028C18.2297 3.0131 16.04 3.55894 13.8563 4.12766C13.5136 4.21342 11.545 4.59757 11.479 4.78639C11.655 4.86837 12.1966 4.9594 12.4251 5.01729L15.214 5.71423C16.9305 6.1261 18.725 6.6281 20.4239 7.02197C20.4254 7.37599 20.4564 9.20695 20.3958 9.44314C19.9444 9.43269 16.2385 8.06739 15.5812 7.84396L13.6376 7.19099C13.1168 7.01981 12.568 6.86388 12.079 6.62051C12.3181 7.16521 12.5208 7.916 12.7227 8.50749C12.9069 8.9939 13.0299 9.48999 13.1962 9.98319L14.8492 14.9667C14.9894 15.3789 15.2887 16.4491 15.4624 16.7646C14.3807 16.8598 13.1516 16.7846 12.0532 16.8182C12.0684 16.5415 11.9832 15.6921 11.9634 15.3661L11.7317 11.8073C11.6749 10.9925 11.6565 10.2069 11.6083 9.40552C11.4933 7.31429 11.3464 5.22496 11.1675 3.13823C12.1316 2.77479 13.1446 2.46883 14.1199 2.12588C16.1561 1.40981 18.2385 0.762741 20.2672 0.0289993Z"/></svg>
+              <span>Pharis</span>
+            </a>
+            <p class="footer-tagline">Desarrollado en México para universidades latinoamericanas.</p>
+          </div>
+          <a class="footer-cta" href="./">Volver al inicio
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="year">2026</span> Pharis. Todos los derechos reservados.</p>
+          <div class="footer-links">
+            <a href="metodologia">Cómo calcula Pharis el riesgo de deserción</a>
+            <a href="privacy">Aviso de privacidad</a>
+            <a href="en/dropout-early-warning-guide" hreflang="en" lang="en">English</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Baldosas del fondo (mismo patrón que la landing), al alto real del contenido.
+    (function buildTileGrid() {
+      const grid = document.getElementById("tile-grid");
+      const cell = 120;
+      const variantAt = (r, c) => {
+        const k = (r * 7 + c * 3) % 11;
+        if (k === 0 || k === 6) return " elevated";
+        if (k === 2 || k === 8) return " soft";
+        if (k === 4 || k === 9) return " dimmed";
+        return "";
+      };
+      let last = "";
+      function build() {
+        grid.style.display = "none";
+        const h = document.documentElement.scrollHeight;
+        grid.style.display = "";
+        const cols = Math.ceil(innerWidth / cell) + 1, rows = Math.ceil(h / cell) + 1;
+        grid.style.height = h + "px";
+        if (cols + "x" + rows === last) return;
+        last = cols + "x" + rows;
+        let html = "";
+        for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) html += '<div class="tile' + variantAt(r, c) + '"></div>';
+        grid.innerHTML = html;
+      }
+      build();
+      addEventListener("resize", build);
+      addEventListener("load", build);
+      if ("ResizeObserver" in window) new ResizeObserver(build).observe(document.body);
+    })();
+
+    // Índice: marca la sección que se está leyendo.
+    (function tocSpy() {
+      const links = Array.from(document.querySelectorAll(".toc a"));
+      if (!links.length || !("IntersectionObserver" in window)) return;
+      const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          links.forEach((a) => a.classList.toggle("is-active", a === byId.get(e.target.id)));
+        });
+      }, { rootMargin: "-120px 0px -65% 0px" });
+      document.querySelectorAll(".doc h2[id]").forEach((h) => io.observe(h));
+    })();
+  </script>
+</body>
+</html>

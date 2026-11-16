@@ -225,4 +225,46 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/terms" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/terminos" />
   </url>
+  <url>
+    <loc>https://pharis.mx/guia-alerta-temprana-desercion</loc>
+    <lastmod>2026-11-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/guia-alerta-temprana-desercion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/dropout-early-warning-guide" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/guia-alerta-temprana-desercion" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/dropout-early-warning-guide</loc>
+    <lastmod>2026-11-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/guia-alerta-temprana-desercion" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/dropout-early-warning-guide" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/guia-alerta-temprana-desercion" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/alumnos-en-riesgo-moodle</loc>
+    <lastmod>2026-11-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/alumnos-en-riesgo-moodle" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/at-risk-students-moodle" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/alumnos-en-riesgo-moodle" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/at-risk-students-moodle</loc>
+    <lastmod>2026-11-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/alumnos-en-riesgo-moodle" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/at-risk-students-moodle" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/alumnos-en-riesgo-moodle" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/indicadores-permanencia-estudiantil</loc>
+    <lastmod>2026-11-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/indicadores-permanencia-estudiantil" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/student-retention-indicators" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/indicadores-permanencia-estudiantil" />
+  </url>
+  <url>
+    <loc>https://pharis.mx/en/student-retention-indicators</loc>
+    <lastmod>2026-11-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pharis.mx/indicadores-permanencia-estudiantil" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pharis.mx/en/student-retention-indicators" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pharis.mx/indicadores-permanencia-estudiantil" />
+  </url>
 </urlset>
