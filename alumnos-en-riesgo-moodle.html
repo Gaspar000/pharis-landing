@@ -275,6 +275,7 @@
           <a href="integracion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6M15 2v6M7 8h10v4a5 5 0 0 1-10 0z"/><path d="M12 17v5"/></svg><span class="dd-txt"><span class="dd-t">Integración con tu LMS</span><span class="dd-d">Solo lectura, sin servidores ni migraciones</span></span></a>
           <a href="alerta-temprana-moodle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg><span class="dd-txt"><span class="dd-t">Pharis en Moodle</span><span class="dd-d">Qué gana una institución que usa Moodle</span></span></a>
           <a href="retorno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2s1.3 1.7 3 2 3 .9 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></svg><span class="dd-txt"><span class="dd-t">Retorno</span><span class="dd-d">Lo que cuesta la deserción a tu institución</span></span></a>
+          <a href="piloto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg><span class="dd-txt"><span class="dd-t">Piloto</span><span class="dd-d">Prueba de 8 semanas en un grupo acotado</span></span></a>
         </div>
       </li>
       <li class="nd">
@@ -325,7 +326,7 @@
           </ul>
 
           <h2 id="senales">Las señales que ya guarda Moodle</h2>
-          <p>Partiendo de que no hace falta instalar nada para empezar, se presentan las señales más útiles y el lugar donde se consultan en un Moodle estándar:</p>
+          <p>Para empezar no hace falta instalar nada. Estas son las señales más útiles y el lugar donde se consultan en un Moodle estándar:</p>
           <div class="table-wrap"><table>
             <thead><tr><th>Señal</th><th>Dónde verla</th><th>Qué indica</th></tr></thead>
             <tbody>
@@ -337,10 +338,10 @@
               <tr><td>Participación</td><td>Foros del curso</td><td>Si interviene o desapareció de las discusiones.</td></tr>
             </tbody>
           </table></div>
-          <p>Considerando que los nombres pueden variar ligeramente según la versión y el tema de cada Moodle, algunos informes dependen además de los permisos que la institución otorga al rol de profesor.</p>
+          <p>Los nombres pueden variar ligeramente según la versión y el tema de cada Moodle, y algunos informes dependen además de los permisos que la institución otorga al rol de profesor.</p>
 
           <h2 id="relativo">Comparar al alumno con su grupo</h2>
-          <p>Contextualizando la señal, tres días sin entrar no significan lo mismo en un curso con una entrega semanal que en uno con clases diarias, por lo que la comparación útil es contra el propio grupo: como punto de partida, que conviene ajustar a cada curso, un alumno que entra la mitad de veces que la mediana de su grupo durante dos semanas seguidas merece atención aunque todavía no haya reprobado nada.</p>
+          <p>La señal depende del contexto: tres días sin entrar no significan lo mismo en un curso con una entrega semanal que en uno con clases diarias, por lo que la comparación útil es contra el propio grupo: como punto de partida, que conviene ajustar a cada curso, un alumno que entra la mitad de veces que la mediana de su grupo durante dos semanas seguidas merece atención aunque todavía no haya reprobado nada.</p>
           <figure class="fig">
             <svg viewBox="0 0 640 280" role="img" aria-labelledby="fig3-t">
               <title id="fig3-t">Ejemplo ilustrativo: los accesos semanales de un alumno caen por debajo de los de su grupo desde la semana 3; la primera calificación reprobatoria llega en la semana 9</title>
@@ -361,7 +362,7 @@
           </figure>
 
           <h2 id="rutina">Una rutina semanal de 15 minutos</h2>
-          <p>Proponiendo una rutina que cualquier profesor puede aplicar con las herramientas de Moodle, se plantean los siguientes pasos:</p>
+          <p>La siguiente rutina puede aplicarla cualquier profesor con las herramientas de Moodle:</p>
           <ol>
           <li><strong>Abrir Participantes</strong> y ordenar por último acceso al curso, anotando a quien lleva más días sin entrar que el resto de su grupo.</li>
           <li><strong>Revisar la última tarea</strong> en Ver todas las entregas, identificando quién no entregó y quién entregó tarde por segunda vez.</li>
@@ -371,7 +372,7 @@
           </ol>
 
           <h2 id="modelo-moodle">El modelo de riesgo que trae Moodle</h2>
-          <p>Moodle incluye una función de analítica con un modelo denominado <strong>Estudiantes en riesgo de abandono</strong>. Describiéndolo con base en su documentación oficial:</p>
+          <p>Moodle incluye una función de analítica con un modelo denominado <strong>Estudiantes en riesgo de abandono</strong>. Su documentación oficial lo describe así:</p>
           <ul>
           <li>Considera que un alumno abandonó cuando no registra actividad en el último cuarto del curso.</li>
           <li>Sus indicadores se basan en el modelo de Comunidad de Indagación: la profundidad cognitiva y la amplitud social de la participación en cada actividad.</li>
@@ -391,7 +392,7 @@
           </ul>
 
           <h2 id="pharis">Cómo lo hace Pharis</h2>
-          <p>Automatizando esta rutina en todos los cursos, Pharis lee Moodle cada día en modo solo lectura, compara a cada alumno con su grupo en cada materia, integra las señales de todas sus materias y hace llegar la alerta al profesor o al área correspondiente, con el seguimiento registrado. La conexión se realiza sin instalar plugins, como se detalla en <a href="alerta-temprana-moodle">Alerta temprana de deserción en Moodle</a>.</p>
+          <p>Pharis automatiza esta rutina en todos los cursos: lee Moodle cada día en modo solo lectura, compara a cada alumno con su grupo en cada materia, integra las señales de todas sus materias y hace llegar la alerta al profesor o al área correspondiente, con el seguimiento registrado. La conexión se realiza sin instalar plugins, como se detalla en <a href="alerta-temprana-moodle">Alerta temprana de deserción en Moodle</a>.</p>
           <p><a href="demo">Agenda una demo con los datos de tu institución</a>.</p>
 
           <h2 id="fuentes">Fuentes</h2>
