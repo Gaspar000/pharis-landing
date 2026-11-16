@@ -14,3 +14,8 @@ Thumbs.db
 # Temp render artifacts
 .__shot-*.png
 .__check.js
+
+# Locales, no publicar (el video EN se sirve desde assets.pharis.mx)
+.claude/skills/
+assets/video-pharis-en.mp4
+assets/video-poster-en.jpg
