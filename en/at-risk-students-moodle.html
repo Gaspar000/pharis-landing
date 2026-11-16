@@ -371,11 +371,13 @@
           </ol>
 
           <h2 id="moodle-model">Moodle's built-in risk model</h2>
-          <p>Since version 3.4, Moodle includes an analytics feature with a model called <strong>Students at risk of dropping out</strong>. Describing it based on the official documentation:</p>
+          <p>Moodle includes an analytics feature with a model called <strong>Students at risk of dropping out</strong>. Describing it based on the official documentation:</p>
           <ul>
           <li>It considers that a student dropped out when they record no activity in the last quarter of the course.</li>
           <li>Its indicators are based on the Community of Inquiry model: the cognitive depth and social breadth of participation in each activity.</li>
           <li>It learns from finished courses at the same institution and produces a prediction for each course enrolment.</li>
+          <li>It is not enabled by default: it has to be enabled in site administration and trained on finished courses with activity logs.</li>
+          <li>Alerts go to the teacher by default, who can then message the student, view their course activity report or mark the alert as handled.</li>
           <li>It requires courses with correctly set start and end dates and sections that split the time; it does not work for rolling-enrolment courses and only considers standard Moodle activities.</li>
           </ul>
           <p>Weighing its suitability, it is a good option when the institution has a history of well-configured courses and someone to enable and train the model. Its limits lie in working course by course, not seeing the student across all their courses at once and not recording who contacted them or how the case ended.</p>

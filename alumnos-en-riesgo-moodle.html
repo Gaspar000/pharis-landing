@@ -371,11 +371,13 @@
           </ol>
 
           <h2 id="modelo-moodle">El modelo de riesgo que trae Moodle</h2>
-          <p>Desde la versión 3.4, Moodle incluye una función de analítica con un modelo denominado <strong>Estudiantes en riesgo de abandono</strong>. Describiéndolo con base en su documentación oficial:</p>
+          <p>Moodle incluye una función de analítica con un modelo denominado <strong>Estudiantes en riesgo de abandono</strong>. Describiéndolo con base en su documentación oficial:</p>
           <ul>
           <li>Considera que un alumno abandonó cuando no registra actividad en el último cuarto del curso.</li>
           <li>Sus indicadores se basan en el modelo de Comunidad de Indagación: la profundidad cognitiva y la amplitud social de la participación en cada actividad.</li>
           <li>Aprende de cursos ya concluidos en la misma institución y genera una predicción para cada inscripción a un curso.</li>
+          <li>No viene activado: hay que habilitarlo en la administración del sitio y entrenarlo con cursos ya concluidos que tengan registro de actividad.</li>
+          <li>Las alertas llegan por defecto al profesor, que desde ahí puede enviar un mensaje al alumno, consultar su reporte de actividad en el curso o marcar la alerta como atendida.</li>
           <li>Requiere cursos con fechas de inicio y fin correctamente definidas y secciones que dividan el tiempo; no funciona en cursos de inscripción continua y solo considera las actividades estándar de Moodle.</li>
           </ul>
           <p>Evaluando su conveniencia, resulta una buena opción cuando la institución cuenta con un historial de cursos bien configurados y con alguien que active y entrene el modelo. Sus límites radican en que trabaja curso por curso, no observa al alumno en todas sus materias a la vez y no registra quién lo contactó ni cómo terminó el caso.</p>
