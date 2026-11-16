@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pharis - Alerta temprana de deserción para universidades</title>
-  <meta name="description" content="Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción que se actualiza cada día con la actividad del LMS. Avisa cuando un alumno empieza a alejarse de su grupo." />
+  <meta name="description" content="Pharis detecta a tiempo a los alumnos en riesgo de deserción con la actividad diaria del LMS y ayuda a tu universidad a mejorar la permanencia estudiantil." />
   <!-- SEO:start -->
   <link rel="canonical" href="https://pharis.mx/" />
   <link rel="alternate" hreflang="es" href="https://pharis.mx/" />
@@ -25,7 +25,7 @@
   <meta name="twitter:title" content="Pharis - Alerta temprana de deserción para universidades" />
   <meta name="twitter:description" content="Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción que se actualiza cada día con la actividad del LMS. Avisa cuando un alumno empieza a alejarse de su grupo." />
   <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-es.jpg" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharis.mx/#org", "name": "Pharis", "url": "https://pharis.mx/", "logo": "https://pharis.mx/assets/logo.svg", "email": "contacto@pharis.mx", "areaServed": "Latin America"}, {"@type": "WebSite", "@id": "https://pharis.mx/#website", "url": "https://pharis.mx/", "name": "Pharis", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}, {"@type": "SoftwareApplication", "name": "Pharis", "url": "https://pharis.mx/", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows, Chrome", "description": "Pharis es un tutor con IA que acompaña a cada alumno en su plataforma educativa y da al profesor un tablero de riesgo de deserción que se actualiza cada día con la actividad del LMS. Avisa cuando un alumno empieza a alejarse de su grupo.", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharis.mx/#org", "name": "Pharis", "url": "https://pharis.mx/", "logo": "https://pharis.mx/assets/logo.svg", "email": "contacto@pharis.mx", "areaServed": "Latin America", "description": "Pharis, plataforma de alerta temprana de deserción y permanencia estudiantil para universidades."}, {"@type": "WebSite", "@id": "https://pharis.mx/#website", "url": "https://pharis.mx/", "name": "Pharis", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}, {"@type": "SoftwareApplication", "name": "Pharis", "url": "https://pharis.mx/", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows, Chrome", "description": "Pharis detecta a tiempo a los alumnos en riesgo de deserción con la actividad diaria del LMS y ayuda a tu universidad a mejorar la permanencia estudiantil.", "inLanguage": "es", "publisher": {"@id": "https://pharis.mx/#org"}}]}</script>
   <!-- SEO:end -->
   <meta name="theme-color" content="#f5f8fc" />
 
@@ -2138,8 +2138,13 @@
        Cuando el foco se va hacia el cursor, una "i" completa encima
        (mismo trazo, coinciden) aparece para que "Pharis" no quede sin
        punto. --lamp-dot lo controla el traslado (0 con el haz, 1 sin). */
-    #ph2-lamp-tick { display: inline; position: relative; }
+    #ph2-lamp-tick { display: inline; position: relative; -webkit-text-fill-color: transparent; }
+    #ph2-lamp-tick::before {
+      content: "\0131"; position: absolute; left: 0; top: 0; line-height: normal;
+      -webkit-text-fill-color: initial;
+    }
     #ph2-lamp-tick::after {
+      -webkit-text-fill-color: initial;
       /* line-height: normal: la caja del pseudo-elemento mide lo mismo
          que la caja tipográfica del span (con el 1.08 del h1 quedaba
          ~10px más arriba y la i se veía alargada). */
@@ -2565,7 +2570,7 @@
 
     <div class="ph2-hero-main">
       <div class="ph2-hero-text">
-        <h1 aria-label="El alumno en riesgo ya dio señales. Pharis las ve primero."><span aria-hidden="true">El alumno en riesgo ya dio señales.<br /><strong>Phar<span id="ph2-lamp-tick">ı</span>s las ve primero.</strong></span></h1>
+        <h1 aria-label="El alumno en riesgo ya dio señales. Pharis las ve primero."><span aria-hidden="true">El alumno en riesgo ya dio señales.<br /><strong>Phar<span id="ph2-lamp-tick">i</span>s las ve primero.</strong></span></h1>
         <p class="ph2-sub">Pharis es un sistema de alerta temprana de deserción universitaria: acompaña al alumno mientras estudia y avisa a profesores y directivos cuando alguien empieza a alejarse de su grupo, con base en su actividad y sus entregas en el LMS.</p>
         <p class="ph2-sub ph2-sub--m">Avisa a profesores y directivos cuando un alumno empieza a alejarse de su grupo, antes de que aparezca en la boleta.</p>
         <a class="ph2-hero-cta m-demo" href="demo">Agenda una demo</a>
@@ -2580,7 +2585,7 @@
           <p class="ph2-sig-name"><strong>Diego Ramírez</strong></p>
 
           <div class="ph2-subject-photo" id="ph2-subject-photo">
-            <img class="ph2-is-off" src="assets/hero-alumno-apagado.webp" width="525" height="1300" alt="" aria-hidden="true" fetchpriority="high" />
+            <img class="ph2-is-off" src="assets/hero-alumno-apagado.webp" width="525" height="1300" alt="Estudiante universitario con mochila, rodeado de las señales de riesgo que Pharis detecta en su actividad" aria-hidden="true" fetchpriority="high" />
             <img class="ph2-is-lit" src="assets/hero-alumno-iluminado.webp" width="525" height="1300" alt="" aria-hidden="true" />
           </div>
 

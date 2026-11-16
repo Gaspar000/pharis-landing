@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pharis - Early dropout alerts for universities</title>
-  <meta name="description" content="Pharis is an AI tutor that supports every student inside their learning platform and gives professors a dropout risk dashboard that updates every day with LMS activity. It flags students who start drifting away from their group." />
+  <meta name="description" content="Pharis flags students at risk of dropping out early, using daily LMS activity, and helps your university improve student retention." />
   <!-- SEO:start -->
   <link rel="canonical" href="https://pharis.mx/en/" />
   <link rel="alternate" hreflang="es" href="https://pharis.mx/" />
@@ -25,7 +25,7 @@
   <meta name="twitter:title" content="Pharis - Early dropout alerts for universities" />
   <meta name="twitter:description" content="Pharis is an AI tutor that supports every student inside their learning platform and gives professors a dropout risk dashboard that updates every day with LMS activity. It flags students who start drifting away from their group." />
   <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-en.jpg" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharis.mx/#org", "name": "Pharis", "url": "https://pharis.mx/", "logo": "https://pharis.mx/assets/logo.svg", "email": "contacto@pharis.mx", "areaServed": "Latin America"}, {"@type": "WebSite", "@id": "https://pharis.mx/en/#website", "url": "https://pharis.mx/en/", "name": "Pharis", "inLanguage": "en", "publisher": {"@id": "https://pharis.mx/#org"}}, {"@type": "SoftwareApplication", "name": "Pharis", "url": "https://pharis.mx/en/", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows, Chrome", "description": "Pharis is an AI tutor that supports every student inside their learning platform and gives professors a dropout risk dashboard that updates every day with LMS activity. It flags students who start drifting away from their group.", "inLanguage": "en", "publisher": {"@id": "https://pharis.mx/#org"}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://pharis.mx/#org", "name": "Pharis", "url": "https://pharis.mx/", "logo": "https://pharis.mx/assets/logo.svg", "email": "contacto@pharis.mx", "areaServed": "Latin America", "description": "Pharis, an early warning platform for student dropout and retention at universities."}, {"@type": "WebSite", "@id": "https://pharis.mx/en/#website", "url": "https://pharis.mx/en/", "name": "Pharis", "inLanguage": "en", "publisher": {"@id": "https://pharis.mx/#org"}}, {"@type": "SoftwareApplication", "name": "Pharis", "url": "https://pharis.mx/en/", "applicationCategory": "EducationalApplication", "operatingSystem": "Windows, Chrome", "description": "Pharis flags students at risk of dropping out early, using daily LMS activity, and helps your university improve student retention.", "inLanguage": "en", "publisher": {"@id": "https://pharis.mx/#org"}}]}</script>
   <!-- SEO:end -->
   <meta name="theme-color" content="#f5f8fc" />
 
@@ -2138,8 +2138,13 @@
        Cuando el foco se va hacia el cursor, una "i" completa encima
        (mismo trazo, coinciden) aparece para que "Pharis" no quede sin
        punto. --lamp-dot lo controla el traslado (0 con el haz, 1 sin). */
-    #ph2-lamp-tick { display: inline; position: relative; }
+    #ph2-lamp-tick { display: inline; position: relative; -webkit-text-fill-color: transparent; }
+    #ph2-lamp-tick::before {
+      content: "\0131"; position: absolute; left: 0; top: 0; line-height: normal;
+      -webkit-text-fill-color: initial;
+    }
     #ph2-lamp-tick::after {
+      -webkit-text-fill-color: initial;
       /* line-height: normal: la caja del pseudo-elemento mide lo mismo
          que la caja tipográfica del span (con el 1.08 del h1 quedaba
          ~10px más arriba y la i se veía alargada). */
@@ -2565,7 +2570,7 @@
 
     <div class="ph2-hero-main">
       <div class="ph2-hero-text">
-        <h1 aria-label="The at-risk student already showed the signs. Pharis sees them first."><span aria-hidden="true">The at-risk student already showed the signs.<br /><strong>Phar<span id="ph2-lamp-tick">ı</span>s sees them first.</strong></span></h1>
+        <h1 aria-label="The at-risk student already showed the signs. Pharis sees them first."><span aria-hidden="true">The at-risk student already showed the signs.<br /><strong>Phar<span id="ph2-lamp-tick">i</span>s sees them first.</strong></span></h1>
         <p class="ph2-sub">Pharis is an early warning system for university dropout: it supports students while they study and alerts professors and administrators when someone starts drifting away from their group, based on their activity and submissions in the LMS.</p>
         <p class="ph2-sub ph2-sub--m">Alerts professors and administrators when a student starts drifting away from their group, before it shows up in their grades.</p>
         <a class="ph2-hero-cta m-demo" href="demo">Book a demo</a>
@@ -2580,7 +2585,7 @@
           <p class="ph2-sig-name"><strong>Diego Ramírez</strong></p>
 
           <div class="ph2-subject-photo" id="ph2-subject-photo">
-            <img class="ph2-is-off" src="../assets/hero-alumno-apagado.webp" width="525" height="1300" alt="" aria-hidden="true" fetchpriority="high" />
+            <img class="ph2-is-off" src="../assets/hero-alumno-apagado.webp" width="525" height="1300" alt="University student with a backpack, surrounded by the risk signals Pharis picks up from their activity" aria-hidden="true" fetchpriority="high" />
             <img class="ph2-is-lit" src="../assets/hero-alumno-iluminado.webp" width="525" height="1300" alt="" aria-hidden="true" />
           </div>
 
