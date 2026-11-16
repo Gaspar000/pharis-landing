@@ -306,7 +306,7 @@
         <ol>
             <li><a href="#summary">In short</a></li>
             <li><a href="#signals">The signals Moodle already stores</a></li>
-            <li><a href="#relative">Compare the student with their group</a></li>
+            <li><a href="#relative">Comparing the student with their group</a></li>
             <li><a href="#routine">A 15-minute weekly routine</a></li>
             <li><a href="#moodle-model">Moodle's built-in risk model</a></li>
             <li><a href="#limits">The limits of doing it by hand</a></li>
@@ -318,14 +318,14 @@
       <article class="doc">
           <h2 id="summary">In short</h2>
           <ul>
-          <li>Moodle already stores almost everything you need to spot a student at risk: last access, activity logs, submissions and grades.</li>
-          <li>The earliest signal is usually activity, not grades: the student logs in less than their group weeks before failing.</li>
+          <li>Moodle already stores almost everything needed to spot a student at risk: last access, activity logs, submissions and grades.</li>
+          <li>The earliest signal is usually activity, not grades, since the student logs in less than their group weeks before failing.</li>
           <li>An instructor can review it in about 15 minutes a week with the reports Moodle already includes.</li>
           <li>Moodle ships with a "Students at risk of dropping out" model that is useful but has requirements and limits worth knowing.</li>
           </ul>
 
           <h2 id="signals">The signals Moodle already stores</h2>
-          <p>You do not need to install anything to start. These are the most useful signals and where to find them in a standard Moodle:</p>
+          <p>Starting from the fact that nothing needs to be installed, the most useful signals and where to find them in a standard Moodle are presented below:</p>
           <div class="table-wrap"><table>
             <thead><tr><th>Signal</th><th>Where to see it</th><th>What it tells you</th></tr></thead>
             <tbody>
@@ -337,10 +337,10 @@
               <tr><td>Participation</td><td>Course forums</td><td>Whether they take part or have disappeared from discussions.</td></tr>
             </tbody>
           </table></div>
-          <p>Names may vary slightly with your Moodle version and theme, and some reports depend on the permissions your institution gives to the teacher role.</p>
+          <p>Considering that names may vary slightly with each Moodle's version and theme, some reports also depend on the permissions the institution gives to the teacher role.</p>
 
-          <h2 id="relative">Compare the student with their group</h2>
-          <p>Three days without logging in do not mean the same in a course with one weekly assignment as in one with daily classes. That is why the useful comparison is against the student's own group: a student who logs in half as often as the group median, two weeks in a row, deserves attention even before failing anything.</p>
+          <h2 id="relative">Comparing the student with their group</h2>
+          <p>Putting the signal in context, three days without logging in do not mean the same in a course with one weekly assignment as in one with daily classes, so the useful comparison is against the student's own group: a student who logs in half as often as the group median, two weeks in a row, deserves attention even before failing anything.</p>
           <figure class="fig">
             <svg viewBox="0 0 640 280" role="img" aria-labelledby="fig3-t">
               <title id="fig3-t">Illustrative example: a student's weekly logins fall below their group's from week 3; the first failing grade arrives in week 9</title>
@@ -361,33 +361,35 @@
           </figure>
 
           <h2 id="routine">A 15-minute weekly routine</h2>
+          <p>Proposing a routine any instructor can apply with Moodle's own tools, the following steps are suggested:</p>
           <ol>
-          <li><strong>Open Participants</strong> and sort by last access to the course. Note anyone who has gone longer without logging in than the rest of their group.</li>
-          <li><strong>Check the latest assignment</strong> in View all submissions: who did not submit and who was late for the second time.</li>
-          <li><strong>Cross the two lists.</strong> Whoever appears on both is your priority this week.</li>
-          <li><strong>Send a short, specific message</strong>: what you noticed, what support exists and how to reach you. Avoid a reproachful tone.</li>
-          <li><strong>Note whom you contacted and what they answered</strong>, to follow up next week and to alert tutoring if there is no reply.</li>
+          <li><strong>Open Participants</strong> and sort by last access to the course, noting anyone who has gone longer without logging in than the rest of their group.</li>
+          <li><strong>Check the latest assignment</strong> in View all submissions, identifying who did not submit and who was late for the second time.</li>
+          <li><strong>Cross both lists.</strong> Whoever appears on both becomes the priority for the week.</li>
+          <li><strong>Send a short, specific message</strong> explaining what was noticed, what support exists and how to reach the instructor, avoiding a reproachful tone.</li>
+          <li><strong>Record whom you contacted and what they answered</strong>, in order to follow up the next week and alert tutoring if there is no reply.</li>
           </ol>
 
           <h2 id="moodle-model">Moodle's built-in risk model</h2>
-          <p>Since version 3.4, Moodle includes an analytics feature with a model called <strong>Students at risk of dropping out</strong>. According to the official documentation:</p>
+          <p>Since version 3.4, Moodle includes an analytics feature with a model called <strong>Students at risk of dropping out</strong>. Describing it based on the official documentation:</p>
           <ul>
-          <li>It considers that a student dropped out if they have no activity in the last quarter of the course.</li>
+          <li>It considers that a student dropped out when they record no activity in the last quarter of the course.</li>
           <li>Its indicators are based on the Community of Inquiry model: the cognitive depth and social breadth of participation in each activity.</li>
-          <li>It learns from finished courses at the same institution and predicts for each course enrolment.</li>
-          <li>It needs courses with correct start and end dates and sections that split the time; it does not work for rolling-enrolment courses and only considers standard Moodle activities.</li>
+          <li>It learns from finished courses at the same institution and produces a prediction for each course enrolment.</li>
+          <li>It requires courses with correctly set start and end dates and sections that split the time; it does not work for rolling-enrolment courses and only considers standard Moodle activities.</li>
           </ul>
-          <p>It is a good option if your institution has a history of well-configured courses and someone to enable and train the model. Its limits: it works course by course, does not see the student across all their courses at once and does not keep a record of who contacted them or how it ended.</p>
+          <p>Weighing its suitability, it is a good option when the institution has a history of well-configured courses and someone to enable and train the model. Its limits lie in working course by course, not seeing the student across all their courses at once and not recording who contacted them or how the case ended.</p>
 
           <h2 id="limits">The limits of doing it by hand</h2>
+          <p>Recognizing the value of the manual routine, three limitations can also be identified:</p>
           <ul>
-          <li><strong>Course by course.</strong> Each instructor sees only their own course; nobody notices the same student drifting away in three at once.</li>
-          <li><strong>It depends on each instructor's time.</strong> The routine works when there is time, and the hard weeks are the ones that matter most.</li>
-          <li><strong>No shared follow-up.</strong> Tutoring, wellbeing and finance do not know what the instructor already tried.</li>
+          <li><strong>Course by course.</strong> Each instructor sees only their own course, so nobody notices the same student drifting away in three at once.</li>
+          <li><strong>Dependence on the instructor's time.</strong> The routine works when time is available, and the busiest weeks are precisely the ones that matter most.</li>
+          <li><strong>No shared follow-up.</strong> Tutoring, wellbeing and finance do not learn what the instructor already tried.</li>
           </ul>
 
           <h2 id="pharis">How Pharis does it</h2>
-          <p>Pharis runs this routine for you across every course: it reads Moodle every day in read-only mode, compares each student with their group in each course, combines the signals from all their courses and sends the alert to the instructor or area that owns it, with the follow-up recorded. It connects without installing plugins: see <a href="moodle-early-warning">Dropout early warning for Moodle</a>.</p>
+          <p>Automating this routine across every course, Pharis reads Moodle every day in read-only mode, compares each student with their group in each course, combines the signals from all their courses and sends the alert to the instructor or area that owns it, with the follow-up recorded. It connects without installing plugins, as described in <a href="moodle-early-warning">Dropout early warning for Moodle</a>.</p>
           <p><a href="demo">Book a demo with your institution's data</a>.</p>
 
           <h2 id="sources">Sources</h2>
