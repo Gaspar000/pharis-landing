@@ -1912,7 +1912,13 @@
           0 0 20px rgba(80, 143, 248, 0.6),
           0 0 34px rgba(80, 143, 248, 0.3);
       }
-      #cursor-dot.is-beam.is-hover { opacity: 0; }
+      /* Sobre algo clicable el punto se vuelve un anillo que brilla: nunca
+         desaparece, porque el cursor nativo está oculto (cursor: none). */
+      #cursor-dot.is-beam.is-hover {
+        width: 26px; height: 26px;
+        background: rgba(80, 143, 248, 0.18);
+        box-shadow: 0 0 0 1.5px rgba(80, 143, 248, 0.9), 0 0 16px rgba(80, 143, 248, 0.45);
+      }
       /* En vuelo el tamaño lo controla el JS cuadro a cuadro. */
       #cursor-dot.is-flying { transition: none; width: 26px; height: 26px; will-change: transform, opacity; }
       .cursor-trail {
@@ -1926,13 +1932,13 @@
 
       body.ph2-in-hero { cursor: auto !important; }
       body.ph2-in-hero * { cursor: auto !important; }
-      body.ph2-in-hero a, body.ph2-in-hero button, body.ph2-in-hero [role="button"], body.ph2-in-hero summary, body.ph2-in-hero label[for], body.ph2-in-hero select, body.ph2-in-hero a *, body.ph2-in-hero button *, body.ph2-in-hero [role="button"] *, body.ph2-in-hero summary *, body.ph2-in-hero label[for] *, body.ph2-in-hero select * { cursor: pointer !important; }
+      body.ph2-in-hero a, body.ph2-in-hero button, body.ph2-in-hero [role="button"], body.ph2-in-hero summary, body.ph2-in-hero label[for], body.ph2-in-hero select, body.ph2-in-hero label:has(input[type="radio"]), body.ph2-in-hero label:has(input[type="checkbox"]), body.ph2-in-hero label:has(input[type="radio"]) *, body.ph2-in-hero a *, body.ph2-in-hero button *, body.ph2-in-hero [role="button"] *, body.ph2-in-hero summary *, body.ph2-in-hero label[for] *, body.ph2-in-hero select * { cursor: pointer !important; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       #cursor-dot, #cursor-ring { display: none; }
       * { cursor: auto !important; }
-      a, button, [role="button"], summary, label[for], select, a *, button *, [role="button"] *, summary *, label[for] *, select * { cursor: pointer !important; }
+      a, button, [role="button"], summary, label[for], select, label:has(input[type="radio"]), label:has(input[type="checkbox"]), label:has(input[type="radio"]) *, a *, button *, [role="button"] *, summary *, label[for] *, select * { cursor: pointer !important; }
     }
 
     /* ============================================================ LANG SWITCHER */
