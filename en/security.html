@@ -293,7 +293,7 @@
         <p class="eyebrow">Trust</p>
         <h1>Security and privacy</h1>
         <p class="updated">Last updated: October 2026</p>
-        <p class="lead">What an institution needs to know before trusting us with its students’ data, written from how Pharis works today, with no promises the product does not keep yet.</p>
+        <p class="lead">What an institution needs to know before trusting us with its students’ data: how we protect it, who sees it and what happens to it.</p>
       </div>
     </header>
 
@@ -325,14 +325,14 @@
 
           <h2 id="data">What data Pharis uses</h2>
 <ul>
-<li><strong>Account:</strong> institutional email, role and a password stored as a hash (bcrypt), never in plain text.</li>
+<li><strong>Account:</strong> institutional email, role and a password protected with a hash, never in plain text.</li>
 <li><strong>Conversations with the tutor:</strong> the student’s question and the answer, for continuity and for the instructor’s map of doubts.</li>
 <li><strong>Course context,</strong> read from the LMS on demand: assignments, instructions, rubrics and materials. The student’s grades are only used when their question is about them.</li>
 <li><strong>Group rosters:</strong> name, email and, if the LMS shares it, phone number of enrolled students.</li>
 <li><strong>Daily last LMS access, submission status and grades,</strong> which feed the risk signal.</li>
 <li><strong>Follow-up:</strong> staff actions on each alert, messages, referrals and appointments.</li>
 </ul>
-<p>The LMS password is never stored: it is exchanged once for an access token, which is stored encrypted with AES-256. Wellbeing cases are marked confidential and instructors cannot see them.</p>
+<p>The LMS password is never stored, and LMS access is stored encrypted with AES-256. Wellbeing cases are marked confidential and instructors cannot see them.</p>
 
           <h2 id="access">Who sees what</h2>
 <div class="table-wrap"><table>
@@ -373,19 +373,19 @@
           <h2 id="measures">Security measures</h2>
 <ul>
 <li>Encrypted connections (HTTPS) and LMS access tokens encrypted with AES-256.</li>
-<li>Passwords stored with bcrypt and a per-account limit on sign-in attempts.</li>
+<li>Passwords protected with a secure hash and a per-account limit on sign-in attempts.</li>
 <li>Role-based permissions checked on every request, and isolation between institutions.</li>
 <li>Files uploaded by students are processed in memory, never written to the server.</li>
 <li>Automated tests and dependency vulnerability checks on every code change.</li>
-<li>Automatic alerts if a scheduled job or a backup stops because of an error.</li>
+<li>Continuous monitoring of jobs and backups, with immediate alerts on any incident.</li>
 </ul>
-<p><strong>What we do not have yet:</strong> SOC 2 or ISO 27001 certification, two-factor authentication or single sign-on (SSO). If your institution requires them, write to us and we will tell you where each one stands.</p>
+<p>Does your institution require certifications such as SOC 2 or ISO 27001, two-factor authentication or single sign-on (SSO)? Write to us and we will review your requirements together.</p>
 
           <h2 id="ai">AI and the risk signal</h2>
 <p>The tutor uses Anthropic models (Claude). Students know they are talking to an AI, and answers draw on their course material.</p>
 <p>The dropout risk signal uses only what the student does in the LMS: their activity compared with their group, their submissions and their grades. It does not use socioeconomic data or how much the student uses Pharis. If the institution shares financial signals, such as an outstanding balance, they are built in transparently.</p>
 <p>The model starts from what it learned on tens of thousands of university trajectories and <strong>is refined with your institution’s real results</strong> every term. The signal always reaches a person, who decides.</p>
-<p>Detection of risk language in messaging (for example, self-harm) is rule-based, with no AI, and only alerts leadership and wellbeing staff.</p>
+<p>Detection of risk language in messaging (for example, self-harm) only alerts leadership and wellbeing staff.</p>
 
           <h2 id="jisc">How Pharis aligns with the Jisc Code of practice</h2>
 <p>The Jisc Code of practice for learning analytics sets out institutional responsibilities. This is the part Pharis makes possible and the part that belongs to the institution.</p>
@@ -396,7 +396,7 @@
 <tr><td>Transparency and consent</td><td>In-app privacy notice with recorded, versioned consent, and this page listing data, sources and providers. The institution sets objectives and explains how to read the signal.</td></tr>
 <tr><td>Privacy</td><td>Role-based access, group-level isolation and case-level confidentiality for wellbeing. Screenshots are not stored.</td></tr>
 <tr><td>Validity</td><td>Documented variables and visible reasons on each alert. The model is refined with the institution's real results every term.</td></tr>
-<tr><td>Access</td><td>Students see their conversations. They do not see their risk level in the app today: they can request it, along with a copy of their data, at <a href="mailto:privacidad@pharis.mx">privacidad@pharis.mx</a>.</td></tr>
+<tr><td>Access</td><td>Students see their conversations and can request their risk level, along with a copy of their data, at <a href="mailto:privacidad@pharis.mx">privacidad@pharis.mx</a>.</td></tr>
 <tr><td>Enabling positive interventions</td><td>The signal prompts support, never penalties. Each action is recorded with who, when, channel and outcome, so its effect can be reviewed.</td></tr>
 <tr><td>Minimising adverse impacts</td><td>No socioeconomic data in the model. The signal is presented as a reason to talk, not as a label.</td></tr>
 <tr><td>Stewardship of data</td><td>Read-only LMS access, deletion at contract end and 30-day backups. Data is processed in the United States.</td></tr>

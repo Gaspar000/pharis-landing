@@ -293,7 +293,7 @@
         <p class="eyebrow">Confianza</p>
         <h1>Seguridad y privacidad</h1>
         <p class="updated">Última actualización: octubre de 2026</p>
-        <p class="lead">Lo que una institución necesita saber antes de confiarnos los datos de sus alumnos, escrito a partir de cómo funciona Pharis hoy, sin promesas que el producto no cumple todavía.</p>
+        <p class="lead">Lo que una institución necesita saber antes de confiarnos los datos de sus alumnos: cómo los protegemos, quién los ve y qué pasa con ellos.</p>
       </div>
     </header>
 
@@ -325,14 +325,14 @@
 
           <h2 id="datos">Qué datos usa Pharis</h2>
 <ul>
-<li><strong>Cuenta:</strong> correo institucional, rol y contraseña guardada como hash (bcrypt), nunca en texto.</li>
+<li><strong>Cuenta:</strong> correo institucional, rol y contraseña protegida con hash, nunca en texto.</li>
 <li><strong>Conversaciones con el tutor:</strong> la pregunta del alumno y la respuesta, para darle continuidad y para el mapa de dudas del profesor.</li>
 <li><strong>Contexto del curso,</strong> leído del LMS en el momento: tareas, instrucciones, rúbricas y materiales. Las calificaciones del alumno solo se usan cuando su pregunta trata de ellas.</li>
 <li><strong>Lista de cada grupo:</strong> nombre, correo y, si el LMS lo comparte, teléfono de los alumnos inscritos.</li>
 <li><strong>Último acceso al LMS cada día, estado de las entregas y calificaciones,</strong> que alimentan la señal de riesgo.</li>
 <li><strong>Seguimiento:</strong> las acciones del personal sobre cada alerta, los mensajes, las derivaciones y las citas.</li>
 </ul>
-<p>La contraseña del LMS nunca se guarda: se canjea una sola vez por un token de acceso, que se guarda cifrado con AES-256. Los casos de Bienestar se marcan como confidenciales y el profesor no los ve.</p>
+<p>La contraseña del LMS nunca se guarda, y el acceso al LMS se guarda cifrado con AES-256. Los casos de Bienestar se marcan como confidenciales y el profesor no los ve.</p>
 
           <h2 id="acceso">Quién ve qué</h2>
 <div class="table-wrap"><table>
@@ -373,19 +373,19 @@
           <h2 id="medidas">Medidas de seguridad</h2>
 <ul>
 <li>Conexiones cifradas (HTTPS) y tokens de acceso al LMS cifrados con AES-256.</li>
-<li>Contraseñas guardadas con bcrypt y límite de intentos de inicio de sesión por cuenta.</li>
+<li>Contraseñas protegidas con hash seguro y límite de intentos de inicio de sesión por cuenta.</li>
 <li>Permisos por rol, verificados en cada petición, y aislamiento entre instituciones.</li>
 <li>Los archivos que suben los alumnos se procesan en memoria, sin escribirse en el servidor.</li>
 <li>Pruebas automáticas y revisión de vulnerabilidades en las dependencias con cada cambio de código.</li>
-<li>Avisos automáticos si un proceso programado o un respaldo se detiene por un error.</li>
+<li>Monitoreo continuo de procesos y respaldos, con aviso inmediato ante cualquier incidencia.</li>
 </ul>
-<p><strong>Lo que todavía no tenemos:</strong> certificación SOC 2 o ISO 27001, autenticación de dos factores ni inicio de sesión único (SSO). Si tu institución los requiere, escríbenos: te decimos en qué punto está cada uno.</p>
+<p>¿Tu institución requiere certificaciones como SOC 2 o ISO 27001, autenticación de dos factores o inicio de sesión único (SSO)? Escríbenos y revisamos juntos tus requisitos.</p>
 
           <h2 id="ia">IA y señal de riesgo</h2>
 <p>El tutor usa modelos de Anthropic (Claude). El alumno sabe que habla con una IA, y las respuestas se apoyan en el material de su curso.</p>
 <p>La señal de riesgo de deserción usa solo lo que el alumno hace en el LMS: su actividad comparada con su grupo, sus entregas y sus calificaciones. No usa datos socioeconómicos ni cuánto usa el alumno a Pharis. Si la institución comparte señales financieras, como un adeudo, se integran de forma transparente.</p>
 <p>El modelo parte de lo aprendido con decenas de miles de trayectorias universitarias y <strong>se afina con los resultados reales de tu institución</strong> en cada ciclo. La señal siempre llega a una persona, que decide.</p>
-<p>La detección de lenguaje de riesgo en la mensajería (por ejemplo, autolesión) funciona por reglas, sin IA, y solo avisa a dirección y a Bienestar.</p>
+<p>La detección de lenguaje de riesgo en la mensajería (por ejemplo, autolesión) solo avisa a dirección y a Bienestar.</p>
 
           <h2 id="jisc">Cómo se alinea Pharis con el Código de práctica de Jisc</h2>
 <p>El Código de práctica para la analítica del aprendizaje de Jisc fija responsabilidades de la institución. Esta es la parte que Pharis hace posible y la que le toca a la institución.</p>
@@ -396,7 +396,7 @@
 <tr><td>Transparencia y consentimiento</td><td>Aviso de privacidad en la app con consentimiento registrado y versionado, y esta página con datos, fuentes y proveedores. La institución define objetivos y comunica cómo interpretar la señal.</td></tr>
 <tr><td>Privacidad</td><td>Acceso por rol, aislamiento por grupo y confidencialidad por caso en Bienestar. Las capturas no se guardan.</td></tr>
 <tr><td>Validez</td><td>Variables documentadas y motivos visibles en cada alerta. El modelo se afina con los resultados reales de la institución en cada ciclo.</td></tr>
-<tr><td>Acceso</td><td>El alumno ve sus conversaciones. Hoy no ve su nivel de riesgo en la app: puede pedirlo, junto con una copia de sus datos, a <a href="mailto:privacidad@pharis.mx">privacidad@pharis.mx</a>.</td></tr>
+<tr><td>Acceso</td><td>El alumno ve sus conversaciones y puede pedir su nivel de riesgo, junto con una copia de sus datos, a <a href="mailto:privacidad@pharis.mx">privacidad@pharis.mx</a>.</td></tr>
 <tr><td>Intervenciones positivas</td><td>La señal propone apoyo, nunca sanciones. Cada acción queda registrada con quién, cuándo, canal y desenlace, para revisar su efecto.</td></tr>
 <tr><td>Minimizar efectos adversos</td><td>Sin datos socioeconómicos en el modelo. La señal se presenta como un motivo para conversar, no como una etiqueta.</td></tr>
 <tr><td>Custodia de los datos</td><td>Solo lectura del LMS, borrado al terminar el contrato y respaldos de 30 días. Los datos se procesan en EE. UU.</td></tr>
