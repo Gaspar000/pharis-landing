@@ -1662,6 +1662,49 @@
     .form-success p { margin: 0 auto; max-width: 34ch; font-size: 0.98rem; line-height: 1.6; color: var(--light-muted); }
     .form-success strong { color: var(--light-text); }
 
+    /* ---- Quiz de demo: un paso a la vez cuando hay JS; sin JS, todo el formulario visible ---- */
+    .form .q-step { display: grid; gap: 1.1rem; }
+    .form.is-quiz .q-step[hidden] { display: none; }
+    .q-progress { display: grid; gap: 0.45rem; }
+    .q-progress[hidden], .q-nav[hidden], .q-result[hidden] { display: none; }
+    .q-progress-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; color: var(--light-muted); }
+    .q-bar { display: block; height: 4px; border-radius: 999px; background: var(--light-rule); overflow: hidden; }
+    .q-bar span { display: block; height: 100%; width: 20%; border-radius: inherit; background: var(--accent); transition: width 0.35s var(--ease); }
+    .form .q-step legend { margin-bottom: 0.9rem; font-family: "Manrope", sans-serif; font-size: 1.12rem; font-weight: 700; letter-spacing: -0.01em; color: var(--light-text); }
+    .form .q-step legend:focus, .q-contact:focus { outline: none; }
+    .q-intro { margin: -0.4rem 0 1rem; font-size: 0.92rem; line-height: 1.55; color: var(--light-muted); }
+    .q-opts { display: grid; gap: 0.5rem; }
+    @media (min-width: 440px) { .q-opts--2 { grid-template-columns: 1fr 1fr; } }
+    .form label.q-opt { position: relative; margin: 0; font-weight: 500; }
+    .q-opt input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+    .q-opt span {
+      display: flex; align-items: center; min-height: 48px;
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--light-rule); border-radius: 0.8rem;
+      background: var(--light-bg);
+      font-size: 0.95rem; font-weight: 500; line-height: 1.35; color: var(--light-text);
+      cursor: pointer;
+      transition: background 0.18s var(--ease), border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+    }
+    .q-opt span:hover { border-color: rgba(80, 143, 248, 0.5); }
+    .q-opt input:checked + span { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); font-weight: 600; }
+    .q-opt input:focus-visible + span { box-shadow: 0 0 0 3px var(--accent-soft-2); }
+    .q-contact { margin: 0; font-family: "Manrope", sans-serif; font-size: 1.12rem; font-weight: 700; letter-spacing: -0.01em; color: var(--light-text); }
+    .q-result { padding: 1.1rem 1.2rem; border-radius: 0.9rem; background: var(--accent-soft); border: 1px solid rgba(80, 143, 248, 0.28); }
+    .q-result h3 { margin: 0 0 0.45rem; font-family: "Manrope", sans-serif; font-size: 1rem; font-weight: 700; color: var(--light-text); }
+    .q-result p { margin: 0 0 0.55rem; font-size: 0.9rem; line-height: 1.55; color: var(--light-muted); }
+    .q-result p:last-child { margin-bottom: 0; }
+    .q-result strong { color: var(--light-text); }
+    .q-result a { color: var(--light-accent-text); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .q-error { margin: 0; font-size: 0.86rem; font-weight: 500; color: #c8372f; }
+    .q-error:empty { display: none; }
+    .q-nav { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .q-back { padding: 0.5rem 0; border: 0; background: none; font: inherit; font-size: 0.92rem; font-weight: 600; color: var(--light-muted); cursor: pointer; }
+    .q-back:hover { color: var(--light-text); }
+    .q-back[hidden] { visibility: hidden; display: inline; }
+    .q-next { margin-left: auto; }
+    .q-next[hidden] { display: none; }
+
     /* ============================================================ FOOTER
        Panel de marca separado de los bordes, con la esquina superior
        izquierda muy redondeada (como lucaedu.com). El isotipo de Pharis,
@@ -2497,60 +2540,79 @@
 
           <form class="form reveal" data-delay="1" id="demo-form" novalidate>
             <div class="form-fields" id="demo-fields">
-              <div class="form-row">
-                <div>
-                  <label for="f-nombre">Nombre</label>
-                  <input type="text" id="f-nombre" name="nombre" autocomplete="name" required maxlength="120" placeholder="Tu nombre" />
-                </div>
-                <div>
-                  <label for="f-email">Correo institucional</label>
-                  <input type="email" id="f-email" name="email" autocomplete="email" required maxlength="200" placeholder="tu@universidad.mx" />
-                </div>
+              <div class="q-progress" hidden>
+                <span class="q-progress-label" id="q-progress-label"></span>
+                <span class="q-bar" aria-hidden="true"><span id="q-bar"></span></span>
               </div>
-              <div>
-                <label for="f-institucion">Institución</label>
-                <input type="text" id="f-institucion" name="institucion" autocomplete="organization" required maxlength="160" placeholder="Universidad o campus" />
-              </div>
-              <div class="form-row">
-                <div>
-                  <label for="f-rol">Tu rol</label>
-                  <select id="f-rol" name="rol" required>
-                    <option value="" disabled selected>Selecciona</option>
-                    <option>Rectoría o dirección</option>
-                    <option>Coordinación académica</option>
-                    <option>Profesor</option>
-                    <option>Tecnología (TI)</option>
-                    <option>Otro</option>
-                  </select>
+              <fieldset class="q-step" data-step="0">
+                <legend tabindex="-1">¿Cuál es tu rol?</legend>
+                <p class="q-intro">Cuatro preguntas rápidas y te mostramos lo que la deserción le cuesta a una institución como la tuya.</p>
+                <div class="q-opts">
+                  <label class="q-opt"><input type="radio" name="rol" value="Rectoría o dirección" required /><span>Rectoría o dirección</span></label>
+                  <label class="q-opt"><input type="radio" name="rol" value="Coordinación académica" /><span>Coordinación académica</span></label>
+                  <label class="q-opt"><input type="radio" name="rol" value="Profesor" /><span>Profesor</span></label>
+                  <label class="q-opt"><input type="radio" name="rol" value="Tecnología (TI)" /><span>Tecnología (TI)</span></label>
+                  <label class="q-opt"><input type="radio" name="rol" value="Otro" /><span>Otro</span></label>
                 </div>
-                <div>
-                  <label for="f-tamano">Alumnos en tu institución</label>
-                  <select id="f-tamano" name="tamano" required>
-                    <option value="" disabled selected>Selecciona</option>
-                    <option>Menos de 1,000</option>
-                    <option>1,000 a 5,000</option>
-                    <option>5,000 a 20,000</option>
-                    <option>Más de 20,000</option>
-                  </select>
+              </fieldset>
+              <fieldset class="q-step" data-step="1">
+                <legend tabindex="-1">¿Cuántos alumnos tiene tu institución?</legend>
+                <div class="q-opts q-opts--2">
+                  <label class="q-opt"><input type="radio" name="tamano" value="Menos de 1,000" required /><span>Menos de 1,000</span></label>
+                  <label class="q-opt"><input type="radio" name="tamano" value="1,000 a 5,000" /><span>1,000 a 5,000</span></label>
+                  <label class="q-opt"><input type="radio" name="tamano" value="5,000 a 20,000" /><span>5,000 a 20,000</span></label>
+                  <label class="q-opt"><input type="radio" name="tamano" value="Más de 20,000" /><span>Más de 20,000</span></label>
                 </div>
-              </div>
-              <fieldset>
-                <legend>¿Qué LMS usan?</legend>
-                <div class="lms-chips">
-                  <label class="lms-chip"><input type="radio" name="lms" value="Moodle" required /><span>Moodle</span></label>
-                  <label class="lms-chip"><input type="radio" name="lms" value="Canvas" /><span>Canvas</span></label>
-                  <label class="lms-chip"><input type="radio" name="lms" value="Blackboard" /><span>Blackboard</span></label>
-                  <label class="lms-chip"><input type="radio" name="lms" value="Otro" /><span>Otro</span></label>
+              </fieldset>
+              <fieldset class="q-step" data-step="2">
+                <legend tabindex="-1">¿Qué LMS usan?</legend>
+                <div class="q-opts q-opts--2">
+                  <label class="q-opt"><input type="radio" name="lms" value="Moodle" required /><span>Moodle</span></label>
+                  <label class="q-opt"><input type="radio" name="lms" value="Canvas" /><span>Canvas</span></label>
+                  <label class="q-opt"><input type="radio" name="lms" value="Blackboard" /><span>Blackboard</span></label>
+                  <label class="q-opt"><input type="radio" name="lms" value="Otro" /><span>Otro</span></label>
                 </div>
                 <p class="lms-note" id="lms-note" hidden>Cuéntanos qué LMS usan y revisamos contigo cómo se conecta Pharis.</p>
               </fieldset>
-              <div class="form-hp" aria-hidden="true">
-                <label for="f-website">No llenar</label>
-                <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
+              <fieldset class="q-step" data-step="3">
+                <legend tabindex="-1">¿Qué te preocupa más?</legend>
+                <div class="q-opts">
+                  <label class="q-opt"><input type="radio" name="reto" value="Deserción en el primer año" required /><span>Deserción en el primer año</span></label>
+                  <label class="q-opt"><input type="radio" name="reto" value="Detectar a tiempo a los alumnos en riesgo" /><span>Detectar a tiempo a los alumnos en riesgo</span></label>
+                  <label class="q-opt"><input type="radio" name="reto" value="Dar seguimiento a cada caso" /><span>Dar seguimiento a cada caso</span></label>
+                  <label class="q-opt"><input type="radio" name="reto" value="Apoyo académico a los alumnos" /><span>Apoyo académico a los alumnos</span></label>
+                </div>
+              </fieldset>
+              <div class="q-step" data-step="4">
+                <div class="q-result" id="q-result" hidden aria-live="polite"></div>
+                <p class="q-contact" tabindex="-1">¿A quién le enviamos la demo?</p>
+                <div class="form-row">
+                  <div>
+                    <label for="f-nombre">Nombre</label>
+                    <input type="text" id="f-nombre" name="nombre" autocomplete="name" required maxlength="120" placeholder="Tu nombre" />
+                  </div>
+                  <div>
+                    <label for="f-email">Correo institucional</label>
+                    <input type="email" id="f-email" name="email" autocomplete="email" required maxlength="200" placeholder="tu@universidad.mx" />
+                  </div>
+                </div>
+                <div>
+                  <label for="f-institucion">Institución</label>
+                  <input type="text" id="f-institucion" name="institucion" autocomplete="organization" required maxlength="160" placeholder="Universidad o campus" />
+                </div>
+                <div class="form-hp" aria-hidden="true">
+                  <label for="f-website">No llenar</label>
+                  <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="demo-submit">Agenda tu demo</button>
+                <p class="form-error" id="demo-error" role="alert"></p>
+                <p class="form-note">Al enviar aceptas nuestro <a href="privacy">aviso de privacidad</a>. Respondemos en menos de 24 horas hábiles.</p>
               </div>
-              <button type="submit" class="btn btn-primary btn-block" id="demo-submit">Solicitar demo</button>
-              <p class="form-error" id="demo-error" role="alert"></p>
-              <p class="form-note">Al enviar aceptas nuestro <a href="privacy">aviso de privacidad</a>. Respondemos en menos de 24 horas hábiles.</p>
+              <p class="q-error" id="q-error" role="alert"></p>
+              <div class="q-nav" hidden>
+                <button type="button" class="q-back" id="q-back">Atrás</button>
+                <button type="button" class="btn btn-primary q-next" id="q-next">Siguiente</button>
+              </div>
             </div>
 
             <div class="form-success" id="demo-success" role="status" hidden>
@@ -4162,26 +4224,115 @@
       }, { threshold: 0.3 }).observe(flow);
     })();
 
-    // ---------- Formulario de demo → pharis-api (POST /leads) ----------
-    // Envía y confirma en la misma página: no depende de que el usuario
-    // tenga un cliente de correo configurado. El servidor valida todo otra
-    // vez (schema cerrado, rate-limit, honeypot); aquí solo se prevalida
-    // para dar feedback inmediato.
+    // ---------- Quiz de demo → pharis-api (POST /leads) ----------
+    // Cuatro preguntas de un clic, una estimación de lo que cuesta la
+    // deserción (misma fórmula que /retorno) y al final los datos de
+    // contacto. Sin JS el formulario se ve completo y se envía igual. El
+    // servidor valida todo otra vez (schema cerrado, rate-limit, honeypot).
     (function demoForm() {
       const form = document.getElementById("demo-form");
       if (!form) return;
       const LEADS_URL = "https://pharis-api-production.up.railway.app/leads";
+      const T = {
+        step: (n, t) => `Paso ${n} de ${t}`,
+        pick: "Elige una opción para continuar.",
+        perdida: {
+          "Menos de 1,000": "hasta <strong>$6 millones</strong>",
+          "1,000 a 5,000": "entre <strong>$6 y $30 millones</strong>",
+          "5,000 a 20,000": "entre <strong>$30 y $119 millones</strong>",
+          "Más de 20,000": "más de <strong>$119 millones</strong>",
+        },
+        frase: (tam, rango) => `Con la tasa nacional de abandono (7%) y una colegiatura de referencia de $85,000 al año, una institución de ${tam.toLowerCase()} alumnos deja de recibir ${rango} de pesos al año por deserción.`,
+        lmsNota: "Pharis ya funciona con Moodle; en la demo revisamos contigo cómo conectarlo con tu plataforma.",
+        ajusta: "Ajusta las cifras de tu institución",
+        reto: {
+          "Deserción en el primer año": ["El primer año concentra el abandono. Pharis avisa desde las primeras semanas, cuando un alumno empieza a alejarse de su grupo y todavía hay tiempo de actuar.", "desercion-universitaria", "Cifras y causas en la región"],
+          "Detectar a tiempo a los alumnos en riesgo": ["Pharis revisa tu LMS cada día y marca a quien empieza a quedarse atrás antes de que la calificación lo confirme, con los motivos y una acción sugerida.", "metodologia", "Cómo calcula Pharis el riesgo"],
+          "Dar seguimiento a cada caso": ["Cada alerta llega a la persona que puede actuar, y cada contacto queda registrado hasta su desenlace, para que ningún alumno se quede esperando.", "para-coordinacion", "Cómo funciona el seguimiento"],
+          "Apoyo académico a los alumnos": ["El tutor de Pharis conoce las tareas y materiales de cada curso y guía al alumno paso a paso, a cualquier hora, sin hacerle el trabajo.", "para-alumnos", "Cómo funciona el tutor"],
+        },
+        titulo: "Lo que la deserción le cuesta a una institución como la tuya",
+        enviando: "Enviando…",
+      };
       const fields = document.getElementById("demo-fields");
       const success = document.getElementById("demo-success");
       const successEmail = document.getElementById("demo-success-email");
       const submit = document.getElementById("demo-submit");
       const errorEl = document.getElementById("demo-error");
       const lmsNote = document.getElementById("lms-note");
+      const steps = Array.from(form.querySelectorAll(".q-step"));
+      const progress = form.querySelector(".q-progress");
+      const nav = form.querySelector(".q-nav");
+      const label = document.getElementById("q-progress-label");
+      const bar = document.getElementById("q-bar");
+      const back = document.getElementById("q-back");
+      const next = document.getElementById("q-next");
+      const qError = document.getElementById("q-error");
+      const result = document.getElementById("q-result");
+      const SUBMIT_TXT = submit.textContent;
       const FALLBACK = "No pudimos enviar tu solicitud. Escríbenos a contacto@pharis.mx.";
+      let actual = 0;
 
       form.querySelectorAll('input[name="lms"]').forEach((r) => {
         r.addEventListener("change", () => { lmsNote.hidden = r.value === "Moodle"; });
       });
+
+      const valor = (name) => { const el = form.querySelector(`input[name="${name}"]:checked`); return el ? el.value : ""; };
+
+      function pintarResultado() {
+        const tam = valor("tamano");
+        const reto = T.reto[valor("reto")];
+        if (!tam || !reto) { result.hidden = true; return; }
+        result.innerHTML =
+          `<h3>${T.titulo}</h3>` +
+          `<p>${T.frase(tam, T.perdida[tam])} <a href="retorno" target="_blank" rel="noopener">${T.ajusta}</a>.</p>` +
+          `<p>${reto[0]} <a href="${reto[1]}" target="_blank" rel="noopener">${reto[2]}</a>.</p>` +
+          (valor("lms") && valor("lms") !== "Moodle" ? `<p>${T.lmsNota}</p>` : "");
+        result.hidden = false;
+      }
+
+      function mostrar(n, enfocar) {
+        actual = n;
+        steps.forEach((s, k) => { s.hidden = k !== n; });
+        label.textContent = T.step(n + 1, steps.length);
+        bar.style.width = `${((n + 1) / steps.length) * 100}%`;
+        back.hidden = n === 0;
+        next.hidden = n === steps.length - 1;
+        qError.textContent = "";
+        if (n === steps.length - 1) pintarResultado();
+        if (enfocar) {
+          const destino = steps[n].querySelector("legend, .q-contact");
+          if (destino) destino.focus({ preventScroll: true });
+          const top = form.getBoundingClientRect().top;
+          if (top < 0) form.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      function pasoValido(n) {
+        const radio = steps[n].querySelector('input[type="radio"]');
+        return !radio || !!valor(radio.name);
+      }
+
+      function avanzar() {
+        if (!pasoValido(actual)) { qError.textContent = T.pick; return; }
+        if (actual < steps.length - 1) mostrar(actual + 1, true);
+      }
+
+      // Con mouse o toque, elegir una opción avanza solo; con teclado
+      // (flechas), se queda en el paso hasta presionar "Siguiente".
+      form.querySelectorAll(".q-step input[type=radio]").forEach((r) => {
+        r.addEventListener("click", (e) => {
+          if (e.detail > 0) setTimeout(avanzar, 220);
+        });
+        r.addEventListener("change", () => { qError.textContent = ""; });
+      });
+      next.addEventListener("click", avanzar);
+      back.addEventListener("click", () => { if (actual > 0) mostrar(actual - 1, true); });
+
+      form.classList.add("is-quiz");
+      progress.hidden = false;
+      nav.hidden = false;
+      mostrar(0, false);
 
       function messageFor(status) {
         if (status === 400) return "Revisa que todos los campos estén completos y el correo sea válido.";
@@ -4192,11 +4343,14 @@
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
         errorEl.textContent = "";
+        if (actual < steps.length - 1) { avanzar(); return; }
+        const pendiente = steps.findIndex((s, k) => !pasoValido(k));
+        if (pendiente !== -1) { mostrar(pendiente, true); qError.textContent = T.pick; return; }
         if (!form.checkValidity()) { form.reportValidity(); return; }
 
         const data = Object.fromEntries(new FormData(form).entries());
         submit.disabled = true;
-        submit.textContent = "Enviando…";
+        submit.textContent = T.enviando;
         try {
           const res = await fetch(LEADS_URL, {
             method: "POST",
@@ -4210,7 +4364,7 @@
         } catch (err) {
           errorEl.textContent = messageFor(Number(err.message));
           submit.disabled = false;
-          submit.textContent = "Solicitar demo";
+          submit.textContent = SUBMIT_TXT;
         }
       });
     })();
