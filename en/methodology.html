@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How Pharis calculates dropout risk - Pharis</title>
-  <meta name="description" content="Which LMS data Pharis's risk model uses, which public data it was trained on, how it becomes an alert and why we do not publish an accuracy figure." />
+  <meta name="description" content="Which LMS signals Pharis uses to anticipate dropout, what it leaves out on purpose, how it adapts to your institution and how it becomes an alert." />
   <!-- SEO:start -->
   <link rel="canonical" href="https://pharis.mx/en/methodology" />
   <link rel="alternate" hreflang="es" href="https://pharis.mx/metodologia" />
@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Pharis" />
   <meta property="og:url" content="https://pharis.mx/en/methodology" />
   <meta property="og:title" content="How Pharis calculates dropout risk - Pharis" />
-  <meta property="og:description" content="Which LMS data Pharis's risk model uses, which public data it was trained on, how it becomes an alert and why we do not publish an accuracy figure." />
+  <meta property="og:description" content="Which LMS signals Pharis uses to anticipate dropout, what it leaves out on purpose, how it adapts to your institution and how it becomes an alert." />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="es_MX" />
   <meta property="og:image" content="https://pharis.mx/assets/og-pharis-en.jpg" />
@@ -22,9 +22,9 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="How Pharis calculates dropout risk - Pharis" />
-  <meta name="twitter:description" content="Which LMS data Pharis's risk model uses, which public data it was trained on, how it becomes an alert and why we do not publish an accuracy figure." />
+  <meta name="twitter:description" content="Which LMS signals Pharis uses to anticipate dropout, what it leaves out on purpose, how it adapts to your institution and how it becomes an alert." />
   <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-en.jpg" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://pharis.mx/#org","name":"Pharis","url":"https://pharis.mx/","logo":"https://pharis.mx/assets/logo.svg","email":"contacto@pharis.mx"},{"@type":"TechArticle","@id":"https://pharis.mx/en/methodology#article","headline":"How Pharis calculates dropout risk","description":"Which LMS data Pharis's risk model uses, which public data it was trained on, how it becomes an alert and why we do not publish an accuracy figure.","inLanguage":"en","datePublished":"2026-10-28","dateModified":"2026-10-28","mainEntityOfPage":"https://pharis.mx/en/methodology","author":{"@id":"https://pharis.mx/#org"},"publisher":{"@id":"https://pharis.mx/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pharis","item":"https://pharis.mx/en/"},{"@type":"ListItem","position":2,"name":"How Pharis calculates dropout risk","item":"https://pharis.mx/en/methodology"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://pharis.mx/#org","name":"Pharis","url":"https://pharis.mx/","logo":"https://pharis.mx/assets/logo.svg","email":"contacto@pharis.mx"},{"@type":"TechArticle","@id":"https://pharis.mx/en/methodology#article","headline":"How Pharis calculates dropout risk","description":"Which LMS signals Pharis uses to anticipate dropout, what it leaves out on purpose, how it adapts to your institution and how it becomes an alert.","inLanguage":"en","datePublished":"2026-10-28","dateModified":"2026-10-28","mainEntityOfPage":"https://pharis.mx/en/methodology","author":{"@id":"https://pharis.mx/#org"},"publisher":{"@id":"https://pharis.mx/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pharis","item":"https://pharis.mx/en/"},{"@type":"ListItem","position":2,"name":"How Pharis calculates dropout risk","item":"https://pharis.mx/en/methodology"}]}]}</script>
   <!-- SEO:end -->
   <meta name="theme-color" content="#f5f8fc" />
   <meta name="robots" content="index, follow" />
@@ -277,7 +277,7 @@
       <div class="container">
         <h1>How Pharis calculates dropout risk</h1>
         <p class="updated">Last updated: October 2026</p>
-        <p class="lead">Pharis estimates the risk that a student will drop out of or fail a course using what they already do in their institution's learning platform (LMS). This page explains which data it uses, which data it leaves out on purpose, how the calculation becomes an alert and what its limits are.</p>
+        <p class="lead">Pharis anticipates which students are at risk of dropping out of or failing a course from what they already do in their institution's learning platform (LMS), and turns that signal into a clear alert for the person who can help.</p>
       </div>
     </header>
 
@@ -286,12 +286,10 @@
         <p>Contents</p>
         <ol>
             <li><a href="#resumen">In short</a></li>
-            <li><a href="#datos">What data it uses</a></li>
+            <li><a href="#datos">What it looks at</a></li>
             <li><a href="#excluye">What it leaves out, on purpose</a></li>
-            <li><a href="#modelos">What it was trained on</a></li>
-            <li><a href="#alerta">From score to alert</a></li>
-            <li><a href="#financiera">The optional financial signal</a></li>
-            <li><a href="#precision">Why we do not publish an accuracy figure</a></li>
+            <li><a href="#ajuste">How it adapts to your institution</a></li>
+            <li><a href="#alerta">From signal to alert</a></li>
             <li><a href="#decide">Who decides</a></li>
         </ol>
       </nav>
@@ -299,54 +297,43 @@
       <article class="doc">
           <h2 id="resumen">In short</h2>
           <ul>
-          <li>Risk is calculated from <strong>logins, submissions and grades</strong> in the LMS, compared with the student's group.</li>
-          <li>It does not use socioeconomic data or how much the student uses the Pharis tutor.</li>
-          <li>It is a <strong>logistic regression</strong>: each signal has a fixed weight and every alert states its reasons in words.</li>
-          <li>It is trained on public data from other universities, so it <strong>ranks</strong> students by signs of disengagement; it is not a calibrated probability for your institution.</li>
-          <li>The alert goes to a person, who decides whether and how to act. No decision about a student is automatic.</li>
+          <li>The signal is built from <strong>activity, submissions and grades</strong> in the LMS, always compared with the student's group.</li>
+          <li>It does not use socioeconomic data or how much the student uses Pharis's tutor.</li>
+          <li>Every alert explains its <strong>reasons in plain words</strong> and suggests a concrete action.</li>
+          <li>The model <strong>is refined with your institution's results</strong> every term.</li>
+          <li>The alert reaches a person, who decides whether and how to act. No decision about a student is automatic.</li>
           </ul>
 
-          <h2 id="datos">What data it uses</h2>
-          <p>Pharis reads the LMS every day in read-only mode. For each student, in each course, it measures:</p>
+          <h2 id="datos">What it looks at</h2>
+          <p>Pharis checks the LMS every day, in read-only mode, and looks at three kinds of signals for each student in each course:</p>
           <ul>
-          <li><strong>Activity compared with their group:</strong> how many days they logged in to the course in the last 7 and 28 days, compared with their group's median, and how many days since their last login.</li>
-          <li><strong>Submissions:</strong> what share of assignments already due was not submitted, over the last 4 weeks and since the course started, and how many were submitted late.</li>
-          <li><strong>Grades:</strong> the average of what has been graded so far, or whether there are no grades yet.</li>
+          <li><strong>Activity compared with their group:</strong> whether they log in as often as their classmates or start to drift away.</li>
+          <li><strong>Submissions:</strong> whether assignments go missing or start arriving late.</li>
+          <li><strong>Grades:</strong> how they are doing on what has already been assessed.</li>
           </ul>
-          <p>Comparing against the group matters: logging in twice a week can be normal in one course and a warning sign in another.</p>
+          <p>Comparing against the group is what makes the signal useful: logging in twice a week can be normal in one course and a warning sign in another.</p>
 
           <h2 id="excluye">What it leaves out, on purpose</h2>
           <ul>
-          <li><strong>Tutor usage.</strong> A student who asks few questions may understand everything, and one who asks many may be very engaged. Questions go to the professor's map of doubts, not to the risk signal.</li>
-          <li><strong>Socioeconomic and demographic data.</strong> The model does not use age, gender, scholarships or income. The only possible financial signal is optional and kept separate (see below).</li>
+          <li><strong>Tutor usage.</strong> A student who asks few questions may understand everything, and one who asks many may be highly engaged. Questions go to the instructor's question map, not to the risk signal.</li>
+          <li><strong>Socioeconomic and demographic data.</strong> The model does not use age, gender, scholarships or income. If the institution chooses, it can add financial signals, such as an outstanding balance, so the finance team can act in time; each alert explains how they weigh in.</li>
           </ul>
 
-          <h2 id="modelos">What it was trained on</h2>
-          <p>There are two models, and the system picks one per student:</p>
+          <h2 id="ajuste">How it adapts to your institution</h2>
+          <p>The model starts from what it learned on tens of thousands of university student trajectories. From the demo on, it runs on your institution's real groups: you see who is at risk today and why.</p>
+          <p>With every term that closes, your institution's results, who stayed and who left, refine the model to your reality. The longer it works with your data, the more it reflects your students.</p>
+
+          <h2 id="alerta">From signal to alert</h2>
+          <p>Each student gets a <strong>high, medium or low</strong> risk level, and each alert comes with:</p>
           <ul>
-          <li><strong>Weekly model.</strong> Used once there are at least 14 days of login history. It was trained on the <a href="https://archive.ics.uci.edu/dataset/349" rel="noopener">Open University Learning Analytics Dataset</a> (Kuzilek, Hlosta and Zdrahal, 2017): 32,593 students across 22 courses at a UK distance-learning university, observed week by week. It was validated by leaving out one whole course at a time and measuring on that unseen course.</li>
-          <li><strong>Grades model.</strong> Used while there is not enough login history. It looks at courses enrolled, passed and assessed in recent terms, and it was trained on the public <a href="https://archive.ics.uci.edu/dataset/697" rel="noopener">Predict Students' Dropout and Academic Success</a> dataset (UCI), with 4,424 higher-education students in Portugal.</li>
+          <li>the <strong>reasons</strong> in plain words, for example "has not logged in to the course for 9 days";</li>
+          <li>a <strong>suggested action</strong>, for example "book 10 minutes with this student this week";</li>
+          <li>how much evidence is behind it.</li>
           </ul>
-          <p>Both are logistic regressions: classic statistical models in which each signal adds or subtracts with a known weight. We chose this type of model because it lets us explain every alert.</p>
-
-          <h2 id="alerta">From score to alert</h2>
-          <p>The result is a score from 0 to 100. In the weekly model, the level is <strong>high</strong> from 70 and <strong>medium</strong> from 55; in the grades model, medium starts at 40. Every alert comes with:</p>
-          <ul>
-          <li>the <strong>reasons</strong> in words, for example "has not logged in to the course in 9 days";</li>
-          <li>a <strong>suggested action</strong>, for example "schedule 10 minutes with this student this week";</li>
-          <li>how much evidence is behind it, in weeks of data.</li>
-          </ul>
-          <p>If there is not enough data, the student is shown as "no data". Pharis never makes up a number to fill the gap.</p>
-
-          <h2 id="financiera">The optional financial signal</h2>
-          <p>If the institution shares outstanding balances or late payments, a signal from the last 30 days adds a fixed adjustment to the score: 15 points by default, configurable per institution between 0 and 50, capped at 100. It does not change the model and is not used to train it. Scholarships are recorded but do not add points. Without academic history, a financial signal alone does not produce a score.</p>
-
-          <h2 id="precision">Why we do not publish an accuracy figure</h2>
-          <p>Both models were trained on students from other institutions, other countries and other calendars. An accuracy figure measured on that data would say nothing about your institution's students, so we do not present one, either to professors or in the panel.</p>
-          <p>What adjusts the model to an institution is its own outcomes: who stayed and who left. With at least one full term closed, and around a hundred students with a known outcome, the model and its cutoffs can be recalibrated to that institution.</p>
+          <p>If there is not enough data on a student yet, they show as "no data": Pharis never makes up a number to fill the gap.</p>
 
           <h2 id="decide">Who decides</h2>
-          <p>Risk is a signal for a person. The professor, coordinator or relevant area decides whether to contact the student, how and when. Every contact is logged, and at the next measurement Pharis compares the risk before and after to learn which actions work.</p>
+          <p>Risk is a signal for a person. The instructor, the coordinator or the relevant area decides whether to contact the student, how and when. Every contact is recorded, and at the next measurement Pharis compares risk before and after to learn which actions work.</p>
           <p>Want to see it with your institution's data? <a href="demo">Book a demo</a>.</p>
       </article>
     </div>

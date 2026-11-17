@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cómo calcula Pharis el riesgo de deserción - Pharis</title>
-  <meta name="description" content="Qué datos del LMS usa el modelo de riesgo de Pharis, con qué datos públicos se entrenó, cómo genera una alerta y por qué no publicamos su precisión." />
+  <meta name="description" content="Qué señales del LMS usa Pharis para anticipar la deserción, qué deja fuera a propósito, cómo se ajusta a tu institución y cómo se convierte en una alerta." />
   <!-- SEO:start -->
   <link rel="canonical" href="https://pharis.mx/metodologia" />
   <link rel="alternate" hreflang="es" href="https://pharis.mx/metodologia" />
@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Pharis" />
   <meta property="og:url" content="https://pharis.mx/metodologia" />
   <meta property="og:title" content="Cómo calcula Pharis el riesgo de deserción - Pharis" />
-  <meta property="og:description" content="Qué datos del LMS usa el modelo de riesgo de Pharis, con qué datos públicos se entrenó, cómo se convierte en una alerta y por qué no publicamos una cifra de precisión." />
+  <meta property="og:description" content="Qué señales del LMS usa Pharis para anticipar la deserción, qué deja fuera a propósito, cómo se ajusta a tu institución y cómo se convierte en una alerta." />
   <meta property="og:locale" content="es_MX" />
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:image" content="https://pharis.mx/assets/og-pharis-es.jpg" />
@@ -22,9 +22,9 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Cómo calcula Pharis el riesgo de deserción - Pharis" />
-  <meta name="twitter:description" content="Qué datos del LMS usa el modelo de riesgo de Pharis, con qué datos públicos se entrenó, cómo se convierte en una alerta y por qué no publicamos una cifra de precisión." />
+  <meta name="twitter:description" content="Qué señales del LMS usa Pharis para anticipar la deserción, qué deja fuera a propósito, cómo se ajusta a tu institución y cómo se convierte en una alerta." />
   <meta name="twitter:image" content="https://pharis.mx/assets/og-pharis-es.jpg" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://pharis.mx/#org","name":"Pharis","url":"https://pharis.mx/","logo":"https://pharis.mx/assets/logo.svg","email":"contacto@pharis.mx"},{"@type":"TechArticle","@id":"https://pharis.mx/metodologia#article","headline":"Cómo calcula Pharis el riesgo de deserción","description":"Qué datos del LMS usa el modelo de riesgo de Pharis, con qué datos públicos se entrenó, cómo se convierte en una alerta y por qué no publicamos una cifra de precisión.","inLanguage":"es-MX","datePublished":"2026-10-28","dateModified":"2026-10-28","mainEntityOfPage":"https://pharis.mx/metodologia","author":{"@id":"https://pharis.mx/#org"},"publisher":{"@id":"https://pharis.mx/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pharis","item":"https://pharis.mx/"},{"@type":"ListItem","position":2,"name":"Cómo calcula Pharis el riesgo de deserción","item":"https://pharis.mx/metodologia"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://pharis.mx/#org","name":"Pharis","url":"https://pharis.mx/","logo":"https://pharis.mx/assets/logo.svg","email":"contacto@pharis.mx"},{"@type":"TechArticle","@id":"https://pharis.mx/metodologia#article","headline":"Cómo calcula Pharis el riesgo de deserción","description":"Qué señales del LMS usa Pharis para anticipar la deserción, qué deja fuera a propósito, cómo se ajusta a tu institución y cómo se convierte en una alerta.","inLanguage":"es-MX","datePublished":"2026-10-28","dateModified":"2026-10-28","mainEntityOfPage":"https://pharis.mx/metodologia","author":{"@id":"https://pharis.mx/#org"},"publisher":{"@id":"https://pharis.mx/#org"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Pharis","item":"https://pharis.mx/"},{"@type":"ListItem","position":2,"name":"Cómo calcula Pharis el riesgo de deserción","item":"https://pharis.mx/metodologia"}]}]}</script>
   <!-- SEO:end -->
   <meta name="theme-color" content="#f5f8fc" />
   <meta name="robots" content="index, follow" />
@@ -277,7 +277,7 @@
       <div class="container">
         <h1>Cómo calcula Pharis el riesgo de deserción</h1>
         <p class="updated">Última actualización: octubre de 2026</p>
-        <p class="lead">Pharis estima el riesgo de que un alumno abandone o repruebe un curso con lo que ya hace en la plataforma educativa (LMS) de su institución. Esta página explica qué datos usa, cuáles deja fuera a propósito, cómo se convierte el cálculo en una alerta y qué límites tiene.</p>
+        <p class="lead">Pharis anticipa qué alumnos están en riesgo de abandonar o reprobar con lo que ya hacen en la plataforma educativa (LMS) de su institución, y convierte esa señal en una alerta clara para la persona que puede ayudar.</p>
       </div>
     </header>
 
@@ -286,12 +286,10 @@
         <p>Contenido</p>
         <ol>
             <li><a href="#resumen">En resumen</a></li>
-            <li><a href="#datos">Qué datos usa</a></li>
+            <li><a href="#datos">Qué observa</a></li>
             <li><a href="#excluye">Qué deja fuera, a propósito</a></li>
-            <li><a href="#modelos">Con qué se entrenó</a></li>
-            <li><a href="#alerta">De puntaje a alerta</a></li>
-            <li><a href="#financiera">La señal financiera, opcional</a></li>
-            <li><a href="#precision">Por qué no publicamos una cifra de precisión</a></li>
+            <li><a href="#ajuste">Cómo se ajusta a tu institución</a></li>
+            <li><a href="#alerta">De la señal a la alerta</a></li>
             <li><a href="#decide">Quién decide</a></li>
         </ol>
       </nav>
@@ -299,51 +297,40 @@
       <article class="doc">
           <h2 id="resumen">En resumen</h2>
           <ul>
-          <li>El riesgo se calcula con <strong>accesos, entregas y calificaciones</strong> del LMS, comparados con el grupo del alumno.</li>
+          <li>La señal se construye con la <strong>actividad, las entregas y las calificaciones</strong> del LMS, siempre comparadas con el grupo del alumno.</li>
           <li>No usa datos socioeconómicos ni cuánto usa el alumno el tutor de Pharis.</li>
-          <li>Es una <strong>regresión logística</strong>: cada señal tiene un peso fijo y cada alerta dice sus motivos en palabras.</li>
-          <li>Está entrenado con datos públicos de otras universidades, así que <strong>ordena</strong> alumnos por señales de desconexión; no es una probabilidad calibrada para tu institución.</li>
+          <li>Cada alerta explica sus <strong>motivos en palabras</strong> y sugiere una acción concreta.</li>
+          <li>El modelo <strong>se afina con los resultados de tu institución</strong> en cada ciclo.</li>
           <li>La alerta llega a una persona, que decide si actúa y cómo. Ninguna decisión sobre un alumno es automática.</li>
           </ul>
 
-          <h2 id="datos">Qué datos usa</h2>
-          <p>Pharis lee el LMS en modo solo lectura todos los días. Para cada alumno, en cada curso, mide:</p>
+          <h2 id="datos">Qué observa</h2>
+          <p>Pharis revisa el LMS todos los días, en modo solo lectura, y observa tres tipos de señales de cada alumno en cada curso:</p>
           <ul>
-          <li><strong>Actividad frente a su grupo:</strong> cuántos días entró al curso en los últimos 7 y 28 días, comparado con la mediana de su grupo, y cuántos días lleva sin entrar.</li>
-          <li><strong>Entregas:</strong> qué parte de las tareas que ya vencieron quedó sin entregar, en las últimas 4 semanas y desde el inicio del curso, y cuántas se entregaron tarde.</li>
-          <li><strong>Calificaciones:</strong> el promedio de lo que ya se calificó, o si todavía no hay ninguna calificación.</li>
+          <li><strong>Actividad frente a su grupo:</strong> si entra al curso con la frecuencia de sus compañeros o empieza a alejarse.</li>
+          <li><strong>Entregas:</strong> si las tareas se quedan sin entregar o empiezan a llegar tarde.</li>
+          <li><strong>Calificaciones:</strong> cómo va en lo que ya se evaluó.</li>
           </ul>
-          <p>Comparar contra el grupo importa: entrar dos días a la semana puede ser normal en un curso y una señal de alarma en otro.</p>
+          <p>Comparar contra el grupo es lo que hace útil la señal: entrar dos días a la semana puede ser normal en un curso y una señal de alarma en otro.</p>
 
           <h2 id="excluye">Qué deja fuera, a propósito</h2>
           <ul>
           <li><strong>El uso del tutor.</strong> Un alumno que pregunta poco puede estar entendiendo todo, y uno que pregunta mucho puede estar muy involucrado. Las dudas van al mapa de dudas del profesor, no a la señal de riesgo.</li>
-          <li><strong>Datos socioeconómicos y demográficos.</strong> El modelo no usa edad, género, beca ni ingreso. La única señal económica posible es opcional y va aparte (ver más abajo).</li>
+          <li><strong>Datos socioeconómicos y demográficos.</strong> El modelo no usa edad, género, beca ni ingreso. Si la institución lo decide, puede sumar señales financieras, como un adeudo, para que el área de Finanzas actúe a tiempo; cada alerta explica cómo influyen.</li>
           </ul>
 
-          <h2 id="modelos">Con qué se entrenó</h2>
-          <p>Hay dos modelos, y el sistema elige uno por alumno:</p>
-          <ul>
-          <li><strong>Modelo semanal.</strong> Se usa cuando hay al menos 14 días de historial de accesos. Se entrenó con el <a href="https://archive.ics.uci.edu/dataset/349" rel="noopener">Open University Learning Analytics Dataset</a> (Kuzilek, Hlosta y Zdrahal, 2017): 32,593 alumnos de 22 cursos de una universidad a distancia del Reino Unido, observados semana a semana. Se validó dejando fuera un curso completo cada vez y midiendo en ese curso que el modelo no había visto.</li>
-          <li><strong>Modelo por calificaciones.</strong> Se usa mientras no hay historial de accesos suficiente. Mira las materias inscritas, aprobadas y evaluadas en los últimos periodos, y se entrenó con el conjunto público <a href="https://archive.ics.uci.edu/dataset/697" rel="noopener">Predict Students' Dropout and Academic Success</a> (UCI), de 4,424 alumnos de educación superior en Portugal.</li>
-          </ul>
-          <p>Los dos son regresiones logísticas: modelos estadísticos clásicos en los que cada señal suma o resta con un peso conocido. Elegimos ese tipo de modelo porque permite explicar cada alerta.</p>
+          <h2 id="ajuste">Cómo se ajusta a tu institución</h2>
+          <p>El modelo parte de lo aprendido con decenas de miles de trayectorias de alumnos universitarios. Desde la demo se aplica a los grupos reales de tu institución: ves quién va en riesgo hoy y por qué.</p>
+          <p>Con cada ciclo que cierra, los resultados de tu institución, quién siguió y quién se fue, afinan el modelo a tu realidad. Cuanto más tiempo trabaja con tus datos, más se parece a tus alumnos.</p>
 
-          <h2 id="alerta">De puntaje a alerta</h2>
-          <p>El resultado es un puntaje de 0 a 100. En el modelo semanal, desde 70 el nivel es <strong>alto</strong> y desde 55, <strong>medio</strong>; en el de calificaciones, el nivel medio empieza en 40. Cada alerta llega con:</p>
+          <h2 id="alerta">De la señal a la alerta</h2>
+          <p>Cada alumno recibe un nivel de riesgo <strong>alto, medio o bajo</strong>, y cada alerta llega con:</p>
           <ul>
           <li>los <strong>motivos</strong> en palabras, por ejemplo "lleva 9 días sin entrar al curso";</li>
           <li>una <strong>acción sugerida</strong>, por ejemplo "agenda 10 minutos con este alumno esta semana";</li>
-          <li>cuánta evidencia hay detrás, en semanas de datos.</li>
+          <li>cuánta evidencia hay detrás.</li>
           </ul>
-          <p>Si no hay datos suficientes, el alumno queda como "sin datos". Pharis nunca inventa un número para llenar el hueco.</p>
-
-          <h2 id="financiera">La señal financiera, opcional</h2>
-          <p>Si la institución comparte adeudos o atrasos de pago, una señal de los últimos 30 días suma un ajuste fijo al puntaje: 15 puntos por defecto, configurable por institución entre 0 y 50, con tope en 100. No cambia el modelo ni se usa para entrenarlo. Las becas se registran, pero no suman. Sin historial académico, la señal financiera sola no genera un puntaje.</p>
-
-          <h2 id="precision">Por qué no publicamos una cifra de precisión</h2>
-          <p>Los dos modelos se entrenaron con alumnos de otras instituciones, otros países y otros calendarios. Una cifra de precisión medida en esos datos no diría nada sobre los alumnos de tu institución, así que no la presentamos como tal, ni a profesores ni en el panel.</p>
-          <p>Lo que sí ajusta el modelo a una institución son sus propios desenlaces: quién siguió y quién se fue. Con al menos un ciclo completo cerrado, y alrededor de cien alumnos con desenlace conocido, se puede recalibrar el modelo y sus cortes con la realidad de esa institución.</p>
+          <p>Si todavía no hay datos suficientes de un alumno, aparece como "sin datos": Pharis no inventa un número para llenar el hueco.</p>
 
           <h2 id="decide">Quién decide</h2>
           <p>El riesgo es una señal para una persona. El profesor, la coordinación o el área que corresponda decide si contacta al alumno, cómo y cuándo. Cada contacto queda registrado, y en la siguiente medición Pharis compara el riesgo de antes y después para saber qué acciones funcionan.</p>
