@@ -232,7 +232,8 @@
     .nd-btn svg { width: 14px; height: 14px; opacity: 0.6; transition: transform 0.2s ease; }
     .nd-menu { position: absolute; top: calc(100% + 0.9rem); left: 50%; transform: translate(-50%, 6px); min-width: 310px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.15rem; background: #fff; border: 1px solid rgba(15, 23, 42, 0.08); border-radius: 1rem; box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s; z-index: 20; }
     .nd-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -1.1rem; height: 1.1rem; }
-    .nd:hover .nd-menu, .nd:focus-within .nd-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
+    .nd:hover .nd-menu, .nd:has(:focus-visible) .nd-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
+    .nav-links:hover .nd:not(:hover) .nd-menu { opacity: 0; visibility: hidden; pointer-events: none; transform: translate(-50%, 6px); }
     .nd:hover .nd-btn svg { transform: rotate(180deg); }
     .nav-links .nd-menu a { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.65rem 0.75rem; border-radius: 0.65rem; white-space: normal; font-size: 0.92rem; color: var(--light-text); }
     .nav-links .nd-menu a::after { content: none; }
